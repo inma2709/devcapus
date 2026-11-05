@@ -1,0 +1,15 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+const pre={background:"#f8fafc",color:"#0f172a",padding:"1rem",borderRadius:".5rem",overflowX:"auto"};
+export default function V22_Grid_Fracciones(){useEffect(()=>{document.title="V22 · Grid II: fracciones y adaptación";},[]);return <main className="doc" id="contenido"><header className="doc-hero"><p className="doc-kicker">V22 · Layout</p><h1>Grid II · Fracciones y cuadrículas que se adaptan</h1><p className="doc-lead">Ahora que sabes crear columnas, vamos a decidir cuánto espacio recibe cada una y cómo permitir que las tarjetas respondan al ancho disponible.</p></header><section className="card"><h2>1. <code>fr</code> reparte espacio disponible</h2><pre style={pre}><code>{`.layout { grid-template-columns: 1fr 2fr 1fr; }`}</code></pre><p><code>fr</code> significa fracción del espacio disponible. En este ejemplo hay cuatro fracciones: la segunda columna recibe dos y cada lateral una. No es un píxel fijo; se adapta al contenedor.</p><div style={{display:"grid",gridTemplateColumns:"1fr 2fr 1fr",gap:".5rem",padding:".5rem",background:"#f8fafc"}}>{["1fr","2fr","1fr"].map((x,i)=><div key={i} style={{padding:"1rem",background:"#dbeafe",color:"#0f172a",textAlign:"center"}}>{x}</div>)}</div></section><section className="card"><h2>2. Mezclar tamaños fijos y flexibles</h2><pre style={pre}><code>{`.pagina {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1rem;
+}`}</code></pre><p>Una barra lateral puede medir 220px y el contenido principal ocupar el resto. Úsalo cuando exista una razón real para fijar una columna; evita llenar toda la página de medidas rígidas.</p></section><section className="card"><h2>3. Cuadrículas adaptables con <code>minmax()</code></h2><pre style={pre}><code>{`.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}`}</code></pre><p><code>minmax(220px, 1fr)</code> dice: «cada tarjeta no debe bajar de 220px; si sobra espacio, puede crecer». <code>auto-fit</code> crea tantas columnas como quepan y apila las restantes.</p><div className="callout tip"><strong>Lectura paso a paso:</strong> <code>repeat</code> repite · <code>auto-fit</code> calcula cuántas caben · <code>minmax</code> protege el mínimo · <code>1fr</code> reparte el sobrante.</div></section><section className="card"><h2>4. Colocar una pieza puntual con líneas</h2><pre style={pre}><code>{`.destacada {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}`}</code></pre><p>Las líneas delimitan tracks. <code>grid-column: 1 / 3</code> ocupa desde la primera línea hasta la tercera, es decir, dos columnas. Este control es útil para un hero o una tarjeta destacada; no necesitas usarlo para cada tarjeta normal.</p></section><section className="card"><h2>Micropráctica</h2><ol><li>Crea una galería adaptable con <code>repeat(auto-fit, minmax(220px, 1fr))</code>.</li><li>Amplía una tarjeta con <code>grid-column: span 2</code>.</li><li>Prueba un layout <code>220px 1fr</code> y cambia el ancho de la ventana.</li></ol><Link className="btn btn-primary" to="/css-grid-areas">Continuar con Grid Areas →</Link></section></main>}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digitaliza tu negocio | Gestor de citas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Digitaliza tu negocio</p>
+      <h1>Gestor de citas para peluquería</h1>
+      <p class="hero-text">Una app sencilla para crear, editar y eliminar citas guardadas en el navegador.</p>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section class="panel summary" aria-labelledby="resumen-title">
+      <h2 id="resumen-title">Resumen</h2>
+      <div class="summary-grid">
+        <article class="stat-card">
+          <span class="stat-label">Total de citas</span>
+          <strong id="totalCitas">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Ingresos totales</span>
+          <strong id="totalIngresos">0 €</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel form-panel" aria-labelledby="form-title">
+      <div class="section-header">
+        <div>
+          <p class="section-kicker">Formulario</p>
+          <h2 id="form-title">Nueva cita</h2>
+        </div>
+        <button type="button" id="toggleFormBtn" class="secondary-btn" aria-expanded="true">Ocultar formulario</button>
+      </div>
+
+      <form id="citaForm" class="form">
+        <input type="hidden" id="citaId">
+
+        <div class="field">
+          <label for="cliente">Cliente</label>
+          <input type="text" id="cliente" name="cliente" required>
+        </div>
+
+        <div class="field">
+          <label for="servicio">Servicio</label>
+          <input type="text" id="servicio" name="servicio" required>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+          <div class="field">
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" name="hora" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="precio">Precio (€)</label>
+          <input type="number" id="precio" name="precio" min="0" step="1" required>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="submitBtn" class="primary-btn">Guardar cita</button>
+          <button type="button" id="cancelEditBtn" class="secondary-btn hidden">Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="listado-title">
+      <div class="section-header">
+        <div>
+          <p class="section-kicker">Listado</p>
+          <h2 id="listado-title">Citas programadas</h2>
+        </div>
+      </div>
+
+      <p id="emptyState" class="empty-state hidden">Todavía no hay citas. Añade la primera cita para empezar.</p>
+      <div id="citasList" class="cards-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

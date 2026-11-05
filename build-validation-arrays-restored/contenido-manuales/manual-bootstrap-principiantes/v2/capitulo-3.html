@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 · Utilities de Bootstrap 5.3</title>
+<link rel="stylesheet" href="manual.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.utility-demo{border:1px solid var(--bs-border-color);border-radius:.75rem;padding:1rem;background:var(--bs-tertiary-bg)}
+.utility-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.swatch{min-height:4.5rem;display:flex;align-items:center;justify-content:center;border-radius:.5rem}
+@media print{.utility-demo{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top"><a href="index.html">DevCampus · Bootstrap</a><button class="menu" type="button">Capítulos</button><nav></nav></header>
+<main class="page">
+<p class="progress">Capítulo 3 de 6 · Ruta esencial: 45 minutos · Ampliación autónoma disponible</p>
+<p class="breadcrumb"><a href="index.html">Índice</a> / Utilities</p>
+<h1>Utilities: CSS corto, visible y combinable</h1>
+<p class="lead">Una utility es una clase pequeña que aplica una decisión CSS concreta. No es magia ni un lenguaje nuevo: <code>p-3</code> equivale a un padding predefinido y <code>d-flex</code> activa Flexbox.</p>
+<section><h2>1. Cómo leer una utility</h2>
+<p>La mayoría siguen el patrón <code>propiedad-dirección-tamaño</code>. La familia indica la propiedad, la dirección limita sus lados y el número elige un valor de la escala de Bootstrap.</p>
+<div class="utility-grid"><article class="utility-demo"><h3 class="h5"><code>p-3</code></h3><p class="mb-0">Padding en los cuatro lados.</p><small>CSS aproximado: <code>padding: 1rem</code></small></article><article class="utility-demo"><h3 class="h5"><code>mt-4</code></h3><p class="mb-0">Margin superior.</p><small>CSS aproximado: <code>margin-top: 1.5rem</code></small></article><article class="utility-demo"><h3 class="h5"><code>me-auto</code></h3><p class="mb-0">Margin-end automática; en una fila LTR empuja lo siguiente hacia la derecha.</p><small>CSS: <code>margin-inline-end:auto</code></small></article></div>
+<h3>Direcciones y escala</h3><ul><li><code>m</code>/<code>p</code>: margin/padding; <code>t</code>, <code>b</code>, <code>s</code>, <code>e</code>, <code>x</code>, <code>y</code>: arriba, abajo, inicio, final, horizontal y vertical.</li><li>La escala habitual va de <code>0</code> a <code>5</code>; <code>0</code> elimina el espacio y <code>auto</code> usa el cálculo automático de CSS.</li><li><code>s</code> y <code>e</code> son preferibles a <code>left</code>/<code>right</code> porque funcionan en diseños RTL.</li></ul>
+<div class="utility-demo"><div class="bg-primary text-white p-3 rounded-3"><code class="text-white">p-3 rounded-3 bg-primary</code><br>Observa el relleno, el radio y el fondo.</div></div></section>
+<section><h2>2. Flexbox con utilities</h2><p>Primero activa Flexbox con <code>d-flex</code>; después decide el eje y la alineación. Estas clases son la traducción directa de propiedades que ya conoces.</p>
+<table class="table table-bordered align-middle"><thead><tr><th>Bootstrap</th><th>CSS relacionado</th><th>Uso</th></tr></thead><tbody><tr><td><code>d-flex</code></td><td><code>display:flex</code></td><td>Contenedor flex.</td></tr><tr><td><code>justify-content-between</code></td><td><code>justify-content:space-between</code></td><td>Separa los extremos.</td></tr><tr><td><code>align-items-center</code></td><td><code>align-items:center</code></td><td>Alinea en eje transversal.</td></tr><tr><td><code>flex-column</code></td><td><code>flex-direction:column</code></td><td>Apila elementos.</td></tr><tr><td><code>gap-3</code></td><td><code>gap:1rem</code></td><td>Separa hijos.</td></tr></tbody></table>
+<div class="utility-demo d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"><strong>DevAcademy</strong><span class="badge text-bg-primary">Nuevo curso</span><span class="me-md-auto">Aprende haciendo</span><a class="btn btn-outline-primary" href="#practica">Ver práctica</a></div>
+<pre><code>&lt;div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"&gt;
+  &lt;strong&gt;DevAcademy&lt;/strong&gt;
+  &lt;span class="badge text-bg-primary"&gt;Nuevo curso&lt;/span&gt;
+  &lt;span class="me-md-auto"&gt;Aprende haciendo&lt;/span&gt;
+  &lt;a class="btn btn-outline-primary" href="#practica"&gt;Ver práctica&lt;/a&gt;
+&lt;/div&gt;</code></pre><p><strong>Lectura responsive:</strong> hasta <code>md</code> se apilan; desde 768px se colocan en fila. <code>me-md-auto</code> solo crea el empuje en pantallas medianas o mayores.</p></section>
+<section><h2>3. Display responsive</h2><p>Las utilities de display permiten mostrar u ocultar elementos sin escribir una media query. La clase sin breakpoint es el comportamiento inicial móvil.</p><div class="utility-demo"><p class="d-none d-md-block alert alert-success mb-0">Este aviso aparece desde <code>md</code> (768px).</p><p class="d-md-none alert alert-warning mb-0">Este aviso solo aparece por debajo de <code>md</code>.</p></div><pre><code>&lt;p class="d-none d-md-block"&gt;Visible desde md&lt;/p&gt;
+&lt;p class="d-md-none"&gt;Visible solo antes de md&lt;/p&gt;</code></pre><p>No confundas <code>d-none</code> con <code>invisible</code>: el primero retira el elemento del flujo y de las tecnologías de asistencia; el segundo conserva su espacio. Oculta contenido solo cuando no sea esencial.</p></section>
+<section><h2>4. Colores, texto, bordes y opacidad</h2><div class="utility-grid"><div class="swatch bg-primary text-white">bg-primary + text-white</div><div class="swatch bg-success-subtle text-success-emphasis">success-subtle</div><div class="swatch border border-2 border-danger rounded-pill text-danger">border-danger + rounded-pill</div></div><p>Combina <code>text-primary</code>, <code>text-center</code>, <code>fw-bold</code>, <code>border</code>, <code>border-2</code>, <code>rounded-3</code> y <code>opacity-50</code>. Comprueba siempre contraste y no uses color como única señal.</p><div class="utility-demo"><a class="icon-link icon-link-hover" href="https://getbootstrap.com/docs/5.3/helpers/icon-link/" target="_blank" rel="noopener">Consulta icon-link <span aria-hidden="true">→</span></a> <span class="ms-3 opacity-50">opacity-50</span></div></section>
+<section><h2>5. Ruta esencial: construir una cabecera</h2><p>Inserta este bloque dentro de <code>&lt;main&gt;</code> de tu página de práctica.</p><pre><code>&lt;header class="d-flex flex-wrap align-items-center gap-3 p-3 mb-4 border rounded-3"&gt;
+  &lt;h2 class="h5 mb-0 me-auto"&gt;DevAcademy&lt;/h2&gt;
+  &lt;span class="badge text-bg-primary d-none d-md-inline"&gt;Nuevo&lt;/span&gt;
+  &lt;a class="btn btn-primary" href="#cursos"&gt;Ver cursos&lt;/a&gt;
+&lt;/header&gt;</code></pre><div class="utility-demo d-flex flex-wrap align-items-center gap-3 p-3 mb-3 border rounded-3"><h2 class="h5 mb-0 me-auto">DevAcademy</h2><span class="badge text-bg-primary d-none d-md-inline">Nuevo</span><a class="btn btn-primary" href="#cursos">Ver cursos</a></div><p><strong>Comprobación:</strong> reduce la ventana por debajo de 768px. El badge desaparece, el título conserva su espacio y el botón sigue siendo accesible.</p></section>
+<section id="practica" class="practice"><h2>6. Prácticas progresivas</h2><h3>Práctica guiada</h3><ol><li>Copia la cabecera anterior.</li><li>Cambia <code>p-3</code> por <code>p-1</code> y describe el resultado.</li><li>Sustituye la alineación por <code>justify-content-center</code>.</li><li>Explica qué propiedad CSS representa cada cambio.</li></ol><h3>Práctica autónoma</h3><p>Crea una fila de tres tarjetas: en móvil deben apilarse y desde <code>md</code> formar tres columnas. Usa <code>d-flex flex-column flex-md-row</code>, <code>gap-3</code>, <code>border</code>, <code>rounded-3</code> y una utility de color. No escribas CSS propio.</p><h3>Solución razonada</h3><pre><code>&lt;div class="d-flex flex-column flex-md-row gap-3"&gt;
+  &lt;article class="border rounded-3 p-3 flex-fill bg-light"&gt;HTML&lt;/article&gt;
+  &lt;article class="border rounded-3 p-3 flex-fill bg-primary text-white"&gt;CSS&lt;/article&gt;
+  &lt;article class="border rounded-3 p-3 flex-fill bg-success-subtle"&gt;Bootstrap&lt;/article&gt;
+&lt;/div&gt;</code></pre><p><code>flex-fill</code> reparte el espacio disponible; la dirección cambia en <code>md</code>; <code>p-3</code>, <code>border</code> y <code>rounded-3</code> sustituyen reglas CSS equivalentes.</p><h3>Errores frecuentes</h3><ul><li>Usar <code>justify-content-between</code> sin <code>d-flex</code>.</li><li>Escribir <code>margin-right</code> en lugar de <code>me-*</code> y romper RTL.</li><li>Ocultar información esencial con <code>d-none</code>.</li><li>Combinar tantas utilities que el HTML deja de ser legible: crea una clase semántica propia.</li></ul></section>
+<section><h2>7. Autoevaluación con respuestas</h2><ol><li>¿Qué ocurre con <code>d-none d-lg-block</code>? <details><summary>Respuesta</summary>Está oculto por defecto y se muestra desde <code>lg</code> (992px).</details></li><li>¿Por qué <code>me-auto</code> empuja un botón? <details><summary>Respuesta</summary>Aplica margin en el lado final con valor automático dentro de Flexbox.</details></li><li>¿Qué cambia entre <code>p-3</code> y <code>px-3</code>? <details><summary>Respuesta</summary>El primero aplica padding en cuatro lados; el segundo solo en horizontal.</details></li><li>¿Cuándo conviene CSS propio? <details><summary>Respuesta</summary>Cuando expresa una intención reutilizable o no existe una utility adecuada.</details></li></ol></section>
+<aside class="box"><h2>Ampliación y consulta</h2><p>Explora <a href="https://getbootstrap.com/docs/5.3/utilities/" target="_blank" rel="noopener">Utilities oficiales 5.3</a>, <a href="https://getbootstrap.com/docs/5.3/helpers/icon-link/" target="_blank" rel="noopener">icon-link</a> y <a href="https://getbootstrap.com/docs/5.3/helpers/focus-ring/" target="_blank" rel="noopener">focus-ring</a>. Consulta la <a href="chuleta.html">chuleta CSS ↔ Bootstrap</a> y continúa con <a href="capitulo-4.html">Capítulo 4 · Componentes</a>.</p></aside>
+<p><a href="../../manualcss/manual-css/dist/ejercicios/e13-bootstrap-cards">E13 · Cards y utilities</a></p>
+<nav class="pager"><a href="capitulo-2.html">← Capítulo 2</a><a href="capitulo-4.html">Capítulo 4 →</a></nav>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script><script src="manual.js"></script>
+</body></html>
+

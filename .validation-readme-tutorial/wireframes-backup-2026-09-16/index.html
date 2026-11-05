@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframes · Manual de Penpot para desarrollo web</title>
+  <link rel="stylesheet" href="penpot.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <span class="eyebrow">Manual autodidacta · Proyecto conductor: CV digital</span>
+      <h1>Wireframes y Penpot: del problema al diseño web</h1>
+      <p class="lead">Un recorrido progresivo para planificar, diseñar, comprobar y preparar un portfolio profesional antes de escribir HTML y CSS. No presupone experiencia previa y no elimina los conceptos difíciles: los introduce cuando hacen falta.</p>
+      <p class="statement">Diseñar no significa decorar una página. Significa decidir qué construiremos, cómo se organiza y cómo podrá utilizarlo una persona antes de programarlo.</p>
+    </header>
+    <div class="layout">
+      <nav class="toc" aria-label="Índice del manual">
+        <h2>Índice</h2>
+        <a href="#ruta">La ruta del proyecto</a>
+        <a href="#tema-3">Tema 3 · Desarrollo guiado</a>
+        <a href="#m1">1. Antes de Penpot</a><a href="#m2">2. Qué es Penpot</a><a href="#m3">3. Primer contacto</a><a href="#m4">4. Archivo profesional</a><a href="#m5">5. Definir el CV</a><a href="#m6">6. Wireframing</a><a href="#m7">7. Responsive</a><a href="#m8">8. Diseño visual</a><a href="#m9">9. Flex Layout</a><a href="#m10">10. Grid Layout</a><a href="#m11">11. Componentes</a><a href="#m12">12. Variantes y estados</a><a href="#m13">13. Recursos y bibliotecas</a><a href="#m14">14. Tokens</a><a href="#m15">15. Prototipado</a><a href="#m16">16. UX y pruebas</a><a href="#m17">17. Accesibilidad</a><a href="#m18">18. Inspect</a><a href="#m19">19. A HTML y CSS</a><a href="#m20">20. Proyecto final</a>
+      </nav>
+      <div>
+        <section id="ruta" class="module">
+          <h2>La ruta que seguirás</h2>
+          <p><strong>Idea → objetivo → usuario → contenido → arquitectura de información → wireframe → UX → UI → sistema de diseño → responsive → prototipo → desarrollo.</strong></p>
+          <p>El proyecto de todo el manual es un <strong>CV digital / portfolio profesional</strong>. Al final tendrás versiones desktop y mobile, arquitectura de capas, sistema visual, layouts, componentes, tokens, prototipo e información suficiente para implementar la web.</p>
+          <div class="box important"><h4>Cómo estudiar</h4><p>Lee un bloque, realiza la práctica antes de mirar otra sección y nombra el resultado en Penpot. </p></div>
+        </section>
+        <section id="m1" class="module">
+          <h2>1. Antes de abrir Penpot: decidir antes de construir</h2>
+          <div class="grid"><div class="box"><h4>Qué es UX y UI</h4><p><strong>UX</strong> (experiencia de usuario) es si una persona entiende y consigue lo que busca. <strong>UI</strong> (interfaz) es cómo se presentan y controlan esas decisiones: textos, botones, color y espacio. Una UI atractiva no compensa una UX confusa.</p></div><div class="box"><h4>Arquitectura, wireframe, mockup y prototipo</h4><p>La arquitectura ordena contenido; el <strong>wireframe</strong> prueba estructura sin decoración; el <strong>mockup</strong> añade apariencia; el <strong>prototipo</strong> permite probar navegación e interacciones.</p></div></div>
+          <h3>Aplicado al CV</h3><p>Un reclutador llega con poco tiempo. Debe reconocer quién eres, qué haces, ver proyectos y contactarte. Esa prioridad dicta el orden antes que los colores.</p>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Escribe una frase para cada punto: objetivo del CV, visitante principal, acción que deseas que haga y tres contenidos imprescindibles.</p></div>
+          <div class="box error"><h4>ERROR FRECUENTE</h4><p>Abrir HTML o elegir una paleta antes de saber qué información necesita la persona que visita la página.</p></div>
+          <h3>Autoevaluación</h3><ol class="checks"><li>¿Qué decisión resuelve la arquitectura de información?</li><li>¿Qué probarías con un wireframe que aún no prueba un mockup?</li><li>¿Por qué UX y UI no son sinónimos?</li><li>Ordena: prototipo, contenido, idea, desarrollo.</li><li>Razona qué perdería tu CV si ocultara los proyectos.</li></ol>
+        </section>
+        <section id="m2" class="module">
+          <h2>2. Qué es Penpot</h2>
+          <p>Penpot es una herramienta de diseño de interfaces y colaboración. No programa una web terminada ni sustituye HTML, CSS, JavaScript o las decisiones de desarrollo. Sirve para expresar, probar y comunicar el diseño antes y durante la implementación.</p>
+          <div class="grid"><div class="box"><h4>Frente a un editor de código</h4><p>En un editor creas el producto funcional; en Penpot creas una representación y especificaciones. El código de Inspect es una referencia, no una entrega automática de calidad.</p></div><div class="box"><h4>Frente a Canva y Figma</h4><p>Canva prioriza piezas gráficas rápidas. Penpot y Figma son herramientas de diseño de producto/interfaz. Penpot es open source y su Flex Layout y Grid Layout se relacionan directamente con estándares web.</p></div></div>
+          <p>Puede utilizarse online; los equipos también pueden optar por instalación propia (self-hosted) si su organización necesita controlar su infraestructura. Online simplifica acceso y colaboración; en local se asume mantenimiento técnico.</p>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Explica qué parte de tu CV resolverías en Penpot y cuál dejarías necesariamente para el desarrollo web.</p></div>
+          <div class="resources"><strong>Recursos para ampliar:</strong> <a href="https://help.penpot.app/user-guide/" target="_blank" rel="noopener">Guía oficial de Penpot</a>.</div>
+        </section>
+        <section id="m3" class="module">
+          <h2>3. Primer contacto con Penpot</h2>
+          <p>El <strong>Dashboard</strong> organiza equipos, proyectos, archivos y bibliotecas. Al abrir un archivo llegas al <strong>Workspace</strong>: cada <strong>página</strong> tiene su propio lienzo o viewport, una zona casi infinita; un <strong>Board</strong> es un contenedor que representa una pantalla o tamaño concreto.</p>
+          <p>En el Workspace identifica: barra de herramientas, Pages, Layers, Assets, paletas, Design, Prototype, Inspect, zoom e historial. Las capas son los objetos: Boards, formas, texto, imágenes y grupos.</p>
+          <p class="capture">[CAPTURA RECOMENDADA: Workspace de Penpot con Pages, Layers, toolbar, panel Design, Prototype e Inspect señalados]</p>
+          <ol class="steps"><li>Crea un archivo llamado <code>CV-Nombre-Apellido</code>.</li><li>Crea la página <code>Wireframes</code> y un Board con la herramienta Board (atajo B).</li><li>Añade rectángulo, texto y otra forma; cambia tamaño y posición.</li><li>Duplica, oculta, bloquea y renombra cada capa. Usa deshacer/rehacer para comprobar que puedes experimentar.</li></ol>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Construye una tarjeta mínima con Board, rectángulo y texto. Pon nombres que describan su función, no su tipo.</p></div>
+        </section>
+        <section id="m4" class="module">
+          <h2>4. Organización profesional del archivo</h2>
+          <p>Un archivo ordenado reduce errores y facilita colaboración. El árbol de Layers expresa una jerarquía padre/hijo similar a la estructura que después tendrá el documento web.</p>
+          <pre>Page
+└── CV Desktop
+    ├── Header
+    ├── Hero
+    ├── About
+    ├── Skills
+    ├── Experience
+    ├── Projects
+    ├── Contact
+    └── Footer</pre>
+          <table class="mapping"><tr><th>Decisión de diseño</th><th>Posible relación semántica futura</th></tr><tr><td>Cabecera y navegación</td><td><code>&lt;header&gt;</code> y <code>&lt;nav&gt;</code></td></tr><tr><td>Contenido y bloques</td><td><code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code></td></tr><tr><td>Pie</td><td><code>&lt;footer&gt;</code></td></tr></table>
+          <div class="box error"><h4>ERROR FRECUENTE</h4><p>Un elemento puede verse encima de un Board sin pertenecerle. Si está fuera en Layers, no hereda su estructura ni se comportará como esperas en un prototipo. “Rectangle 14” y “Text 22” tampoco explican su intención.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Ordena y renombra el árbol anterior. Comprueba en Layers que todos los hijos están realmente dentro de CV Desktop.</p></div>
+        </section>
+        <section id="m5" class="module">
+          <h2>5. Define el CV antes de diseñar formas</h2>
+          <p>Inventario de contenido no es escribir el texto definitivo: es decidir qué debe existir y su prioridad. Una estructura habitual es Header, Hero, Sobre mí, Tecnologías, Experiencia, Formación, Proyectos, Contacto y Footer; puede cambiar según tu perfil y objetivo.</p>
+          <div class="grid"><div class="box"><h4>Nivel esencial</h4><p>Formula: “Quiero que <em>tipo de visitante</em> entienda que soy <em>perfil</em> y haga <em>acción</em>”.</p></div><div class="box advanced"><h4>Nivel avanzado</h4><p>Redacta una historia de usuario: “Como reclutadora, quiero filtrar rápidamente los proyectos para valorar la experiencia relevante”. Después dibuja su flujo.</p></div></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Crea una tabla con sección, contenido, prioridad (alta/media/baja) y acción asociada. No abras Penpot hasta terminarla.</p></div>
+        </section>
+        <section id="m6" class="module">
+          <h2>6. Wireframing desde cero</h2>
+          <p>Un wireframe resuelve jerarquía, agrupación, espacio y lectura. Usa gris, negro y blanco para no confundir decisiones de estructura con decisiones estéticas. Baja fidelidad no significa descuidada: significa deliberadamente simple.</p>
+          <ol class="steps"><li>Crea <strong>CV Desktop</strong> usando un Board de escritorio apropiado.</li><li>Dibuja Header: nombre o marca, navegación y contacto.</li><li>Dibuja Hero: foto provisional, título profesional, resumen y CTA.</li><li>Continúa con secciones de contenido priorizadas: experiencia, proyectos y contacto deben ser localizables.</li><li>Añade Footer y verifica ritmo vertical, alineaciones y espacios.</li></ol>
+          <p class="capture">[CAPTURA RECOMENDADA: Board desktop de un CV en baja fidelidad con Header, Hero, Proyectos y Contacto identificados]</p>
+          <div class="box important"><h4>RECUERDA</h4><p>En esta fase no decidas la sombra perfecta ni la fuente definitiva. Pregunta: “¿se entiende qué hay y dónde está?”</p></div>
+          <div class="box practice"><h4>RETO</h4><p>Da a otra persona diez segundos para mirar el wireframe. Debe señalar quién eres, un proyecto y cómo contactarte.</p></div>
+        </section>
+        <section id="m7" class="module">
+          <h2>7. Responsive: rediseñar prioridades, no encoger desktop</h2>
+          <p>Responsive es que la interfaz sigue siendo útil según el viewport, la zona visible del navegador. <strong>Mobile first</strong> propone resolver primero la restricción más fuerte y añadir espacio después. Un breakpoint responde a una necesidad del contenido, no a un número mágico.</p>
+          <div class="grid"><div class="box"><h4>Desktop</h4><p>Hero: texto | fotografía. Proyectos: [1] [2] [3].</p></div><div class="box"><h4>Mobile</h4><p>Fotografía, texto y botones en columna. Proyectos: [1], [2], [3]. La navegación puede pasar a un control de menú, que debe ser comprensible y accesible.</p></div></div>
+          <div class="box error"><h4>ERROR FRECUENTE</h4><p>Hacer el diseño desktop y reducirlo proporcionalmente: provoca textos minúsculos, botones difíciles de tocar y prioridades confusas.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Duplica el wireframe como <code>CV Mobile</code>. Cambia orden, columnas y navegación; no limites tu trabajo a cambiar el ancho.</p></div>
+        </section>
+        <section id="m8" class="module">
+          <h2>8. Diseño visual / UI</h2>
+          <p>Cuando la estructura funciona, crea un sistema visual: color principal, texto, texto secundario, fondo y superficie; estilos H1/H2/H3/cuerpo/pequeño; y una escala de espacios como 8, 16, 24, 32, 48 y 64. Las escalas evitan decisiones aleatorias.</p>
+          <div class="grid"><div class="box"><h4>Tipografía y lectura</h4><p>La jerarquía resulta de tamaño, peso, altura de línea, contraste y espacio, no solo de “hacer algo grande”. Limita el ancho de líneas largas.</p></div><div class="box"><h4>Color e imágenes</h4><p>Comprueba contraste; no uses solo color para comunicar estado. Las imágenes deben aportar información o atmósfera, no rellenar.</p></div></div>
+          <div class="box error"><h4>ERROR FRECUENTE</h4><p>Veinte tamaños de fuente, espaciados aleatorios y color antes de haber resuelto la estructura.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Define cinco colores, cinco estilos tipográficos y seis valores de espacio. Aplica solo esos valores al CV.</p></div>
+        </section>
+        <section id="m9" class="module">
+          <h2>9. Flex Layout: relaciones en una dimensión</h2>
+          <p>Flex Layout organiza hijos en una fila o columna y adapta la distribución al contenido. Resuelve el problema de tener que mover elementos manualmente cuando cambia un texto, por ejemplo un botón que pasa de “Contactar” a “Ponte en contacto conmigo”.</p>
+          <table class="mapping"><tr><th>Penpot</th><th>Concepto CSS</th><th>Para qué sirve</th></tr><tr><td>Flex Layout</td><td><code>display:flex</code></td><td>Crear un contenedor flexible</td></tr><tr><td>Direction</td><td><code>flex-direction</code></td><td>Fila o columna</td></tr><tr><td>Gap / Padding</td><td><code>gap</code> / <code>padding</code></td><td>Separar hijos / dar aire interior</td></tr><tr><td>Align / Justify</td><td><code>align-items</code> / <code>justify-content</code></td><td>Alinear en ejes cruzado y principal</td></tr><tr><td>Wrap</td><td><code>flex-wrap</code></td><td>Permitir más líneas</td></tr></table>
+          <ol class="steps"><li>Crea un texto “Contactar” y aplícale un contenedor Flex con padding y gap.</li><li>Prueba textos de diferente longitud; el contenedor debe ajustarse con sizing fit, no con ancho corregido a mano.</li><li>Construye un grupo de botones, una navegación, tags de tecnologías y el Header.</li><li>Comprueba qué hijo es estático y cuál debería ser absoluto; lo absoluto sale del flujo.</li></ol>
+          <div class="box error"><h4>ERROR FRECUENTE</h4><p>Mover manualmente elementos que deberían estar en flujo o usar grupos cuando se necesita un layout. Flex no es la respuesta para toda estructura bidimensional.</p></div>
+          <p class="capture">[CAPTURA RECOMENDADA: Panel Design de un Board con Flex Layout en fila, gap, padding y sizing fit visibles]</p>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Haz una fila de cinco tecnologías que permita wrap al reducir el ancho. Explica por qué no basta con usar un grupo.</p></div>
+        </section>
+        <section id="m10" class="module">
+          <h2>10. Grid Layout: relaciones en dos dimensiones</h2>
+          <p>Grid organiza filas y columnas al mismo tiempo. Es adecuado para una galería de proyectos en la que las tarjetas se alinean como una matriz. En Penpot puede aplicarse a una capa, grupo, Board o selección; usa contenedor, celdas, áreas, filas, columnas y gap.</p>
+          <div class="grid"><div class="box"><h4>Cuándo elegir Flex</h4><p>Para una relación principalmente lineal: una fila de botones, navegación, lista o contenido de una tarjeta.</p></div><div class="box"><h4>Cuándo elegir Grid</h4><p>Para relaciones entre filas y columnas: cuadrícula de proyectos, panel de métricas o composición con áreas.</p></div></div>
+          <ol class="steps"><li>Crea el contenedor de proyectos y añade Grid Layout.</li><li>Configura tres columnas en desktop, dos en tablet y una en mobile como decisiones separadas.</li><li>Coloca tarjetas en auto; prueba manual o áreas solo cuando la composición lo necesite.</li><li>Edita filas y columnas; verifica que el contenido conserva su lectura.</li></ol>
+          <div class="box error"><h4>ERROR FRECUENTE</h4><p>Usar Grid para todo o Flex para todo. El criterio es la relación que quieres controlar, no el prestigio de la herramienta.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Diseña tres tarjetas de proyecto y escribe por qué su contenedor usa Grid mientras la parte interior de cada tarjeta usa Flex.</p></div>
+        </section>
+        <section id="m11" class="module">
+          <h2>11. Componentes: reutilizar con intención</h2>
+          <p>Un componente es una capa o conjunto de capas reutilizable. El componente principal es la fuente de verdad; sus copias o instancias heredan propiedades y pueden tener overrides controlados. Es útil para Button, Card/Project, Tag/Skill, enlace social o Experience Item.</p>
+          <ol class="steps"><li>Diseña un botón completo con texto, padding, estados previstos y nombre <code>Button / Primary</code>.</li><li>Selecciónalo y crea un componente (la documentación actual indica <code>Ctrl/Cmd + K</code>).</li><li>Crea instancias, cambia el texto permitido y verifica que el cambio global del principal se refleja.</li></ol>
+          <div class="box error"><h4>ERRORES FRECUENTES</h4><p>Crear un componente para un elemento único o no crear ninguno cuando algo se repite. En ambos casos se pierde claridad o consistencia.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Convierte tres tarjetas de proyecto similares en instancias. Cambia una imagen y un título sin romper el estilo común.</p></div>
+        </section>
+        <section id="m12" class="module">
+          <h2>12. Variantes y estados</h2>
+          <p>Las variantes agrupan componentes similares en uno personalizable. Sus propiedades describen dimensiones como <code>Style=Primary/Secondary</code>, <code>Size=Small/Large</code> o <code>State=Default/Hover/Disabled</code>. Los valores deben ser consistentes para conservar overrides al cambiar variante.</p>
+          <div class="box important"><h4>IMPORTANTE</h4><p>Un botón que parece botón no tiene una función definida hasta que decides qué acción inicia, qué estado tiene y cómo responde. Un enlace navega a una URL o sección; un botón desencadena una acción. El diseño debe comunicarlo.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Crea variantes de Button para Primary/Secondary y Default/Disabled. Documenta qué debe ocurrir al pulsar cada una.</p></div>
+          <div class="resources"><strong>Recursos para ampliar:</strong> <a href="https://help.penpot.app/user-guide/design-systems/variants/" target="_blank" rel="noopener">Variantes en la documentación oficial</a>.</div>
+        </section>
+        <section id="m13" class="module">
+          <h2>13. Recursos, bibliotecas y plantillas</h2>
+          <p>Una <strong>biblioteca</strong> ofrece piezas reutilizables; una <strong>plantilla</strong> ofrece un punto de partida. Ninguna sustituye la definición del usuario, contenido y flujo. Úsalas para aprender patrones o ganar consistencia, no para ocultar decisiones no tomadas.</p>
+          <p>Las bibliotecas pueden incluir assets, estilos y componentes compartidos. Una Wireframe Library sirve para componer rápidamente una estructura; después debes validar que encaja con tu CV. En desarrollo, la analogía es: biblioteca Penpot → piezas visuales; Bootstrap → componentes ya implementados en HTML/CSS/JS.</p>
+          <div class="box practice"><h4>RETO</h4><p>Toma una sola tarjeta de una biblioteca, adáptala al inventario de tu CV y anota tres decisiones que la plantilla no podía tomar por ti.</p></div>
+        </section>
+        <section id="m14" class="module">
+          <h2>14. Design tokens: nombres con significado</h2>
+          <p>Un token es un valor reutilizable con un nombre de propósito. <code>#2563EB</code> dice un valor; <code>color.primary</code> explica una intención. Los tokens pueden representar color, tipografía, espacio, sombra, radio y dimensiones, y actúan como fuente compartida de consistencia.</p>
+          <table class="mapping"><tr><th>Token en diseño</th><th>Posible propiedad CSS</th></tr><tr><td><code>color.primary</code></td><td><code>--color-primary</code></td></tr><tr><td><code>spacing.md</code></td><td><code>--spacing-md</code></td></tr><tr><td><code>radius.card</code></td><td><code>--radius-card</code></td></tr></table>
+          <div class="box advanced"><h4>NIVEL AVANZADO</h4><p>Penpot usa el formato de Design Tokens del W3C DTCG. No necesitas memorizar el formato ahora: entiende que el nombre permite cambiar una regla de forma coherente.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Crea tokens para color.primary, color.text, spacing.sm/md/lg y radius.card. Sustituye valores repetidos del CV.</p></div>
+        </section>
+        <section id="m15" class="module">
+          <h2>15. Prototipado: probar un flujo, no fingir una aplicación completa</h2>
+          <p>Un prototipo conecta Boards que actúan como pantallas. Una interacción tiene disparador, acción y destino. En el panel Prototype selecciona la capa que debe activar la acción, arrastra la conexión hacia el Board destino y prueba el resultado en View mode. Un flow start se crea al conectar.</p>
+          <ol class="steps"><li>Crea Boards <code>CV</code> y <code>Detalle proyecto</code>.</li><li>Confirma en Layers que “Ver proyecto” está dentro del Board CV.</li><li>Conecta “Ver proyecto” al detalle; añade “Volver” en sentido inverso.</li><li>Añade URL externa a LinkedIn, GitHub o la demo solo cuando la opción esté disponible en tu versión.</li><li>Define el punto de inicio y ejecuta Play/preview.</li></ol>
+          <div class="box error"><h4>ERRORES FRECUENTES</h4><p>No definir inicio, conectar el elemento equivocado o dejar el botón fuera del Board. Visualmente puede parecer correcto, pero su estructura no lo está.</p></div>
+          <p class="capture">[CAPTURA RECOMENDADA: Dos Boards conectados en Prototype mode con un botón “Ver proyecto” seleccionado]</p>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Haz navegable el flujo CV → detalle de proyecto → CV y pide a alguien que complete el recorrido sin instrucciones.</p></div>
+        </section>
+        <section id="m16" class="module">
+          <h2>16. UX y pruebas</h2>
+          <p>Probar no es preguntar “¿te gusta?”. Da una tarea y observa. El test de cinco segundos pregunta qué entendió una persona al ver la pantalla brevemente. <strong>Affordance</strong> es que un elemento sugiera cómo usarlo; <strong>feedback</strong> es la respuesta tras una acción; <strong>carga cognitiva</strong> es el esfuerzo mental que imponemos.</p>
+          <div class="checklist"><strong>Checklist de prueba:</strong><ul><li>¿Se entiende quién soy y qué hago?</li><li>¿Se localizan proyectos y contacto?</li><li>¿Está claro dónde hacer clic y cómo volver?</li><li>¿Se conserva el sentido en móvil?</li></ul></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Pide a una persona que encuentre un proyecto y tu contacto. No la ayudes; apunta dónde duda y mejora solo tras observar.</p></div>
+        </section>
+        <section id="m17" class="module">
+          <h2>17. Accesibilidad desde el diseño</h2>
+          <p>Accesibilidad es que más personas puedan percibir y usar el producto. Comprueba contraste, tamaño y legibilidad del texto, jerarquía, objetivos táctiles generosos, foco visible y que la información no dependa solo del color. Una imagen informativa necesitará un texto alternativo adecuado al implementarla.</p>
+          <div class="box important"><h4>CONEXIÓN CON HTML/CSS</h4><p>El diseño define intención: foco, estados y jerarquía. HTML semántico, <code>alt</code>, teclado y CSS convierten esa intención en experiencia real.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Revisa un estado de error del formulario de contacto: añade texto explicativo y un icono o forma; no lo señales solo en rojo.</p></div>
+          <div class="resources"><strong>Recursos para ampliar:</strong> <a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener">WCAG 2.2 Quick Reference (W3C)</a>.</div>
+        </section>
+        <section id="m18" class="module">
+          <h2>18. Inspect: entregar información, no copiar a ciegas</h2>
+          <p>Inspect muestra propiedades, dimensiones, medidas, distancias, tipografía, color, espaciado, recursos exportables y fragmentos de código. Puede activarse desde el Workspace o View mode. Selecciona una capa y pasa sobre otras para ver distancias respecto a ellas o al Board.</p>
+          <div class="box error"><h4>ERROR FRECUENTE</h4><p>Copiar código de Inspect sin entenderlo. El fragmento puede ser una buena referencia de propiedades, pero no resuelve semántica, responsive completo, estados, accesibilidad ni arquitectura del proyecto.</p></div>
+          <div class="box practice"><h4>PRUEBA TÚ</h4><p>Inspecciona una tarjeta y escribe qué valores trasladarías a CSS y qué decisiones seguirían faltando para implementarla.</p></div>
+        </section>
+        <section id="m19" class="module">
+          <h2>19. Del diseño a HTML y CSS</h2>
+          <p>El Board no se convierte automáticamente en una web: es un viewport de referencia. La transferencia consiste en reconocer estructura, comportamiento y reglas reutilizables.</p>
+          <table class="mapping"><tr><th>Penpot</th><th>Desarrollo web</th></tr><tr><td>Jerarquía de capas</td><td>HTML semántico y árbol DOM</td></tr><tr><td>Flex Layout</td><td>Flexbox</td></tr><tr><td>Grid Layout</td><td>CSS Grid</td></tr><tr><td>Tokens</td><td>Custom properties CSS</td></tr><tr><td>Componentes</td><td>Patrones/estructuras reutilizables</td></tr></table>
+          <div class="box practice"><h4>RETO</h4><p>Señala en el CV diseñado qué sería <code>header</code>, <code>nav</code>, <code>main</code>, cada <code>section</code>, una tarjeta <code>article</code> y <code>footer</code>. Justifica una decisión.</p></div>
+        </section>
+        <section id="m20" class="module">
+          <h2>20. Proyecto final guiado: tu CV listo para desarrollar</h2>
+          <ol class="steps"><li><strong>Objetivo y usuario:</strong> redacta la frase de intención y la acción principal.</li><li><strong>Contenido:</strong> crea inventario y prioridades.</li><li><strong>Wireframe:</strong> construye desktop y mobile con Boards y capas bien nombradas.</li><li><strong>Sistema visual:</strong> aplica tipografía, color, espaciado y contraste.</li><li><strong>Layouts:</strong> usa Flex en relaciones lineales y Grid en la sección de proyectos.</li><li><strong>Sistema:</strong> crea componentes, variantes útiles y tokens básicos.</li><li><strong>Prototipo:</strong> conecta al menos un proyecto y un regreso; comprueba inicio.</li><li><strong>Calidad:</strong> realiza una prueba de UX y revisión de accesibilidad.</li><li><strong>Handoff:</strong> inspecciona y prepara el mapa hacia HTML/CSS.</li></ol>
+          <div class="checklist"><h3>Entrega final</h3><ul><li>Boards desktop y mobile.</li><li>Capas ordenadas y nombradas.</li><li>Paleta, tipografía y escala de espacio.</li><li>Botones, tarjetas y componentes/instancias.</li><li>Flex, Grid y tokens aplicados con criterio.</li><li>Prototipo navegable y revisión de accesibilidad.</li><li>Documento breve que conecte el diseño con la futura estructura HTML/CSS.</li></ul></div>
+          <div class="box important"><h4>Resultado</h4><p>Si has seguido el recorrido, sabes pensar qué construir, organizar contenido, crear wireframes desktop y mobile, trabajar con Boards y capas, aplicar Flex y Grid, reutilizar componentes, usar tokens, prototipar, inspeccionar y preparar el paso a HTML/CSS.</p></div>
+        </section>
+        <section class="module resources"><h2>Referencias oficiales</h2><ul><li><a href="https://help.penpot.app/user-guide/the-interface/" target="_blank" rel="noopener">Penpot · Interface tour</a></li><li><a href="https://help.penpot.app/user-guide/designing/layers/" target="_blank" rel="noopener">Penpot · Layers y Boards</a></li><li><a href="https://help.penpot.app/user-guide/designing/flexible-layouts/" target="_blank" rel="noopener">Penpot · Flexible Layouts (Flex y Grid)</a></li><li><a href="https://help.penpot.app/user-guide/design-systems/" target="_blank" rel="noopener">Penpot · Design Systems</a></li><li><a href="https://help.penpot.app/user-guide/prototyping-testing/prototyping/" target="_blank" rel="noopener">Penpot · Prototyping</a></li><li><a href="https://help.penpot.app/user-guide/dev-tools/" target="_blank" rel="noopener">Penpot · Dev tools / Inspect</a></li></ul><p>Terminología y funciones revisadas contra la documentación oficial de Penpot. La interfaz puede evolucionar: si una etiqueta difiere, prioriza el concepto descrito y consulta la referencia enlazada.</p></section>
+      </div>
+    </div>
+    <section id="tema-3" class="module integrated-topic"><span class="eyebrow">Desarrollo guiado del mismo manual</span><h2>Tema 3. Diseño de interfaces web con Penpot</h2><p class="lead">De la idea al prototipo de un CV digital. Esta parte amplía las lecciones anteriores con el desarrollo paso a paso, actividades, retos y checklist del proyecto conductor.</p><div id="tema-3-contenido" aria-live="polite"><p>Cargando el desarrollo completo del tema…</p></div></section>
+  </main>
+  <script>
+    const escapeHtml = (value) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const inline = (value) => escapeHtml(value).replace(/!\\[([^\\]]*)\\]\\((https?:[^\\s)]+)\\)/g, '<img src="$2" alt="$1">').replace(/\\[([^\\]]+)\\]\\((https?:[^\\s)]+)\\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>').replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>').replace(/\\x60([^\\x60]+)\\x60/g, '<code>$1</code>');
+    function renderMarkdown(markdown) {
+      const lines = markdown.replace(/\\r/g, '').split('\\n'); let html = '', code = false, list = null, paragraph = [];
+      const closeParagraph = () => { if (paragraph.length) { html += '<p>' + inline(paragraph.join(' ')) + '</p>'; paragraph = []; } };
+      const closeList = () => { if (list) { html += '</' + list + '>'; list = null; } };
+      for (const line of lines) {
+        if (line.startsWith('```')) { closeParagraph(); closeList(); code = !code; html += code ? '<pre><code>' : '</code></pre>'; continue; }
+        if (code) { html += escapeHtml(line) + '\\n'; continue; }
+        const heading = line.match(/^(#{1,4})\\s+(.+)$/), bullet = line.match(/^\\*\\s+(.+)$/), numbered = line.match(/^\\d+\\.\\s+(.+)$/);
+        if (heading) { closeParagraph(); closeList(); html += '<h' + heading[1].length + '>' + inline(heading[2]) + '</h' + heading[1].length + '>'; }
+        else if (bullet || numbered) { closeParagraph(); const next = bullet ? 'ul' : 'ol'; if (list !== next) { closeList(); list = next; html += '<' + list + '>'; } html += '<li>' + inline((bullet || numbered)[1]) + '</li>'; }
+        else if (/^---+$/.test(line.trim())) { closeParagraph(); closeList(); html += '<hr>'; }
+        else if (line.trim() === '') { closeParagraph(); closeList(); }
+        else if (line.startsWith('> ')) { closeParagraph(); closeList(); html += '<blockquote>' + inline(line.slice(2)) + '</blockquote>'; }
+        else { paragraph.push(line.trim()); }
+      } closeParagraph(); closeList(); return html;
+    }
+    Promise.all([fetch('primeros-pasos-penpot.md').then((response) => response.text()), fetch('grupos-componentes-alineacion.md').then((response) => response.text()), fetch('jerarquia-padre-hijo-grupos.md').then((response) => response.text()), fetch('leccion-botonera-layout.md').then((response) => response.text()), fetch('flujo-diseno-web.md').then((response) => response.text()), fetch('tema-3-uf1841.md').then((response) => response.text())]).then(([primerosPasos, grupos, jerarquia, botonera, flujo, tema]) => { document.querySelector('#tema-3-contenido').innerHTML = renderMarkdown(primerosPasos + '\n\n---\n\n' + grupos + '\n\n---\n\n' + jerarquia + '\n\n---\n\n' + botonera + '\n\n---\n\n' + flujo + '\n\n---\n\n' + tema); }).catch(() => { document.querySelector('#tema-3-contenido').innerHTML = '<p>No se pudo cargar una parte del desarrollo del tema. Comprueba que los materiales de Wireframes estén publicados.</p>'; });
+  </script>
+</body>
+</html>

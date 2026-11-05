@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/dudas.css"> 
+    <title>UF1841 · Curso HTML/CSS</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="brand" href="../index.html" aria-label="Inicio: UF1841 · Lenguajes de marcas">
+                <img src="../assets/img/css3.png">
+                <span>UF1841 · Lenguajes de marcas</span>
+            </a>
+            <a href="../index.html">Inicio</a>
+            <a href="conceptohtml.html">HTML</a>
+            <a href="conceptocss.html">CSS</a>
+           
+            <a href="ejerciciohtml.html">Ejercicios</a>
+            <a href="formularios.html">Formularios</a>
+        </nav>
+    </header>
+    <main>
+        <h1 class="chapter-title">Creando Formularios con HTML</h1>
+        <div class="hero-section">
+            <img src="../assets/img/formulario.png" alt="Aprender a crear formularios en HTML">
+            <div class="hero-text-content">
+                <p>Los formularios son la puerta de entrada a la interactividad en la web. Son los elementos que permiten a los usuarios enviar datos a un servidor, ya sea para iniciar sesión, enviar un mensaje o realizar una compra. Dominar su estructura y validación es un paso fundamental para cualquier desarrollador web.</p>
+                <p>En esta sección, exploraremos cómo construir formularios robustos y accesibles utilizando las etiquetas y atributos nativos de HTML. Aprenderás a usar diferentes tipos de campos, a agrupar información de manera semántica y a implementar validaciones para mejorar la experiencia del usuario sin necesidad de JavaScript.</p>
+            </div>
+        </div>
+        
+        <section id="introduccion-formularios" class="card">
+            <h2>📝 Introducción a los Formularios</h2>
+            <p class="intro">
+                Los formularios son la columna vertebral de la interacción en la web. Nos permiten capturar información del usuario, lo que a su vez impulsa aplicaciones dinámicas.
+            </p>
+            <details>
+                <summary>Estructura Básica: `form`, `fieldset` y `label`</summary>
+                <p>Para construir un formulario, necesitas tres etiquetas principales que le dan estructura y semántica.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3><code>&lt;form&gt;</code>: El Contenedor</h3>
+                        <p>Es la etiqueta que envuelve todos los campos. Es un contenedor que define dónde y cómo se enviarán los datos (a través de los atributos <code>action</code> y <code>method</code>).</p>
+                        <pre><code>&lt;form action="/submit-form" method="POST"&gt;
+  ... campos del formulario ...
+&lt;/form&gt;</code></pre>
+                    </article>
+                    <article class="card">
+                        <h3><code>&lt;fieldset&gt;</code> y <code>&lt;legend&gt;</code>: Agrupando campos</h3>
+                        <p><code>&lt;fieldset&gt;</code> agrupa campos relacionados y <code>&lt;legend&gt;</code> le da un título a ese grupo. Esto mejora la accesibilidad y la organización visual.</p>
+                        <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Datos de envío&lt;/legend&gt;
+  &lt;!-- Campos relacionados aquí --&gt;
+&lt;/fieldset&gt;</code></pre>
+                    </article>
+                </div>
+                <article class="card">
+                    <h3><code>&lt;label&gt;</code>: La clave de la accesibilidad</h3>
+                    <p>La etiqueta <code>&lt;label&gt;</code> asocia una descripción con un campo de formulario. El atributo <code>for</code> del <code>&lt;label&gt;</code> debe coincidir con el <code>id</code> del campo. Esto permite que el usuario haga clic en la etiqueta para activar el campo, lo que es vital para la usabilidad y la accesibilidad.</p>
+                    <pre><code>&lt;label for="nombre"&gt;Tu nombre&lt;/label&gt;
+&lt;input type="text" id="nombre"&gt;</code></pre>
+                </article>
+            </details>
+            <details>
+                <summary>Tipos de Input: Elige el campo correcto</summary>
+                <p>HTML5 nos ofrece una amplia variedad de tipos de `input` que no solo cambian la apariencia, sino que también mejoran la experiencia de usuario y la validación automática.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Inputs de texto y números</h3>
+                        <ul>
+                            <li>`text`: Campo de texto de una sola línea.</li>
+                            <li>`email`: Campo para correos electrónicos. Valida que el formato sea correcto.</li>
+                            <li>`password`: Campo para contraseñas, oculta los caracteres.</li>
+                            <li>`number`: Campo para números, permite usar flechas para aumentar o disminuir.</li>
+                            <li>`tel`: Campo para números de teléfono. Mejora la usabilidad en móviles.</li>
+                            <li>`textarea`: Área de texto de varias líneas.</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Inputs de selección y botones</h3>
+                        <ul>
+                            <li>`radio`: Para elegir una única opción de un grupo.</li>
+                            <li>`checkbox`: Para elegir una o varias opciones.</li>
+                            <li>`select` y `option`: Un menú desplegable de opciones.</li>
+                            <li>`button`: Un botón genérico.</li>
+                            <li>`submit`: Un botón para enviar el formulario.</li>
+                            <li>`reset`: Un botón para limpiar todos los campos del formulario.</li>
+                        </ul>
+                    </article>
+                </div>
+            </details>
+            <details>
+                <summary>Validación de HTML: Atributos sin JavaScript</summary>
+                <p>Con HTML5, puedes validar campos directamente en el navegador usando atributos. Esto ofrece una capa de validación básica antes de que los datos lleguen al servidor.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Atributos esenciales</h3>
+                        <ul>
+                            <li>`required`: Hace que un campo sea obligatorio. El formulario no se enviará si está vacío.</li>
+                            <li>`minlength` / `maxlength`: Define el número mínimo y máximo de caracteres.</li>
+                            <li>`min` / `max`: Para inputs de tipo `number`, define el rango de valores permitidos.</li>
+                            <li>`placeholder`: Muestra un texto de ejemplo dentro del campo.</li>
+                            <li>`pattern`: Usa una expresión regular para validar el formato del campo (ej: para números de teléfono o códigos postales).</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Ejemplo de uso</h3>
+                        <pre><code>&lt;label for="nombre"&gt;Nombre&lt;/label&gt;
+&lt;input type="text" id="nombre" required minlength="3"&gt;
+
+&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input type="email" id="email" required&gt;</code></pre>
+                    </article>
+                </div>
+            </details>
+        </section>
+        
+        <section id="practica" class="card">
+            <h2>✍️ Ejercicio: Construye un Formulario de Contacto</h2>
+            <p class="intro">
+                Combina todo lo aprendido para construir un formulario de contacto completo.
+            </p>
+            <article class="card">
+                <h3>Objetivo</h3>
+                <ul>
+                    <li>Crea un formulario con campos para nombre, email, teléfono, asunto (un `select`) y mensaje (un `textarea`).</li>
+                    <li>Usa `&lt;fieldset&gt;` y `&lt;legend&gt;` para agrupar la información.</li>
+                    <li>Asegúrate de que el nombre, email, asunto y mensaje sean campos obligatorios (`required`).</li>
+                    <li>Usa `minlength` para el campo de nombre.</li>
+                    <li>Añade un `pattern` para el campo de teléfono, validando que sean 9 dígitos numéricos.</li>
+                    <li>Incluye un `checkbox` para la aceptación de términos y condiciones que también sea `required`.</li>
+                    <li>Añade un botón de envío (`submit`) y otro para limpiar el formulario (`reset`).</li>
+                </ul>
+            </article>
+            <p>Con este ejercicio, tendrás un formulario funcional y validado, demostrando tu comprensión de los fundamentos de HTML para la interacción.</p>
+        </section>
+
+        <section id="contacto" class="card">
+            <h2 class="chapter-title">💬 Envía tus dudas</h2>
+            <p class="intro">Si tienes alguna pregunta sobre el curso, el código, o cualquier otro tema, no dudes en escribirme. Estaré encantado de ayudarte.</p>
+
+           <form action="mailto:inmacontreras2709@gmail.com" method="post" enctype="text/plain">
+    <fieldset>
+        <legend>Tus Datos y Pregunta</legend>
+        <div class="form-group">
+            <label for="nombre-duda">Tu nombre:</label>
+            <input type="text" id="nombre-duda" name="Nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="email-duda">Tu correo electrónico:</label>
+            <input type="email" id="email-duda" name="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="asunto-duda">Asunto:</label>
+            <input type="text" id="asunto-duda" name="Asunto" required>
+        </div>
+        <div class="form-group">
+            <label for="mensaje-duda">Tu pregunta:</label>
+            <textarea id="mensaje-duda" name="Pregunta" rows="6" required></textarea>
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <button type="submit">Enviar Duda</button>
+        <button type="reset">Limpiar</button>
+    </div>
+</form>
+            
+        </section>
+        </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

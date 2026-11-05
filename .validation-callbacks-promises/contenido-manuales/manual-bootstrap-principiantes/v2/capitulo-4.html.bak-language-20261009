@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4 · Componentes de Bootstrap 5.3</title>
+<link rel="stylesheet" href="manual.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.component-demo{border:1px solid var(--bs-border-color);border-radius:.75rem;padding:1.25rem;margin:1rem 0;background:var(--bs-tertiary-bg)}
+.pink-nav{background:#d63384}.pink-nav .navbar-brand,.pink-nav .nav-link{color:#fff}.pink-nav .nav-link:hover,.pink-nav .nav-link:focus{color:#ffe3f0}
+.card-equal{height:100%}.card-equal .card-body{display:flex;flex-direction:column}.card-equal .btn{margin-top:auto}
+</style>
+</head>
+<body>
+<header class="top"><a href="index.html">DevCampus · Bootstrap</a><button class="menu" type="button">Capítulos</button><nav></nav></header>
+<main class="page">
+<p class="progress">Capítulo 4 de 6 · Ruta esencial: 45 minutos · Ampliación autónoma</p>
+<p class="breadcrumb"><a href="index.html">Índice</a> / Componentes</p>
+<h1>Componentes: piezas listas para construir interfaces</h1>
+<p class="lead">Un componente combina HTML semántico, clases Bootstrap y, a veces, JavaScript. Bootstrap aporta una base visual; tú decides la estructura, el contenido, los enlaces y la accesibilidad.</p>
+<nav class="toc" aria-label="Contenido"><a href="#botones">Botones</a> · <a href="#cards">Cards</a> · <a href="#navbar">Navbar</a> · <a href="#formularios">Formularios</a> · <a href="#feedback">Alertas, badges y breadcrumbs</a> · <a href="#practicas">Prácticas</a></nav>
+
+<section id="botones"><h2>1. Botones y enlaces</h2>
+<h3>Qué son y cuándo usarlos</h3><p>Un <code>&lt;button&gt;</code> ejecuta una acción en la página: guardar, abrir o enviar. Un <code>&lt;a href&gt;</code> navega a otra URL o sección. No conviertas un enlace sin destino en botón: el elemento correcto mejora teclado, lectores de pantalla y expectativas del usuario.</p>
+<p>En la documentación de <a href="https://getbootstrap.com/docs/5.3/components/buttons/" target="_blank" rel="noopener">Buttons</a>, localiza la demostración, copia el HTML y cambia solo el texto y el destino.</p>
+<div class="component-demo d-flex flex-wrap gap-2"><button type="button" class="btn btn-primary">Guardar</button><button type="button" class="btn btn-outline-primary">Vista previa</button><a class="btn btn-success" href="#practicas">Ir a prácticas</a><button type="button" class="btn btn-secondary btn-lg">Grande</button><button type="button" class="btn btn-danger btn-sm">Pequeño</button><button type="button" class="btn btn-primary" disabled aria-disabled="true">No disponible</button></div>
+<pre><code>&lt;button type="button" class="btn btn-primary"&gt;Guardar&lt;/button&gt;
+&lt;a class="btn btn-outline-primary" href="/curso"&gt;Ver curso&lt;/a&gt;
+&lt;button type="submit" class="btn btn-success btn-lg"&gt;Enviar&lt;/button&gt;</code></pre>
+<p><code>btn</code> aporta forma, padding, tipografía, foco y estados. <code>btn-primary</code> elige color y contraste. Son dos clases porque una define la base compartida y la otra la variante. Hay variantes <code>secondary</code>, <code>success</code>, <code>danger</code>, <code>warning</code>, <code>info</code>, <code>light</code>, <code>dark</code> y <code>link</code>; ante fondos claros, prueba también <code>btn-outline-*</code>.</p>
+<ul><li>Usa <code>type="button"</code> para no enviar accidentalmente un formulario; <code>type="submit"</code> solo en el botón de envío.</li><li><code>disabled</code> evita la interacción en un botón real. En un enlace debes gestionar el estado y no fingir que es disabled solo con color.</li><li>Un icono debe acompañar texto o tener un nombre accesible: <code>aria-label="Cerrar"</code> si no hay texto visible.</li></ul>
+<h3>Práctica guiada</h3><p>Crea tres acciones para un curso: “Ver temario” como enlace outline, “Inscribirme” como botón primary y “Guardar” como botón secondary. Comprueba con Tab el foco y que el enlace cambia de URL.</p>
+<h3>Ejercicio autónomo y solución</h3><p>Construye una barra con una acción principal y una secundaria. Solución razonada: la acción principal usa <code>btn btn-primary</code>; la secundaria <code>btn btn-outline-secondary</code>; ambas comparten <code>btn</code> para mantener tamaño y foco.</p>
+</section>
+
+<section id="cards"><h2>2. Cards: contenido agrupado</h2>
+<p>Una card es una caja visual flexible, no una etiqueta semántica HTML. Usa <code>article</code> alrededor cuando el contenido sea una unidad independiente.</p>
+<p>En <a href="https://getbootstrap.com/docs/5.3/components/card/" target="_blank" rel="noopener">Cards</a> encontrarás variantes y partes opcionales.</p>
+<h3>Construcción progresiva</h3>
+<div class="component-demo"><article class="card" style="max-width:22rem"><div class="card-body"><h3 class="card-title h5">HTML y CSS</h3><p class="card-text">Aprende estructura y estilos creando páginas reales.</p></div></article></div>
+<pre><code>&lt;article class="card"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h2 class="card-title"&gt;HTML y CSS&lt;/h2&gt;
+    &lt;p class="card-text"&gt;Aprende creando.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+<p><code>card</code> crea el contenedor; <code>card-body</code> añade padding; <code>card-title</code> y <code>card-text</code> normalizan el contenido. Añade <code>card-img-top</code> para una imagen, <code>card-header</code> para contexto inicial y <code>card-footer</code> para metadatos o acciones finales.</p>
+<div class="component-demo"><div class="row g-4"><div class="col-12 col-md-4"><article class="card card-equal"><img class="card-img-top" src="https://picsum.photos/seed/html/640/360" alt="Código HTML en una pantalla"><div class="card-body"><span class="badge text-bg-primary mb-2">Inicial</span><h3 class="card-title h5">HTML y CSS</h3><p class="card-text">Fundamentos para estructurar interfaces.</p><a class="btn btn-primary" href="#practicas">Detalles</a></div><div class="card-footer text-body-secondary">6 semanas</div></article></div><div class="col-12 col-md-4"><article class="card card-equal"><div class="card-header">Más popular</div><div class="card-body"><h3 class="card-title h5">Bootstrap</h3><p class="card-text">Componentes y responsive sin empezar desde cero.</p><a class="btn btn-outline-primary" href="#practicas">Detalles</a></div></article></div><div class="col-12 col-md-4"><article class="card card-equal"><div class="card-body"><h3 class="card-title h5">JavaScript</h3><p class="card-text">Interacción y lógica para proyectos web.</p><a class="btn btn-primary" href="#practicas">Detalles</a></div><div class="card-footer text-body-secondary">Intermedio</div></article></div></div></div>
+<p>El catálogo reutiliza el Grid del capítulo 2: <code>row g-4</code> crea la fila y el gutter; <code>col-12 col-md-4</code> apila en móvil y forma tres columnas desde <code>md</code>. Para alturas coherentes, <code>card-equal</code> ocupa el alto disponible y el body usa Flexbox; no recortes texto ni fuerces una altura fija sin motivo.</p>
+<h3>Práctica guiada</h3><p>Construye una card con imagen, badge, título, descripción, botón y footer. Sustituye la imagen por una propia y escribe un texto alternativo descriptivo.</p>
+<h3>Ejercicio autónomo</h3><p>Amplía el catálogo a seis cursos usando <code>col-12 col-sm-6 col-lg-4</code>. Comprueba 1, 2 y 3 columnas. Solución: conserva la estructura de cada <code>article</code> y cambia solo el modificador de columna.</p>
+</section>
+
+<section id="navbar"><h2>3. Navbar responsive: apartado prioritario</h2>
+<p>Una navbar organiza la navegación principal. Consulta primero <a href="https://getbootstrap.com/docs/5.3/components/navbar/" target="_blank" rel="noopener">Navbar</a> y, para composiciones completas, <a href="https://getbootstrap.com/docs/5.3/examples/navbars/" target="_blank" rel="noopener">Examples · Navbars</a>.</p>
+<div class="component-demo">
+<nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navegación de demostración"><div class="container-fluid"><a class="navbar-brand" href="#">DevAcademy</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#demoMenu" aria-controls="demoMenu" aria-expanded="false" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="demoMenu"><ul class="navbar-nav me-auto mb-2 mb-lg-0"><li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li><li class="nav-item"><a class="nav-link" href="#cards">Cursos</a></li><li class="nav-item"><a class="nav-link" href="#formularios">Contacto</a></li></ul><a class="btn btn-primary" href="#practicas">Empezar</a></div></div></nav>
+</div>
+<pre><code>&lt;nav class="navbar navbar-expand-lg bg-body-tertiary"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand" href="/"&gt;DevAcademy&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#mainMenu"
+      aria-controls="mainMenu" aria-expanded="false"
+      aria-label="Abrir menú"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="mainMenu"&gt;
+      &lt;ul class="navbar-nav me-auto mb-2 mb-lg-0"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#cards"&gt;Cursos&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+<table class="table table-bordered"><thead><tr><th>Clase o atributo</th><th>Función</th></tr></thead><tbody><tr><td><code>navbar</code></td><td>Base visual y estructura.</td></tr><tr><td><code>navbar-expand-lg</code></td><td>Menú abierto desde lg; plegado antes.</td></tr><tr><td><code>navbar-brand</code></td><td>Marca o nombre.</td></tr><tr><td><code>navbar-nav</code>, <code>nav-item</code>, <code>nav-link</code></td><td>Lista, elemento y enlace de navegación.</td></tr><tr><td><code>navbar-toggler</code>, <code>navbar-toggler-icon</code></td><td>Botón hamburguesa e icono.</td></tr><tr><td><code>collapse</code>, <code>navbar-collapse</code></td><td>Panel que Bootstrap abre y cierra.</td></tr><tr><td><code>data-bs-toggle</code>, <code>data-bs-target</code></td><td>Atributos que conectan el botón con el panel.</td></tr><tr><td><code>aria-controls</code>, <code>aria-expanded</code>, <code>aria-label</code></td><td>Información para tecnologías de asistencia; son atributos HTML, no clases.</td></tr></tbody></table>
+<p>El <strong>Bootstrap Bundle</strong> incluye Bootstrap JS y Popper. Collapse necesita ese bundle para responder al clic y actualizar <code>aria-expanded</code>; no necesita jQuery ni JavaScript propio.</p>
+<h3>Adaptar y personalizar</h3><p>Copia primero una navbar oficial completa, cambia la marca y los enlaces, y prueba el menú a 375px. Si quieres una navbar rosa, elimina <code>bg-dark</code> y añade una clase propia:</p>
+<pre><code>.pink-nav { background: #d63384; }
+.pink-nav .navbar-brand, .pink-nav .nav-link { color: #fff; }</code></pre>
+<p>Una utility como <code>bg-dark</code> puede ganar a una regla genérica por orden o especificidad. Elimina la utility antes de pensar en <code>!important</code>. Revisa contraste, foco y lectura del texto; el color rosa no justifica texto con contraste insuficiente.</p>
+<h3>Práctica guiada</h3><p>Adapta la navbar de esta página: cambia DevAcademy por tu proyecto, sustituye enlaces y añade un CTA. Abre y cierra el menú con ratón y teclado.</p>
+<h3>Ejercicio autónomo</h3><p>Inspecciona una navbar de la galería oficial con DevTools, identifica el botón, el panel y sus IDs, y reprodúcela en un archivo vacío. Solución razonada: conserva la relación <code>data-bs-target="#id"</code> ↔ <code>id="id"</code> y el bundle al final del documento.</p>
+</section>
+
+<section id="formularios"><h2>4. Formularios: estilo, estructura y validación</h2>
+<p>Consulta <a href="https://getbootstrap.com/docs/5.3/forms/overview/" target="_blank" rel="noopener">Forms overview</a>. Bootstrap maquilla controles, pero HTML mantiene la semántica y el navegador realiza la validación básica.</p>
+<div class="component-demo"><form class="row g-3" action="#" method="post"><div class="col-md-6"><label class="form-label" for="nombre">Nombre</label><input class="form-control" id="nombre" name="nombre" type="text" autocomplete="name" required></div><div class="col-md-6"><label class="form-label" for="correo">Correo</label><input class="form-control" id="correo" name="correo" type="email" autocomplete="email" required><div class="form-text">Usaremos este correo para confirmar la inscripción.</div></div><div class="col-12"><label class="form-label" for="curso">Curso</label><select class="form-select" id="curso" name="curso" required><option value="">Elige una opción</option><option>Bootstrap</option><option>JavaScript</option></select></div><div class="col-12 form-check"><input class="form-check-input" id="condiciones" type="checkbox" required><label class="form-check-label" for="condiciones">Acepto las condiciones</label></div><div class="col-12"><button class="btn btn-primary" type="submit">Solicitar plaza</button></div></form></div>
+<p><code>form-label</code> enlaza visualmente el label; <code>for</code> debe coincidir con <code>id</code>. <code>form-control</code> estiliza inputs; <code>form-select</code>, selects; <code>form-check</code>, checkbox y radio; <code>form-text</code>, ayuda; <code>input-group</code>, prefijos y sufijos. <code>is-valid</code>, <code>is-invalid</code> e <code>invalid-feedback</code> comunican estados que tu lógica debe haber comprobado.</p>
+<div class="component-demo"><label class="form-label" for="demo-invalid">Correo de ejemplo</label><input class="form-control is-invalid" id="demo-invalid" type="email" value="sin-correo"><div class="invalid-feedback">Escribe una dirección válida.</div></div>
+<p>El placeholder no sustituye al label: desaparece al escribir y no identifica el campo para todas las personas. Sin un <code>action</code> real o JavaScript de servidor, este formulario no guarda datos; aquí sirve para aprender estructura y validación del navegador.</p>
+<h3>Práctica guiada y ejercicio</h3><p>Construye el formulario de inscripción anterior, añade un teléfono y prueba qué ocurre al dejar campos vacíos. Después crea un campo de mensaje con <code>textarea</code> y una ayuda accesible. Solución: cada control tiene <code>label</code> asociado, <code>name</code>, tipo correcto y <code>required</code> solo cuando sea obligatorio.</p>
+</section>
+
+<section id="feedback"><h2>5. Alertas, badges y breadcrumbs</h2>
+<h3>Alertas</h3><p>Informan de éxito, aviso, error o información contextual; no son decoración. Usa <code>role="alert"</code> para mensajes importantes. Las alertas descartables de la <a href="https://getbootstrap.com/docs/5.3/components/alerts/" target="_blank" rel="noopener">documentación</a> requieren el bundle.</p><div class="alert alert-success" role="alert"><strong>Inscripción guardada.</strong> Revisa tu correo para continuar.</div><div class="alert alert-warning" role="alert">La matrícula termina el viernes.</div>
+<h3>Badges</h3><p>Resaltan estado, categoría o cantidad. Acompaña siempre el color con texto y no uses un badge como única explicación.</p><p>Bootstrap <span class="badge text-bg-success">Activo</span> · Mensajes <span class="badge text-bg-secondary">3</span> · <button class="btn btn-primary">Cursos <span class="badge text-bg-light">4</span></button></p>
+<h3>Breadcrumbs</h3><p>Representan la jerarquía de navegación, no sustituyen el menú principal. Usa <code>nav</code>, una lista ordenada, <code>aria-label</code> y <code>aria-current="page"</code>.</p><nav aria-label="Ruta de navegación"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Inicio</a></li><li class="breadcrumb-item"><a href="#cards">Cursos</a></li><li class="breadcrumb-item active" aria-current="page">Bootstrap</li></ol></nav>
+<h3>Práctica breve</h3><p>Construye un panel que muestre una alerta de éxito, un badge de plazas disponibles y un breadcrumb Inicio → Cursos → Curso actual. Comprueba que la página actual no es un enlace.</p>
+</section>
+
+<section id="practicas"><h2>6. Proyecto de integración</h2><p>Estas seis prácticas forman una progresión. No abras la solución hasta comprobar tu resultado.</p>
+<ol><li><strong>Colección de botones:</strong> objetivo: diferenciar acción y navegación. Inicial: un <code>div</code> vacío. Añade tres variantes, tamaños y un disabled. Comprueba foco y tipos.</li><li><strong>Card completa:</strong> objetivo: dominar partes del componente. Inicial: <code>&lt;article class="card"&gt;&lt;/article&gt;</code>. Añade imagen, body, badge, botón y footer. Comprueba alt y enlace.</li><li><strong>Catálogo responsive:</strong> objetivo: combinar cards y Grid. Inicial: <code>container &gt; row</code>. Crea tres columnas <code>col-12 col-md-4</code>. Comprueba 1 y 3 columnas.</li><li><strong>Navbar oficial:</strong> objetivo: adaptar una composición. Inicial: copia Headers/Navbars oficiales. Cambia marca, enlaces y color; verifica el ID del collapse y el bundle.</li><li><strong>Formulario:</strong> objetivo: crear inscripción accesible. Inicial: <code>form</code> vacío. Añade nombre, correo, select, checkbox y submit. Comprueba labels y validación.</li><li><strong>Panel de cursos:</strong> objetivo: integrar navbar, breadcrumb, alerta, cards, badges y formulario. Ordena los bloques y comprueba móvil, teclado y contraste.</li></ol>
+<h3>Solución razonada del panel</h3><p>La solución debe seguir este orden: <code>navbar</code> para navegación global; <code>breadcrumb</code> para contexto; <code>alert</code> para estado; <code>row</code> y cards para contenido; <code>badge</code> para estado breve; formulario al final para la acción. Si el menú no se abre, revisa primero el bundle y la coincidencia entre <code>data-bs-target</code> e <code>id</code>.</p></section>
+
+<section><h2>7. Aprender de los ejemplos oficiales</h2>
+<p>Bootstrap ofrece dos recursos distintos. La <strong>documentación de componentes</strong>, como <a href="https://getbootstrap.com/docs/5.3/components/navbar/" target="_blank" rel="noopener">Navbar</a>, explica clases, variantes, HTML y dependencias. La <strong>galería de ejemplos completos</strong>, como <a href="https://getbootstrap.com/docs/5.3/examples/" target="_blank" rel="noopener">Examples</a>, <a href="https://getbootstrap.com/docs/5.3/examples/navbars/" target="_blank" rel="noopener">Navbars</a>, <a href="https://getbootstrap.com/docs/5.3/examples/headers/" target="_blank" rel="noopener">Headers</a> o <a href="https://getbootstrap.com/docs/5.3/examples/heroes/" target="_blank" rel="noopener">Heroes</a>, muestra composiciones más elaboradas para adaptar.</p>
+<div class="component-demo"><h3 class="h5">Documentación frente a galería</h3><ul><li><strong>Documentación:</strong> localiza el componente, lee sus variantes y copia un bloque HTML autocontenido.</li><li><strong>Galería:</strong> estudia una página completa; puede depender de CSS adicional, iconos, imágenes, fuentes o JavaScript propio.</li></ul><p>Copiar solo el HTML de una galería no garantiza reproducir su apariencia. Inspecciona también sus hojas CSS, recursos y scripts.</p></div>
+<h3>Tutorial guiado: copiar la navbar «Expand at lg»</h3>
+<ol><li>Abre <a href="https://getbootstrap.com/docs/5.3/examples/navbars/" target="_blank" rel="noopener">Examples → Navbars</a> y localiza <strong>Expand at lg</strong> si continúa disponible.</li><li>Abre las herramientas de desarrollador con <kbd>F12</kbd> (el nombre de la pestaña puede ser Elements o Elementos).</li><li>Con el inspector, selecciona el elemento <code>&lt;nav&gt;</code> completo, no solo el botón hamburguesa.</li><li>Haz clic derecho sobre <code>&lt;nav&gt;</code> y elige <strong>Copy → Copy outerHTML</strong>. Los nombres pueden variar ligeramente en Chrome, Edge u Opera.</li><li>Pega el código en un archivo de prueba de VS Code y formatéalo con <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> usando Prettier.</li><li>Comprueba que el documento carga Bootstrap CSS en el <code>&lt;head&gt;</code> y el Bundle antes de cerrar <code>&lt;body&gt;</code>.</li><li>Abre tu archivo, reduce la ventana y prueba el botón. A <code>lg</code> el menú se expande; antes de <code>lg</code> se pliega.</li></ol>
+<pre><code>&lt;nav class="navbar navbar-expand-lg bg-body-tertiary"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand" href="/"&gt;Mi proyecto&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#mainMenu"
+      aria-controls="mainMenu" aria-expanded="false"
+      aria-label="Abrir menú"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="mainMenu"&gt;
+      &lt;ul class="navbar-nav ms-auto"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#inicio"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#cursos"&gt;Cursos&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+<p><strong>Alternativa:</strong> cuando la documentación ofrece un bloque HTML completo con botón de copiar, úsalo directamente. Aun así, revisa el CSS y el bundle indicados en la página.</p>
+<h3>Cómo leer el código copiado</h3>
+<table class="table table-bordered"><thead><tr><th>Tipo</th><th>Ejemplos</th><th>Qué puedes modificar</th></tr></thead><tbody><tr><td>Etiquetas HTML</td><td><code>nav</code>, <code>button</code>, <code>ul</code>, <code>li</code>, <code>a</code></td><td>La semántica y el contenido, sin eliminar la estructura necesaria.</td></tr><tr><td>Clases Bootstrap</td><td><code>navbar</code>, <code>navbar-expand-lg</code>, <code>navbar-brand</code>, <code>navbar-nav</code>, <code>nav-item</code>, <code>nav-link</code></td><td>Variantes visuales y breakpoint, después de entender su función.</td></tr><tr><td>Comportamiento JS</td><td><code>navbar-toggler</code>, <code>collapse</code>, <code>navbar-collapse</code>, <code>data-bs-toggle</code>, <code>data-bs-target</code></td><td>No rompas la relación entre botón, selector e ID.</td></tr><tr><td>Accesibilidad</td><td><code>aria-controls</code>, <code>aria-expanded</code>, <code>aria-label</code></td><td>Actualiza el nombre si cambia la acción; Bootstrap actualiza expanded al abrir.</td></tr></tbody></table>
+<h3>Personalizar sin romper la navbar</h3><ol><li>Cambia el texto de <code>navbar-brand</code>.</li><li>Sustituye los textos de <code>nav-link</code> y los <code>href="#"</code> por destinos reales.</li><li>Elimina elementos completos de <code>li</code> si no los necesitas.</li><li>Para una navbar rosa, elimina <code>bg-dark</code> y añade una clase propia.</li><li>Comprueba contraste, foco visible y menú móvil.</li></ol>
+<pre><code>.navbar-rosa { background: #d63384; }
+.navbar-rosa .navbar-brand, .navbar-rosa .nav-link { color: #fff; }
+.navbar-rosa .nav-link:hover, .navbar-rosa .nav-link:focus { color: #ffe3f0; }</code></pre>
+<p><code>bg-dark</code> es una utility que también establece el fondo. Si la conservas, puede ganar a una regla genérica propia. La solución limpia es quitar <code>bg-dark</code> y usar <code>navbar-rosa</code>; <code>!important</code> no debe ser la primera opción.</p>
+<h3>Repetir el método con otros componentes</h3><ul><li><strong>Botones:</strong> consulta Buttons, copia la variante y sustituye texto, tipo y destino.</li><li><strong>Cards:</strong> conserva <code>card</code>, <code>card-body</code> y sus partes; adapta imagen, alt, badge y CTA.</li><li><strong>Formularios:</strong> copia controles completos y revisa <code>label</code>, <code>for</code>, <code>id</code> y validación.</li><li><strong>Alertas:</strong> conserva <code>role="alert"</code>; las descartables necesitan Bundle.</li><li><strong>Badges y breadcrumbs:</strong> adapta el texto, pero conserva la jerarquía y no dependas solo del color.</li></ul>
+<h3>Errores habituales</h3><ul><li>Copiar solo el botón hamburguesa.</li><li>Olvidar Bootstrap Bundle.</li><li>No hacer coincidir <code>data-bs-target="#mainMenu"</code> con <code>id="mainMenu"</code>.</li><li>Copiar HTML que depende de CSS, iconos o imágenes ausentes.</li><li>Copiar una versión antigua y encontrar <code>data-toggle</code>.</li><li>Pegar código sin formatearlo.</li><li>Dejar enlaces <code>#</code> creyendo que ya navegan.</li><li>Cambiar colores sin comprobar contraste.</li><li>Copiar rutas relativas de recursos oficiales sin descargarlos o sustituirlos.</li></ul>
+<h3>Reto autónomo: adapta un componente oficial</h3><p>Elige una navbar de Examples, intégrala en una copia de tu web, cambia la marca, tres enlaces y el color, y comprueba el menú en móvil.</p><p><strong>Lista de comprobación:</strong> Bootstrap CSS carga; Bundle carga; el toggler abre y cierra; <code>data-bs-target</code> coincide con el ID; los enlaces tienen destinos; el foco es visible; el contraste es suficiente; no hay recursos 404 en Network.</p><p><strong>Solución de referencia:</strong> parte del bloque anterior, conserva la relación botón/panel, sustituye <code>bg-dark</code> por <code>navbar-rosa</code>, cambia los textos y verifica cada recurso en DevTools.</p>
+</section>
+
+<aside class="box"><h2>Errores frecuentes globales</h2><ul><li>Usar clases Bootstrap 4 como <code>data-toggle</code>: en Bootstrap 5.3 son <code>data-bs-toggle</code>.</li><li>Olvidar el bundle en navbar, modal o alertas descartables.</li><li>Confundir <code>button</code> con enlace.</li><li>Usar placeholder sin label.</li><li>Duplicar IDs de collapse o formularios.</li><li>Usar color sin comprobar contraste.</li></ul></aside>
+<p><a href="../../manualcss/manual-css/dist/ejercicios/e12-bootstrap-navbar">E12 · Navbar</a> · <a href="../../manualcss/manual-css/dist/ejercicios/e13-bootstrap-cards">E13 · Cards</a> · <a href="../../manualcss/manual-css/dist/ejercicios/e14-bootstrap-forms">E14 · Formularios</a></p>
+<nav class="pager"><a href="capitulo-3.html">← Capítulo 3</a><a href="capitulo-5.html">Capítulo 5 →</a></nav>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script><script src="manual.js"></script>
+</body></html>
+

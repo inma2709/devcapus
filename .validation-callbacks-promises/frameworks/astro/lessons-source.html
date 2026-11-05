@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Manual de Astro para aprender componentes, layouts y una web multipágina desde HTML."
+    />
+    <title>Astro · De HTML a componentes | DevCampus</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./learning.css" />
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <header class="topbar">
+      <a href="/manuales?categoria=Frameworks" target="_top" class="brand"
+        >DevCampus <span>· Frameworks</span></a
+      ><span>Manual de Astro</span>
+    </header>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Índice del manual">
+        <a class="back" href="/manuales?categoria=Frameworks" target="_top"
+          >← Volver a Frameworks</a
+        >
+        <p class="label">5 lecciones</p>
+        <h2>Astro desde cero</h2>
+        <nav id="lesson-nav">
+          <a href="./lecciones/01-por-que-astro/index.html">01 · ¿Por qué aprender Astro?</a>
+          <a href="./lecciones/02-primer-proyecto/index.html">02 · Mi primer proyecto Astro</a>
+          <a href="./lecciones/03-componentes-reutilizables/index.html">03 · Mi primer componente reutilizable</a>
+          <a href="./lecciones/04-layouts-y-slot/index.html"
+            >04 · Layouts: una estructura para todas las páginas</a
+          >
+          <a href="./lecciones/05-proyecto-multipagina/index.html">05 · Mi primera web multipágina</a>
+        </nav>
+      </aside>
+      <main id="contenido" class="content">
+        <section class="home" data-home>
+          <p class="eyebrow">Manual · Iniciación</p>
+          <h1>Astro: de HTML a componentes</h1>
+          <p class="lead">
+           Hemos creado páginas HTML, pero repetir la misma navegación y pie en cada archivo es incómodo. Astro permite concentrar HTML repetido en componentes y generar páginas con contenido ya visible.</p> 
+           <p>Son como piezas de Lego: cada componente es un bloque que se puede usar en varias páginas. En este manual aprenderás a crear componentes, un layout y una web multipágina con HTML, CSS y un poco de JavaScript.</p>
+           <p>Como ya sabes el 80% de una pagina web es HTML. Ese es el poder de Astro, que te permite crear paginas web con HTML y CSS y un poco de JavaScript.
+          </p>
+          <div class="facts">
+          
+            <div><b>5</b><span>lecciones prácticas</span></div>
+            <div><b>HTML + CSS + JS</b><span>conocimientos previos</span></div>
+          </div>
+          <a class="primary" href="./lecciones/01-por-que-astro/index.html">Empezar la lección 1 →</a>
+          <h2>Tu proyecto final</h2>
+          <p>
+            Construirás la web de una empresa ficticia con Inicio, Servicios y
+            Contacto. Las tres páginas compartirán <code>Navbar</code>,
+            <code>Footer</code> y <code>BaseLayout</code>.
+          </p>
+        </section>
+
+        <article class="lesson" data-lesson="1">
+          <p class="crumb">Frameworks / Astro / Lección 1</p>
+          <p class="eyebrow">Lección 1 · 45 min</p>
+<h1>¿Qué es Astro y por qué aprenderlo?</h1>
+          <section class="goal"><h2>Qué vamos a aprender</h2><p>Qué es Astro, qué problemas resuelve y cuándo es una buena opción para un proyecto.</p></section>
+          <h2>El problema: copiar y pegar</h2>
+          <p>Con HTML puedes crear varias páginas sin ninguna herramienta. Pero si <code>index.html</code>, <code>servicios.html</code> y <code>contacto.html</code> tienen la misma navegación y el mismo pie, cada cambio obliga a editar tres archivos. Es fácil olvidar uno.</p>
+          <h2>Astro en una frase</h2>
+          <p>Astro es una herramienta para crear sitios web. Usa componentes para reunir HTML repetido y genera HTML para las páginas. Un componente no es magia: es un archivo que contiene una parte reutilizable de tu interfaz.</p>
+          <figure class="compare"><div><h3>Aplicación con renderizado cliente</h3><p>Navegador → descarga JavaScript → JavaScript crea gran parte de la interfaz.</p><code>HTML pequeño + JS que renderiza</code></div><div><h3>Página Astro prerenderizada</h3><p>Astro construye HTML durante el build → navegador recibe contenido ya visible. Solo se envía JavaScript si hace falta.</p><code>HTML preparado + JS selectivo</code></div></figure>
+          <p>Esto no significa que JavaScript sea malo ni que Astro lo elimine: Astro permite no enviarlo cuando no es necesario. React también puede usar renderizado en servidor o generación estática mediante otros frameworks. Google puede indexar contenido generado con JavaScript; tener HTML listo no hace que una página posicione automáticamente.</p>
+          <h2>Rendimiento, SEO y las islas</h2>
+          <p>Al entregar menos JavaScript innecesario, un sitio puede tener buenas condiciones para cargar rápido. Es potencial, no garantía: imágenes pesadas, CSS bloqueante o código excesivo pueden empeorar cualquier web. PageSpeed Insights mide, entre otras señales, <strong>LCP</strong> (cuándo aparece el contenido principal), <strong>INP</strong> (respuesta a una interacción) y <strong>CLS</strong> (saltos inesperados del diseño).</p>
+          <p>La arquitectura de islas deja estática la mayor parte de la página y activa con JavaScript solo una parte interactiva, por ejemplo un buscador. En este manual no necesitas crear islas.</p>
+          <h2>¿Cuándo elegirlo?</h2>
+          <p>Astro encaja especialmente en documentación, portfolios, blogs y webs corporativas con mucho contenido. Una aplicación donde casi toda la pantalla cambia constantemente —un panel muy interactivo— puede resultar más natural con React.</p>
+          <section class="practice"><h2>Práctica guiada</h2><ol><li>Abre dos páginas HTML de un proyecto anterior.</li><li>Marca qué fragmentos copiaste en ambas: navegación, footer o metadatos.</li><li>Escribe un cambio que tendrías que repetir hoy.</li></ol><h3>Ejercicio autónomo</h3><p>Haz una lista de tres piezas de una web que merecerían convertirse en componentes y explica por qué.</p></section>
+          <section class="autonomous"><h2>1. Antes de Astro: ¿qué es un framework?</h2><p>HTML aporta estructura, CSS decide la presentación y JavaScript responde a acciones. En una página pequeña puede bastar con esos tres archivos. Cuando un sitio crece, aparecen menús repetidos, reglas de interfaz repartidas y cambios que hay que aplicar en muchos lugares. Un framework propone una forma organizada de construir: convenciones, componentes y herramientas para resolver problemas repetidos.</p><p>Una biblioteca es una herramienta que eliges llamar desde tu código; un framework normalmente marca la estructura general y llama a tus piezas en los lugares previstos. La frontera no siempre es absoluta: React es técnicamente una biblioteca, aunque se estudia junto a los frameworks. No toda web necesita uno: una página informativa muy pequeña puede ser más clara con HTML y CSS directos.</p><h2>2. Por qué aparecieron los frameworks modernos</h2><p>Las primeras webs eran principalmente documentos. Después llegaron carritos que recalculan precios, gestores de tareas que actualizan una lista y paneles de administración que muestran datos sin recargar la página. Actualizar el DOM manualmente en cada interacción funciona, pero se vuelve difícil de mantener cuando la interfaz tiene muchos estados. Los frameworks ayudan a dividir la interfaz y a coordinar sus actualizaciones.</p><h2>3. React, Vue y Angular</h2><table><thead><tr><th>Tecnología</th><th>Origen y enfoque</th><th>Ventaja y dificultad inicial</th><th>Uso habitual</th></tr></thead><tbody><tr><td>React</td><td>Biblioteca publicada por Facebook en 2013; componentes para interfaces interactivas.</td><td>Gran ecosistema; hay que elegir herramientas complementarias.</td><td>Aplicaciones, paneles y productos con interacción intensa.</td></tr><tr><td>Vue</td><td>Framework progresivo creado por Evan You en 2014; reactividad y componentes.</td><td>Entrada gradual; su ecosistema es menor que el de React en algunos contextos.</td><td>Interfaces de producto y proyectos que adoptan un framework paso a paso.</td></tr><tr><td>Angular</td><td>Framework completo de Google; Angular moderno apareció en 2016 y no es AngularJS.</td><td>Incluye muchas decisiones; exige aprender más conceptos y suele usar TypeScript.</td><td>Aplicaciones empresariales grandes y equipos con convenciones estrictas.</td></tr></tbody></table><p>Ninguna es superior en todos los casos: la interactividad, el equipo y el tipo de contenido cambian la decisión.</p><h2>4. Cuándo y por qué aparece Astro</h2><p>Astro se presentó públicamente en 2021 y publicó su versión estable 1.0 en agosto de 2022. Nació para sitios centrados en contenido —documentación, blogs o webs corporativas— donde enviar una aplicación JavaScript completa para cada página puede no aportar valor. Su enfoque HTML-first busca entregar contenido preparado y añadir JavaScript solo donde sea necesario.</p><h2>5. Cómo funciona Astro</h2><p>Un componente es un archivo reutilizable. Durante el build, Astro reúne páginas y componentes y genera HTML. Prerenderizar significa preparar ese HTML antes de que una persona visite la web. El navegador recibe contenido visible; los componentes <code>.astro</code> no necesitan un runtime JavaScript para existir. Cuando hace falta interacción, por ejemplo en un buscador, puedes usar una etiqueta <code>&lt;script&gt;</code> o una isla.</p><figure class="diagram"><figcaption>Dos recorridos posibles</figcaption><p><strong>Renderizado cliente:</strong> navegador → descarga JavaScript → JavaScript crea la interfaz.<br><strong>Astro prerenderizado:</strong> build → HTML preparado → navegador. Una isla añade JavaScript solo al buscador interactivo.</p></figure><p>React, Vue y Angular también pueden usar generación estática o renderizado en servidor mediante herramientas adecuadas; la diferencia no es que solo Astro pueda entregar HTML preparado.</p><h2>6. Rendimiento y SEO</h2><p>Descargar y ejecutar JavaScript consume red, CPU y tiempo del navegador. Reducir JavaScript innecesario puede mejorar el rendimiento, pero no garantiza nada: una imagen enorme, fuentes lentas o CSS bloqueante también empeoran una página. Google PageSpeed Insights ayuda a observar LCP (cuándo aparece el contenido principal), INP (respuesta a una interacción) y CLS (saltos inesperados del diseño).</p><p>HTML preparado puede facilitar el rastreo, pero Astro no garantiza posiciones mejores en Google. El SEO depende también de contenido útil, enlaces, metadatos, accesibilidad y rendimiento real.</p><h2>7. Comparativa equilibrada</h2><table><thead><tr><th></th><th>Astro</th><th>React / Vue / Angular</th></tr></thead><tbody><tr><td>Objetivo frecuente</td><td>Sitios de contenido y páginas rápidas.</td><td>Aplicaciones con interfaz muy dinámica.</td></tr><tr><td>JavaScript por defecto</td><td>Solo cuando se necesita.</td><td>Depende de la configuración y del framework.</td></tr><tr><td>Componentes</td><td>HTML reutilizable y posibles islas.</td><td>Componentes interactivos y estado de interfaz.</td></tr></tbody></table><h2>8. Cuándo utilizar Astro</h2><p>Es una buena opción para webs corporativas, portfolios, blogs, documentación técnica, landing pages, catálogos, portales educativos y contenido con interactividad localizada. Considera React, Vue o Angular cuando la mayor parte de la pantalla sea una aplicación que cambia continuamente, como un panel complejo de reservas o administración.</p><h2>9. Ventajas y límites</h2><ul><li><strong>Ventajas:</strong> componentes reutilizables, HTML temprano y JavaScript selectivo.</li><li><strong>Límites:</strong> no sustituye una buena optimización; una aplicación muy interactiva puede requerir más diseño técnico.</li></ul><section class="practice"><h2>10. Actividad de decisión</h2><ol><li>Una revista digital con artículos, imágenes y un buscador pequeño.</li><li>Un tablero colaborativo donde muchas tarjetas se actualizan constantemente.</li><li>El sitio corporativo de una clínica con servicios, blog y formulario.</li></ol><p>Elige una tecnología para cada caso y justifica qué tipo de interfaz predomina.</p><details><summary>Solución razonada</summary><p>Astro encaja bien en la revista y la clínica porque predomina contenido que puede entregarse como HTML; el buscador puede ser una isla. Para el tablero colaborativo, una solución centrada en React, Vue o Angular puede resultar más natural por la interacción continua y el estado compartido. Son decisiones de contexto, no reglas absolutas.</p></details></section></section>
+          <section class="recap"><h2>Resumen</h2><p>Astro reutiliza estructura con componentes y puede generar HTML anticipadamente. Su objetivo no es prohibir JavaScript, sino usarlo con intención.</p></section>
+        </article>
+
+        <article class="lesson" data-lesson="2">
+          <p class="crumb">Frameworks / Astro / Lección 2</p>
+          <p class="eyebrow">Lección 2 · 60 min</p>
+          <h1>Mi primer proyecto Astro</h1>
+          <section class="goal">
+            <h2>Qué vamos a aprender</h2>
+            <p>
+              Crear, abrir y ejecutar un proyecto Astro, entendiendo qué hace
+              cada comando y dónde vive cada archivo.
+            </p>
+          </section>
+          <h2>Antes de empezar</h2>
+          <p>
+            Necesitas Node.js compatible, npm, una terminal y VS Code. Comprueba
+            Node con <code>node -v</code>. La documentación oficial de Astro
+            recomienda usar su asistente de creación y la extensión oficial de
+            Astro para VS Code.
+          </p>
+          <p>
+  Asegúrate de que tu versión de Node.js sea compatible con Astro.
+  La versión de Astro utilizada en este manual requiere
+  Node.js 22.22.0 o superior.
+  Recomendamos instalar una versión LTS compatible,
+  como Node.js 24.
+</p>
+<p>Comprueba tu versión de Node.js con <code>node -v</code>.</p>
+
+        
+<h2>Crear nuestro primer proyecto Astro</h2>
+
+<p>
+  Ahora que tenemos Node.js instalado, vamos a crear nuestro
+  primer proyecto Astro utilizando Visual Studio Code.
+</p>
+
+<h3>Paso 1. Abrir la terminal</h3>
+
+<p>
+  Abre Visual Studio Code y selecciona
+  <strong>Terminal → Nuevo terminal</strong>.
+</p>
+
+<p>
+  Sitúate en la carpeta donde quieras guardar tus proyectos.
+  Por ejemplo, puedes crear una carpeta llamada
+  <code>proyectos-astro</code> dentro de Documentos.
+</p>
+
+<p>
+  No necesitamos crear previamente los archivos HTML,
+  CSS o JavaScript. Astro se encargará de preparar
+  la estructura inicial del proyecto.
+</p>
+
+<h3>Paso 2. Ejecutar el asistente de Astro</h3>
+
+<p>
+  Escribe el siguiente comando en la terminal:
+</p>
+
+<pre><code>npm create astro@latest</code></pre>
+
+<p>
+  Este comando utiliza npm para ejecutar el asistente oficial
+  de creación de proyectos Astro.
+</p>
+
+<p>
+  El asistente realizará varias preguntas:
+</p>
+
+<ol>
+  <li>
+    <strong>Nombre del proyecto:</strong> escribe
+    <code>mi-primera-web-astro</code>.
+    Astro creará una carpeta con ese nombre.
+  </li>
+  <li>
+    <strong>Plantilla inicial:</strong> selecciona una
+    plantilla básica o de ejemplo para empezar.
+    Las opciones disponibles pueden variar según la versión.
+  </li>
+  <li>
+    <strong>Instalación de dependencias:</strong>
+    responde afirmativamente para instalar los paquetes necesarios.
+  </li>
+  <li>
+    <strong>Git:</strong> puedes permitir que se inicialice
+    un repositorio o hacerlo posteriormente.
+  </li>
+</ol>
+
+<p>
+  Cuando termine, Astro habrá generado la estructura
+  del proyecto y los archivos necesarios para empezar.
+</p>
+
+<h3>Paso 3. Abrir y ejecutar el proyecto</h3>
+
+<p>
+  Si tu proyecto se llama
+  <code>mi-primera-web-astro</code>, entra en su carpeta
+  desde la terminal:
+</p>
+
+<pre><code>cd mi-primera-web-astro</code></pre>
+
+<p>
+  Si elegiste otro nombre, utiliza el nombre real de tu carpeta.
+</p>
+
+<p>
+  Ahora ejecuta:
+</p>
+
+<pre><code>npm run dev</code></pre>
+
+<p>
+  Este comando inicia el servidor de desarrollo de Astro.
+  En la terminal debería aparecer una dirección parecida a:
+</p>
+
+<pre><code>Local http://localhost:4321/</code></pre>
+
+<p>
+  Abre esa dirección en el navegador para visualizar tu web.
+</p>
+
+<p>
+  <strong>¿Qué significa localhost?</strong>
+  Es una dirección que apunta a tu propio ordenador.
+  La web todavía no está publicada en Internet:
+  solamente la estamos ejecutando en nuestro equipo.
+</p>
+
+<p>
+  Mientras el servidor esté funcionando, Astro detectará
+  los cambios que hagamos en los archivos y actualizará
+  la página durante el desarrollo.
+</p>
+
+<p>
+  Para detener el servidor, vuelve a la terminal
+  y pulsa <code>Ctrl + C</code>.
+</p>
+
+<h2>Conocer la estructura de carpetas de Astro</h2>
+
+<p>
+  Antes de empezar a programar, vamos a entender
+  qué ha creado Astro.
+</p>
+
+<p>
+  Abre el explorador de archivos de VS Code.
+  Si hemos utilizado una plantilla de ejemplo,
+  encontraremos una estructura parecida a esta:
+</p>
+
+<pre><code>mi-primera-web-astro/
+│
+├── .astro/
+├── .vscode/
+├── node_modules/
+├── public/
+│
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   └── Welcome.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+│
+├── .gitignore
+├── AGENTS.md
+├── astro.config.mjs
+├── package-lock.json
+├── package.json
+├── README.md
+└── tsconfig.json</code></pre>
+
+<p>
+  Esta estructura corresponde a un proyecto creado con una
+  plantilla de ejemplo. Dependiendo de la versión de Astro
+  y de la plantilla seleccionada, algunos archivos
+  o carpetas pueden ser diferentes.
+</p>
+
+<p>
+  <strong>Importante:</strong> no necesitamos utilizar
+  todos estos archivos desde el primer momento.
+  Vamos a conocerlos para saber qué función cumplen.
+</p>
+
+<h3>1. La carpeta src: nuestro código fuente</h3>
+
+<p>
+  La carpeta <code>src</code> es una de las más importantes.
+  Aquí escribiremos y organizaremos el código de nuestra web.
+</p>
+
+<p>
+  Dentro encontramos varias carpetas:
+</p>
+
+<h4>src/pages — Las páginas de nuestra web</h4>
+
+<p>
+  Esta carpeta contiene los archivos que representan
+  las diferentes páginas del sitio.
+</p>
+
+<p>
+  Por ejemplo, Astro crea inicialmente:
+</p>
+
+<pre><code>src/pages/index.astro</code></pre>
+
+<p>
+  Este archivo corresponde a la página de inicio,
+  que podemos visitar en:
+</p>
+
+<pre><code>http://localhost:4321/</code></pre>
+
+<p>
+  Si posteriormente creamos:
+</p>
+
+<pre><code>src/pages/contacto.astro</code></pre>
+
+<p>
+  Astro generará una página accesible mediante:
+</p>
+
+<pre><code>http://localhost:4321/contacto</code></pre>
+
+<p>
+  Esta es una característica importante de Astro:
+  <strong>los archivos de la carpeta pages
+  permiten definir las rutas de nuestra web.</strong>
+</p>
+
+<h4>src/components — Componentes reutilizables</h4>
+
+<p>
+  Un componente es una parte de la interfaz
+  que podemos utilizar en diferentes páginas.
+</p>
+
+<p>
+  En la plantilla de ejemplo encontramos:
+</p>
+
+<pre><code>src/components/Welcome.astro</code></pre>
+
+<p>
+  Este es un componente que Astro incluye para mostrar
+  contenido de bienvenida.
+</p>
+
+<p>
+  Más adelante crearemos nuestros propios componentes:
+</p>
+
+<pre><code>src/components/Navbar.astro
+src/components/Footer.astro</code></pre>
+
+<p>
+  De esta forma podremos escribir la navegación y
+  el pie de página una sola vez y reutilizarlos
+  en todas las páginas que los necesiten.
+</p>
+
+<h4>src/layouts — Estructuras comunes</h4>
+
+<p>
+  Esta carpeta contiene los layouts, que son componentes
+  utilizados como plantillas para organizar las páginas.
+</p>
+
+<p>
+  La plantilla de ejemplo ya puede incluir:
+</p>
+
+<pre><code>src/layouts/Layout.astro</code></pre>
+
+<p>
+  Un layout puede contener la estructura común del
+  documento HTML:
+</p>
+
+<ul>
+  <li>La declaración del documento.</li>
+  <li>Las etiquetas html, head y body.</li>
+  <li>La navegación compartida.</li>
+  <li>El contenido principal de la página.</li>
+  <li>El pie de página.</li>
+</ul>
+
+<p>
+  Más adelante modificaremos o sustituiremos el layout
+  de ejemplo para crear nuestro propio
+  <code>BaseLayout.astro</code>.
+</p>
+
+<p>
+  También aprenderemos a utilizar
+  <code>&lt;slot /&gt;</code>, la etiqueta que indica
+  dónde debe insertarse el contenido de cada página.
+</p>
+
+<h4>src/assets — Imágenes y otros recursos</h4>
+
+<p>
+  Esta carpeta se utiliza habitualmente para guardar
+  imágenes y otros recursos que Astro puede procesar
+  durante la compilación.
+</p>
+
+<p>
+  Por ejemplo, podemos incorporar imágenes que después
+  utilizaremos desde nuestros componentes.
+</p>
+
+<p>
+  Astro también permite guardar imágenes directamente
+  en <code>public</code>. La diferencia es que los recursos
+  importados desde <code>src</code> pueden aprovechar
+  las herramientas de procesamiento de Astro.
+</p>
+
+<h3>2. La carpeta public</h3>
+
+<p>
+  La carpeta <code>public</code> almacena archivos que
+  queremos servir directamente, sin que Astro los procese
+  como parte del código fuente.
+</p>
+
+<p>
+  Por ejemplo:
+</p>
+
+<pre><code>public/
+├── favicon.svg
+├── imagenes/
+│   └── logo.png
+└── documentos/
+    └── catalogo.pdf</code></pre>
+
+<p>
+  Un archivo situado en
+  <code>public/imagenes/logo.png</code>
+  se puede utilizar mediante:
+</p>
+
+<pre><code>&lt;img src="/imagenes/logo.png"
+     alt="Logo de la empresa"&gt;</code></pre>
+
+<p>
+  Observa que no escribimos <code>public</code>
+  dentro de la ruta de la imagen.
+</p>
+
+<h3>3. La carpeta node_modules</h3>
+
+<p>
+  Esta carpeta contiene los paquetes y dependencias
+  que necesita nuestro proyecto.
+</p>
+
+<p>
+  Se genera cuando instalamos las dependencias con npm.
+  Puede contener cientos o miles de archivos.
+</p>
+
+<p>
+  <strong>No debemos modificar manualmente
+  los archivos de node_modules.</strong>
+</p>
+
+<p>
+  Tampoco es necesario subir esta carpeta a GitHub.
+  Normalmente está incluida en <code>.gitignore</code>.
+</p>
+
+<p>
+  Si descargamos el proyecto en otro ordenador,
+  podremos volver a instalar las dependencias
+  ejecutando:
+</p>
+
+<pre><code>npm install</code></pre>
+
+<h3>4. La carpeta .astro</h3>
+
+<p>
+  Esta carpeta contiene información y archivos
+  generados automáticamente por Astro durante
+  el desarrollo.
+</p>
+
+<p>
+  Puede incluir metadatos y tipos utilizados por
+  las herramientas del proyecto.
+</p>
+
+<p>
+  <strong>No es una carpeta donde escribiremos
+  nuestras páginas ni nuestros componentes.</strong>
+</p>
+
+<p>
+  Generalmente no necesitamos modificarla.
+</p>
+
+<h3>5. La carpeta .vscode</h3>
+
+<p>
+  Esta carpeta almacena configuraciones específicas
+  para trabajar con el proyecto en Visual Studio Code.
+</p>
+
+<p>
+  Puede incluir recomendaciones de extensiones
+  o ajustes para el editor.
+</p>
+
+<p>
+  No contiene el código principal de nuestra web.
+</p>
+
+<h2>Los archivos de configuración del proyecto</h2>
+
+<p>
+  Además de las carpetas, Astro crea varios archivos
+  en la raíz del proyecto.
+</p>
+
+<h3>package.json</h3>
+
+<p>
+  Es uno de los archivos más importantes en cualquier
+  proyecto que utiliza Node.js y npm.
+</p>
+
+<p>
+  Define información del proyecto, sus dependencias
+  y los comandos disponibles.
+</p>
+
+<p>
+  Por ejemplo, contiene scripts que nos permiten ejecutar:
+</p>
+
+<pre><code>npm run dev
+npm run build
+npm run preview</code></pre>
+
+<p>
+  <code>dev</code> inicia el servidor de desarrollo.
+  <code>build</code> genera la versión de producción.
+  <code>preview</code> permite revisar localmente
+  el resultado generado.
+</p>
+
+<h3>package-lock.json</h3>
+
+<p>
+  Registra las versiones concretas de las dependencias
+  instaladas por npm y facilita reproducir
+  una instalación de forma consistente.
+</p>
+
+<p>
+  Normalmente npm se encarga de actualizar este archivo.
+  No necesitamos editarlo manualmente.
+</p>
+
+<h3>astro.config.mjs</h3>
+
+<p>
+  Es el archivo de configuración de Astro.
+</p>
+
+<p>
+  Permite definir opciones del proyecto e incorporar
+  determinadas integraciones.
+</p>
+
+<p>
+  En este curso utilizaremos la configuración inicial
+  sin realizar cambios avanzados.
+</p>
+
+<h3>tsconfig.json</h3>
+
+<p>
+  Es un archivo de configuración relacionado
+  con TypeScript y las herramientas de análisis
+  de código.
+</p>
+
+<p>
+  Aunque escribamos JavaScript en nuestro proyecto,
+  Astro puede incluir este archivo para configurar
+  el entorno y proporcionar ayuda al editor.
+</p>
+
+<p>
+  No necesitamos aprender TypeScript para
+  completar este manual.
+</p>
+
+<h3>.gitignore</h3>
+
+<p>
+  Este archivo indica a Git qué archivos
+  y carpetas debe ignorar.
+</p>
+
+<p>
+  Por ejemplo, normalmente evitamos subir
+  <code>node_modules</code> al repositorio.
+</p>
+
+<p>
+  Si ya has trabajado con Git y GitHub,
+  seguramente reconocerás su utilidad.
+</p>
+
+<h3>README.md</h3>
+
+<p>
+  Es un archivo de documentación escrito en Markdown.
+</p>
+
+<p>
+  Normalmente se utiliza para explicar:
+</p>
+
+<ul>
+  <li>Qué hace el proyecto.</li>
+  <li>Cómo instalarlo.</li>
+  <li>Cómo ejecutarlo.</li>
+  <li>Qué tecnologías utiliza.</li>
+</ul>
+
+<p>
+  Es especialmente útil cuando compartimos
+  nuestros proyectos mediante GitHub.
+</p>
+
+<h3>AGENTS.md — Instrucciones para agentes de IA</h3>
+
+<p>
+  En algunas plantillas o entornos de desarrollo
+  podemos encontrar un archivo llamado
+  <code>AGENTS.md</code>.
+</p>
+
+<p>
+  Este archivo puede contener instrucciones dirigidas
+  a asistentes de programación con inteligencia artificial,
+  como Codex u otras herramientas compatibles.
+</p>
+
+<p>
+  Por ejemplo, puede indicar:
+</p>
+
+<ul>
+  <li>Cómo está organizado el proyecto.</li>
+  <li>Qué convenciones de código debemos seguir.</li>
+  <li>Qué comandos deben utilizarse para realizar pruebas.</li>
+  <li>Qué archivos deben evitarse o conservarse.</li>
+</ul>
+
+<p>
+  <strong>AGENTS.md no es un archivo obligatorio de Astro
+  ni es necesario para que nuestra web funcione.</strong>
+</p>
+
+<p>
+  Es un documento auxiliar de instrucciones.
+  Su presencia depende de la plantilla o del entorno
+  con el que hayamos creado el proyecto.
+</p>
+
+<p>
+  En este manual no necesitamos modificarlo,
+  pero conviene saber para qué sirve.
+</p>
+
+<h2>¿Qué archivos utilizaremos realmente?</h2>
+
+<p>
+  Aunque Astro crea muchos archivos y carpetas,
+  en esta primera práctica vamos a trabajar
+  principalmente con los siguientes:
+</p>
+
+<pre><code>src/
+├── components/
+│   ├── Navbar.astro
+│   └── Footer.astro
+├── layouts/
+│   └── BaseLayout.astro
+├── pages/
+│   ├── index.astro
+│   ├── servicios.astro
+│   └── contacto.astro
+└── styles/
+    └── global.css</code></pre>
+
+<p>
+  Algunos de estos archivos y carpetas todavía no existen.
+  Los crearemos progresivamente durante las próximas lecciones.
+</p>
+
+<p>
+  Nuestro objetivo es conseguir que las tres páginas
+  compartan la misma navegación, el mismo footer
+  y el mismo layout sin duplicar su código.
+</p>
+
+<section class="practice">
+  <h2>Comprueba lo que has aprendido</h2>
+
+  <ol>
+    <li>
+      Localiza <code>src/pages/index.astro</code>.
+      ¿Qué página representa?
+    </li>
+    <li>
+      Busca <code>src/components/Welcome.astro</code>.
+      ¿Qué diferencia hay entre este archivo
+      y una página de <code>src/pages</code>?
+    </li>
+    <li>
+      Abre <code>src/layouts/Layout.astro</code>.
+      ¿Reconoces las etiquetas HTML que contiene?
+    </li>
+    <li>
+      Abre <code>package.json</code> y localiza
+      el comando <code>dev</code>.
+    </li>
+    <li>
+      ¿Dónde guardarías el componente Navbar:
+      en <code>pages</code> o en <code>components</code>?
+    </li>
+  </ol>
+
+  <details>
+    <summary>Ver respuestas orientativas</summary>
+    <ol>
+      <li>
+        <code>index.astro</code> representa
+        la página de inicio.
+      </li>
+      <li>
+        <code>Welcome.astro</code> es un componente
+        reutilizable; <code>index.astro</code>
+        define una página y una ruta.
+      </li>
+      <li>
+        En el layout encontrarás etiquetas
+        de estructura HTML, según la plantilla.
+      </li>
+      <li>
+        El script <code>dev</code> permite
+        iniciar el servidor de desarrollo.
+      </li>
+      <li>
+        Navbar debe guardarse en
+        <code>src/components</code>.
+      </li>
+    </ol>
+  </details>
+</section>
+
+          <h2>Tu primer cambio</h2>
+          <p>
+            Abre <code>src/pages/index.astro</code> en VS Code, cambia el título
+            y guarda. Con el servidor activo el navegador se actualiza solo.
+          </p>
+          <pre><code>---
+const titulo = 'Mi web con Astro';
+---
+&lt;h1&gt;{titulo}&lt;/h1&gt;
+&lt;p&gt;Esta página ya sale de un archivo .astro.&lt;/p&gt;</code></pre>
+          <section class="practice">
+            <h2>Práctica guiada</h2>
+            <ol>
+              <li>Crea el proyecto con el asistente.</li>
+              <li>Ejecuta <code>npm run dev</code> dentro de su carpeta.</li>
+              <li>
+                Abre la URL local y modifica <code>src/pages/index.astro</code>.
+              </li>
+            </ol>
+            <h3>Ejercicio autónomo</h3>
+            <p>
+              Crea <code>src/pages/prueba.astro</code> con un
+              <code>&lt;h1&gt;</code> y visita <code>/prueba</code>.
+            </p>
+          </section>
+          <section class="autonomous"><h2>Guía operativa completa</h2><h3>Herramientas necesarias</h3><p>Node.js ejecuta las herramientas de Astro fuera del navegador. npm, incluido con Node, descarga dependencias: paquetes que el proyecto necesita. VS Code sirve para editar la carpeta y su terminal acepta comandos; ábrela con <strong>Terminal → Nuevo terminal</strong>.</p><h3>Comprueba Node.js y npm</h3><pre><code>node -v
+npm -v</code></pre><p>Astro exige una versión compatible de Node. La documentación oficial actual indica Node 22.22.0 o superior y no admite versiones impares como Node 23; para el curso recomendamos Node 24 LTS. Si la terminal dice que node o npm no se reconoce, instala una LTS compatible y reinicia VS Code. El requisito puede cambiar entre versiones: consulta siempre la documentación oficial.</p><h3>Crea el proyecto</h3><p>Abre una carpeta donde guardes proyectos personales, no dentro de otro proyecto, y ejecuta:</p><pre><code>npm create astro@latest</code></pre><p>El asistente creará la carpeta. Usa siempre el nombre <code>mi-primera-web-astro</code>; elige una plantilla básica, JavaScript si no usas TypeScript y confirma la instalación de dependencias. Si pregunta por Git, inicializarlo crea un historial local de cambios; es recomendable, pero no es necesario para que Astro funcione.</p><h3>Ejecuta el servidor</h3><pre><code>cd mi-primera-web-astro
+npm run dev</code></pre><p><code>cd</code> entra en la carpeta. Verás una dirección similar a <code>http://localhost:4321/</code>: localhost es tu ordenador y 4321 es el puerto que usa Astro por defecto. Ábrela en el navegador. Al guardar cambios, el servidor actualiza la vista; para detenerlo usa <kbd>Ctrl</kbd> + <kbd>C</kbd>. <code>npm run build</code> genera la versión de producción; <code>npm run preview</code> la revisa localmente. Ninguno publica la web.</p><h3>Mapa del proyecto</h3><pre><code>mi-primera-web-astro/
+├── .astro/        caché local: no editar
+├── .vscode/       ajustes del editor, si existen
+├── node_modules/  dependencias descargadas: no editar
+├── public/        archivos copiados tal cual
+├── src/
+│   ├── assets/    recursos procesados, si la plantilla los usa
+│   ├── components/ piezas reutilizables
+│   ├── layouts/   estructuras compartidas
+│   └── pages/     archivos que crean rutas
+├── package.json   scripts y dependencias
+├── package-lock.json versiones exactas de npm
+├── astro.config.mjs configuración de Astro
+├── tsconfig.json  opciones de comprobación
+├── .gitignore     archivos que Git ignora
+└── README.md      instrucciones</code></pre><p>La plantilla y la versión pueden cambiar esta lista. <code>AGENTS.md</code>, si aparece, puede contener instrucciones para asistentes de programación con IA; no es necesario para ejecutar Astro.</p><h3>Entiende la plantilla</h3><p>Si aparecen <code>src/pages/index.astro</code>, <code>src/layouts/Layout.astro</code> y <code>src/components/Welcome.astro</code>, la página crea la ruta, el componente es una pieza reutilizable y el layout comparte estructura. El recorrido es página → layout → componente → HTML generado. Si tu plantilla usa otros nombres, no es un error.</p><h3>Primer cambio y primera ruta</h3><p>Abre <code>src/pages/index.astro</code>, cambia solo el título visible por «Mi primera web con Astro», guarda y comprueba el navegador. Conserva imports y etiquetas que aún no entiendas. Después crea <code>src/pages/prueba.astro</code>:</p><figure><figcaption>src/pages/prueba.astro</figcaption><pre><code>&lt;h1&gt;Página de prueba&lt;/h1&gt;
+&lt;p&gt;Astro creó esta ruta desde un archivo.&lt;/p&gt;</code></pre></figure><p>Abre <code>http://localhost:4321/prueba</code>. El nombre del archivo dentro de <code>src/pages</code> forma la ruta; no necesitas un router manual.</p><h3>Errores frecuentes</h3><dl><dt>Dependencias no instaladas</dt><dd>Ejecuta <code>npm install</code> dentro de la carpeta del proyecto.</dd><dt>Terminal en carpeta equivocada</dt><dd>Usa <code>cd mi-primera-web-astro</code> y mira la ruta que aparece antes del cursor.</dd><dt>Puerto ocupado</dt><dd>Detén otro servidor con <kbd>Ctrl</kbd> + <kbd>C</kbd> o usa la URL alternativa que muestre Astro.</dd><dt>Ruta 404</dt><dd>Comprueba que el archivo está en <code>src/pages</code>, tiene extensión <code>.astro</code> y está guardado.</dd></dl><section class="practice"><h2>Actividad autónoma</h2><p>Crea <code>src/pages/presentacion.astro</code> con un título y dos párrafos. ¿Qué URL debe abrirse?</p><details><summary>Solución razonada</summary><pre><code>&lt;h1&gt;Mi proyecto con Astro&lt;/h1&gt;
+&lt;p&gt;Aprenderé a organizar una web con componentes.&lt;/p&gt;
+&lt;p&gt;Este contenido procede de una página creada por mí.&lt;/p&gt;</code></pre><p>La URL es <code>http://localhost:4321/presentacion</code>: Astro usa el nombre del archivo situado directamente dentro de <code>src/pages</code>.</p></details></section></section>
+          <section class="recap">
+            <h2>Resumen</h2>
+            <p>
+              El asistente crea la estructura, <code>dev</code> sirve para
+              trabajar y <code>build</code> prepara la publicación. Las rutas
+              parten de <code>src/pages</code>.
+            </p>
+          </section>
+        </article>
+
+        <article class="lesson" data-lesson="3">
+          <p class="crumb">Frameworks / Astro / Lección 3</p>
+          <p class="eyebrow">Lección 3 · 60 min</p>
+          <h1>Mi primer componente reutilizable</h1>
+          <section class="goal">
+            <h2>Qué vamos a aprender</h2>
+            <p>
+              Convertir la navegación y el footer repetidos en dos componentes
+              que cualquier página puede usar.
+            </p>
+          </section>
+          <h2>Del HTML repetido a una pieza reutilizable</h2>
+          <p>
+            Un componente es un archivo con una parte de la interfaz. Si conoces
+            una etiqueta HTML, reconocerás casi todo el código: dentro
+            escribimos HTML normal. Crea estos dos archivos.
+          </p>
+          <figure>
+            <figcaption><code>src/components/Navbar.astro</code></figcaption>
+            <pre><code>&lt;nav aria-label="Principal"&gt;
+  &lt;a href="/"&gt;Lumen Studio&lt;/a&gt;
+  &lt;a href="/servicios"&gt;Servicios&lt;/a&gt;
+  &lt;a href="/contacto"&gt;Contacto&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+          </figure>
+          <figure>
+            <figcaption><code>src/components/Footer.astro</code></figcaption>
+            <pre><code>&lt;footer&gt;
+  &lt;p&gt;© 2026 Lumen Studio&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+          </figure>
+          <h2>Usarlos en una página</h2>
+          <p>
+            En <code>src/pages/index.astro</code> importa los archivos al inicio
+            y úsalo como si fuera una etiqueta propia. La barra entre
+            <code>&lt;Navbar /&gt;</code> indica que no contiene texto ni
+            etiquetas hijas: es una etiqueta de autocierre.
+          </p>
+          <figure>
+            <figcaption><code>src/pages/index.astro</code></figcaption>
+            <pre><code>---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+&lt;Navbar /&gt;
+&lt;main&gt;
+  &lt;h1&gt;Bienvenida a Lumen Studio&lt;/h1&gt;
+&lt;/main&gt;
+&lt;Footer /&gt;</code></pre>
+          </figure>
+          <p>
+            Importar es parecido a decirle a JavaScript qué archivo vas a
+            utilizar. Ahora coloca exactamente <code>&lt;Navbar /&gt;</code> y
+            <code>&lt;Footer /&gt;</code> también en
+            <code>src/pages/servicios.astro</code>. Si cambias el texto de
+            <code>Navbar.astro</code>, lo verás actualizado en ambas páginas.
+          </p>
+          <section class="practice">
+            <h2>Práctica guiada</h2>
+            <ol>
+              <li>Crea <code>Navbar.astro</code> y pega la navegación.</li>
+              <li>Crea <code>Footer.astro</code>.</li>
+              <li>Importa ambos en Inicio y Servicios.</li>
+              <li>
+                Cambia «Lumen Studio» por tu marca y comprueba las dos rutas.
+              </li>
+            </ol>
+            <h3>Ejercicio autónomo</h3>
+            <p>
+              Añade un enlace «Inicio» al Navbar. No copies el HTML en cada
+              página: edita solo el componente.
+            </p>
+          </section>
+          <section class="recap">
+            <h2>Resumen</h2>
+            <p>
+              Un componente concentra HTML repetido. Lo importas una vez en cada
+              página y lo colocas con una etiqueta, igual que
+              <code>&lt;Navbar /&gt;</code>.
+            </p>
+          </section>
+        </article>
+
+        <article class="lesson" data-lesson="4">
+          <p class="crumb">Frameworks / Astro / Lección 4</p>
+          <p class="eyebrow">Lección 4 · 55 min</p>
+          <h1>Layouts: una estructura para todas las páginas</h1>
+          <section class="goal">
+            <h2>Qué vamos a aprender</h2>
+            <p>
+              Evitar repetir <code>doctype</code>, <code>head</code>,
+              <code>body</code>, Navbar y Footer usando un layout.
+            </p>
+          </section>
+          <h2>Un nivel más de reutilización</h2>
+          <p>
+            Los componentes solucionan dos fragmentos, pero las páginas aún
+            comparten el esqueleto del documento. Un layout envuelve el
+            contenido variable de una página.
+          </p>
+          <figure>
+            <figcaption><code>src/layouts/BaseLayout.astro</code></figcaption>
+            <pre><code>---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width" /&gt;
+    &lt;title&gt;Lumen Studio&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;Navbar /&gt;
+    &lt;main&gt;&lt;slot /&gt;&lt;/main&gt;
+    &lt;Footer /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </figure>
+          <p>
+            <code>&lt;slot /&gt;</code> es el hueco reservado. Cuando una página
+            usa <code>BaseLayout</code>, el contenido que escribas entre su
+            apertura y cierre se inserta justo ahí. No es JavaScript del
+            navegador: es una instrucción de Astro al construir la página.
+          </p>
+          <h2>Antes y después</h2>
+          <figure>
+            <figcaption><code>src/pages/servicios.astro</code></figcaption>
+            <pre><code>---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+&lt;BaseLayout&gt;
+  &lt;h1&gt;Servicios&lt;/h1&gt;
+  &lt;p&gt;Diseñamos sitios web claros y útiles.&lt;/p&gt;
+&lt;/BaseLayout&gt;</code></pre>
+          </figure>
+          <p>
+            Antes habrías escrito el documento entero y colocado Navbar y
+            Footer. Ahora esta página se centra en su contenido.
+          </p>
+          <section class="practice">
+            <h2>Práctica guiada</h2>
+            <ol>
+              <li>Crea <code>src/layouts/BaseLayout.astro</code>.</li>
+              <li>Mueve allí el documento, Navbar y Footer.</li>
+              <li>Importa el layout en Inicio y Servicios.</li>
+              <li>
+                Comprueba en el navegador que las dos páginas siguen teniendo
+                navegación y pie.
+              </li>
+            </ol>
+            <h3>Ejercicio autónomo</h3>
+            <p>
+              Añade una clase al <code>&lt;main&gt;</code> del layout y aplica
+              un margen desde el CSS global. Observa cómo afecta a todas las
+              páginas.
+            </p>
+          </section>
+          <section class="recap">
+            <h2>Resumen</h2>
+            <p>
+              Un layout guarda la estructura común.
+              <code>&lt;slot /&gt;</code> recibe el HTML específico de cada
+              página.
+            </p>
+          </section>
+        </article>
+
+        <article class="lesson" data-lesson="5">
+          <p class="crumb">Frameworks / Astro / Lección 5</p>
+          <p class="eyebrow">Lección 5 · 80 min</p>
+          <h1>Mi primera web multipágina</h1>
+          <section class="goal">
+            <h2>Qué vamos a aprender</h2>
+            <p>
+              Terminar una web corporativa de tres páginas conectadas, con
+              estilos globales y una pequeña interacción en el navegador.
+            </p>
+          </section>
+          <h2>Archivos del proyecto final</h2>
+          <pre><code>src/
+  components/Navbar.astro
+  components/Footer.astro
+  layouts/BaseLayout.astro
+  pages/index.astro
+  pages/servicios.astro
+  pages/contacto.astro
+  styles/global.css</code></pre>
+          <h2>Inicio y Servicios</h2>
+          <figure>
+            <figcaption><code>src/pages/index.astro</code></figcaption>
+            <pre><code>---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+&lt;BaseLayout&gt;
+  &lt;h1&gt;Lumen Studio&lt;/h1&gt;
+  &lt;p&gt;Creamos presencia web para pequeñas marcas.&lt;/p&gt;
+  &lt;a href="/servicios"&gt;Conoce nuestros servicios&lt;/a&gt;
+&lt;/BaseLayout&gt;</code></pre>
+          </figure>
+          <figure>
+            <figcaption><code>src/pages/servicios.astro</code></figcaption>
+            <pre><code>---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+&lt;BaseLayout&gt;
+  &lt;h1&gt;Servicios&lt;/h1&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Diseño de páginas corporativas&lt;/li&gt;
+    &lt;li&gt;Mejora de accesibilidad&lt;/li&gt;
+    &lt;li&gt;Mantenimiento de contenidos&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/BaseLayout&gt;</code></pre>
+          </figure>
+          <h2>Contacto e interacción</h2>
+          <figure>
+            <figcaption><code>src/pages/contacto.astro</code></figcaption>
+            <pre><code>---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+&lt;BaseLayout&gt;
+  &lt;h1&gt;Contacto&lt;/h1&gt;
+  &lt;p&gt;hola@lumen.test · 600 000 000&lt;/p&gt;
+  &lt;form id="contacto"&gt;
+    &lt;label&gt;Nombre &lt;input name="nombre" required /&gt;&lt;/label&gt;
+    &lt;label&gt;Email &lt;input name="email" type="email" required /&gt;&lt;/label&gt;
+    &lt;label&gt;Mensaje &lt;textarea name="mensaje" required&gt;&lt;/textarea&gt;&lt;/label&gt;
+    &lt;button&gt;Preparar mensaje&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;p id="aviso" aria-live="polite"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    document.querySelector('#contacto').addEventListener('submit', (event) =&gt; {
+      event.preventDefault();
+      document.querySelector('#aviso').textContent = 'Mensaje preparado. Este ejemplo no envía correos.';
+    });
+  &lt;/script&gt;
+&lt;/BaseLayout&gt;</code></pre>
+          </figure>
+          <p>
+            El bloque <code>&lt;script&gt;</code> de esta página sí se ejecuta
+            en el navegador: escucha el envío del formulario, evita una recarga
+            y muestra un aviso. No hay backend ni se guarda o envía información.
+          </p>
+          <h2>CSS común</h2>
+          <figure>
+            <figcaption><code>src/styles/global.css</code></figcaption>
+            <pre><code>:root { font-family: system-ui, sans-serif; color: #1f1633; }
+body { margin: 0; }
+nav, footer, main { padding: 1rem; }
+nav { background: #2d193f; } nav a { color: white; margin-right: 1rem; }
+main { max-width: 70ch; margin: auto; }
+label { display: grid; gap: .35rem; margin: .8rem 0; }
+button { background: #ff8a3d; border: 0; padding: .7rem 1rem; }</code></pre>
+          </figure>
+          <section class="practice">
+            <h2>Práctica guiada</h2>
+            <ol>
+              <li>Crea las tres páginas en <code>src/pages</code>.</li>
+              <li>
+                Envuelve el contenido de cada una en <code>BaseLayout</code>.
+              </li>
+              <li>
+                Usa enlaces para navegar entre Inicio, Servicios y Contacto.
+              </li>
+              <li>Incluye el CSS global desde el layout.</li>
+              <li>
+                Prueba las validaciones nativas del formulario y el aviso.
+              </li>
+            </ol>
+            <h3>Ejercicio autónomo</h3>
+            <p>
+              Añade una sección «Sobre nosotros» a Inicio, sin crear un
+              componente nuevo. Después ejecuta <code>npm run build</code> y
+              corrige cualquier error antes de publicar.
+            </p>
+          </section>
+          <section class="recap">
+            <h2>Resumen final</h2>
+            <p>
+              Has creado una web de tres rutas con HTML semántico, CSS
+              compartido, Navbar y Footer reutilizables y un layout que evita
+              repetir la estructura del documento. Ya puedes ampliar el proyecto
+              con más páginas manteniendo la misma organización.
+            </p>
+          </section>
+        </article>
+        <nav
+          class="pager"
+          id="pager"
+          aria-label="Navegación entre lecciones"
+        ></nav>
+      </main>
+    </div>
+    <script src="./autonomous-learning.js"></script>
+    <script>
+      const query = new URLSearchParams(location.search);
+      const selected = query.get("leccion");
+      const lessons = [...document.querySelectorAll("[data-lesson]")];
+      const home = document.querySelector("[data-home]");
+      const valid = lessons.some((x) => x.dataset.lesson === selected);
+      home.hidden = valid;
+      lessons.forEach((x) => (x.hidden = x.dataset.lesson !== selected));
+      document
+        .querySelectorAll("#lesson-nav a")
+        .forEach((a) =>
+          a.classList.toggle("active", a.href.includes("leccion=" + selected)),
+        );
+      const pager = document.querySelector("#pager");
+      if (valid) {
+        const n = Number(selected);
+        pager.innerHTML = `${n > 1 ? `<a href="?leccion=${n - 1}">← Lección anterior</a>` : '<a href="./index.html">← Portada</a>'}${n < 5 ? `<a href="?leccion=${n + 1}">Siguiente lección →</a>` : '<a href="./index.html">Volver a la portada</a>'}`;
+      }
+    </script>
+  </body>
+</html>

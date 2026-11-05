@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flexbox + Grid · Resumen avanzado y playground</title>
+  <style>
+    :root {
+      --bg: #eef2f7;
+      --surface: #ffffff;
+      --surface-soft: #f7f9fc;
+      --text: #1f2937;
+      --muted: #5f6b7a;
+      --line: #d9e0e8;
+      --brand: #243b6b;
+      --brand-soft: #e8eefb;
+      --accent: #8b3a62;
+      --accent-soft: #f6eaf0;
+      --success: #2f6b50;
+      --success-soft: #e9f4ef;
+      --warning: #8a5a13;
+      --warning-soft: #fff5dc;
+      --code: #172033;
+      --shadow: 0 12px 30px rgba(31, 41, 55, .08);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--brand);
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      background: #edf1f6;
+      padding: .12rem .35rem;
+      border-radius: .35rem;
+    }
+
+    pre {
+      margin: 0;
+      overflow-x: auto;
+      background: var(--code);
+      color: #f6f8fb;
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-sm);
+      line-height: 1.55;
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+
+    .site-header,
+    .topnav,
+    main,
+    footer {
+      width: min(1120px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      margin-top: 1.2rem;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .site-header p {
+      margin: .4rem 0 0;
+      color: var(--muted);
+      max-width: 80ch;
+    }
+
+    .topnav {
+      position: sticky;
+      top: .75rem;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+      padding: .8rem;
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+
+    .topnav a {
+      text-decoration: none;
+      padding: .55rem .75rem;
+      border-radius: .6rem;
+      font-weight: 700;
+    }
+
+    .topnav a:hover,
+    .topnav a:focus-visible {
+      background: var(--brand-soft);
+      outline: none;
+    }
+
+    main {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .card,
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .section {
+      padding: clamp(1.2rem, 2vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 .35rem;
+      color: var(--accent);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, h4 {
+      line-height: 1.2;
+      color: #15213b;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+    }
+
+    h3 {
+      margin-top: 1.7rem;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 82ch;
+    }
+
+    .mental-map {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .choice {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface-soft);
+    }
+
+    .choice strong {
+      display: block;
+      margin-bottom: .35rem;
+    }
+
+    .callout {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-sm);
+      margin: 1rem 0;
+    }
+
+    .callout.parent {
+      background: var(--brand-soft);
+      border-left: 5px solid var(--brand);
+    }
+
+    .callout.child {
+      background: var(--accent-soft);
+      border-left: 5px solid var(--accent);
+    }
+
+    .callout.good {
+      background: var(--success-soft);
+      border-left: 5px solid var(--success);
+    }
+
+    .callout.warn {
+      background: var(--warning-soft);
+      border-left: 5px solid var(--warning);
+    }
+
+    .tree {
+      margin: 1rem 0;
+      padding: 1rem;
+      white-space: pre;
+      overflow-x: auto;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: var(--radius-sm);
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .property-card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface-soft);
+    }
+
+    .property-card h4 {
+      margin: 0 0 .6rem;
+    }
+
+    .parent-label,
+    .child-label {
+      display: inline-block;
+      padding: .2rem .5rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+
+    .parent-label {
+      background: var(--brand-soft);
+      color: var(--brand);
+    }
+
+    .child-label {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .property-list {
+      margin: .7rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .property-list li + li {
+      margin-top: .45rem;
+    }
+
+    .axis-demo {
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 1px dashed #a9b4c3;
+      border-radius: var(--radius-sm);
+      background: #fbfcfe;
+    }
+
+    .axis-row {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      min-height: 120px;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      position: relative;
+    }
+
+    .axis-row .axis-box {
+      padding: .75rem 1rem;
+      background: var(--brand-soft);
+      border: 1px solid #bac8e4;
+      border-radius: .65rem;
+      font-weight: 800;
+    }
+
+    .axis-note {
+      margin: .6rem 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .playground {
+      display: grid;
+      grid-template-columns: minmax(280px, .9fr) minmax(320px, 1.1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .controls,
+    .preview-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      background: var(--surface-soft);
+    }
+
+    .control {
+      margin-bottom: 1rem;
+    }
+
+    .control label {
+      display: block;
+      margin-bottom: .35rem;
+      font-weight: 800;
+    }
+
+    .control small {
+      display: block;
+      margin-top: .3rem;
+      color: var(--muted);
+    }
+
+    select,
+    input[type="range"] {
+      width: 100%;
+    }
+
+    select {
+      padding: .65rem .7rem;
+      border: 1px solid #b8c2ce;
+      border-radius: .6rem;
+      background: white;
+      color: var(--text);
+    }
+
+    .demo-box {
+      min-height: 260px;
+      padding: 1rem;
+      border: 2px dashed #99a5b4;
+      border-radius: var(--radius-sm);
+      background:
+        linear-gradient(90deg, rgba(36, 59, 107, .04) 1px, transparent 1px),
+        linear-gradient(rgba(36, 59, 107, .04) 1px, transparent 1px),
+        #fff;
+      background-size: 24px 24px;
+    }
+
+    .demo-item {
+      min-width: 72px;
+      min-height: 72px;
+      padding: .8rem;
+      display: grid;
+      place-items: center;
+      border-radius: .75rem;
+      background: #dde7f8;
+      border: 1px solid #b7c7e5;
+      font-weight: 800;
+    }
+
+    .code-title {
+      margin: 1rem 0 .45rem;
+      font-weight: 800;
+    }
+
+    .explain-list {
+      display: grid;
+      gap: .65rem;
+      margin-top: 1rem;
+    }
+
+    .explain-list article {
+      padding: .8rem;
+      border: 1px solid var(--line);
+      border-radius: .7rem;
+      background: white;
+    }
+
+    .explain-list h4 {
+      margin: 0 0 .25rem;
+      font-size: 1rem;
+    }
+
+
+    .flex-lab .demo-item {
+      flex: 0 0 110px;
+    }
+
+    .flex-lab {
+      align-content: stretch;
+    }
+
+    .grid-visual {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .5rem;
+      margin: 1rem 0;
+    }
+
+    .grid-visual span {
+      text-align: center;
+      padding: .8rem;
+      border: 1px solid #b7c7e5;
+      background: var(--brand-soft);
+      border-radius: .5rem;
+      font-weight: 700;
+    }
+
+    .responsive-note {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .table-scroll table {
+      min-width: 860px;
+      margin: 0;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: .72rem .8rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef2f7;
+    }
+
+    .real-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      background: #172033;
+      color: white;
+    }
+
+    .mock-menu {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .mock-menu span {
+      padding: .4rem .65rem;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: .45rem;
+    }
+
+    .mock-products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .mock-products article {
+      min-height: 130px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+    }
+
+    .diagnostic {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+    }
+
+    .diagnostic li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: .7rem;
+      align-items: start;
+      margin-bottom: .75rem;
+    }
+
+    .diagnostic li::before {
+      content: counter(step);
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--brand);
+      color: white;
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 0 0 2rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 820px) {
+      .mental-map,
+      .two-col,
+      .playground {
+        grid-template-columns: 1fr;
+      }
+
+      .mock-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .mock-products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <p class="eyebrow">CIERRE DEL BLOQUE · FLEXBOX + GRID</p>
+    <h1>Flexbox + Grid: resumen avanzado para maquetar con criterio</h1>
+    <p>
+      Este tema no pretende que memorices todas las propiedades. Su objetivo es que sepas
+      <strong>qué herramienta elegir, qué propiedad necesitas y, sobre todo, si debe ir en el PADRE o en el HIJO</strong>.
+    </p>
+  </header>
+
+  <nav class="topnav" aria-label="Índice del tema">
+    <a href="#mapa">El mapa</a>
+    <a href="#padre-hijo">Padre e hijos</a>
+    <a href="#flex">Flexbox</a>
+    <a href="#grid">Grid</a>
+    <a href="#combinados">Combinados</a>
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#chuleta">Chuleta final</a>
+  </nav>
+
+  <main>
+    <section id="mapa" class="section">
+      <p class="eyebrow">1 · EL MAPA MENTAL</p>
+      <h2>Primero decide qué problema estás resolviendo</h2>
+      <p class="lead">
+        Una regla útil para empezar: <strong>Flexbox organiza principalmente en una dirección</strong>;
+        <strong>Grid organiza filas y columnas</strong>. No significa que Grid sea siempre “grande”
+        y Flex siempre “pequeño”: ambos pueden usarse en componentes de cualquier tamaño.
+      </p>
+
+      <div class="mental-map">
+        <article class="choice">
+          <strong>¿Necesito una fila o una columna?</strong>
+          Piensa primero en <code>display: flex</code>.
+        </article>
+        <article class="choice">
+          <strong>¿Necesito controlar filas y columnas?</strong>
+          Piensa primero en <code>display: grid</code>.
+        </article>
+      </div>
+
+      <div class="callout good">
+        <strong>Idea clave:</strong> antes de tocar propiedades, identifica el contenedor que organiza a los demás.
+        La mayoría de las decisiones de Flexbox y Grid empiezan en ese <strong>PADRE</strong>.
+      </div>
+    </section>
+
+    <section id="padre-hijo" class="section">
+      <p class="eyebrow">2 · LA IDEA MÁS IMPORTANTE</p>
+      <h2>PADRE e HIJOS: quién recibe cada propiedad</h2>
+
+      <div class="callout parent">
+        <strong>PADRE:</strong> recibe <code>display: flex</code> o <code>display: grid</code> y, normalmente,
+        las propiedades que organizan al conjunto.
+      </div>
+
+      <div class="callout child">
+        <strong>HIJO:</strong> recibe propiedades especiales cuando queremos modificar solo ese elemento
+        dentro del Flex o del Grid.
+      </div>
+
+      <div class="tree">PADRE
+└── display: flex  o  display: grid
+    ├── HIJO DIRECTO
+    ├── HIJO DIRECTO
+    └── HIJO DIRECTO</div>
+
+      <p>
+        Solo los <strong>hijos directos</strong> del contenedor pasan a ser elementos Flex o Grid.
+        Un nieto no recibe automáticamente ese comportamiento.
+      </p>
+
+      <div class="callout warn">
+        <strong>Muy importante:</strong> un elemento puede ser <strong>HIJO</strong> de un layout y, al mismo tiempo,
+        convertirse en <strong>PADRE</strong> de otro layout para organizar su propio contenido.
+      </div>
+
+      <div class="tree">HEADER → PADRE FLEX
+│
+├── LOGO → HIJO FLEX
+│
+└── NAV → HIJO FLEX
+    │
+    └── también PADRE FLEX de sus enlaces</div>
+    </section>
+
+    <section id="flex" class="section">
+      <p class="eyebrow">3 · FLEXBOX</p>
+      <h2>Flexbox: organiza elementos principalmente en una dirección</h2>
+
+      <p class="lead">
+        Flexbox trabaja con un <strong>eje principal</strong> y un <strong>eje secundario</strong>.
+        <code>flex-direction</code> decide la dirección del eje principal.
+      </p>
+
+      <div class="axis-demo">
+        <div class="axis-row">
+          <div class="axis-box">HIJO 1</div>
+          <div class="axis-box">HIJO 2</div>
+          <div class="axis-box">HIJO 3</div>
+        </div>
+        <p class="axis-note">
+          Con <code>flex-direction: row</code>, el eje principal es horizontal.
+          <code>justify-content</code> trabaja sobre ese eje y <code>align-items</code> sobre el eje secundario.
+        </p>
+      </div>
+
+      <div class="two-col">
+        <article class="property-card">
+          <span class="parent-label">SE APLICA AL PADRE</span>
+          <h3>Propiedades principales del contenedor Flex</h3>
+          <ul class="property-list">
+            <li><code>display: flex</code> — activa Flexbox.</li>
+            <li><code>flex-direction</code> — decide fila o columna.</li>
+            <li><code>justify-content</code> — reparte en el eje principal.</li>
+            <li><code>align-items</code> — alinea en el eje secundario.</li>
+            <li><code>gap</code> — crea separación entre los hijos.</li>
+            <li><code>flex-wrap</code> — permite saltar a otra línea si no caben.</li>
+            <li><code>align-content</code> — distribuye varias líneas Flex en el eje secundario.</li>
+          </ul>
+        </article>
+
+        <article class="property-card">
+          <span class="child-label">SE APLICA AL HIJO</span>
+          <h3>Propiedades útiles de los hijos Flex</h3>
+          <ul class="property-list">
+            <li><code>flex: 1</code> — hace que ese hijo participe en el reparto del espacio.</li>
+            <li><code>align-self</code> — cambia la alineación de un hijo concreto.</li>
+            <li><code>order</code> — cambia su orden visual.</li>
+          </ul>
+        </article>
+      </div>
+
+      <img src="manualcss/manual-css/public/resumenflex.png" alt="Resumen de Flexbox" />
+
+      <h3>Playground de Flexbox</h3>
+      <p>
+        Todos los controles de este playground modifican propiedades del <strong>PADRE FLEX</strong>.
+        El código equivalente aparece debajo y puedes llevarlo directamente a tu hoja <code>styles.css</code>.
+      </p>
+
+      <div class="playground">
+        <div class="controls">
+          <div class="control">
+            <label for="flex-direction">Dirección · <code>flex-direction</code> <span class="parent-label">PADRE</span></label>
+            <select id="flex-direction">
+              <option value="row">row</option>
+              <option value="row-reverse">row-reverse</option>
+              <option value="column">column</option>
+              <option value="column-reverse">column-reverse</option>
+            </select>
+            <small>Define el eje principal: fila, fila invertida o columna.</small>
+          </div>
+
+          <div class="control">
+            <label for="justify">Distribución · <code>justify-content</code> <span class="parent-label">PADRE</span></label>
+            <select id="justify">
+              <option value="flex-start">flex-start</option>
+              <option value="center">center</option>
+              <option value="space-between" selected>space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="space-evenly">space-evenly</option>
+              <option value="flex-end">flex-end</option>
+            </select>
+            <small>Distribuye los hijos sobre el eje principal.</small>
+          </div>
+
+          <div class="control">
+            <label for="align">Alineación · <code>align-items</code> <span class="parent-label">PADRE</span></label>
+            <select id="align">
+              <option value="stretch">stretch</option>
+              <option value="flex-start">flex-start</option>
+              <option value="center" selected>center</option>
+              <option value="flex-end">flex-end</option>
+              <option value="baseline">baseline</option>
+            </select>
+            <small>Alinea todos los hijos sobre el eje secundario.</small>
+          </div>
+
+          <div class="control">
+            <label for="flex-gap">Separación · <code>gap</code> <span class="parent-label">PADRE</span></label>
+            <input id="flex-gap" type="range" min="0" max="40" value="16" />
+            <small>Separa los hijos sin tener que poner margen a cada uno.</small>
+          </div>
+
+          <div class="control">
+            <label for="flex-wrap">Salto de línea · <code>flex-wrap</code> <span class="parent-label">PADRE</span></label>
+            <select id="flex-wrap">
+              <option value="nowrap">nowrap</option>
+              <option value="wrap" selected>wrap</option>
+            </select>
+            <small><code>wrap</code> permite que los elementos bajen a otra línea si no caben.</small>
+          </div>
+
+          <div class="control">
+            <label for="align-content">Distribución de líneas · <code>align-content</code> <span class="parent-label">PADRE</span></label>
+            <select id="align-content">
+              <option value="stretch">stretch</option>
+              <option value="flex-start">flex-start</option>
+              <option value="center">center</option>
+              <option value="space-between">space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="flex-end">flex-end</option>
+            </select>
+            <small>
+              Solo se aprecia cuando existen <strong>varias líneas Flex</strong>. Distribuye esas líneas
+              sobre el eje secundario; no alinea cada elemento individualmente.
+            </small>
+          </div>
+        </div>
+
+        <div class="preview-panel">
+          <div id="flex-demo" class="demo-box flex-lab" aria-label="Demostración interactiva de Flexbox">
+            <div class="demo-item">Uno</div>
+            <div class="demo-item">Dos</div>
+            <div class="demo-item">Tres</div>
+            <div class="demo-item">Cuatro</div>
+            <div class="demo-item">Cinco</div>
+          </div>
+
+          <p class="code-title">CSS que estás construyendo</p>
+          <pre><code id="flex-code"></code></pre>
+        </div>
+      </div>
+
+      <div class="explain-list">
+        <article>
+          <h4><code>justify-content</code>: ¿por qué cambia de “horizontal” a “vertical”?</h4>
+          Porque no significa horizontal. Significa <strong>eje principal</strong>. Si cambias
+          <code>flex-direction: column</code>, el eje principal pasa a ser vertical.
+        </article>
+        <article>
+          <h4><code>align-items</code>: afecta a todos los hijos</h4>
+          Si quieres cambiar solo uno, usa <code>align-self</code> en ese <strong>HIJO</strong>.
+        </article>
+        <article>
+          <h4><code>align-content</code>: no es lo mismo que <code>align-items</code></h4>
+          <code>align-items</code> alinea los elementos dentro de una línea Flex.
+          <code>align-content</code> distribuye <strong>las líneas completas</strong> cuando hay varias.
+          Por eso normalmente necesita <code>flex-wrap: wrap</code> y suficiente contenido para que aparezcan varias líneas.
+        </article>
+        <article>
+          <h4><code>nowrap</code> no significa necesariamente “desbordar”</h4>
+          Los elementos Flex intentan caber en la misma línea y, por defecto, pueden encogerse.
+          Si activas <code>wrap</code>, permites que pasen a una nueva línea cuando no caben.
+        </article>
+      </div>
+
+      <h3>Ampliación útil: propiedades que conviene reconocer</h3>
+
+      <div class="two-col">
+        <article class="property-card">
+          <span class="parent-label">PADRE</span>
+          <h4><code>display: inline-flex</code></h4>
+          <p>
+            Los hijos se organizan con Flexbox igual que con <code>display: flex</code>,
+            pero el contenedor participa externamente como una caja en línea.
+            Es útil reconocerlo, aunque para la mayoría de layouts empezarás con <code>display: flex</code>.
+          </p>
+        </article>
+
+        <article class="property-card">
+          <span class="parent-label">PADRE</span>
+          <h4><code>flex-flow</code></h4>
+          <p>
+            Es un atajo para escribir <code>flex-direction</code> y <code>flex-wrap</code> juntos.
+          </p>
+          <pre><code>.contenedor {
+  display: flex;
+  flex-flow: row wrap;
+}</code></pre>
+        </article>
+      </div>
+
+      <div class="callout warn">
+        <strong>No hace falta memorizar estos atajos ahora.</strong>
+        Lo importante es que, si aparecen en código ajeno, sepas reconocer qué están haciendo.
+      </div>
+
+      <h3>Ejemplo de propiedad aplicada a un hijo</h3>
+      <pre><code>.menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.boton-destacado {
+  align-self: center; /* HIJO concreto */
+}</code></pre>
+    </section>
+
+    <section id="grid" class="section">
+      <p class="eyebrow">4 · CSS GRID</p>
+      <h2>Grid: organiza el espacio en filas y columnas</h2>
+
+      <p class="lead">
+        Grid es bidimensional. El <strong>PADRE GRID</strong> define la rejilla;
+        los <strong>HIJOS GRID</strong> pueden colocarse o extenderse dentro de ella.
+      </p>
+
+      <div class="two-col">
+        <article class="property-card">
+          <span class="parent-label">SE APLICA AL PADRE</span>
+          <h3>Propiedades principales del contenedor Grid</h3>
+          <ul class="property-list">
+            <li><code>display: grid</code> — activa Grid.</li>
+            <li><code>grid-template-columns</code> — define las columnas.</li>
+            <li><code>grid-template-rows</code> — define las filas explícitas.</li>
+            <li><code>gap</code> — separa filas y columnas.</li>
+          </ul>
+        </article>
+
+        <article class="property-card">
+          <span class="child-label">SE APLICA AL HIJO</span>
+          <h3>Propiedades útiles de los hijos Grid</h3>
+          <ul class="property-list">
+            <li><code>grid-column</code> — decide qué columnas ocupa un hijo.</li>
+            <li><code>grid-row</code> — decide qué filas ocupa un hijo.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>¿Qué significa <code>repeat(3, 1fr)</code>?</h3>
+      <div class="grid-visual" aria-label="Tres columnas de una fracción">
+        <span>1fr</span>
+        <span>1fr</span>
+        <span>1fr</span>
+      </div>
+      <p>
+        <code>repeat(3, 1fr)</code> significa: repite <strong>3 veces</strong> una columna de
+        <strong>1 fracción del espacio disponible</strong>.
+      </p>
+
+      <h3>Playground de Grid</h3>
+      <p>
+        Los controles principales modifican el <strong>PADRE GRID</strong>.
+        Además, hay un control específico para observar una propiedad aplicada a un <strong>HIJO</strong>.
+      </p>
+
+      <div class="playground">
+        <div class="controls">
+          <div class="control">
+            <label for="grid-cols">Columnas · <code>grid-template-columns</code> <span class="parent-label">PADRE</span></label>
+            <select id="grid-cols">
+              <option value="1">1 columna</option>
+              <option value="2">2 columnas</option>
+              <option value="3" selected>3 columnas</option>
+              <option value="4">4 columnas</option>
+            </select>
+            <small>Decide cuántas columnas tiene la rejilla.</small>
+          </div>
+
+          <div class="control">
+            <label for="grid-gap">Separación · <code>gap</code> <span class="parent-label">PADRE</span></label>
+            <input id="grid-gap" type="range" min="0" max="40" value="16" />
+            <small>Crea espacio uniforme entre celdas.</small>
+          </div>
+
+          <div class="control">
+            <label for="grid-responsive">Estrategia de columnas <span class="parent-label">PADRE</span></label>
+            <select id="grid-responsive">
+              <option value="fixed" selected>Columnas fijas</option>
+              <option value="auto">Adaptación automática</option>
+            </select>
+            <small>
+              La opción automática usa <code>auto-fit</code> y <code>minmax()</code>
+              para adaptarse al ancho disponible.
+            </small>
+          </div>
+
+          <div class="control">
+            <label for="grid-span">Elemento A · <code>grid-column</code> <span class="child-label">HIJO</span></label>
+            <select id="grid-span">
+              <option value="auto" selected>Ocupa una celda</option>
+              <option value="full">Ocupa todo el ancho</option>
+            </select>
+            <small>Este control modifica solo el primer hijo, no al contenedor.</small>
+          </div>
+        </div>
+
+        <div class="preview-panel">
+          <div id="grid-demo" class="demo-box" aria-label="Demostración interactiva de Grid">
+            <div id="grid-first" class="demo-item">A</div>
+            <div class="demo-item">B</div>
+            <div class="demo-item">C</div>
+            <div class="demo-item">D</div>
+            <div class="demo-item">E</div>
+            <div class="demo-item">F</div>
+          </div>
+
+          <p class="code-title">CSS del PADRE GRID</p>
+          <pre><code id="grid-code"></code></pre>
+
+          <p class="code-title">CSS del HIJO seleccionado</p>
+          <pre><code id="grid-child-code"></code></pre>
+        </div>
+      </div>
+
+      <div class="callout good">
+        <strong>Responsive:</strong> <code>repeat(auto-fit, minmax(200px, 1fr))</code>
+        permite crear tantas columnas como quepan, manteniendo un ancho mínimo razonable.
+      </div>
+    </section>
+
+    <section id="combinados" class="section">
+      <p class="eyebrow">5 · FLEX + GRID EN UNA PÁGINA REAL</p>
+      <h2>No compiten: se combinan</h2>
+
+      <div class="real-layout">
+        <div class="mock-header">
+          <strong>DevCampus</strong>
+          <div class="mock-menu">
+            <span>Inicio</span>
+            <span>Cursos</span>
+            <span>Contacto</span>
+          </div>
+        </div>
+
+        <div class="mock-products">
+          <article>Curso 1</article>
+          <article>Curso 2</article>
+          <article>Curso 3</article>
+        </div>
+      </div>
+
+      <h3>HTML</h3>
+      <pre><code>&lt;header class="cabecera"&gt;
+  &lt;div class="logo"&gt;DevCampus&lt;/div&gt;
+
+  &lt;nav class="menu"&gt;
+    &lt;a href="#"&gt;Inicio&lt;/a&gt;
+    &lt;a href="#"&gt;Cursos&lt;/a&gt;
+    &lt;a href="#"&gt;Contacto&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main class="productos"&gt;
+  &lt;article&gt;Curso 1&lt;/article&gt;
+  &lt;article&gt;Curso 2&lt;/article&gt;
+  &lt;article&gt;Curso 3&lt;/article&gt;
+&lt;/main&gt;</code></pre>
+
+      <h3>CSS</h3>
+      <pre><code>.cabecera {
+  display: flex;                  /* PADRE FLEX */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  display: flex;                  /* también PADRE FLEX */
+  gap: 1rem;
+}
+
+.productos {
+  display: grid;                  /* PADRE GRID */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}</code></pre>
+
+      <p>
+        Observa el detalle: <code>.menu</code> es <strong>hijo Flex</strong> de <code>.cabecera</code>,
+        pero a la vez es <strong>padre Flex</strong> de sus enlaces.
+      </p>
+    </section>
+
+    <section id="diagnostico" class="section">
+      <p class="eyebrow">6 · ANTES DE ESCRIBIR CSS</p>
+      <h2>Diagnóstico rápido</h2>
+
+      <ol class="diagnostic">
+        <li><span>Identifica cuál es el contenedor padre.</span></li>
+        <li><span>Identifica cuáles son sus hijos directos.</span></li>
+        <li><span>Si el problema es principalmente una fila o columna, prueba Flexbox.</span></li>
+        <li><span>Si necesitas filas y columnas, prueba Grid.</span></li>
+        <li><span>Si quieres modificar al conjunto, busca una propiedad del PADRE.</span></li>
+        <li><span>Si quieres modificar solo un elemento, comprueba si necesitas una propiedad del HIJO.</span></li>
+      </ol>
+
+      <div class="callout good">
+        <strong>Regla mental:</strong> si una propiedad cambia cómo se organizan <em>todos</em> los hijos,
+        probablemente va en el PADRE. Si cambia solo un elemento concreto, probablemente va en el HIJO.
+      </div>
+    </section>
+
+    <section id="chuleta" class="section">
+      <p class="eyebrow">7 · CHULETA FINAL</p>
+      <h2>Propiedades esenciales: PADRE vs HIJO</h2>
+
+      <h3>Flexbox</h3>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Propiedad</th>
+            <th>¿Dónde va?</th>
+            <th>Opciones principales</th>
+            <th>Qué resuelve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>display</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>flex</code></td>
+            <td>Activa Flexbox.</td>
+          </tr>
+          <tr>
+            <td><code>flex-direction</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>row</code>, <code>column</code>, <code>row-reverse</code>, <code>column-reverse</code></td>
+            <td>Decide la dirección del eje principal.</td>
+          </tr>
+          <tr>
+            <td><code>justify-content</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>space-between</code>, <code>space-around</code>, <code>space-evenly</code></td>
+            <td>Distribuye los hijos en el eje principal.</td>
+          </tr>
+          <tr>
+            <td><code>align-items</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>stretch</code>, <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>baseline</code></td>
+            <td>Alinea los hijos en el eje secundario.</td>
+          </tr>
+          <tr>
+            <td><code>gap</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>1rem</code>, <code>2rem</code>, <code>20px</code>…</td>
+            <td>Define la separación entre los hijos.</td>
+          </tr>
+          <tr>
+            <td><code>flex-wrap</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>nowrap</code>, <code>wrap</code></td>
+            <td>Decide si los hijos pueden pasar a otra línea.</td>
+          </tr>
+          <tr>
+            <td><code>align-content</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>stretch</code>, <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>space-between</code>, <code>space-around</code></td>
+            <td>Distribuye varias líneas Flex en el eje secundario.</td>
+          </tr>
+          <tr>
+            <td><code>flex</code></td>
+            <td><strong>HIJO</strong></td>
+            <td><code>1</code></td>
+            <td>Permite que el hijo participe en el reparto del espacio.</td>
+          </tr>
+          <tr>
+            <td><code>align-self</code></td>
+            <td><strong>HIJO</strong></td>
+            <td><code>auto</code>, <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>stretch</code></td>
+            <td>Cambia la alineación de un hijo concreto.</td>
+          </tr>
+          <tr>
+            <td><code>order</code></td>
+            <td><strong>HIJO</strong></td>
+            <td><code>0</code>, <code>1</code>, <code>2</code>, <code>-1</code>…</td>
+            <td>Cambia el orden visual de un hijo.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Grid</h3>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Propiedad</th>
+            <th>¿Dónde va?</th>
+            <th>Opciones principales</th>
+            <th>Qué resuelve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>display</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>grid</code></td>
+            <td>Activa CSS Grid.</td>
+          </tr>
+          <tr>
+            <td><code>grid-template-columns</code></td>
+            <td><strong>PADRE</strong></td>
+            <td>
+              <code>1fr 1fr</code>,
+              <code>repeat(3, 1fr)</code>,
+              <code>200px 1fr</code>,
+              <code>repeat(auto-fit, minmax(200px, 1fr))</code>
+            </td>
+            <td>Define cuántas columnas hay y cuánto ocupa cada una.</td>
+          </tr>
+          <tr>
+            <td><code>grid-template-rows</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>auto</code>, <code>100px 1fr</code>, <code>repeat(2, auto)</code></td>
+            <td>Define las filas explícitas y su tamaño.</td>
+          </tr>
+          <tr>
+            <td><code>gap</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>1rem</code>, <code>2rem</code>, <code>20px</code>…</td>
+            <td>Define la separación entre filas y columnas.</td>
+          </tr>
+          <tr>
+            <td><code>justify-items</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>stretch</code>, <code>start</code>, <code>center</code>, <code>end</code></td>
+            <td>Alinea los hijos dentro de sus celdas en el eje horizontal.</td>
+          </tr>
+          <tr>
+            <td><code>align-items</code></td>
+            <td><strong>PADRE</strong></td>
+            <td><code>stretch</code>, <code>start</code>, <code>center</code>, <code>end</code></td>
+            <td>Alinea los hijos dentro de sus celdas en el eje vertical.</td>
+          </tr>
+          <tr>
+            <td><code>grid-column</code></td>
+            <td><strong>HIJO</strong></td>
+            <td><code>1 / 3</code>, <code>1 / -1</code>, <code>span 2</code></td>
+            <td>Decide qué columnas ocupa un hijo.</td>
+          </tr>
+          <tr>
+            <td><code>grid-row</code></td>
+            <td><strong>HIJO</strong></td>
+            <td><code>1 / 3</code>, <code>span 2</code></td>
+            <td>Decide qué filas ocupa un hijo.</td>
+          </tr>
+          <tr>
+            <td><code>justify-self</code></td>
+            <td><strong>HIJO</strong></td>
+            <td><code>auto</code>, <code>start</code>, <code>center</code>, <code>end</code>, <code>stretch</code></td>
+            <td>Alinea horizontalmente un hijo concreto dentro de su celda.</td>
+          </tr>
+          <tr>
+            <td><code>align-self</code></td>
+            <td><strong>HIJO</strong></td>
+            <td><code>auto</code>, <code>start</code>, <code>center</code>, <code>end</code>, <code>stretch</code></td>
+            <td>Alinea verticalmente un hijo concreto dentro de su celda.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout parent">
+        <strong>Para empezar:</strong> Flex = una dirección. Grid = filas y columnas.
+        Después pregunta siempre: <strong>¿esta propiedad organiza al padre o modifica a un hijo?</strong>
+      </div>
+    </section>
+
+    <section id="practica-flex-grid">
+      <h2>Práctica guiada: ejercicios de Flex y Grid</h2>
+      <p>
+        Cuando termines esta teoría, pasa a la práctica con ejercicios específicos para reforzar
+        lo aprendido sobre organización del padre y ajuste de los hijos.
+      </p>
+      <p>
+        <a href="manualcss/manual-css/public/ejercicioflexgrid.html">Ir al HTML de ejercicios de Flex y Grid</a>
+      </p>
+    </section>
+
+    
+  </main>
+
+  <footer>
+    Manual CSS · DevCampus · Resumen de Flexbox y Grid
+  </footer>
+
+  <script>
+    const flexDemo = document.getElementById('flex-demo');
+    const flexDir = document.getElementById('flex-direction');
+    const justify = document.getElementById('justify');
+    const align = document.getElementById('align');
+    const flexGap = document.getElementById('flex-gap');
+    const flexWrap = document.getElementById('flex-wrap');
+    const alignContent = document.getElementById('align-content');
+    const flexCode = document.getElementById('flex-code');
+
+    function updateFlex() {
+      const gap = `${flexGap.value}px`;
+
+      flexDemo.style.display = 'flex';
+      flexDemo.style.flexDirection = flexDir.value;
+      flexDemo.style.justifyContent = justify.value;
+      flexDemo.style.alignItems = align.value;
+      flexDemo.style.gap = gap;
+      flexDemo.style.flexWrap = flexWrap.value;
+      flexDemo.style.alignContent = alignContent.value;
+
+      flexCode.textContent =
+`.contenedor {
+  display: flex;
+  flex-direction: ${flexDir.value};
+  justify-content: ${justify.value};
+  align-items: ${align.value};
+  gap: ${gap};
+  flex-wrap: ${flexWrap.value};
+  align-content: ${alignContent.value};
+}`;
+    }
+
+    [flexDir, justify, align, flexGap, flexWrap, alignContent].forEach(
+      control => control.addEventListener('input', updateFlex)
+    );
+
+    const gridDemo = document.getElementById('grid-demo');
+    const gridCols = document.getElementById('grid-cols');
+    const gridGap = document.getElementById('grid-gap');
+    const gridResponsive = document.getElementById('grid-responsive');
+    const gridSpan = document.getElementById('grid-span');
+    const gridFirst = document.getElementById('grid-first');
+    const gridCode = document.getElementById('grid-code');
+    const gridChildCode = document.getElementById('grid-child-code');
+
+    function updateGrid() {
+      const gap = `${gridGap.value}px`;
+      const columns = gridResponsive.value === 'auto'
+        ? 'repeat(auto-fit, minmax(180px, 1fr))'
+        : `repeat(${gridCols.value}, 1fr)`;
+
+      gridDemo.style.display = 'grid';
+      gridDemo.style.gridTemplateColumns = columns;
+      gridDemo.style.gap = gap;
+
+      if (gridSpan.value === 'full') {
+        gridFirst.style.gridColumn = '1 / -1';
+        gridChildCode.textContent =
+`.elemento-a {
+  grid-column: 1 / -1; /* HIJO */
+}`;
+      } else {
+        gridFirst.style.gridColumn = 'auto';
+        gridChildCode.textContent =
+`.elemento-a {
+  grid-column: auto; /* HIJO */
+}`;
+      }
+
+      gridCode.textContent =
+`.galeria {
+  display: grid;
+  grid-template-columns: ${columns};
+  gap: ${gap};
+}`;
+    }
+
+    [gridCols, gridGap, gridResponsive, gridSpan].forEach(
+      control => control.addEventListener('input', updateGrid)
+    );
+
+    updateFlex();
+    updateGrid();
+  </script>
+</body>
+</html>

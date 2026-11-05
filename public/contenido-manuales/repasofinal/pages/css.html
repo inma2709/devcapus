@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selectores, Cascada y Herencia — Repaso</title>
+
+  <!-- Reutilizamos TU hoja de estilos -->
+  <link rel="stylesheet" href="../styles/styles.css"/>
+
+  <!-- CSS mínimo de apoyo SOLO para las cajas de demostración -->
+  <style>
+    .demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:.75rem 0}
+    @media (max-width:768px){.demo-grid{grid-template-columns:1fr}}
+    .demo{
+      background:#fff; border:2px dashed var(--color-secundario); border-radius:10px;
+      padding:12px; font-size:.95rem
+    }
+    .tag{display:inline-block;background:var(--color-sabermas);border:1px solid #cde;
+      padding:2px 8px;border-radius:999px;font-size:.8rem;margin-right:6px;color:#06313f}
+    .ok{color:#0a8a43;font-weight:700}
+    .warn{color:#b45309;font-weight:700}
+    .bad{color:#b91c1c;font-weight:700}
+    .box{padding:.4rem .6rem;border-radius:8px;border:1px solid #ddd;background:#fafafa;margin:.25rem 0}
+    .tiny{font-size:.9rem;color:#444}
+    .hr{height:1px;background:#e5e7eb;margin:10px 0}
+    
+    /* Estilos para preguntas tipo test */
+    details {
+      margin-top: 0.5rem;
+    }
+    details summary {
+      padding: 0.5rem;
+      background: var(--color-sabermas);
+      border-radius: 4px;
+      border: none;
+      font-weight: 600;
+    }
+    details[open] summary {
+      margin-bottom: 0.5rem;
+      background: var(--color-base);
+      color: white;
+    }
+    details p {
+      background: #f8f9fa;
+      padding: 0.75rem;
+      border-radius: 4px;
+      border-left: 4px solid var(--color-base);
+      margin: 0;
+    }
+    
+    /* Estilos adicionales para pseudo-elementos de demostración */
+    .etiqueta::before { content: "★ "; color: var(--color-base); }
+    .cita::before { content: '"'; }
+    .cita::after { content: '"'; }
+  </style>
+</head>
+<body>
+  <header>
+<h1>Repaso final de css y html</h1>
+        <!-- Navegación principal se puede hacer tambien sin lista pero si luego queremos subpaginas haremos una
+         lista. atención a la hora de declarar los estilos -->
+                <nav>
+            <ul>
+                <li><a href="estructura.html">Estructuras</a></li>
+                <li><a href="etiquetas.html">Etiquetas semanticas</a></li>
+                <li><a href="gridflex.html">Grid y flex</a></li>
+                <li><a href="formularios.html">Formularios</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="media.html">Imágenes y multimedia</a></li>
+                <li>
+                    <a href="../../html/tallermaquetacion.html">Taller de Maquetación</a>
+                </li>
+            </ul>
+        </nav>        
+    </header>
+
+  <main>
+    <!-- ===== SELECTORES ===== -->
+    <section id="selectores" class="repaso" aria-labelledby="h-selectores">
+      <h2 id="h-selectores" class="repaso">1) Selectores básicos</h2>
+
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__cabecera">Tipo (etiqueta)</h3>
+          <p class="card__contenido tiny">
+            Afecta a todas las etiquetas del mismo tipo.
+          </p>
+          <pre><code>p { line-height: 1.6; }
+h2 { color: var(--color-secundario); }</code></pre>
+          <div class="demo">
+            <span class="tag">p</span>
+            <div class="box">Este &lt;p&gt; obtiene el interlineado.</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Clase (.clase)</h3>
+          <p class="card__contenido tiny">
+            Reutilizable en muchos elementos.
+          </p>
+          <pre><code>.destacado { background: #fff8ff; color: var(--color-base); }</code></pre>
+          <div class="demo">
+            <span class="tag">.destacado</span>
+            <div class="box destacado">Bloque con clase "destacado".</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">ID (#id)</h3>
+          <p class="card__contenido tiny">
+            Único por documento. <span class="warn">Es muy específico</span>.
+          </p>
+          <pre><code>#intro { border-left: 4px solid var(--color-base); padding-left: .5rem; }</code></pre>
+          <div class="demo">
+            <span class="tag">#intro</span>
+            <div id="intro" class="box">Soy el bloque con id "intro".</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Atributo</h3>
+          <p class="card__contenido tiny">Muy útil con formularios y enlaces.</p>
+          <pre><code>input[type="email"] { border-color: var(--color-base); }
+a[target="_blank"] { text-decoration-style: dotted; }</code></pre>
+          <div class="demo">
+            <span class="tag">input[type="email"]</span>
+            <div class="box">
+              &lt;input type="email"&gt; recibe estilo distinto.
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== COMBINADORES ===== -->
+    <section id="combinadores" class="repaso" aria-labelledby="h-combinadores">
+      <h2 id="h-combinadores" class="repaso">2) Combinadores (relaciones)</h2>
+
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__cabecera">Descendiente (espacio)</h3>
+          <p class="card__contenido tiny">Cualquier profundidad.</p>
+          <pre><code>.tarjeta p { color:#444; }</code></pre>
+          <div class="demo">
+            <div class="tarjeta box">
+              <p>Afecta a este &lt;p&gt; dentro de .tarjeta.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Hijo directo (&gt;)</h3>
+          <p class="card__contenido tiny">Solo el primer nivel.</p>
+          <pre><code>.lista &gt; li { border-bottom:1px solid #eee; }</code></pre>
+          <div class="demo">
+            <ul class="lista box">
+              <li>Se aplica</li>
+              <li>Se aplica</li>
+              <li><span><em>Este span NO es li directo</em></span></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Hermano adyacente (+)</h3>
+          <p class="card__contenido tiny">El siguiente hermano inmediato.</p>
+          <pre><code>h3 + p { margin-top: .2rem; color:#666; }</code></pre>
+          <div class="demo">
+            <h3 class="box" style="margin:0">Título</h3>
+            <p class="box">Este párrafo justo después de h3 cambia.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Hermanos (~)</h3>
+          <p class="card__contenido tiny">Todos los siguientes hermanos.</p>
+          <pre><code>.lead ~ p { opacity:.75; }</code></pre>
+          <div class="demo">
+            <p class="box lead">Párrafo principal</p>
+            <p class="box">Hermano afectado</p>
+            <p class="box">Hermano afectado</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    
+    <!-- ===== CASCADA ===== -->
+    <section id="cascada" class="repaso" aria-labelledby="h-cascada">
+      <h2 id="h-cascada" class="repaso">4) Cascada y especificidad (¿quién gana?)</h2>
+
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__cabecera">Orden en la cascada</h3>
+          <p class="card__contenido tiny">A igualdad de especificidad, gana la regla que aparece <strong>más tarde</strong>.</p>
+          <pre><code>p { color: #333 }      /* 1º */
+p { color: #111 }      /* 2º  ← GANA */</code></pre>
+          <div class="demo">
+            <div class="box">La segunda regla pisa la primera si apuntan a lo mismo.</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Especificidad</h3>
+          <p class="card__contenido tiny">
+            Jerarquía: <b>!important</b> &gt; inline style &gt; <b>#id</b> &gt; <b>.clase</b>/[atributo]/:pseudo-clase &gt; tipo/::pseudo-elemento.
+          </p>
+          <pre><code>p { color: blue }          /* tipo */
+.highlight p { color: red }/* clase + tipo → GANA */
+#box p { color: green }    /* id + tipo → GANA a la anterior */</code></pre>
+          <div class="demo">
+            <div id="box" class="highlight box">#box y .highlight superan al selector de tipo.</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">¡Cuidado con <code>!important</code>!</h3>
+          <p class="card__contenido tiny">
+            Úsalo como último recurso; dificulta el mantenimiento.
+          </p>
+          <pre><code>.boton { color:#222 !important }
+nav .boton { color:#999 }  /* NO pisa al anterior por !important */</code></pre>
+          <div class="demo">
+            <div class="box"><span class="bad">!important</span> gana incluso con menos especificidad.</div>
+          </div>
+        </article>
+
+        <article class="card sabermas">
+          <h3>Tip de depuración</h3>
+          <p>En DevTools, mira “Computed” para ver la regla ganadora y su especificidad. Evita selectoritis: prefiere selectores claros y poco profundos.</p>
+          <ul>
+            <li>Prefiere <code>.btn--primario</code> a <code>header nav ul li a.btn</code>.</li>
+            <li>Centraliza colores con <code>:root</code> y <code>var()</code>.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== HERENCIA ===== -->
+    <section id="herencia" class="repaso" aria-labelledby="h-herencia">
+      <h2 id="h-herencia" class="repaso">5) Herencia (qué se transmite)</h2>
+
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__cabecera">Propiedades que heredan</h3>
+          <p class="card__contenido tiny">Ej.: <code>color</code>, <code>font-family</code>, <code>line-height</code>.</p>
+          <pre><code>.panel { color:#222; font-family:var(--fuente-principal); }
+.panel p em { /* heredan color y fuente */ }</code></pre>
+          <div class="demo">
+            <div class="box panel">
+              Soy el padre → <em>los hijos heredan color y fuente</em>.
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Propiedades que NO heredan</h3>
+          <p class="card__contenido tiny">Ej.: <code>margin</code>, <code>padding</code>, <code>border</code>, <code>background</code>.</p>
+          <pre><code>.panel { padding:16px; }
+.panel p { /* NO hereda padding */ }</code></pre>
+          <div class="demo">
+            <div class="box panel">
+              El padding es del contenedor, no de los párrafos dentro.
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Forzar herencia / reinicios</h3>
+          <p class="card__contenido tiny"><code>inherit</code>, <code>initial</code>, <code>unset</code>.</p>
+          <pre><code>.hijo { color: inherit; }     /* toma el del padre */
+.reset { all: initial; }      /* valores iniciales de navegador */
+.clean { all: unset; }        /* hereda si es heredable; si no, inicial */</code></pre>
+          <div class="demo">
+            <div class="box" style="color:#0a58ca">
+              Padre azul → <span class="hijo" style="color:inherit">hijo hereda azul</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card sabermas">
+          <h3>Mini guía práctica</h3>
+          <ul>
+            <li>Define tipografías/colores en <code>body</code> o contenedores altos → el resto hereda.</li>
+            <li>Reinicia con cuidado: <code>all: unset</code> borra mucho más de lo que imaginas.</li>
+          </ul>
+          <pre><code>body{ color:#333; line-height:1.6; }
+h1,h2{ color:var(--color-secundario); }</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== RESUMEN ===== -->
+    <section id="resumen" class="repaso" aria-labelledby="h-resumen">
+      <h2 id="h-resumen" class="repaso">6) Resumen rápido</h2>
+
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__cabecera">Resumen</h3>
+          <ul class="card__contenido tiny" style="margin-left:1rem; list-style:square">
+            <li><b>Selectores</b>: elige el correcto (simple, combinador, pseudo).</li>
+            <li><b>Cascada</b>: a igual especificidad, gana el que va último.</li>
+            <li><b>Especificidad</b>: #id &gt; .clase/[attr]/:pseudo &gt; etiqueta/::pseudo.</li>
+            <li><b>Herencia</b>: tipografía/colores sí; cajas (margin/padding/border), no.</li>
+          </ul>
+        </article>
+
+        <article class="card sabermas">
+          <h3>Cheat-sheet de especificidad</h3>
+          <pre><code>/* Cuenta puntos (aprox) */
+#id            → 100
+.clase [attr] :pseudo  → 010
+etiqueta ::pseudo      → 001
+inline style           → 1000
+!important             → máximo (evítalo)</code></pre>
+          <p class="tiny">Cuando dudes, simplifica el selector y revisa en DevTools cuál gana.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== PREGUNTAS TEST ===== -->
+    <section id="test" class="repaso" aria-labelledby="h-test">
+      <h2 id="h-test" class="repaso">7) Test de conocimientos</h2>
+      
+      <div class="repaso-grid">
+        <!-- Pregunta 1 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 1 - Tipos de selectores</h3>
+          <p class="card__contenido tiny">¿Cuáles son los tipos básicos de selectores en CSS?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+            <strong>Respuesta:</strong> Selector de etiqueta (ej: <code>p</code>), de clase (ej: <code>.clase</code>), de id (ej: <code>#id</code>) y de atributo (ej: <code>input[type="text"]</code>).
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 2 - Personalizar Bootstrap</h3>
+          <p class="card__contenido tiny">¿Cómo podemos añadir nuestro propio estilo a una web que usa Bootstrap?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+            <strong>Respuesta:</strong> Añadiendo una hoja de estilos propia después de la de Bootstrap en el HTML. Así, nuestros estilos sobrescriben los de Bootstrap si tienen igual o mayor especificidad.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 3 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 3 - Especificidad</h3>
+          <p class="card__contenido tiny">¿Cuál de estos selectores tiene mayor especificidad? <br>A) <code>#header .nav</code> <br>B) <code>nav.principal</code> <br>C) <code>body nav ul li</code></p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta A:</strong> <code>#header .nav</code> (110 puntos: 1 ID + 1 clase) tiene mayor especificidad que 
+                B (020 puntos: 2 clases) y C (004 puntos: 4 elementos).
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 4 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 4 - Grid Templates</h3>
+          <p class="card__contenido tiny">¿Qué hace <code>grid-template-columns: 1fr 2fr 1fr</code>?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta:</strong> Crea 3 columnas donde la del medio (2fr) ocupa el doble de espacio que las laterales (1fr cada una). 
+                Es como dividir el espacio en 4 partes: 1+2+1.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 5 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 5 - Herencia</h3>
+          <p class="card__contenido tiny">Si aplico <code>color: red</code> a un div, ¿heredarán ese color los párrafos dentro?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta:</strong> SÍ. La propiedad <code>color</code> es heredable, por lo que todos los elementos hijos 
+                (incluyendo párrafos) heredarán el color rojo, a menos que tengan un color específico definido.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 6 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 6 - Combinadores</h3>
+          <p class="card__contenido tiny">¿Qué selecciona <code>h2 + p</code>?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta:</strong> Selecciona el primer párrafo <code>&lt;p&gt;</code> que aparece INMEDIATAMENTE después de un <code>&lt;h2&gt;</code>, 
+                siendo hermanos al mismo nivel. Solo el primer párrafo adyacente, no todos.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 7 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 7 - Grid Areas</h3>
+          <p class="card__contenido tiny">¿Para qué sirve <code>grid-template-areas</code>?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta:</strong> Permite definir áreas nombradas en el grid de forma visual y legible, 
+                como <code>"header header" "nav main" "footer footer"</code>. Luego usas <code>grid-area: header</code> para posicionar elementos.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 8 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 8 - Pseudo-clases</h3>
+          <p class="card__contenido tiny">¿Cuál es la diferencia entre <code>:nth-child(2n)</code> y <code>:nth-child(even)</code>?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta:</strong> No hay diferencia. Ambos seleccionan los elementos en posiciones pares (2, 4, 6, 8...). 
+                <code>even</code> es simplemente una forma más legible de escribir <code>2n</code>.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 9 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 9 - Grid vs Flexbox</h3>
+          <p class="card__contenido tiny">¿Cuándo usar Grid y cuándo Flexbox?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta:</strong> <strong>Grid:</strong> para layouts 2D (filas Y columnas), como páginas completas. 
+                <strong>Flexbox:</strong> para layouts 1D (una dirección), como barras de navegación, botones o centrar contenido.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <!-- Pregunta 10 -->
+        <article class="card">
+          <h3 class="card__cabecera">Pregunta 10 - !important</h3>
+          <p class="card__contenido tiny">¿Cuándo es apropiado usar <code>!important</code>?</p>
+          <div class="demo">
+            <details>
+              <summary style="cursor:pointer;color:var(--color-base)">Ver respuesta</summary>
+              <p class="tiny ok" style="margin-top:0.5rem">
+                <strong>Respuesta:</strong> Casi nunca. Solo en casos muy específicos como: sobrescribir estilos de librerías externas, 
+                clases utilitarias (ej: <code>.hidden { display: none !important; }</code>) o correcciones urgentes temporales.
+              </p>
+            </details>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== FLEXBOX Y GRID ===== -->
+    <section id="layouts" class="repaso" aria-labelledby="h-layouts">
+      <h2 id="h-layouts" class="repaso">8) Flexbox y Grid Templates</h2>
+      
+      <div class="repaso-grid">
+        <!-- Flexbox Card -->
+        <article class="card">
+          <h3 class="card__cabecera">Flexbox: Layout en 1 dimensión</h3>
+          <p class="card__contenido tiny">
+            <strong>Perfecto para:</strong> Barras de navegación, centrar elementos, distribuir espacio entre items.
+          </p>
+          
+          <h4 style="color:var(--color-base);font-size:0.9rem;margin:0.5rem 0">Propiedades del contenedor:</h4>
+          <pre><code>.contenedor {
+  display: flex;
+  flex-direction: row | column;
+  justify-content: center | space-between | space-around;
+  align-items: center | flex-start | flex-end;
+  gap: 1rem;
+}</code></pre>
+
+          <h4 style="color:var(--color-base);font-size:0.9rem;margin:0.5rem 0">Propiedades de los items:</h4>
+          <pre><code>.item {
+  flex: 1;        /* crece para ocupar espacio */
+  flex-shrink: 0; /* no se encoge */
+  align-self: center; /* alineación individual */
+}</code></pre>
+
+          <div class="demo">
+            <div style="display:flex;gap:0.5rem;background:#f8f9fa;padding:0.5rem;border-radius:4px">
+              <div style="background:var(--color-sabermas);padding:0.25rem;border-radius:3px;flex:1">Item 1</div>
+              <div style="background:var(--color-sabermas);padding:0.25rem;border-radius:3px;flex:2">Item 2 (flex:2)</div>
+              <div style="background:var(--color-sabermas);padding:0.25rem;border-radius:3px;flex:1">Item 3</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Grid Card -->
+        <article class="card">
+          <h3 class="card__cabecera">Grid: Layout en 2 dimensiones</h3>
+          <p class="card__contenido tiny">
+            <strong>Perfecto para:</strong> Layouts de página completa, galerías, formularios complejos.
+          </p>
+          
+          <h4 style="color:var(--color-base);font-size:0.9rem;margin:0.5rem 0">Definir la cuadrícula:</h4>
+          <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* 3 columnas */
+  grid-template-rows: auto 1fr auto;  /* 3 filas */
+  gap: 1rem;
+  height: 100vh;
+}</code></pre>
+
+          <h4 style="color:var(--color-base);font-size:0.9rem;margin:0.5rem 0">Posicionar elementos:</h4>
+          <pre><code>.header { 
+  grid-column: 1 / -1; /* de la primera a la última columna */
+}
+.sidebar { 
+  grid-row: 2 / 3; /* fila 2 */
+}</code></pre>
+
+          <div class="demo">
+            <div style="display:grid;grid-template-columns:1fr 2fr;gap:0.25rem;background:#f8f9fa;padding:0.5rem;border-radius:4px;font-size:0.8rem">
+              <div style="background:var(--color-base);color:white;padding:0.25rem;border-radius:3px;grid-column:1/-1">Header</div>
+              <div style="background:var(--color-sabermas);padding:0.25rem;border-radius:3px">Sidebar</div>
+              <div style="background:var(--color-sabermas);padding:0.25rem;border-radius:3px">Main</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Grid Templates Areas -->
+        <article class="card sabermas">
+          <h3>Grid Template Areas: Layout Visual</h3>
+          <p class="tiny">La forma más intuitiva de crear layouts complejos:</p>
+          
+          <pre><code>.layout {
+  display: grid;
+  grid-template-areas: 
+    "header  header  header"
+    "nav     main    aside"
+    "footer  footer  footer";
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  min-height: 100vh;
+}
+
+.header { grid-area: header; }
+.nav    { grid-area: nav; }
+.main   { grid-area: main; }
+.aside  { grid-area: aside; }
+.footer { grid-area: footer; }</code></pre>
+
+          <p class="tiny">
+            <strong>Ventaja:</strong> Es como dibujar el layout con texto. Muy legible y fácil de modificar.
+          </p>
+        </article>
+
+        <!-- Cuándo usar cada uno -->
+        <article class="card">
+          <h3 class="card__cabecera">¿Cuándo usar cada uno?</h3>
+          
+          <div class="tiny">
+            <h4 style="color:var(--color-base);margin:0.5rem 0">Usa Flexbox cuando:</h4>
+            <ul style="margin-left:1rem">
+              <li>Necesitas alinear elementos en UNA dirección</li>
+              <li>Quieres centrar contenido fácilmente</li>
+              <li>Los elementos deben crecer/encogerse dinámicamente</li>
+              <li>Ejemplo: navbar, botones, cards en fila</li>
+            </ul>
+
+            <h4 style="color:var(--color-base);margin:0.5rem 0">Usa Grid cuando:</h4>
+            <ul style="margin-left:1rem">
+              <li>Necesitas control sobre filas Y columnas</li>
+              <li>Quieres posicionar elementos en áreas específicas</li>
+              <li>El layout es complejo (header, sidebar, main, footer)</li>
+              <li>Ejemplo: página completa, galería de fotos, dashboard</li>
+            </ul>
+          </div>
+
+          <div class="demo">
+            <p class="tiny ok">
+              <strong>Tip:</strong> ¡Puedes combinarlos! Un grid para el layout general y flexbox para los componentes internos.
+            </p>
+          </div>
+        </article>
+
+        <!-- Responsive con Grid -->
+        <article class="card">
+          <h3 class="card__cabecera">Grid Responsivo Fácil</h3>
+          <p class="card__contenido tiny">Usando <code>repeat()</code> y <code>minmax()</code>:</p>
+          
+          <pre><code>/* Grid que se adapta automáticamente */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* Significa: crea todas las columnas que quepan,
+   cada una mínimo 250px y máximo el espacio restante */</code></pre>
+
+          <div class="demo">
+            <p class="tiny">
+              Con esta técnica, el grid se reorganiza automáticamente según el tamaño de pantalla. 
+              <span class="ok">¡Sin media queries!</span>
+            </p>
+          </div>
+        </article>
+
+        <!-- Flexbox común -->
+        <article class="card">
+          <h3 class="card__cabecera">Patrones Flexbox Comunes</h3>
+          
+          <pre><code>/* Centrar perfecto */
+.centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Navbar típico */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Cards que crecen igual */
+.cards {
+  display: flex;
+  gap: 1rem;
+}
+.card { flex: 1; }
+
+/* Sticky footer */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main { flex: 1; }</code></pre>
+        </article>
+
+        <!-- Taller de Maquetación -->
+        <article class="card sabermas" style="grid-column: 1 / -1; margin-top: 1.5rem; border-left: 5px solid var(--color-base, #7c3aed); padding: 1.5rem; background: #fdfcff;">
+          <h3 class="card__cabecera" style="color: var(--color-base, #7c3aed); font-size: 1.3rem; font-weight: 700;">🚀 ¡Ponlo en práctica! Taller de Maquetación CSS</h3>
+          <p class="card__contenido" style="margin: 0.5rem 0; color: #4b5563; line-height: 1.6;">
+            Aplica todo lo aprendido sobre selectores, flexbox, y grid layout en nuestro taller interactivo práctico.
+            Aprenderás a maquetar paso a paso una estructura profesional adaptada a dispositivos móviles.
+          </p>
+          <div style="margin-top: 1.2rem;">
+            <a href="../../html/tallermaquetacion.html" style="display: inline-block; padding: 10px 20px; background: var(--color-base, #7c3aed); color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='#6366f1'" onmouseout="this.style.background='var(--color-base, #7c3aed)'">
+              Abrir Taller de Maquetación →
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Repaso CSS — Selectores · Cascada · Herencia · <a href="../index.html" style="color:#F0FFFF;">Volver al inicio</a>
+  </footer>
+</body>
+</html>

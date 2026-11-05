@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sticky que SÍ se ve — Laboratorio</title>
+  <style>
+    :root{
+      --brand:#004aad;
+      --sticky:#f7df1e;
+      --text:#212121;
+      --s1:#e0f7fa; --s2:#fce4ec; --s3:#e8f5e9; --s4:#fff8e1;
+      --border:#cccccc;
+      --header-h: 64px;       /* ALTURA DEL HEADER */
+    }
+    * { box-sizing: border-box }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      background: #fffaf7;
+      color: #1f2328;
+      min-height: 200vh;      /* asegurar que hay scroll */
+    }
+
+    /* Header sticky arriba */
+    header {
+      position: sticky;
+      top: 0;
+      height: var(--header-h);
+      display: grid;
+      place-items: center;
+      background: var(--brand);
+      color: #fff;
+      z-index: 1000;          /* por encima de todo */
+      box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    }
+
+    main { padding: 1rem 1.25rem 2rem }
+
+    /* Secciones con alto + contenido para scroll */
+    section {
+      min-height: 800px;
+      padding: 1rem 2rem;
+      margin: 24px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .s1 { background: var(--s1); }
+    .s2 { background: var(--s2); }
+    .s3 { background: var(--s3); }
+    .s4 { background: var(--s4); }
+
+    /* Caja sticky: usar top = altura del header para que NO quede tapada */
+    .sticky {
+      position: sticky;
+      top: var(--header-h);   /* <- CLAVE */
+      background: var(--sticky);
+      color: var(--text);
+      border: 2px solid var(--text);
+      padding: .75rem .9rem;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,.2);
+      z-index: 5;             /* sobre el contenido, bajo el header */
+    }
+
+    /* Demo B: contenedor con hijo sticky y otro normal */
+    .contenedor {
+      background:#f8e4dd;
+      padding: 20px;
+      border: 3px solid #e44d26;
+      border-radius: 12px;
+      /* Importante: sin overflow para no romper sticky del hijo */
+      /* overflow: visible;  (por defecto) */
+    }
+    .hijo-sticky {
+      position: sticky;
+      top: calc(var(--header-h) + 10px);
+      background: #f16529;
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      box-shadow: 0 3px 6px rgba(0,0,0,.2);
+      z-index: 2;
+    }
+    .hijo-normal {
+      background: #ffd6c2;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+    .bloque-alto {
+      height: 280px;
+      margin-top: 16px;
+      background:#fff;
+      border:1px dashed #0002;
+      border-radius: 8px;
+      padding:10px;
+    }
+
+    /* Demo C: padre sticky + hijo sticky (hijo queda limitado al padre) */
+    .padre-sticky {
+      position: sticky;
+      top: var(--header-h);
+      background: #e0def7;
+      padding: 20px;
+      border: 3px solid #6b61d6;
+      border-radius: 12px;
+      z-index: 3;
+    }
+    .hijo-sticky-2 {
+      position: sticky;
+      top: calc(var(--header-h) + 12px);
+      background: #7c72ea;
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      margin-top: 16px;
+      z-index: 4;
+    }
+
+    .nota{
+      background:#fffbea;
+      border:1px solid #ffe08a;
+      padding:.75rem;
+      border-radius:8px;
+      margin:.75rem 0;
+      font-size:.95rem;
+    }
+    .titulo-demo{margin:.2rem 0 1rem; font-weight:800}
+  </style>
+</head>
+<body>
+  <header>🌐 Sticky visible (header altura = <code>--header-h</code>)</header>
+
+  <main>
+    <!-- DEMO A: Sticky como hijo directo de la sección -->
+    <section class="s1" aria-labelledby="a-title">
+      <h2 id="a-title" class="titulo-demo">A) Sticky como hijo DIRECTO de la sección</h2>
+      <div class="sticky">📌 Sticky (top = altura del header)</div>
+      <p class="nota">Se pega al llegar al borde superior visible bajo el header. Deja de estar fijo cuando termina su sección.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae eros vel orci facilisis volutpat...</p>
+      <div class="bloque-alto">Bloque alto 1</div>
+      <div class="bloque-alto">Bloque alto 2</div>
+      <div class="bloque-alto">Bloque alto 3</div>
+    </section>
+
+    <!-- DEMO A2: Otra sección con sticky directo -->
+    <section class="s2" aria-labelledby="a2-title">
+      <h2 id="a2-title" class="titulo-demo">A2) Otro sticky directo</h2>
+      <div class="sticky">📌 Otro sticky (respeta el header)</div>
+      <p class="nota">Al entrar en esta sección, este sticky sustituye al anterior.</p>
+      <div class="bloque-alto">Contenido alto A</div>
+      <div class="bloque-alto">Contenido alto B</div>
+    </section>
+
+    <!-- DEMO B: Sticky dentro de un contenedor vs NO sticky -->
+    <section class="s3" aria-labelledby="b-title">
+      <h2 id="b-title" class="titulo-demo">B) Sticky DENTRO de un contenedor vs NO sticky</h2>
+
+      <div class="contenedor">
+        <div class="hijo-sticky">📌 Hijo STICKY (top: header + 10px)</div>
+        <div class="hijo-normal">🧱 Hijo NO STICKY (sube y desaparece)</div>
+
+        <p>El hijo sticky queda pegado bajo el header mientras su contenedor siga visible. El normal se desplaza y sale del viewport.</p>
+
+        <div class="bloque-alto">Bloque alto 1</div>
+        <div class="bloque-alto">Bloque alto 2</div>
+        <div class="bloque-alto">Bloque alto 3</div>
+      </div>
+      <div class="nota">⚠️ Si añades <code>overflow: auto/hidden</code> al contenedor, <em>puede</em> desactivar el sticky del hijo.</div>
+    </section>
+
+    <!-- DEMO C: Padre sticky + Hijo sticky -->
+    <section class="s4" aria-labelledby="c-title">
+      <h2 id="c-title" class="titulo-demo">C) PADRE sticky + HIJO sticky</h2>
+      <div class="padre-sticky">
+        <div class="hijo-sticky-2">📌 Hijo STICKY dentro de PADRE STICKY</div>
+        <p>El padre queda pegado bajo el header. El hijo también es sticky, pero <strong>solo dentro</strong> de los límites del padre.</p>
+        <div class="bloque-alto">Contenido del padre sticky — bloque alto</div>
+        <div class="bloque-alto">Más contenido dentro del padre sticky</div>
+      </div>
+      <div class="nota">🧠 El hijo sticky no necesita que el padre sea sticky, pero si el padre lo es (o tiene overflow), eso limita su área de pegado.</div>
+    </section>
+  </main>
+</body>
+</html>

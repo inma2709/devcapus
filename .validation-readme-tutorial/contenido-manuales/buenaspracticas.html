@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buenas prácticas de desarrollo web | DevCampus</title>
+    <link rel="stylesheet" href="buenaspracticas.css">
+</head>
+<body>
+
+    <header class="page-header">
+        <p class="eyebrow">Frontend · Buenas prácticas</p>
+        <h1 class="page-title">Buenas prácticas de desarrollo web</h1>
+        <p class="page-subtitle">Aprende a convertir un HTML que funciona en un proyecto comprensible, accesible, usable y preparado para crecer.</p>
+    </header>
+
+    <main class="main-content">
+        <section class="content-section">
+            <h2 class="section-title">Semántica y Accesibilidad: El Porqué es Más Importante que el Cómo</h2>
+            <p>La maquetación va mucho más allá de la estética. Un buen desarrollador web crea sitios que no solo se ven bien, sino que son **comprensibles y accesibles** para todos. La base de esto es el uso correcto de las etiquetas HTML.</p>
+            
+            <div class="comparison-container">
+                <div class="comparison-card">
+                    <h3 class="comparison-title">HTML Semántico 📖</h3>
+                    <p>Cada etiqueta tiene un propósito y un significado. Utilizar etiquetas como `&lt;header&gt;`, `&lt;nav&gt;`, `&lt;main&gt;`, `&lt;article&gt;`, `&lt;section&gt;` y `&lt;footer&gt;` en lugar de una colección de `&lt;div&gt;` le da una estructura clara a nuestra página. Esto es crucial para:</p>
+                    <ul>
+                        <li>**SEO:** Los motores de búsqueda entienden mejor el contenido.</li>
+                        <li>**Accesibilidad:** Los lectores de pantalla guían a los usuarios por la estructura del sitio.</li>
+                        <li>**Mantenibilidad:** El código es más legible para otros desarrolladores.</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card">
+                    <h3 class="comparison-title">Accesibilidad (A11y) ♿</h3>
+                    <p>Un maquetador profesional siempre piensa en el usuario. La **accesibilidad** es un derecho. Aquí tienes algunas prácticas clave:</p>
+                    <ul>
+                        <li>**Etiquetas y `for`/`id`:** Vincula siempre un `&lt;label&gt;` a su `&lt;input&gt;` para que los usuarios puedan interactuar fácilmente con los formularios.</li>
+                        <li>**Atributos ARIA:** Usa atributos como `aria-label` o `role` para proporcionar información adicional a las tecnologías de asistencia cuando la semántica nativa no es suficiente.</li>
+                        <li>**Texto alternativo en imágenes:** Usa siempre el atributo `alt` en tus imágenes para describir su contenido.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Una web que funciona no siempre está bien construida</h2>
+            <p>Que el navegador muestre una página no garantiza que sea fácil de comprender, utilizar o modificar. Las buenas prácticas consisten en tomar decisiones razonables y consistentes, no en escribir más código.</p>
+            <div class="idea"><strong>Funciona</strong>: el navegador muestra la página. <br><strong>Está bien construida</strong>: además es semántica, accesible, usable, organizada y fácil de mantener.</div>
+            <h3>Palabras que utilizaremos</h3>
+            <ul><li><strong>Usabilidad:</strong> facilidad para comprender y utilizar una web.</li><li><strong>Accesibilidad:</strong> construir contenido utilizable por personas con diferentes capacidades o formas de interacción.</li><li><strong>Mantenibilidad:</strong> facilidad para comprender, corregir y modificar un proyecto con el paso del tiempo.</li><li><strong>Escalabilidad:</strong> capacidad de crecer sin perder orden.</li><li><strong>Refactorizar:</strong> mejorar la calidad del código sin cambiar lo que hace.</li></ul>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Semántica: elegir por significado</h2>
+            <p>Antes de elegir una etiqueta, pregunta: <strong>¿qué significa este contenido?</strong></p>
+            <div class="comparison-container"><div class="comparison-card"><h3>Menos significativo</h3><pre><code>&lt;div class="titulo"&gt;
+  Experiencia profesional
+&lt;/div&gt;</code></pre></div><div class="comparison-card"><h3>Mejor decisión</h3><pre><code>&lt;h2&gt;Experiencia profesional&lt;/h2&gt;</code></pre></div></div>
+            <p><code>&lt;div&gt;</code> es un contenedor genérico y no está mal utilizarlo. El problema aparece cuando existe una etiqueta que expresa mejor el significado, por ejemplo una sección con su encabezado o una navegación con <code>&lt;nav&gt;</code>.</p>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title">Accesibilidad y usabilidad</h2>
+            <p>La accesibilidad permite que más personas utilicen el contenido. La usabilidad hace que resulte comprensible y sencillo utilizarlo. Están relacionadas, pero no son lo mismo.</p>
+            <div class="comparison-container"><div class="comparison-card"><h3>Poco informativo</h3><pre><code>&lt;a href="contacto.html"&gt;Haz clic aquí&lt;/a&gt;</code></pre></div><div class="comparison-card"><h3>Destino claro</h3><pre><code>&lt;a href="contacto.html"&gt;Contacta conmigo&lt;/a&gt;</code></pre></div></div>
+            <ul><li>Incluye <code>alt</code> cuando una imagen aporta información.</li><li>Mantén una jerarquía lógica de encabezados.</li><li>Relaciona cada campo de formulario con su <code>label</code>.</li><li>Usa textos claros en enlaces y botones.</li></ul>
+            <aside class="idea">Cuando HTML nativo puede expresar correctamente el significado o comportamiento, empieza por HTML nativo.</aside>
+            <p>Un botón como <code>Enviar mensaje</code> suele ser más claro que “Continuar”, aunque el contexto es quien determina la mejor acción.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">El código también lo leen personas</h2>
+            <p>La indentación no cambia la semántica del HTML, pero mejora enormemente la legibilidad. Refleja la relación entre elementos padre, hijo y hermano.</p>
+            <div class="comparison-container"><div class="comparison-card"><h3>Difícil de leer</h3><pre><code>&lt;header&gt;&lt;h1&gt;Mi CV&lt;/h1&gt;&lt;nav&gt;&lt;a href="#perfil"&gt;Perfil&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;</code></pre></div><div class="comparison-card"><h3>Claro y ordenado</h3><pre><code>&lt;header&gt;
+  &lt;h1&gt;Mi CV&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="#perfil"&gt;Perfil&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre></div></div>
+            <h3>Comentarios con criterio</h3><p>No comentes lo que el código ya explica. Un comentario es útil cuando aclara una decisión, una limitación o un motivo. También debe revisarse: un comentario desactualizado puede confundir.</p>
+            <pre><code>&lt;!-- Esta sección se mantiene antes de formación por decisión del diseño del CV --&gt;</code></pre>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Organización, consistencia y código necesario</h2>
+            <pre><code>mi-cv/
+├── index.html
+├── paginas/
+│   └── contacto.html
+└── img/
+    ├── foto-perfil.webp
+    └── proyecto-veterinaria.webp</code></pre>
+            <p>Evita nombres como <code>foto1.jpg</code> o <code>pagina2.html</code>. Prefiere nombres que expliquen el contenido. No hay una única estructura correcta: elige un criterio comprensible y mantenlo.</p>
+            <p>Evita anidar contenedores sin motivo. Cada elemento debería tener una razón para existir. Simplificar no significa escribir siempre menos código: significa evitar complejidad que no aporta nada. Más adelante algunos contenedores serán útiles para el diseño.</p>
+            <h3>Mantenibilidad, escalabilidad y reutilización</h3><p>Haz la prueba de los seis meses: ¿entenderías este proyecto más adelante? ¿Lo entendería otra persona? Si hoy tienes una página y mañana cinco, o pasas de tres a veinte proyectos, la organización debe seguir teniendo sentido. Cuando veas varias experiencias con la misma estructura <code>article + h3 + p</code>, estás detectando un patrón reutilizable.</p>
+            <h3>Separar responsabilidades</h3><div class="responsibilities"><p><strong>HTML</strong><br>Estructura y significado</p><p><strong>CSS</strong><br>Apariencia y distribución</p><p><strong>JavaScript</strong><br>Comportamiento</p></div>
+            <h3>Rendimiento básico</h3><p>Utiliza imágenes con un peso y formato adecuados, evita recursos innecesarios y mantén una estructura razonable. Ya conoces las bases sobre imágenes: aquí el criterio es no cargar más de lo necesario.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Actividad · Mejora una web que ya funciona</h2>
+            <p>Refactorizar significa mejorar la organización o la calidad del código sin cambiar lo que debe hacer. Esta actividad se resuelve exclusivamente con HTML.</p>
+            <details><summary>Versión inicial: detecta problemas antes de modificarla</summary><pre><code>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+&lt;body&gt;
+&lt;div&gt;&lt;div&gt;Ana García&lt;/div&gt;&lt;div&gt;&lt;a href="contacto.html"&gt;Haz clic aquí&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;!-- Título --&gt;
+&lt;div&gt;&lt;img src="foto1.jpg"&gt;&lt;h3&gt;Sobre mí&lt;/h3&gt;&lt;div&gt;Desarrolladora web.&lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;input type="email" placeholder="Correo electrónico"&gt;&lt;button&gt;Enviar&lt;/button&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+            <h3>Fase 1 · Detecta</h3><table><thead><tr><th>Problema encontrado</th><th>¿Por qué lo mejorarías?</th><th>¿Cómo podrías mejorarlo?</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
+            <h3>Fase 2 · Refactoriza</h3><ul><li>¿Existe una etiqueta con más significado que este <code>div</code>?</li><li>¿La jerarquía de encabezados representa la estructura?</li><li>¿Se entiende el enlace fuera de contexto?</li><li>¿Qué necesita el <code>alt</code>?</li><li>¿El formulario tiene un <code>label</code>?</li><li>¿El comentario aporta información útil?</li></ul>
+            <h3>Fase 3 · Compara</h3><p>Abre ambas versiones. Probablemente se verán parecidas. Aun así habrás mejorado significado, accesibilidad, usabilidad, legibilidad, organización y mantenibilidad.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Ahora revisa tu propio CV</h2>
+            <p>Audita el CV que ya has creado. No necesitas comenzar otro proyecto.</p>
+            <div class="checklist"><p><strong>Semántica</strong><br>□ ¿Cada elemento tiene un significado adecuado?<br>□ ¿La jerarquía de encabezados es lógica?</p><p><strong>Accesibilidad y usabilidad</strong><br>□ ¿Las imágenes tienen <code>alt</code> cuando corresponde?<br>□ ¿Formularios, enlaces y botones son comprensibles?</p><p><strong>Código y organización</strong><br>□ ¿La indentación, los nombres y las carpetas son claros?<br>□ ¿Los comentarios aportan información?</p><p><strong>Mantenibilidad</strong><br>□ ¿Lo entendería dentro de seis meses?<br>□ ¿Podría añadir contenido sin rehacerlo todo?</p></div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Antes de dar por terminado un proyecto</h2>
+            <div class="checklist"><p>□ Semántica y encabezados con sentido.</p><p>□ Imágenes, formularios, enlaces y botones accesibles.</p><p>□ Navegación y acciones claras.</p><p>□ Código indentado y fácil de leer.</p><p>□ Archivos, rutas y comentarios comprensibles.</p><p>□ Decisiones consistentes y estructura preparada para crecer.</p><p>□ Sin recursos ni elementos innecesarios.</p></div>
+            <h2 class="section-title">Siguiente paso: CSS</h2>
+            <p>Ya tienes diseño en Penpot, estructura HTML, contenido, semántica, accesibilidad básica, organización y buenas prácticas. Pero tu CV todavía no se parece visualmente al diseño que creaste.</p>
+            <aside class="idea"><strong>Eso no es un problema del HTML.</strong><br>¿Cómo hacemos que la estructura se parezca al diseño? El siguiente paso es <strong>CSS</strong>: apariencia y distribución.</aside>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <p>Curso de Maquetación Web - Clase de Buenas Prácticas</p>
+    </footer>
+
+</body>
+</html>

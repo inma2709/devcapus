@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo | Gestor de citas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="contenedor">
+    <header class="cabecera">
+      <img class="imagen-cabecera" src="https://picsum.photos/seed/peluqueria-demo/1000/280" alt="Imagen decorativa de una peluquería">
+      <p class="etiqueta">Demo del resultado final</p>
+      <h1>Gestor de citas</h1>
+      <p>Registra las citas de una peluquería.</p>
+    </header>
+    <section class="panel" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Nueva cita</h2>
+      <form id="formularioCita">
+        <div class="campo"><label for="cliente">Nombre del cliente</label><input id="cliente" type="text" required></div>
+        <div class="campo"><label for="servicio">Servicio</label><input id="servicio" type="text" required></div>
+        <div class="campo"><label for="precio">Precio (€)</label><input id="precio" type="number" min="0" step="1" required></div>
+        <button type="submit" class="boton-principal">Añadir cita</button>
+      </form>
+    </section>
+    <section class="panel" aria-labelledby="titulo-listado">
+      <div class="encabezado-lista"><h2 id="titulo-listado">Citas programadas</h2><p><strong id="contadorCitas">0</strong> citas</p></div>
+      <p id="mensajeVacio" class="mensaje-vacio">No hay citas todavía.</p>
+      <div id="listaCitas" class="lista-citas" aria-live="polite"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

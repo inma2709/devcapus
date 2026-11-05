@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 1 · Interfaz de referencia</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #222; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; background: #fff; border-bottom: 1px solid #ddd; }
+    .logo { color: #2563eb; font-size: 24px; font-weight: 700; }
+    nav a { margin-left: 20px; color: #333; text-decoration: none; }
+    .hero { padding: 70px 20px; text-align: center; }
+    .hero h1 { margin: 0 0 15px; font-size: 40px; }
+    .hero p { margin: 0 0 30px; color: #666; font-size: 18px; }
+    .boton { display: inline-block; padding: 12px 24px; border-radius: 6px; background: #2563eb; color: #fff; text-decoration: none; }
+    .tarjetas { display: flex; max-width: 1000px; gap: 20px; margin: 0 auto; padding: 20px 20px 70px; }
+    .tarjeta { flex: 1; padding: 30px; border: 1px solid #ddd; border-radius: 10px; background: #fff; text-align: center; }
+    .tarjeta h2 { font-size: 22px; }
+    .tarjeta p { color: #666; line-height: 1.5; }
+    footer { padding: 20px; background: #222; color: #fff; text-align: center; }
+  </style>
+</head>
+<body>
+  <header><div class="logo">DevCampus</div><nav><a href="#">Inicio</a><a href="#">Cursos</a><a href="#">Contacto</a></nav></header>
+  <main>
+    <section class="hero"><h1>Aprende desarrollo web</h1><p>Descubre HTML, CSS y JavaScript paso a paso.</p><a class="boton" href="#">Empezar</a></section>
+    <section class="tarjetas">
+      <article class="tarjeta"><h2>HTML</h2><p>Aprende a crear la estructura y el contenido de una página web.</p></article>
+      <article class="tarjeta"><h2>CSS</h2><p>Aprende a diseñar y dar estilo a tus páginas web.</p></article>
+      <article class="tarjeta"><h2>JavaScript</h2><p>Aprende a añadir interacción y comportamiento a tus páginas.</p></article>
+    </section>
+  </main>
+  <footer><p>© 2026 DevCampus</p></footer>
+</body>
+</html>

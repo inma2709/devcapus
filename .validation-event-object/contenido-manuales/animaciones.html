@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Animaciones y Transiciones en CSS | DevCampus</title>
+  <style>
+    /* VARIABLES DE MARCA Y TOKENS DE DISEÑO */
+    :root {
+      --color-primary: #7c3aed;       /* Violeta principal */
+      --color-secondary: #0ea5e9;     /* Azul de marca */
+      --color-accent: #f43f5e;        /* Rosa brillante */
+      --color-success: #10b981;       /* Verde éxito */
+      --color-warning: #f59e0b;       /* Ámbar */
+      --color-ink: #1e1b4b;           /* Azul muy oscuro */
+      --color-muted: #64748b;         /* Gris Slate */
+      --color-bg: #fafafa;            /* Fondo grisáceo */
+      --color-panel: #ffffff;         /* Fondo blanco de tarjeta */
+      --color-border: #e2e8f0;        /* Borde gris */
+      --color-light-accent: #f5f3ff;  /* Violeta súper claro */
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(30, 27, 75, 0.05);
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* RESET BÁSICO */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--color-bg);
+      color: var(--color-ink);
+      line-height: 1.7;
+    }
+
+    /* ENCABEZADO PRINCIPAL DE LA PÁGINA */
+    header.page-header {
+      background: linear-gradient(135deg, var(--color-primary), #4c1d95);
+      color: #ffffff;
+      padding: 4rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header.page-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    header.page-header p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ENVOLTORIO Y LAYOUT */
+    .wrap {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* NAVEGACIÓN Y SECCIONES */
+    .table-of-contents {
+      background-color: var(--color-panel);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .table-of-contents h2 {
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--color-light-accent);
+      padding-bottom: 0.5rem;
+    }
+
+    .table-of-contents ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .table-of-contents a {
+      color: var(--color-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .table-of-contents a:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    /* BLOQUE DE TÍTULO DE SECCIÓN INTUITIVO */
+    section.manual-section {
+      background-color: var(--color-panel);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    section.manual-section h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      border-bottom: 3px solid var(--color-light-accent);
+      padding-bottom: 0.5rem;
+    }
+
+    section.manual-section h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem 0;
+      color: var(--color-ink);
+    }
+
+    section.manual-section h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1rem 0 0.5rem 0;
+      color: var(--color-secondary);
+    }
+
+    /* ESTILO DIDÁCTICO PROPIO (PASO A PASO) */
+    .edu-step {
+      border-left: 4px solid var(--color-primary);
+      padding-left: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .edu-step-title {
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    /* COMPONENTES REUTILIZABLES */
+    .aviso {
+      background-color: #fffbeb;
+      border-left: 4px solid var(--color-warning);
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .aviso strong {
+      color: #92400e;
+    }
+
+    .nota {
+      background-color: var(--color-light-accent);
+      border-left: 4px solid var(--color-primary);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1.25rem 0;
+      font-style: italic;
+      color: #4c1d95;
+    }
+
+    /* CÓDIGO */
+    pre {
+      background-color: #0f172a;
+      color: #e2e8f0;
+      padding: 1.25rem;
+      border-radius: 8px;
+      font-family: "Fira Mono", "Consolas", Consolas, monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    code {
+      font-family: "Fira Mono", "Consolas", Consolas, monospace;
+      background-color: #f1f5f9;
+      color: var(--color-accent);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+      font-size: inherit;
+    }
+
+    /* LISTAS */
+    ul, ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* COMPARACIONES Y TABLAS */
+    table.comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    table.comparison-table th, table.comparison-table td {
+      border: 1px solid var(--color-border);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    table.comparison-table th {
+      background-color: var(--color-light-accent);
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    table.comparison-table tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* EJERCICIOS Y EXPERIMENTOS */
+    .exercise-box {
+      border: 2px solid var(--color-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      background-color: #ffffff;
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .exercise-num {
+      background-color: var(--color-primary);
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .demo-area {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem 0;
+      min-height: 140px;
+    }
+
+    /* BOTÓN DE RETO Y DETALLES */
+    details.solution-details {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    details.solution-details summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--color-secondary);
+      outline: none;
+    }
+
+    details.solution-details summary:hover {
+      color: var(--color-primary);
+    }
+
+    /* LABORATORIO DE EXPERIMENTACIÓN */
+    .lab-box {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.5rem;
+      border: 2px solid var(--color-primary);
+      border-radius: 12px;
+      padding: 1.5rem;
+      background-color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .lab-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .lab-controls {
+      background-color: var(--color-light-accent);
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lab-controls label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .lab-controls input, .lab-controls select {
+      padding: 6px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background-color: white;
+    }
+
+    .lab-display {
+      background-color: #f1f5f9;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 240px;
+      overflow: hidden;
+    }
+
+    .sandbox-element {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* LOADER / SPINNER REAL CSS */
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #e2e8f0;
+      border-top: 6px solid var(--color-primary);
+      border-radius: 50%;
+      animation: spin-animation 1s linear infinite;
+    }
+
+    @keyframes spin-animation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* CLASES AUXILIARES DE EJEMPLO */
+    .card-zoom-container {
+      overflow: hidden;
+      border-radius: 8px;
+      width: 200px;
+      height: 150px;
+    }
+
+    .card-zoom-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .card-zoom-container:hover .card-zoom-img {
+      transform: scale(1.15);
+    }
+
+    .btn-slide-in {
+      padding: 10px 20px;
+      background-color: var(--color-secondary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateX(-40px);
+      animation: slide-in-anim 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slide-in-anim {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .toast-msg {
+      background-color: #1e293b;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      opacity: 0;
+      animation: fade-in-anim 1s ease forwards;
+    }
+
+    @keyframes fade-in-anim {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .pulse-btn {
+      padding: 10px 20px;
+      background-color: var(--color-accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .pulse-btn:hover {
+      animation: pulse-keyf 1.5s infinite;
+    }
+
+    @keyframes pulse-keyf {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(244, 63, 94, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+    }
+
+    .btn-rotate {
+      padding: 10px 20px;
+      background: none;
+      border: 2px solid var(--color-ink);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.4s ease;
+    }
+
+    .btn-rotate:hover {
+      transform: rotate(360deg);
+    }
+
+    /* MINI QUIZ */
+    .quiz-question {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background-color: #f8fafc;
+    }
+
+    .quiz-question p {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      background-color: white;
+      border: 1px solid var(--color-border);
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-align: left;
+    }
+
+    .quiz-option:hover {
+      background-color: var(--color-light-accent);
+    }
+
+    .quiz-validation {
+      margin-top: 0.5rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* RESTRICCIÓN DE PREFERS-REDUCED-MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-delay: 0s !important;
+        animation-duration: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABECERA -->
+  <header class="page-header">
+    <h1>Animaciones y Transiciones en CSS</h1>
+    <p>Manual interactivo completo, progresivo y didáctico para estudiantes de desarrollo web.</p>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ÍNDICE DE CONTENIDOS -->
+    <nav class="table-of-contents">
+      <h2>Contenidos de esta lección</h2>
+      <ul>
+        <li><a href="#introduccion">2. ¿Qué es una animación web?</a></li>
+        <li><a href="#aportacion">3. ¿Qué aportan a una web? (UX)</a></li>
+        <li><a href="#cuando-no">4. Cuándo NO usarlas y accesibilidad</a></li>
+        <li><a href="#pseudo-clases">5. Pseudo-clases y cambios de estado</a></li>
+        <li><a href="#transiciones">6. Transiciones CSS</a></li>
+        <li><a href="#transformaciones">7. Primeras transformaciones</a></li>
+        <li><a href="#opacity-section">8. Uso de opacity</a></li>
+        <li><a href="#diferencia">9. Transición vs Animación</a></li>
+        <li><a href="#keyframes">10. Introducción a @keyframes</a></li>
+        <li><a href="#porcentajes">11. Animaciones con porcentajes</a></li>
+        <li><a href="#propiedades-animation">12. Propiedades de animation</a></li>
+        <li><a href="#timing-functions">13. Las timing functions</a></li>
+        <li><a href="#ejemplos-progresivos">14. Ejemplos prácticos progresivos</a></li>
+        <li><a href="#loader">15. Crear un spinner desde cero</a></li>
+        <li><a href="#entradas">16. Animaciones de entrada</a></li>
+        <li><a href="#rendimiento">17. Rendimiento y optimización</a></li>
+        <li><a href="#librerias">18. Librerías CSS (Animate.css, etc.)</a></li>
+        <li><a href="#css-vs-lib">19. Código propio frente a librerías</a></li>
+        <li><a href="#css-vs-js">20. CSS frente a JavaScript</a></li>
+        <li><a href="#laboratorio">21. Laboratorio de experimentación</a></li>
+        <li><a href="#proyecto-final">22. Proyecto final guiado</a></li>
+        <li><a href="#errores-frecuentes">23. Errores habituales de desarrollo</a></li>
+        <li><a href="#accesibilidad-seccion">24. Accesibilidad y reducción de movimiento</a></li>
+        <li><a href="#devtools">25. Trucos en las herramientas de desarrollo</a></li>
+        <li><a href="#resumen">26. Resumen conceptual de control</a></li>
+        <li><a href="#test">27. Mini test final autoevaluativo</a></li>
+        <li><a href="#retos">28. Retos prácticos finales con solución</a></li>
+      </ul>
+    </nav>
+
+    <!-- 2. INTRODUCCIÓN -->
+    <section id="introduccion" class="manual-section">
+      <h2>2. Introducción: ¿Qué es una animación web?</h2>
+      <div class="edu-step">
+        <p class="edu-step-title">Concepto Inicial</p>
+        <p>A diario, cuando navegas por Internet, interactúas con animaciones sin darte cuenta. ¿Cuáles te resultan familiares?</p>
+      </div>
+      <ul>
+        <li>Un botón que se sumerge un poco o cambia suavemente de tono cuando pasas el cursor por encima.</li>
+        <li>Una tarjeta de producto que se eleva ligeramente creando una sombra más profunda en tus tiendas online favoritas.</li>
+        <li>Un menú móvil que se desliza de izquierda a derecha de forma gradual en tu móvil.</li>
+        <li>Un mensaje emergente de notificación (*toast*) que aparece de la nada y desciende un segundo después.</li>
+        <li>Un círculo animado que gira de forma continua recordándote que la página o transacción se está cargando.</li>
+      </ul>
+      <p>
+        En el mundo físico, los objetos terrestres no se teletransportan. Si empujamos un objeto, se desplaza a través del espacio y tiempo de forma fluida. En las páginas web es igual: una <strong>animación</strong> consiste en cambiar <strong>progresivamente</strong> alguna propiedad visual de un elemento (como su color, posición o tamaño) a lo largo del tiempo.
+      </p>
+      <div class="nota">
+        <strong>Fórmula secreta:</strong> Estado inicial (A) ➔ Transición en el tiempo (⏰) ➔ Estado final (B).
+      </div>
+    </section>
+
+    <!-- 3. ¿QUÉ APORTAN? -->
+    <section id="aportacion" class="manual-section">
+      <h2>3. ¿Qué aportan las animaciones a una web? (UX)</h2>
+      <div class="edu-step">
+        <p class="edu-step-title">Para qué sirven</p>
+        <p>Una animación no es solo cosmética o "dibujos animados". En las interfaces digitales de hoy en día, aportan grandes beneficios de experiencia de usuario (UX):</p>
+      </div>
+      <ol>
+        <li><strong>Indican interactividad:</strong> Un sutil cambio en un elemento hace que el usuario comprenda instantáneamente que "eso" es un botón clicable.</li>
+        <li><strong>Confirman acciones visuales:</strong> En lugar de pasar bruscamente de rellenar un formulario a una pantalla en blanco, ver cómo la tarjeta del formulario es empujada suavemente indica que los datos han sido transmitidos.</li>
+        <li><strong>Dirigen el foco:</strong> El ojo humano está programado evolutivamente para reaccionar al movimiento. Si un sutil mensaje se balancea y aparece de golpe, el usuario posará su mirada allí de inmediato.</li>
+        <li><strong>Sensación de velocidad y calidad:</strong> Las transiciones fluidas generan en el cerebro la percepción de que la aplicación web es más rápida y robusta que una donde las pantallas parpadean instantáneamente de un estado a otro.</li>
+      </ol>
+    </section>
+
+    <!-- 4. CUÁNDO NO DEBEMOS UTILIZAR ANIMACIONES -->
+    <section id="cuando-no" class="manual-section">
+      <h2>4. Cuándo NO deberíamos utilizar animaciones</h2>
+      <div class="aviso">
+        <strong>¡Alerta de exceso!</strong> El error número uno del desarrollador novel es querer animarlo todo. Las animaciones mal diseñadas arruinan un sitio web por completo.
+      </div>
+      <p>Evita a toda costa los siguientes patrones:</p>
+      <ul>
+        <li><strong>Demasiadas animaciones a la vez:</strong> Hará que la interfaz parezca un circo de luces mareante.</li>
+        <li><strong>Duraciones excesivas:</strong> Un elemento que tarda 3 segundos en aparecer frustrará al usuario final, quien solo quiere rapidez.</li>
+        <li><strong>Distracción de lo importante:</strong> Si un anuncio parpadea continuamente al lado del artículo, el texto se volverá imposible de leer.</li>
+        <li><strong>Carga innecesaria:</strong> Provocar que el procesador del móvil de tus usuarios se caliente ejecutando cálculos pesados de animaciones complejas.</li>
+      </ul>
+    </section>
+
+    <!-- 5. PSEUDO-CLASES Y CAMBIO DE ESTADO -->
+    <section id="pseudo-clases" class="manual-section">
+      <h2>5. Pseudo-clases y cambios de estado</h2>
+      <p>Antes de animar, debemos recordar las herramientas de CSS que capturan las interacciones básicas del navegador sin necesidad de recurrir a JavaScript:</p>
+      <ul>
+        <li><code>:hover</code>: Se activa al pasar el puntero/ratón por encima del elemento.</li>
+        <li><code>:focus</code>: Se activa cuando el elemento recibe el foco de teclado (al pulsar <kbd>Tab</kbd>) o al pulsar sobre un input.</li>
+        <li><code>:active</code>: Se activa en el instante exacto en que presionamos el botón izquierdo del ratón (el "clic").</li>
+      </ul>
+      <p>Echemos un vistazo a este código CSS habitual:</p>
+      <pre><code>.mi-boton {
+  background-color: #7c3aed; /* Violeta */
+  color: white;
+}
+
+.mi-boton:hover {
+  background-color: #f43f5e; /* Cambia a Rosa */
+}</code></pre>
+      <div class="edu-step">
+        <p class="edu-step-title">Pregunta de reflexión</p>
+        <p>¿Qué ocurre realmente cuando el alumno pasa el ratón sobre este botón?</p>
+        <p>El color cambia de violeta a rosa de manera <strong>instantánea y cortante</strong>. No hay transición. El navegador sustituye el estilo de un milisegundo a otro. Y aquí es donde las <strong>transiciones</strong> entran en juego para suavizar este golpe.</p>
+      </div>
+    </section>
+
+    <!-- 6. TRANSICIONES CSS -->
+    <section id="transiciones" class="manual-section">
+      <h2>6. Transiciones CSS</h2>
+      <p>Una <strong>transición</strong> suaviza el paso de un estilo CSS anterior a un estilo CSS posterior provocado por un cambio de estado.</p>
+      <div class="edu-step">
+        <p class="edu-step-title">Propiedad Abreviada (Shorthand)</p>
+        <p>Para simplificar, usamos habitualmente la propiedad combinada <code>transition</code>:</p>
+      </div>
+      <pre><code>.boton-suave {
+  background-color: #7c3aed;
+  /* Sintaxis abreviada: [propiedad] [duración] [curva de velocidad] */
+  transition: background-color 0.3s ease;
+}
+
+.boton-suave:hover {
+  background-color: #f43f5e;
+}</code></pre>
+
+      <h3>Analizamos el código paso a paso:</h3>
+      <ul>
+        <li><code>background-color</code> (de transition): Indica qué propiedad específica del elemento queremos suavizar. Solo vigila esta propiedad.</li>
+        <li><code>0.3s</code>: Es la duración. Significa 0.3 segundos (300 milisegundos).</li>
+        <li><code>ease</code>: Es la curva de aceleración. Arranca ligeramente lento, acelera en medio y frena al final de forma natural.</li>
+        <li><code>.boton-suave:hover</code>: Provoca el detonante inicial. Al retirar el ratón, la transición se ejecuta en sentido inverso de forma simétrica.</li>
+      </ul>
+
+      <h3>La versión detallada por propiedades</h3>
+      <p>Aunque la abreviada es ideal, tras los bastidores existen cuatro propiedades que puedes declarar por separado:</p>
+      <pre><code>.boton-detallado {
+  transition-property: background-color; /* Qué animar */
+  transition-duration: 0.3s;            /* Duración */
+  transition-timing-function: ease;      /* Aceleración */
+  transition-delay: 0s;                  /* Retardo antes de arrancar */
+}</code></pre>
+    </section>
+
+    <!-- 7. PRIMERAS TRANSFORMACIONES -->
+    <section id="transformaciones" class="manual-section">
+      <h2>7. Primeras transformaciones</h2>
+      <p>Para realizar efectos espaciales asombrosos sin modificar la posición del resto de elementos de la página, utilizamos la propiedad <code>transform</code>.</p>
+      
+      <h3>Las tres funciones mágicas de transformación:</h3>
+      
+      <h4>1. Escalar con <code>scale()</code></h4>
+      <p>Aumenta o reduce el tamaño visual del elemento. <code>scale(1)</code> equivale a su tamaño 100%. <code>scale(1.05)</code> equivale a un aumento del 5%.</p>
+      <pre><code>/* Escala un elemento para que sea 1.15 veces su tamaño normal */
+transform: scale(1.15);</code></pre>
+
+      <h4>2. Desplazar con <code>translate()</code></h4>
+      <p>Mueve el elemento por el plano de la pantalla en píxeles, rem o porcentajes. Usamos <code>translateX()</code> para horizontal o <code>translateY()</code> para vertical.</p>
+      <pre><code>/* Eleva el elemento verticalmente 5px hacia arriba (eje Y negativo es arriba) */
+transform: translateY(-5px);</code></pre>
+
+      <h4>3. Rotar con <code>rotate()</code></h4>
+      <p>Gira el elemento los grados que le indiquemos expresados en <code>deg</code> (grados).</p>
+      <pre><code>/* Gira el elemento 10 grados en sentido de las agujas del reloj */
+transform: rotate(10deg);</code></pre>
+
+      <div class="nota">
+        <strong>Maquetación moderna:</strong> La combinación de <code>transition</code> y <code>transform</code> es el secreto para crear componentes interactivos modernos que reaccionan con suavidad.
+      </div>
+      <pre><code>.mi-tarjeta {
+  border: 1px solid #ddd;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mi-tarjeta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}</code></pre>
+    </section>
+
+    <!-- 8. OPACITY -->
+    <section id="opacity-section" class="manual-section">
+      <h2>8. La propiedad opacity</h2>
+      <p>
+        La propiedad <code>opacity</code> controla la opacidad (transparencia) de un elemento de forma global. Toma valores continuos desde <code>0</code> (completamente invisible e intangible visualmente) hasta <code>1</code> (totalmente opaco y visible).
+      </p>
+      <p>
+        Es maravillosa para transicionar apariciones o desapariciones suaves.
+      </p>
+      <pre><code>.tarjeta-mensaje {
+  opacity: 0.2;
+  transition: opacity 0.4s ease;
+}
+
+.tarjeta-mensaje:hover {
+  opacity: 1; /* El contenido se ilumina por completo al pasar el ratón */
+}</code></pre>
+    </section>
+
+    <!-- 9. DIFERENCIAS: TRANSITION VS ANIMATION -->
+    <section id="diferencia" class="manual-section">
+      <h2>9. Diferencia conceptual entre transición y animación</h2>
+      <p>Aunque ambos crean movimiento, se utilizan para fines completamente distintos de comportamiento:</p>
+      
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>Transiciones (transition)</th>
+            <th>Animaciones (animation)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Necesito cambio de estado</strong></td>
+            <td>Sí, requiere que algo cambie (hover, active, JS).</td>
+            <td>No, puede arrancar automáticamente al cargar la web.</td>
+          </tr>
+          <tr>
+            <td><strong>Estados de la trayectoria</strong></td>
+            <td>Solo dos: inicio (A) y final (B).</td>
+            <td>Infinitos utilizando porcentajes (0%, 25%, 50%...).</td>
+          </tr>
+          <tr>
+            <td><strong>Repetición continua</strong></td>
+            <td>No, va y vuelve una sola vez.</td>
+            <td>Sí, admite repeticiones finitas o infinitas (`infinite`).</td>
+          </tr>
+          <tr>
+            <td><strong>Usa @keyframes</strong></td>
+            <td>No, calcula el camino de forma implícita.</td>
+            <td>Sí, los necesita obligatoriamente para definir el mapa.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 10. INTRODUCCIÓN A @KEYFRAMES -->
+    <section id="keyframes" class="manual-section">
+      <h2>10. Introducción a @keyframes</h2>
+      <p>
+        Un "keyframe" (fotograma clave) es un concepto heredado del cine clásico de animación. Significa indicarle al navegador: *"En este punto de la línea de tiempo quiero que el objeto tenga esta propiedad física y en este otro esta otra"*.
+      </p>
+      <p>
+        Con <code>@keyframes</code> le damos nombre de pila a nuestra animación y definimos su trayectoria básica de inicio a final usando las palabras clave <code>from</code> (desde dónde partimos) y <code>to</code> (hasta dónde llegamos):
+      </p>
+      <pre><code>/* 1º: Definimos la receta de cocina en sí */
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 2º: Asignamos e invocamos la receta al elemento */
+.mi-notificacion {
+  animation: aparecerSuave 1.5s ease;
+}</code></pre>
+      
+      <h3>Analizamos el CSS línea a línea:</h3>
+      <ul>
+        <li><code>@keyframes aparecerSuave</code>: Define una línea de tiempo llamada `aparecerSuave`.</li>
+        <li><code>from</code>: El segundo cero de la animación (opacidad totalmente transparente en 0).</li>
+        <li><code>to</code>: El segundo final de la animación (opacidad opaca en 1).</li>
+        <li><code>animation: aparecerSuave 1.5s ease;</code>: Asocia la receta. Hace que dure 1.5 segundos en total usando la curva de velocidad `ease`.</li>
+      </ul>
+    </section>
+
+    <!-- 11. ANIMACIONES CON PORCENTAJES -->
+    <section id="porcentajes" class="manual-section">
+      <h2>11. Animaciones complejas con porcentajes</h2>
+      <p>¿Qué ocurre si queremos que un elemento vaya flotando, se desplace a la derecha y luego regrese al inicio? Para trayectorias complejas con más de dos estados, dividimos el tiempo de la animación usando <strong>porcentajes (del 0% al 100%)</strong>.</p>
+      
+      <pre><code>@keyframes patrullaLateral {
+  0% {
+    transform: translateX(0); /* Inicio */
+  }
+  50% {
+    transform: translateX(120px); /* Centro: se aleja 120px */
+  }
+  100% {
+    transform: translateX(0); /* Final: regresa al punto inicial */
+  }
+}
+
+.caja-patrulla {
+  animation: patrullaLateral 3s ease infinite;
+}</code></pre>
+      
+      <div class="nota">
+        <strong>Puntos en el tiempo:</strong> Piensa en los porcentajes como instantes exactos en un vídeo en marcha. En una animación de 4 segundos: 0% es el segundo 0, 25% es el segundo 1, 50% es el segundo 2, y 100% es el segundo 4.
+      </div>
+    </section>
+
+    <!-- 12. PROPIEDADES DE ANIMATION -->
+    <section id="propiedades-animation" class="manual-section">
+      <h2>12. Propiedades principales de animation</h2>
+      <p>Para un control exhaustivo del comportamiento de un objeto animado, cuentas con estas propiedades CSS desglosadas:</p>
+      <ul>
+        <li><code>animation-name</code>: El nombre del <code>@keyframes</code> que va a ejecutarse.</li>
+        <li><code>animation-duration</code>: Cuánto tarda en dar una vuelta completa (ej. `2s`, `400ms`).</li>
+        <li><code>animation-timing-function</code>: La curva de velocidad (`linear`, `ease`, etc.).</li>
+        <li><code>animation-delay</code>: Retardo antes de dar el primer paso (ej. `0.5s`).</li>
+        <li><code>animation-iteration-count</code>: Número de repeticiones de la animación (un número entero como `3`, o `infinite` para bucles continuos).</li>
+        <li><code>animation-direction</code>: Dirección del movimiento (`normal`, `reverse` para ir marcha atrás, o `alternate` para que en cada ciclo cambie de sentido de ida y vuelta).</li>
+        <li><code>animation-fill-mode</code>: Define qué estilos conserva el elemento antes de arrancar y después de terminar. Usa <code>forwards</code> para ordenar al elemento quedarse permanentemente con el estilo del fotograma del 100%, en vez de rebotar bruscamente al estado inicial pre-animación.</li>
+      </ul>
+    </section>
+
+    <!-- 13. TIMING FUNCTIONS -->
+    <section id="timing-functions" class="manual-section">
+      <h2>13. Las curvas de aceleración (Timing Functions)</h2>
+      <p>Las propiedades físicas no se mueven de la misma forma en la naturaleza. CSS utiliza curvas matemáticas Bézier para dotar a las animaciones de un carácter real:</p>
+      <ul>
+        <li><code>linear</code>: Velocidad constante, plana y robótica de principio a fin. Útil para rotaciones y spinners continuos.</li>
+        <li><code>ease</code>: Arranca un poco despacio, se acelera en el tramo medio y frena suavemente al aproximarse al final (valor por defecto).</li>
+        <li><code>ease-in</code>: Comienza de forma muy pausada (como un deportivo saliendo de boxes) y toma máxima velocidad hacia el final.</li>
+        <li><code>ease-out</code>: Arranca a máxima velocidad y va perdiendo fuerza progresivamente hasta detenerse de forma muy delicada.</li>
+        <li><code>ease-in-out</code>: Acelera despacio y frena despacio al mismo tiempo. Genera ritmos orgánicos muy agradables para el diseño de interfaces.</li>
+      </ul>
+      <div class="nota">
+        <strong>Para mentes curiosas (Ampliación):</strong> Puedes usar <code>cubic-bezier(x1, y1, x2, y2)</code> para dibujar tus propias curvas de velocidad personalizadas con rebote.
+      </div>
+    </section>
+
+    <!-- 14. EJEMPLOS PRÁCTICOS PROGRESIVOS -->
+    <section id="ejemplos-progresivos" class="manual-section">
+      <h2>14. Ejemplos prácticos progresivos paso a paso</h2>
+      <p>Ha llegado el momento de analizar proyectos reales. Observa el código y experimenta con lo que se propone en cada bloque.</p>
+
+      <!-- EJERCICIO 1 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 1: Botón Cambia-color</h3>
+          <span class="exercise-num">Transición básica</span>
+        </div>
+        <p><strong>Objetivo:</strong> Crear un botón que pase de violeta a rosa suavemente al pasar el ratón, sin tirones visuales.</p>
+        <div class="demo-area">
+          <button style="padding: 10px 20px; background-color: #7c3aed; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background-color 0.4s ease;" onmouseover="this.style.backgroundColor='#f43f5e'" onmouseout="this.style.backgroundColor='#7c3aed'">
+            Pasa el ratón por encima
+          </button>
+        </div>
+        <h4>HTML:</h4>
+        <pre><code>&lt;button class="btn-color"&gt;Pasa el ratón por encima&lt;/button&gt;</code></pre>
+        <h4>CSS:</h4>
+        <pre><code>.btn-color {
+  background-color: #7c3aed;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  
+  /* Animación suavizada de transición */
+  transition: background-color 0.4s ease;
+}
+
+.btn-color:hover {
+  background-color: #f43f5e;
+}</code></pre>
+        <p><strong>Qué propiedad se está animando:</strong> <code>background-color</code>.</p>
+        <p><strong>Reto propuesto para ti:</strong> Cambia la duración de <code>0.4s</code> a <code>2s</code> para sentir el cambio a cámara hiperlenta.</p>
+      </div>
+
+      <!-- EJERCICIO 2 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 2: Botón elástico (Zoom hover)</h3>
+          <span class="exercise-num">Transform scale</span>
+        </div>
+        <p><strong>Objetivo:</strong> Un botón que aumente ligeramente de escala dándote la bienvenida de una forma muy elástica.</p>
+        <div class="demo-area">
+          <button style="padding: 10px 20px; background-color: #0ea5e9; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+            ¡Hago Zoom!
+          </button>
+        </div>
+        <h4>HTML:</h4>
+        <pre><code>&lt;button class="btn-zoom"&gt;¡Hago Zoom!&lt;/button&gt;</code></pre>
+        <h4>CSS:</h4>
+        <pre><code>.btn-zoom {
+  background-color: #0ea5e9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-zoom:hover {
+  transform: scale(1.15); /* Crece un 15% */
+}</code></pre>
+        <p><strong>Qué propiedad se está animando:</strong> <code>transform</code>.</p>
+      </div>
+
+      <!-- EJERCICIO 3 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 3: Tarjeta Flotante</h3>
+          <span class="exercise-num">Transform elevación</span>
+        </div>
+        <p><strong>Objetivo:</strong> Crear un contenedor que se eleve y profundice su sombra simulando estar flotando tridimensionalmente en el aire.</p>
+        <div class="demo-area">
+          <div style="width: 200px; height: 100px; background: white; border: 1px solid #cbd5e1; border-radius: 8px; display: flex; align-items:center; justify-content:center; font-weight: bold; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
+            Elevación en el aire
+          </div>
+        </div>
+        <h4>CSS:</h4>
+        <pre><code>.card-float {
+  width: 200px;
+  background-color: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  
+  /* Declaramos suavizado simultáneo en varias propiedades */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-float:hover {
+  transform: translateY(-10px); /* 10 píxeles hacia arriba */
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* Sombra más profunda */
+}</code></pre>
+      </div>
+
+      <!-- EJERCICIO 4 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 4: Tarjeta con Zoom Interno</h3>
+          <span class="exercise-num">Combinado avanzado</span>
+        </div>
+        <p><strong>Objetivo:</strong> Lograr el famoso efecto de cibersitios modernos donde la foto hace un zoom interno por detrás de la tarjeta sin salirse de los márgenes.</p>
+        <div class="demo-area">
+          <div class="card-zoom-container">
+            <img class="card-zoom-img" src="bootstrap.png" alt="Card zoom demo">
+          </div>
+        </div>
+        <h4>HTML:</h4>
+        <pre><code>&lt;div class="card-zoom-container"&gt;
+  &lt;img class="card-zoom-img" src="imagen.png" alt="Demo"&gt;
+&lt;/div&gt;</code></pre>
+        <h4>CSS:</h4>
+        <pre><code>.card-zoom-container {
+  overflow: hidden; /* CORTA todo lo que se salga de los bordes */
+  border-radius: 8px;
+  width: 200px;
+  height: 150px;
+}
+
+.card-zoom-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease; /* Transición en la foto */
+}
+
+/* Cuando pasamos el ratón al CONTENEDOR, se escala la IMAGEN interior */
+.card-zoom-container:hover .card-zoom-img {
+  transform: scale(1.15);
+}</code></pre>
+      </div>
+
+      <!-- EJERCICIO 5 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 5: Mensaje Flotante de Bienvenida</h3>
+          <span class="exercise-num">Transición Opacity</span>
+        </div>
+        <p><strong>Objetivo:</strong> Un aviso transparente que se hace 100% visible aportando visibilidad limpia.</p>
+        <div class="demo-area">
+          <div class="toast-msg">
+            <span>🔔 ¡Novedades disponibles!</span>
+          </div>
+        </div>
+        <h4>CSS:</h4>
+        <pre><code>.toast-msg {
+  background-color: #1e293b;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  opacity: 0;
+  
+  /* Animación de entrada de opacidad automática al cargarse */
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Transiciona a opaco */
+  }
+}</code></pre>
+      </div>
+
+      <!-- EJERCICIO 6 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 6: Deslizamiento Lateral suave</h3>
+          <span class="exercise-num">Slide in</span>
+        </div>
+        <p><strong>Objetivo:</strong> Un elemento que aparezca desplazándose horizontalmente desvaneciéndose en el camino.</p>
+        <div class="demo-area">
+          <button class="btn-slide-in">¡He entrado desde la izquierda!</button>
+        </div>
+        <h4>CSS:</h4>
+        <pre><code>.btn-slide-in {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}</code></pre>
+      </div>
+
+      <!-- EJERCICIO 7 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 7: Rotación Interactiva de Botón</h3>
+          <span class="exercise-num">Rotate</span>
+        </div>
+        <p><strong>Objetivo:</strong> Botón que gire sobre sí mismo 360 grados de manera hipnótica al pasarle por encima.</p>
+        <div class="demo-area">
+          <button class="btn-rotate">Gírame 🔄</button>
+        </div>
+        <h4>CSS:</h4>
+        <pre><code>.btn-rotate {
+  transition: transform 0.4s ease;
+}
+
+.btn-rotate:hover {
+  transform: rotate(360deg); /* Vuelta completa */
+}</code></pre>
+      </div>
+
+      <!-- EJERCICIO 8 -->
+      <div class="exercise-box">
+        <div class="exercise-header">
+          <h3>Ejercicio 8: Latido constante (Llamada a la atención)</h3>
+          <span class="exercise-num">Pulse</span>
+        </div>
+        <p><strong>Objetivo:</strong> Lograr que un botón "lata" infinitamente mediante escalado y sombras concéntricas.</p>
+        <div class="demo-area">
+          <button class="pulse-btn">¡Mírame! 💖</button>
+        </div>
+        <h4>CSS:</h4>
+        <pre><code>.pulse-btn {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(244, 63, 94, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0);
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 15. SPINNER / LOADER -->
+    <section id="loader" class="manual-section">
+      <h2>15. Crear un loader/spinner interactivo</h2>
+      <div class="edu-step">
+        <p class="edu-step-title">Manos a la obra</p>
+        <p>Vamos a deconstruir cómo funciona un indicador de carga típico de la web modernos hecho puramente en CSS.</p>
+      </div>
+      
+      <div class="demo-area">
+        <div class="spinner"></div>
+      </div>
+
+      <h3>HTML:</h3>
+      <pre><code>&lt;div class="spinner"&gt;&lt;/div&gt;</code></pre>
+
+      <h3>CSS desarrollado:</h3>
+      <pre><code>.spinner {
+  width: 50px;
+  height: 50px;
+  
+  /* 1) Hacemos las paredes exteriores del círculo */
+  border: 6px solid #e2e8f0;         /* Gris claro de pista */
+  border-top: 6px solid #7c3aed;     /* El arco violeta de empuje */
+  
+  /* 2) Redondeamos el cuadrado para formar un círculo perfecto */
+  border-radius: 50%;
+  
+  /* 3) Aplicamos la receta para rotar de manera infinita */
+  animation: girarInfinito 1s linear infinite;
+}
+
+@keyframes girarInfinito {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}</code></pre>
+
+      <div class="aviso">
+        <strong>¿Cómo funciona el truco de ilusión óptica?</strong> El spinner es solo una caja redonda que tiene coloreada de violeta su franja de arriba. Al rotarla repetidamente en bucle continuo de 0 a 360 grados, crea la ilusión en tu retina de ser una estela fluida giratoria de carga.
+      </div>
+    </section>
+
+    <!-- 16. ANIMACIONES DE ENTRADA -->
+    <section id="entradas" class="manual-section">
+      <h2>16. Animaciones de entrada e incorporación</h2>
+      <p>
+        Cuando una página carga, los componentes de texto e imágenes entran al escenario habitualmente de forma gradual. Estos efectos son combinaciones de dos propiedades esenciales: <code>opacity</code> (invisibilidad a visibilidad) y <code>transform</code> (movimiento del exterior al interior).
+      </p>
+      <ul>
+        <li><strong>Fade In (Aparición):</strong> Opacidad de 0 a 1.</li>
+        <li><strong>Slide In (Desplazamiento):</strong> Translate de -30px a 0px coordinado con la opacidad.</li>
+        <li><strong>Zoom In (Enfoque):</strong> Escala de 0.8 a 1.</li>
+      </ul>
+    </section>
+
+    <!-- 17. RENDIMIENTO -->
+    <section id="rendimiento" class="manual-section">
+      <h2>17. Rendimiento y optimización de renderizado</h2>
+      <div class="aviso">
+        <strong>Regla del experto:</strong> Intenta animar en un 95% de los casos únicamente las propiedades <code>transform</code> y <code>opacity</code>.
+      </div>
+      <p>
+        Cuando modificas propiedades como <code>width</code>, <code>height</code>, <code>top</code> o <code>margin</code>, obligas al navegador a rehacer y recalcular la posición de cada caja del diseño de toda la página entera (esto se conoce técnicamente como <strong>Layout / Reflow</strong>).
+      </p>
+      <p>
+        Sin embargo, <code>transform</code> y <code>opacity</code> son procesadas directamente por la parte gráfica del ordenador (GPU) mediante un proceso llamado <strong>Composition</strong>, sin arrastrar costes de recálculo sobre otros elementos. La diferencia sobre todo se aprecia en teléfonos móviles, donde las animaciones basadas en transformaciones se verán suaves como la seda, mientras que las de tamaños irán dando tirones (coletazos).
+      </p>
+    </section>
+
+    <!-- 18. LIBRERÍAS DE ANIMACIONES -->
+    <section id="librerias" class="manual-section">
+      <h2>18. Librerías de animaciones CSS</h2>
+      <p>Para no tener que reinventar la rueda en grandes proyectos, los desarrolladores nos apoyamos en librerías de componentes pre-construidos:</p>
+      
+      <h3>Animate.css</h3>
+      <p>Es la reina indiscutible de las librerías CSS. Contiene decenas de efectos de entrada, salida, rebotes y llamados de atención listos para utilizar.</p>
+      
+      <h4>Cómo utilizarla mediante CDN:</h4>
+      <pre><code>/* Añadimos este link dentro de la etiqueta &lt;head&gt; */
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /&gt;</code></pre>
+
+      <h4>Clases asociadas en el HTML:</h4>
+      <pre><code>/* 1º: 'animate__animated' activa la inicialización de la librería.
+   2º: 'animate__bounce' es la clase específica de rebote de la receta. */
+&lt;h1 class="animate__animated animate__bounce"&gt;¡Hola rebotando!&lt;/h1&gt;</code></pre>
+
+      <h3>Otras herramientas útiles</h3>
+      <ul>
+        <li><strong>Animista:</strong> Un panel visual online que te permite jugar y tocar las animaciones interactivas en tu propio navegador y luego darte el pedazo de código CSS limpio para copiarlo.</li>
+        <li><strong>Hover.css:</strong> Especializada exclusivamente en transiciones interactivas en estados hover para botones, iconos e imágenes.</li>
+      </ul>
+    </section>
+
+    <!-- 19. CSS VERSUS LIBRERÍAS -->
+    <section id="css-vs-lib" class="manual-section">
+      <h2>19. Creación propia frente a Librerías</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Opción</th>
+            <th>Ventajas</th>
+            <th>Inconvenientes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Crear tus animaciones</strong></td>
+            <td>Ahorro total de código, control absoluto sobre cada píxel, ideal para el aprendizaje sólido.</td>
+            <td>Requiere mayor inversión de tiempo para efectos complejos.</td>
+          </tr>
+          <tr>
+            <td><strong>Usar una librería</strong></td>
+            <td>Rapidez de prototipado extremo, estabilidad entre navegadores y accesibilidad madura.</td>
+            <td>Cargas peso extra de código CSS que el navegador del usuario descargará y probablemente no use completa.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 20. CSS FRENTE A JAVASCRIPT -->
+    <section id="css-vs-js" class="manual-section">
+      <h2>20. Animaciones por CSS frente a JavaScript</h2>
+      <p>
+        <strong>CSS</strong> es adecuado y recomendado para el 90% de las animaciones visuales e interacciones sencillas del día a día (apariciones, hover, loaders) gracias a que consume poquísimos recursos.
+      </p>
+      <p>
+        Sin embargo, <strong>JavaScript</strong> se vuelve obligatorio cuando necesitas una lógica o secuanciación compleja: por ejemplo si necesitas que un personaje salte al chocar contra un obstáculo del juego, o al deslizarte de manera pixelar exacta con hilos de ejecución complejos. En ese sector, librerías avanzadas como <strong>GSAP (GreenSock)</strong> son de gran consideración profesional.
+      </p>
+    </section>
+
+    <!-- 21. LABORATORIO DE EXPERIMENTACIÓN -->
+    <section id="laboratorio" class="manual-section">
+      <h2>21. Laboratorio de experimentación interactivo</h2>
+      <p>Toca los mandos interactivos de abajo para ver en tiempo real cómo cambia física y temporalmente el elemento de pruebas de DevCampus:</p>
+
+      <div class="lab-box">
+        <div class="lab-controls">
+          <label>
+            Aceleración (Timing function):
+            <select id="config-timing">
+              <option value="linear">linear</option>
+              <option value="ease" selected>ease</option>
+              <option value="ease-in">ease-in</option>
+              <option value="ease-out">ease-out</option>
+              <option value="ease-in-out">ease-in-out</option>
+            </select>
+          </label>
+          <label>
+            Duración (Segundos):
+            <input type="range" id="config-duration" min="0.2" max="3" step="0.1" value="0.6">
+            <span id="label-duration">0.6s</span>
+          </label>
+          <label>
+            Rotación (Grados):
+            <input type="range" id="config-rotate" min="0" max="360" value="0">
+            <span id="label-rotate">0deg</span>
+          </label>
+          <label>
+            Escala (scale):
+            <input type="range" id="config-scale" min="0.5" max="1.6" step="0.1" value="1.0">
+            <span id="label-scale">1.0</span>
+          </label>
+          <label>
+            Transparencia (opacity):
+            <input type="range" id="config-opacity" min="0.1" max="1" step="0.1" value="1">
+            <span id="label-opacity">1.0</span>
+          </label>
+          <button id="btn-play-pulse" style="margin-top:0.5rem; padding: 10px; background-color: var(--color-primary); color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">
+            Invocación de Animación Pulso ⚡
+          </button>
+        </div>
+
+        <div class="lab-display">
+          <div class="sandbox-element" id="sandbox"></div>
+        </div>
+      </div>
+
+      <div class="edu-step" style="margin-top: 2rem;">
+        <p class="edu-step-title">Preguntas para tu experimentación</p>
+        <ul>
+          <li><strong>¿Qué ocurre si cambias la duración de 0.2s a 2s?</strong> ¿Resulta agradable para un botón común de contacto?</li>
+          <li><strong>¿Qué ocurre con la escala si la pones al máximo y retiras los componentes interactivos?</strong></li>
+          <li>¿Qué diferencia notas sobre todo entre mover el ritmo en <code>linear</code> frente a <code>ease-in-out</code>?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 22. PROYECTO FINAL GUIADO -->
+    <section id="proyecto-final" class="manual-section">
+      <h2>22. Proyecto final guiado: Tarjeta Personal de Negocio</h2>
+      <p>Vas a crear la maquetación de una tarjeta de negocio que integra con armonía transiciones e interactividad sutiles.</p>
+      
+      <div class="aviso">
+        <strong>Consigna de oro:</strong> Una animación es exitosa si el usuario siente comodidad e interactividad, pero no desvía groseramente su atención de leer los datos de la persona.
+      </div>
+
+      <h3>Tu desafío académico consiste en:</h3>
+      <ol>
+        <li>Definir una entrada suave con escala y opacidad progresivas al cargar la tarjeta del DevCampus.</li>
+        <li>Instaurar una elevación de 8px en el eje Y en estado Hover acompañada de una sombra profunda.</li>
+        <li>Dar interactividad de escalado y rebote a los iconos de contacto de la tarjeta para indicar que son áreas clicables.</li>
+      </ol>
+
+      <div class="nota">
+        <strong>Justifica tu diseño:</strong> Tras construir tu tarjeta, responde por escrito: ¿Qué has decidido animar? ¿Cuánto dura cada evento en el tiempo y qué timing function elegiste para transmitir elegancia técnica?
+      </div>
+    </section>
+
+    <!-- 23. ERRORES HABITUALES -->
+    <section id="errores-frecuentes" class="manual-section">
+      <h2>23. Errores habituales de desarrollo</h2>
+      <p>Si tu código de animación no se comporta tal y como esperabas, revisa esta check-list de depuración de Inma:</p>
+      <ul>
+        <li><strong>Olvidar declarar la propiedad <code>transition</code> en el estado base:</strong> Si escribes la regla <code>transition</code> únicamente bajo la pseudoclase <code>:hover</code>, la animación solo funcionará de ida. Al sacar el ratón, el elemento regresará a su estado inicial de un golpe feo y cortante.</li>
+        <li><strong>Intentar animar propiedades no computables:</strong> Propiedades de diseño como <code>display: none</code> a <code>display: block</code> no admiten transiciones intermedias progresivas por el navegador. Usa <code>opacity</code> o <code>visibility</code> en su lugar.</li>
+        <li><strong>Nombre de keyframe erróneo (Mayúsculas/Minúsculas):</strong> Si declaras <code>@keyframes Latigazo</code> y luego invocas <code>animation: latigazo 1s;</code>, la animación fallará en silencio.</li>
+        <li><strong>Abusar de animaciones infinitas en toda la pantalla:</strong> El uso masivo de movimientos continuos agota la atención cognitiva del estudiante y degrada el rendimiento en tablets de baja gama.</li>
+      </ul>
+    </section>
+
+    <!-- 24. ACCESIBILIDAD -->
+    <section id="accesibilidad-seccion" class="manual-section">
+      <h2>24. Accesibilidad y reducción de movimiento</h2>
+      <p>
+        Muchas personas padecen trastornos de carácter vestibular, migrañas u otras sensibilidades visuales que les causan dolores de cabeza e incluso náuseas cuando contemplan elementos en constante movimiento, rotación o zooms rápidos.
+      </p>
+      <p>
+        Los sistemas operativos modernos permiten activar una opción llamada <strong>"Reducir el movimiento" / "Reduced Motion"</strong>. Como desarrolladores accesibles expertos, debemos capturar y respetar esta configuración mediante una media query específica:
+      </p>
+
+      <pre><code>@media (prefers-reduced-motion: reduce) {
+  /* Apaga todas las animaciones y transiciones de golpe para respetar al usuario */
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}</code></pre>
+    </section>
+
+    <!-- 25. HERRAMIENTAS DEL NAVEGADOR -->
+    <section id="devtools" class="manual-section">
+      <h2>25. Herramientas del navegador para depuración</h2>
+      <p>
+        No trabajes a ciegas. Si en tu navegador haces clic derecho en cualquier elemento animado y pulsas en <strong>"Inspeccionar (Inspect)"</strong>, tienes herramientas de primer nivel para mejorar tu código:
+      </p>
+      <ol>
+        <li>Puedes forzar de forma artificial los estados interactivos pulsando en los marcadores de simulación `:hov`, `:act` o `:foc` en tu pestaña de estilos.</li>
+        <li>En la esquina de las reglas CSS de <code>transition</code>, verás un pequeño icono gráfico con forma de curva. Haz clic allí para manipular y depurar la aceleración en directo con un controlador visual.</li>
+        <li>Puedes pausar, retrasar o reproducir a cámara lenta cualquier animación de tu página web abriendo el panel oculto **Animations** del navegador.</li>
+      </ol>
+    </section>
+
+    <!-- 26. RESUMEN CONCEPTUAL -->
+    <section id="resumen" class="manual-section">
+      <h2>26. Lo que debes entender antes de terminar este tema</h2>
+      <p>Ponte a prueba a ti mismo. ¿Podrías ser capaz de resumir con tus propias palabras qué significan estos términos técnicos?</p>
+      <ul>
+        <li><strong>Transición:</strong> Una suavización elástica de un cambio entre dos estados definidos (inicio y final).</li>
+        <li><strong>Animación @keyframes:</strong> Una secuencia autónoma de múltiples momentos de escala de tiempo usando porcentajes.</li>
+        <li><strong>Transform:</strong> Mueve, escala y rota elementos con un rendimiento asombroso procesado por hardware.</li>
+        <li><strong>Opacity:</strong> Manejo fluido de opacidad y visibilidad.</li>
+        <li><strong>Reducción de movimiento:</strong> Prioridad educativa y ética para un desarrollo accesible.</li>
+      </ul>
+    </section>
+
+    <!-- 27. MINI TEST FINAL -->
+    <section id="test" class="manual-section">
+      <h2>27. Mini test final autoevaluativo (12 Preguntas)</h2>
+      <p>Selecciona la opción correcta en cada bloque y recibe feedback educativo al instante:</p>
+
+      <!-- P1 -->
+      <div class="quiz-question" id="q1">
+        <p>1. ¿Cuál es el canal óptimo para lograr una animación fluida sin penalizar el rendimiento?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q1', true, '')">Animar preferentemente las propiedades 'transform' y 'opacity'.</button>
+          <button class="quiz-option" onclick="evalQuiz('q1', false, '')">Animar continuamente 'margin-top' y 'width'.</button>
+          <button class="quiz-option" onclick="evalQuiz('q1', false, '')">Modificar 'display: none' de manera consecutiva.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P2 -->
+      <div class="quiz-question" id="q2">
+        <p>2. ¿Para qué se emplea la palabra clave 'infinite' en la propiedad abreviada 'animation'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q2', false, '')">Para que se ejecute únicamente los primeros 10 segundos.</button>
+          <button class="quiz-option" onclick="evalQuiz('q2', true, '')">Para que la animación se repita indefinidamente en bucle continuo.</button>
+          <button class="quiz-option" onclick="evalQuiz('q2', false, '')">Para que la animación ocurra de manera instantánea.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P3 -->
+      <div class="quiz-question" id="q3">
+        <p>3. ¿Qué representa el porcentaje '50%' dentro del bloque declarativo de un '@keyframes'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q3', false, '')">La aceleración o curva matemática de velocidad.</button>
+          <button class="quiz-option" onclick="evalQuiz('q3', true, '')">El estado exacto del elemento en la mitad de la duración de su ciclo.</button>
+          <button class="quiz-option" onclick="evalQuiz('q3', false, '')">El retardo que tarda en ponerse en funcionamiento.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P4 -->
+      <div class="quiz-question" id="q4">
+        <p>4. ¿Por qué se prefiere 'ease-out' en vez de 'ease-in' para elementos que entran en la pantalla?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q4', true, '')">Porque frena de forma muy natural hacia el final de la trayectoria.</button>
+          <button class="quiz-option" onclick="evalQuiz('q4', false, '')">Porque arranca lentamente.</button>
+          <button class="quiz-option" onclick="evalQuiz('q4', false, '')">Porque duplica la duración de la animación visualmente.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P5 -->
+      <div class="quiz-question" id="q5">
+        <p>5. ¿Cuál es el error de diseño e interacción con respecto a la propiedad 'transition'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q5', false, '')">Usar duraciones breves como '0.3s'.</button>
+          <button class="quiz-option" onclick="evalQuiz('q5', true, '')">Escribir 'transition' solo en el bloque ':hover' en lugar de en el elemento base.</button>
+          <button class="quiz-option" onclick="evalQuiz('q5', false, '')">Utilizar variables CSS como el color.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P6 -->
+      <div class="quiz-question" id="q6">
+        <p>6. ¿Qué ganamos respetando las reglas de la directiva 'prefers-reduced-motion'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q6', false, '')">Evitar que la web use archivos de tipografías pesados.</button>
+          <button class="quiz-option" onclick="evalQuiz('q6', true, '')">Asegurar una navegación segura y accesible para personas con problemas vestibulares.</button>
+          <button class="quiz-option" onclick="evalQuiz('q6', false, '')">Multiplicar el número de visitas en un 20%.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P7 -->
+      <div class="quiz-question" id="q7">
+        <p>7. ¿Qué es 'animation-fill-mode: forwards'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q7', true, '')">Una regla para ordenar al elemento que conserve su estilo final al terminar.</button>
+          <button class="quiz-option" onclick="evalQuiz('q7', false, '')">Un parámetro que fuerza la marcha atrás de la animación.</button>
+          <button class="quiz-option" onclick="evalQuiz('q7', false, '')">La propiedad que activa el motor 3D de tu procesador.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P8 -->
+      <div class="quiz-question" id="q8">
+        <p>8. ¿Qué diferencia principal existe entre 'transition' y 'animation'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q8', false, '')">'transition' es mucho más lenta e imprecisa.</button>
+          <button class="quiz-option" onclick="evalQuiz('q8', true, '')">'transition' requiere un detonante o cambio de estado; 'animation' se ejecuta automáticamente.</button>
+          <button class="quiz-option" onclick="evalQuiz('q8', false, '')">'animation' solo funciona si tienes cargado un script externo JavaScript.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P9 -->
+      <div class="quiz-question" id="q9">
+        <p>9. ¿Cuál es el significado intuitivo de la herencia en 'translateY(-10px)'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q9', true, '')">Elevar o desplazar verticalmente un elemento 10 píxeles hacia arriba.</button>
+          <button class="quiz-option" onclick="evalQuiz('q9', false, '')">Desplazarlo horizontalmente hacia la derecha.</button>
+          <button class="quiz-option" onclick="evalQuiz('q9', false, '')">Rotarlo en diagonal.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P10 -->
+      <div class="quiz-question" id="q10">
+        <p>10. ¿Por qué no se debe abusar de librerías como Animate.css en nuestro servidor?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q10', false, '')">Porque ralentizan las conexiones Wi-Fi.</button>
+          <button class="quiz-option" onclick="evalQuiz('q10', true, '')">Porque añaden peso innecesario si solo utilizas una o dos animaciones sencillas.</button>
+          <button class="quiz-option" onclick="evalQuiz('q10', false, '')">Porque cobran licencias millonarias por su uso comercial.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P11 -->
+      <div class="quiz-question" id="q11">
+        <p>11. ¿Qué es Animista?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q11', false, '')">Una librería de JavaScript.</button>
+          <button class="quiz-option" onclick="evalQuiz('q11', true, '')">Una fantástica herramienta visual online para generar y afinar código de animación CSS.</button>
+          <button class="quiz-option" onclick="evalQuiz('q11', false, '')">Un validador de errores gramaticales de HTML.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+
+      <!-- P12 -->
+      <div class="quiz-question" id="q12">
+        <p>12. ¿Qué ocurre con la timing-function 'linear'?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="evalQuiz('q12', true, '')">Mantiene la misma velocidad robótica y constante a lo largo de todo el tiempo de animación.</button>
+          <button class="quiz-option" onclick="evalQuiz('q12', false, '')">Frena de forma intermitente.</button>
+          <button class="quiz-option" onclick="evalQuiz('q12', false, '')">Se desvanece de manera automática.</button>
+        </div>
+        <div class="quiz-validation"></div>
+      </div>
+    </section>
+
+    <!-- 28. RETOS FINALES -->
+    <section id="retos" class="manual-section">
+      <h2>28. Retos prácticos de autogestión directa</h2>
+      <p>Afronta tus propios desafíos en código para asentar este grandioso manual telemático:</p>
+
+      <!-- RETO 1 -->
+      <div class="exercise-box">
+        <h3>🏆 Reto 1: Elevación de tarjetas sutiles</h3>
+        <p><strong>Descripción:</strong> Haz que un contenedor con clase '.reto-tarjeta' se desplace verticalmente hacia arriba 12px con una transición súper suave en Hover.</p>
+        <details class="solution-details">
+          <summary>Ver posible solución y explicación pedagógica</summary>
+          <div style="margin-top: 1rem;">
+            <pre><code>.reto-tarjeta {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.reto-tarjeta:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}</code></pre>
+            <p class="nota"><strong>¿Por qué funciona?</strong> Porque al declarar la transición en el elemento base, garantizamos ida y vuelta suave combinando movimiento y sombra.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- RETO 2 -->
+      <div class="exercise-box">
+        <h3>🏆 Reto 2: Botón interactivo de escala</h3>
+        <p><strong>Descripción:</strong> Transiciona un botón para que incremente de escala un 8% mediante Hover en 0.25 segundos.</p>
+        <details class="solution-details">
+          <summary>Ver posible solución y explicación pedagógica</summary>
+          <div style="margin-top: 1rem;">
+            <pre><code>.btn-reto-2 {
+  transition: transform 0.25s ease-in-out;
+}
+
+.btn-reto-2:hover {
+  transform: scale(1.08);
+}</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <!-- RETO 3 -->
+      <div class="exercise-box">
+        <h3>🏆 Reto 3: Mensaje de alerta autodesplegable</h3>
+        <p><strong>Descripción:</strong> Lograr la aparición progresiva de un aviso de notificación en tu panel.</p>
+        <details class="solution-details">
+          <summary>Ver posible solución y explicación pedagógica</summary>
+          <div style="margin-top: 1rem;">
+            <pre><code>.aviso-alerta {
+  opacity: 0;
+  animation: aparicionAlerta 0.6s ease forwards;
+}
+
+@keyframes aparicionAlerta {
+  to {
+    opacity: 1;
+  }
+}</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <!-- RETO 4 -->
+      <div class="exercise-box">
+        <h3>🏆 Reto 4: Tres instantes del tiempo</h3>
+        <p><strong>Descripción:</strong> Diseña una animación continua que parta de escala regular, en la mitad se agigante un 20% y fenezca con tamaño normal.</p>
+        <details class="solution-details">
+          <summary>Ver posible solución y explicación pedagógica</summary>
+          <div style="margin-top: 1rem;">
+            <pre><code>@keyframes tresEstados {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.caja-reto-4 {
+  animation: tresEstados 2s ease infinite;
+}</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <!-- RETO 5 -->
+      <div class="exercise-box">
+        <h3>🏆 Reto 5: Rebote inmediato de Animate.css</h3>
+        <p><strong>Descripción:</strong> Investiga e inyecta la clase de rebote de Animate.css de manera óptima.</p>
+        <details class="solution-details">
+          <summary>Ver posible solución y explicación pedagógica</summary>
+          <div style="margin-top: 1rem;">
+            <pre><code>/* 1º: Vinculamos en el head */
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /&gt;
+
+/* 2º: Asociamos en el HTML */
+&lt;div class="animate__animated animate__bounce"&gt;¡Solución del reto!&lt;/div&gt;</code></pre>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="text-align: center; padding: 2rem 0; color: var(--color-muted); border-top: 1px solid var(--color-border); font-size: 0.9rem;">
+    DevCampus es una marca registrada de Inma Contreras. © 2026. ¡Aprende haciendo! 🚀
+  </footer>
+
+  <!-- COMPONENTES DINÁMICOS DE EVALUACIÓN DEL LABORATORIO Y MINI TEST -->
+  <script>
+    // JS DEL LABORATORIO
+    const sandbox = document.getElementById('sandbox');
+    const timingSelect = document.getElementById('config-timing');
+    const durationInput = document.getElementById('config-duration');
+    const rotateInput = document.getElementById('config-rotate');
+    const scaleInput = document.getElementById('config-scale');
+    const opacityInput = document.getElementById('config-opacity');
+    const playPulseBtn = document.getElementById('btn-play-pulse');
+
+    const labelDuration = document.getElementById('label-duration');
+    const labelRotate = document.getElementById('label-rotate');
+    const labelScale = document.getElementById('label-scale');
+    const labelOpacity = document.getElementById('label-opacity');
+
+    function syncSandbox() {
+      const timing = timingSelect.value;
+      const duration = durationInput.value;
+      const rot = rotateInput.value;
+      const sc = scaleInput.value;
+      const op = opacityInput.value;
+
+      labelDuration.innerText = duration + 's';
+      labelRotate.innerText = rot + 'deg';
+      labelScale.innerText = sc;
+      labelOpacity.innerText = op;
+
+      sandbox.style.transition = `transform ${duration}s ${timing}, opacity ${duration}s ${timing}`;
+      sandbox.style.transform = `rotate(${rot}deg) scale(${sc})`;
+      sandbox.style.opacity = op;
+    }
+
+    [timingSelect, durationInput, rotateInput, scaleInput, opacityInput].forEach(el => {
+      el.addEventListener('input', syncSandbox);
+    });
+
+    playPulseBtn.addEventListener('click', () => {
+      sandbox.style.animation = 'none';
+      // Forzar reflujo para resetear la animación
+      void sandbox.offsetHeight;
+      sandbox.style.animation = 'pulse-keyf 1s ease 1';
+    });
+
+    syncSandbox();
+
+    // JS DEL QUIZ
+    function evalQuiz(questionId, isCorrect, explanation) {
+      const container = document.getElementById(questionId);
+      const valDiv = container.querySelector('.quiz-validation');
+      valDiv.style.display = 'block';
+
+      if (isCorrect) {
+        valDiv.innerHTML = '🟢 ¡Excelente respuesta! Solución correcta y bien argumentada.';
+        valDiv.style.color = 'var(--color-success)';
+      } else {
+        valDiv.innerHTML = '❌ Inténtalo de nuevo. Piensa en las Reglas de Oro e interactividad explicadas arriba.';
+        valDiv.style.color = 'var(--color-accent)';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase de Media Queries y Flexbox</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="page-header">
+        <h1 class="page-title">Clase de Diseño Web Responsivo</h1>
+        <p class="page-subtitle">El arte de adaptar tu diseño a cualquier dispositivo.</p>
+    </header>
+
+    <main class="main-content">
+    <section class="content-section">
+        <h2 class="section-title">¿Qué son las Media Queries y cómo se escriben?</h2>
+        <p>Las Media Queries son el pilar del diseño web responsivo. Nos permiten aplicar estilos CSS solo si se cumplen ciertas condiciones, como el ancho de la pantalla, la orientación o el tipo de dispositivo. Piensen en ellas como un "si-entonces" para su código CSS.</p>
+
+        <p>La sintaxis es muy clara y se escribe de la siguiente manera:</p>
+        <pre><code>@media [tipo_de_medio] and ([característica_del_medio]) {
+/* Reglas CSS que se aplicarán */
+}</code></pre>
+        <ul>
+            <li><code>@media</code>: La palabra clave que indica que vamos a usar una Media Query.</li>
+            <li>`tipo_de_medio` (Opcional): Define el tipo de dispositivo. Por ejemplo, `screen` para pantallas, `print` para impresoras. Si se omite, se aplica a todos los tipos de medio.</li>
+            <li>`and`: Un operador lógico que une múltiples condiciones. También podemos usar `not` o una coma `,` que funciona como un `or`.</li>
+            <li>`característica_del_medio`: La condición que debe cumplirse. Las más comunes son:
+                <ul>
+                    <li>`min-width`: Se aplica si el ancho de la pantalla es igual o mayor al valor. Es la base de la estrategia "Mobile-First".</li>
+                    <li>`max-width`: Se aplica si el ancho de la pantalla es igual o menor al valor.</li>
+                    <li>`orientation`: Para saber si el dispositivo está en modo vertical (`portrait`) u horizontal (`landscape`).</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    
+    <section class="content-section">
+        <h2 class="section-title">Ejemplos Prácticos de Media Queries 🛠️</h2>
+        <p>La mejor manera de entender las Media Queries es viéndolas en acción. Aquí tienes tres ejemplos comunes que demuestran su flexibilidad para adaptar tu diseño a diferentes escenarios.</p>
+        
+        <div class="media-query-cards">
+            <div class="mq-card">
+                <h3 class="mq-card-title">1. Adaptando a Móvil (Mobile-First)</h3>
+                <p>Usamos `min-width` para aplicar estilos a partir de un tamaño de pantalla específico. Esta es la base de la estrategia "Mobile-First", donde diseñamos para móviles y luego añadimos complejidad a medida que la pantalla se hace más grande.</p>
+                <pre><code>@media (min-width: 768px) {
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+}</code></pre>
+                <p><strong>Explicación:</strong> Para pantallas de 768px o más, un contenedor se convierte en una cuadrícula de dos columnas, ideal para tablets.</p>
+            </div>
+            
+            <div class="mq-card">
+                <h3 class="mq-card-title">2. Estilos para Impresión</h3>
+                <p>Las Media Queries no son solo para el tamaño. La regla `print` nos permite optimizar la página para ser impresa, eliminando elementos innecesarios como la navegación o el pie de página para ahorrar tinta.</p>
+                <pre><code>@media print {
+.main-nav, .page-footer, .sidebar {
+    display: none;
+}
+}</code></pre>
+                <p><strong>Explicación:</strong> Al imprimir el documento, los elementos con las clases `.main-nav`, `.page-footer` y `.sidebar` se ocultarán para ofrecer una vista limpia y legible.</p>
+            </div>
+            
+            <div class="mq-card">
+                <h3 class="mq-card-title">3. Modo Oscuro (Preferencia del Usuario)</h3>
+                <p>Podemos respetar las preferencias de color del sistema operativo del usuario. La Media Query `prefers-color-scheme` nos permite aplicar un tema oscuro automáticamente para quienes lo tengan activado en su dispositivo.</p>
+                <pre><code>@media (prefers-color-scheme: dark) {
+body {
+    background-color: #333;
+    color: #f4f4f4;
+}
+}</code></pre>
+                <p><strong>Explicación:</strong> Si el usuario tiene su sistema en modo oscuro, el fondo de la página se volverá gris oscuro y el texto se hará más claro, mejorando la comodidad visual.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">El Escenario: Una Galería de Imágenes 🖼️</h2>
+        <p>Imaginemos que queremos construir una galería de imágenes que se adapte automáticamente al tamaño de la pantalla, con 2 imágenes en móvil, 3 en tablet y 4 en escritorio. Ahora, vamos a ver dos maneras de maquetarlo para que puedan comparar la diferencia en el código.</p>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Opción 1: Con Media Queries (El Enfoque Tradicional)</h2>
+        <p>Este método es funcional, pero requiere que escribamos y mantengamos múltiples bloques de código. Cada vez que definimos un nuevo punto de ruptura, debemos recalcular los anchos y añadir una nueva regla. Es un proceso repetitivo y menos escalable.</p>
+        
+        <h3>La Galería de Ejemplo:</h3>
+        <div class="gallery-mq-container">
+            <div class="gallery-mq-item"><img src="https://picsum.photos/400/300?random=1" alt="Imagen 1"></div>
+            <div class="gallery-mq-item"><img src="https://picsum.photos/400/300?random=2" alt="Imagen 2"></div>
+            <div class="gallery-mq-item"><img src="https://picsum.photos/400/300?random=3" alt="Imagen 3"></div>
+            <div class="gallery-mq-item"><img src="https://picsum.photos/400/300?random=4" alt="Imagen 4"></div>
+            <div class="gallery-mq-item"><img src="https://picsum.photos/400/300?random=5" alt="Imagen 5"></div>
+            <div class="gallery-mq-item"><img src="https://picsum.photos/400/300?random=6" alt="Imagen 6"></div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Opción 2: Con CSS Grid (La Solución Moderna) ✨</h2>
+        <p>Con CSS Grid, podemos lograr la misma adaptabilidad con una sola línea de código, demostrando su eficiencia y poder. No necesitamos ninguna Media Query para este diseño. Grid se encarga de todo el trabajo de forma inteligente y fluida.</p>
+
+        <h3>La Galería de Ejemplo:</h3>
+        <div class="grid-container">
+            <div class="gallery-grid-item"><img src="https://picsum.photos/400/300?random=7" alt="Imagen 7"></div>
+            <div class="gallery-grid-item"><img src="https://picsum.photos/400/300?random=8" alt="Imagen 8"></div>
+            <div class="gallery-grid-item"><img src="https://picsum.photos/400/300?random=9" alt="Imagen 9"></div>
+            <div class="gallery-grid-item"><img src="https://picsum.photos/400/300?random=10" alt="Imagen 10"></div>
+            <div class="gallery-grid-item"><img src="https://picsum.photos/400/300?random=11" alt="Imagen 11"></div>
+            <div class="gallery-grid-item"><img src="https://picsum.photos/400/300?random=12" alt="Imagen 12"></div>
+        </div>
+
+        <pre><code>/* La magia de Grid: reutilizamos nuestro contenedor grid y no nos hace falta ni una linea de codigo <br> para la adaptabilidad de las columnas. */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 👈 Nueva medida para 2 columnas en móvil */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+        </code></pre>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Conclusión: El Ahorro de Código y la Eficiencia</h2>
+        <p>Como pueden ver, la diferencia es abismal. La maquetación con Media Queries requiere de múltiples bloques de código y cálculos manuales, mientras que la solución con CSS Grid logra el mismo resultado de forma fluida y con una sola línea de CSS. Esto se traduce en:</p>
+        <ul>
+            <li>Código más limpio y legible: Menos líneas, menos complejidad.</li>
+            <li>Mayor escalabilidad: Es más fácil añadir más imágenes o cambiar la estructura sin tener que modificar cada Media Query.</li>
+            <li>Desarrollo más rápido: Menos tiempo escribiendo código repetitivo.</li>
+        </ul>
+        <p>En resumen, usen Grid para la maquetación principal de su sitio web y limiten las Media Queries a escenarios donde necesiten un cambio de comportamiento que Grid no puede manejar por sí solo (como transformar un menú o cambiar la visibilidad de un elemento).</p>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">El Menú de Hamburguesa: Un Clásico Responsivo</h2>
+        <p>Una de las aplicaciones más comunes de las Media Queries es transformar un menú de navegación horizontal en un menú de "hamburguesa" para dispositivos móviles. En este caso, no podemos depender solo de Flexbox o Grid, ya que necesitamos cambiar la visibilidad de los elementos y su comportamiento.</p>
+        
+        <p>Para lograrlo, usamos la siguiente lógica:</p>
+        <ul>
+            <li>Por defecto (escritorio): El menú de navegación es una lista horizontal con los enlaces. El icono de la hamburguesa está oculto con `display: none;`.</li>
+            <li>En un `breakpoint` específico (móvil): Usamos una Media Query con `max-width` (por ejemplo, `768px`). Dentro de esta regla, ocultamos la lista de enlaces (`display: none;`) y mostramos el icono de la hamburguesa (`display: block;`).</li>
+            <li>JavaScript: Un pequeño script se encarga de que, al hacer clic en el icono de la hamburguesa, se añada una clase (`.open`) a la lista de enlaces para que se vuelva a mostrar, generalmente en una columna vertical.</li>
+        </ul>
+        <p>Este es un ejemplo perfecto de cómo las Media Queries trabajan en conjunto con CSS para crear una experiencia de usuario completamente diferente en función del dispositivo.</p>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">El Código del Menú de Hamburguesa 🍔</h2>
+        <p>A continuación, se muestra el código HTML y CSS completo para implementar un menú de hamburguesa. El JavaScript es simple y se encarga de alternar la clase.</p>
+
+        <h3>HTML del menú:</h3>
+        <pre><code>&lt;nav class="main-nav"&gt;
+&lt;div class="hamburger-menu"&gt;&#9776;&lt;/div&gt;
+&lt;ul class="nav-list"&gt;
+    &lt;li class="nav-item"&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="nav-item"&gt;&lt;a href="#"&gt;Productos&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="nav-item"&gt;&lt;a href="#"&gt;Servicios&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="nav-item"&gt;&lt;a href="#"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+        <h3>CSS (añadir a tu archivo `styles.css`):</h3>
+        <pre><code>/* Estilos base (escritorio) */
+.main-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--color-secondary);
+    padding: 1rem;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+}
+
+.hamburger-menu {
+    display: none; /* Oculto por defecto */
+    cursor: pointer;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+}
+
+/* Media Query para móviles */
+@media (max-width: 768px) {
+    .main-nav {
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .nav-list {
+        display: none; /* Se oculta la lista por defecto en móvil */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-secondary);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-list.open {
+        display: flex; /* Se muestra al tener la clase .open */
+    }
+
+    .hamburger-menu {
+        display: block; /* Se muestra el icono de hamburguesa */
+    }
+}</code></pre>
+
+        <h3>JavaScript (para el clic):</h3>
+        <pre><code>document.querySelector('.hamburger-menu').addEventListener('click', () => {
+    const navList = document.querySelector('.nav-list');
+    navList.classList.toggle('open');
+});</code></pre>
+    </section>
+
+    <section class="card">
+  <div class="card-body">
+    <h3 class="section-title">¿Quieres saber más sobre Media Queries?</h3>
+    <p>
+      Las <strong>Media Queries</strong> son una de las herramientas más potentes de CSS para hacer 
+      que una página web se vea bien en <em>móviles, tablets y ordenadores</em>. 
+      Te permiten aplicar reglas de estilo distintas según el ancho de la pantalla, la orientación 
+      o incluso la resolución del dispositivo.
+    </p>
+
+    <p>
+      Con ellas podrás:
+    </p>
+    <ul>
+      <li>Crear diseños <strong>responsivos</strong> que se adapten automáticamente.</li>
+      <li>Optimizar la <strong>usabilidad</strong> en distintos dispositivos.</li>
+      <li>Practicar ejemplos sencillos que te harán dominar la técnica.</li>
+    </ul>
+
+    <p>
+      Para profundizar, visita la guía práctica de W3Schools y aprende paso a paso con ejemplos:
+    </p>
+    <p>
+      <a href="https://www.w3schools.com/css/css_rwd_mediaqueries.asp" 
+         target="_blank" rel="noopener noreferrer" 
+         class="btn btn-primary">
+         🌐 Visitar W3Schools: Media Queries
+      </a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+    <footer class="page-footer">
+        <p>Curso de Maquetación Web - Clase de Media Queries</p>
+    </footer>
+
+</body>
+</html>

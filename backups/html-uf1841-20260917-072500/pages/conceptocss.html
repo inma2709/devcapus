@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>UF1841 · Curso HTML/CSS</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="brand" href="../index.html" aria-label="Inicio: UF1841 · Lenguajes de marcas">
+                <img src="../assets/img/css3.png">
+                <span>UF1841 · Lenguajes de marcas</span>
+            </a>
+            <a href="../index.html">Inicio</a>
+            <a href="conceptohtml.html">HTML</a>
+            <a href="conceptocss.html">CSS</a>
+            
+            <a href="ejerciciohtml.html">Ejercicios</a>
+            <a href="formularios.html">Formularios</a>
+             
+        </nav>
+    </header>
+    <main>
+        <h1 class="chapter-title">Aprendiendo CSS</h1>
+        <div class="hero-section">
+            <img src="../assets/img/introcss.png" alt="Aprender CSS">
+            <div class="hero-text-content">
+                <p>CSS (Cascading Style Sheets) es el lenguaje fundamental para estilizar y dar presentación a tus páginas web. Mientras HTML se encarga de la estructura del contenido, CSS le da vida, permitiéndote controlar colores, fuentes, tamaños, diseños y mucho más. Es la clave para transformar una página básica en una experiencia visual atractiva y profesional.</p>
+                <p>En esta sección, nos sumergiremos en los conceptos esenciales de CSS, desde la selección de elementos y la aplicación de estilos básicos hasta técnicas avanzadas de diseño responsivo. Descubrirás cómo crear diseños fluidos, animaciones sutiles y asegurar que tus sitios web luzcan impecables en cualquier dispositivo.</p>
+            </div>
+        </div>
+        <section id="introduccion-css" class="card">
+            <h2>🌱 Introducción a CSS</h2>
+            <p class="intro">
+                ¡Bienvenido al mundo de CSS! Si HTML es el esqueleto de tu página web, CSS (Cascading Style Sheets) es la piel, el maquillaje y la ropa. Es el lenguaje que usaremos para darle estilo, color y vida a cada uno de los elementos de tu sitio.
+            </p>
+            <details>
+                <summary>¿Qué es CSS y para qué sirve?</summary>
+                <p>
+                    CSS es un lenguaje de hojas de estilo que se utiliza para describir la presentación de un documento escrito en un lenguaje de marcado como HTML. Su principal propósito es separar el contenido de una página de su diseño. Esto significa que puedes cambiar el aspecto visual de un sitio web completo modificando un solo archivo CSS.
+                </p>
+                <p>
+                    Sirve para todo lo relacionado con la apariencia: desde el color y el tamaño de las fuentes, hasta la disposición de los elementos en la pantalla. Gracias a CSS, podemos crear diseños que se adaptan a diferentes dispositivos, aplicar efectos de transición o animaciones, y mejorar la experiencia de usuario.
+                </p>
+            </details>
+            <details>
+                <summary>Diferencia entre HTML (estructura) y CSS (presentación)</summary>
+                <div class="two">
+                    <article class="card">
+                        <h3>HTML (Estructura)</h3>
+                        <ul>
+                            <li>Función: Define el esqueleto y el contenido.</li>
+                            <li>Pregunta clave: "¿Qué hay en la página?"</li>
+                            <li>Ejemplos: Un <code>&lt;p&gt;</code> es un párrafo, un <code>&lt;h1&gt;</code> es un título principal.</li>
+                            <li>Metáfora: La estructura de una casa, con sus paredes y habitaciones.</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>CSS (Presentación)</h3>
+                        <ul>
+                            <li>Función: Estiliza la apariencia de la estructura.</li>
+                            <li>Pregunta clave: "¿Cómo se ve la página?"</li>
+                            <li>Ejemplos: Un párrafo con el texto en color azul y negrita.</li>
+                            <li>Metáfora: La decoración de la casa, con la pintura, los muebles y el color de las cortinas.</li>
+                        </ul>
+                    </article>
+                </div>
+                <p>
+                    Trabajan de la mano: primero, usas HTML para construir el andamio, y luego usas CSS para decorarlo. Un buen desarrollador entiende que el contenido y la presentación deben estar separados para mantener un código limpio y eficiente.
+                </p>
+            </details>
+            <details>
+                <summary>Sintaxis básica: selectores, propiedades, valores</summary>
+                <pre><code>selector {
+    propiedad: valor;
+    propiedad-2: valor-2;
+}</code></pre>
+                <ul>
+                    <li>
+                        <strong>Selector:</strong> Es la parte que apunta al elemento HTML que quieres estilizar (ej: <code>p</code>, <code>h1</code>, <code>.mi-clase</code>, <code>#mi-id</code>).
+                    </li>
+                    <li>
+                        <strong>Propiedad:</strong> Es el aspecto del elemento que quieres cambiar (ej: <code>color</code>, <code>font-size</code>, <code>margin-top</code>).
+                    </li>
+                    <li>
+                        <strong>Valor:</strong> Es el ajuste o la especificación que le das a la propiedad (ej: <code>red</code>, <code>16px</code>, <code>10px</code>).
+                    </li>
+                </ul>
+                <p>
+                    Cada declaración de propiedad-valor termina con un punto y coma (;). El bloque completo de declaraciones va entre llaves ({}).
+                </p>
+            </details>
+            <details>
+                <summary>¿Qué significa que CSS funcione en cascada?</summary>
+                <p>
+                    Que CSS funcione en cascada significa que las reglas de estilo no se aplican al azar, sino que siguen un orden de prioridades muy estricto. Cuando un elemento HTML tiene varias reglas de CSS apuntándole desde diferentes lugares (archivos, selectores o incluso en la misma línea de código), el navegador determina cuál de todas es la más "fuerte" y, por lo tanto, la que debe aplicarse.
+                </p>
+                <p>
+                    Este proceso de decisión se basa en tres factores principales que actúan como un sistema de filtrado, de mayor a menor importancia:
+                </p>
+                <ul>
+                    <li>
+                        Especificidad: Esta es la regla más importante. Un selector más específico anula a uno menos específico. Por ejemplo, una regla que usa un ID (<code>#mi-id</code>) es más específica que una que usa una clase (<code>.mi-clase</code>) o una etiqueta (<code>p</code>).
+                    </li>
+                    <li>
+                        Orden del código: Si dos reglas tienen la misma especificidad, la última que aparece en la hoja de estilos es la que gana y se aplica. Por eso, el orden en el que escribes tu código es crucial.
+                    </li>
+                    <li>
+                        Importancia: Las reglas con la propiedad <code>!important</code> tienen la máxima prioridad, incluso por encima de la especificidad. Sin embargo, su uso no es recomendable ya que dificulta la depuración y el mantenimiento del código.
+                    </li>
+                </ul>
+            </details>
+            <details>
+                <summary>Enlazando HTML y CSS: Tres formas de aplicar estilos</summary>
+                <p>Para que los estilos que definas en tu hoja de CSS afecten a tu documento HTML, necesitas enlazarlos. Existen tres métodos principales para hacerlo, aunque uno es el más recomendado para la mayoría de los casos.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3>1. Hoja de Estilos Externa (Recomendada)</h3>
+                        <p>Es la forma más común y eficiente de trabajar. Los estilos se escriben en un archivo `.css` separado y se enlazan al documento HTML usando la etiqueta `&lt;link&gt;` dentro del `&lt;head&gt;`.</p>
+                        <pre><code>&lt;!-- Enlace en el HTML --&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+
+&lt;!-- Código en el archivo styles.css --&gt;
+body {
+    background-color: lightblue;
+}</code></pre>
+                        <p><strong>Ventajas:</strong> Mantiene la separación de la estructura (HTML) y la presentación (CSS), haciendo tu código más organizado, fácil de mantener y reutilizable en múltiples páginas.</p>
+                    </article>
+                    <article class="card">
+                        <h3>2. Estilos Internos</h3>
+                        <p>Los estilos se declaran directamente en el mismo documento HTML, dentro de la etiqueta `&lt;style&gt;` ubicada en la sección `&lt;head&gt;`.</p>
+                        <pre><code>&lt;head&gt;
+    &lt;style&gt;
+        h1 {
+            color: maroon;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+                        <p><strong>Ventajas:</strong> Útil para estilos específicos de una sola página o para pruebas rápidas. No requiere un archivo adicional.</p>
+                    </article>
+                    <article class="card">
+                        <h3>3. Estilos en Línea (Inline)</h3>
+                        <p>Los estilos se aplican directamente a un elemento HTML usando el atributo `style`.</p>
+                        <pre><code>&lt;h2 style="color: blue; font-size: 20px;"&gt;Título azul&lt;/h2&gt;</code></pre>
+                        <p><strong>Ventajas:</strong> Permite una aplicación de estilo muy rápida y específica a un solo elemento.</p>
+                    </article>
+                </div>
+                ---
+                <h3>¿Cuál es la mejor opción y por qué?</h3>
+                <p>La hoja de estilos externa es, sin duda, la mejor opción. La razón principal es la separación de responsabilidades (<em>Separation of Concerns</em>). Al mantener el HTML y el CSS en archivos separados, tu código se vuelve:</p>
+                <ul>
+                    <li><strong>Más limpio:</strong> El HTML solo se encarga de la estructura y el contenido, sin estar "contaminado" con estilos.</li>
+                    <li><strong>Más fácil de mantener:</strong> Si necesitas cambiar el color de todos los títulos de tu sitio, solo tienes que editar una línea en tu archivo CSS externo, en lugar de ir página por página.</li>
+                    <li><strong>Más eficiente:</strong> El navegador solo tiene que descargar el archivo CSS una vez, y luego puede almacenarlo en caché para su uso en las demás páginas de tu sitio, lo que mejora la velocidad de carga.</li>
+                </ul>
+                <p>Los estilos internos y en línea son útiles en situaciones muy concretas, como para estilos de correos electrónicos o para pruebas puntuales, pero para la web en general, la hoja de estilos externa es el estándar de la industria y la mejor práctica.</p>
+            </details>
+        </section>
+        <section id="fundamentos-css" class="card">
+            <h2>Fundamentos esenciales de CSS 🎨</h2>
+            <p class="intro">
+                Una vez que conoces la sintaxis básica, es hora de profundizar en las herramientas que te permiten dar forma y estilo a tus páginas. En esta sección, cubriremos los bloques de construcción más importantes de CSS que usarás en tu día a día como desarrollador.
+            </p>
+            <details>
+                <summary>Selectores: El arte de apuntar a elementos</summary>
+                <p>Los selectores son la forma en que le dices a CSS qué elementos HTML quieres estilizar. Dominarlos es crucial para tener control sobre tu diseño. Aquí están los más comunes:</p>
+                <table class="tabla-indice">
+                    <thead>
+                        <tr>
+                            <th>Selector</th>
+                            <th>Sintaxis</th>
+                            <th>Ejemplo de Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Selector de Elemento</td>
+                            <td><code>p</code></td>
+                            <td>Selecciona todas las etiquetas <code>&lt;p&gt;</code> de la página.</td>
+                        </tr>
+                        <tr>
+                            <td>Selector de Clase</td>
+                            <td><code>.mi-clase</code></td>
+                            <td>Selecciona todos los elementos con la clase <code>mi-clase</code>. Es el más flexible y usado.</td>
+                        </tr>
+                        <tr>
+                            <td>Selector de ID</td>
+                            <td><code>#mi-id</code></td>
+                            <td>Selecciona el elemento con el ID <code>mi-id</code>. Único por página.</td>
+                        </tr>
+                        <tr>
+                            <td>Descendiente</td>
+                            <td><code>article p</code></td>
+                            <td>Selecciona las etiquetas <code>&lt;p&gt;</code> que están dentro de un <code>&lt;article&gt;</code>.</td>
+                        </tr>
+                        <tr>
+                            <td>Combinadores</td>
+                            <td><code>div &gt; p</code></td>
+                            <td>Selecciona los <code>&lt;p&gt;</code> que son hijos directos de un <code>&lt;div&gt;</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>El uso de selectores de clase te permite reutilizar estilos en múltiples elementos, lo cual es fundamental para un código limpio y mantenible.</p>
+                <div class="contenedor-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/_Nnrb5zwydc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </details>
+
+            <details>
+                <summary>Colores y Fondos: Dando vida a tu diseño</summary>
+                <div class="two">
+                    <article class="card">
+                        <h3>Colores</h3>
+                        <p>Existen varias maneras de definir colores en CSS:</p>
+                        <ul>
+                            <li>Nombres: Nombres de colores predefinidos (<code>red</code>, <code>blue</code>, <code>green</code>). Fáciles de leer, pero limitados.</li>
+                            <li>HEX: Código hexadecimal de 6 dígitos (<code>#FF5733</code>). El estándar de la industria.</li>
+                            <li>RGB: Valores de rojo, verde y azul (<code>rgb(255, 87, 51)</code>).</li>
+                            <li>HSL: Tono, Saturación y Luminosidad (<code>hsl(10, 100%, 60%)</code>). Intuitivo para diseñadores.</li>
+                            <li>RGBA: Igual que RGB, pero con un canal de transparencia (<code>rgba(255, 87, 51, 0.7)</code>). El valor `0.7` crea un 70% de opacidad.</li>
+                        </ul>
+                        
+                        <div class="tip">
+                            <h3>💡 Herramienta Útil: Coolors</h3>
+                            <p>
+                                Para generar paletas de colores de manera rápida y eficiente, te recomendamos explorar esta herramienta: <a href="https://coolors.co/" target="_blank">Coolors</a>. Esta web te permite crear combinaciones de colores armoniosas, exportarlas en diferentes formatos y obtener los códigos **HEX**, **RGB** o **HSL** de forma instantánea. Es un recurso muy valioso para cualquier proyecto de diseño.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <h3>Fondos</h3>
+                        <p>Las propiedades de fondo te permiten añadir color o imágenes a los elementos:</p>
+                        <ul>
+                            <li>`background-color`: Define un color de fondo sólido.</li>
+                            <li>`background-image`: Permite usar una imagen como fondo, generalmente con la función `url()`. Puedes controlar su repetición, posición y tamaño.</li>
+                            <li>`background-image` (degradados): Usa las funciones `linear-gradient()` o `radial-gradient()` para crear transiciones de color. Por ejemplo: <code>linear-gradient(to right, red, orange)</code>.</li>
+                        </ul>
+                    </article>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Unidades y Tipografía: Midiento y estilizando el texto</summary>
+                <div class="two">
+                    <article class="card">
+                        <h3>Unidades de Medida</h3>
+                        <p>Las unidades son clave para definir tamaños y espaciados. Se dividen en absolutas y relativas:</p>
+                        <ul>
+                            <li>Absolutas (fijas): <code>px</code> (píxeles) es la más común. Son útiles cuando necesitas un control exacto.</li>
+                            <li>Relativas (flexibles): Son la base del diseño responsivo.
+                                <ul>
+                                    <li><code>%</code>: Relativo al tamaño de su contenedor padre.</li>
+                                    <li><code>em</code>: Relativo al tamaño de la fuente de su elemento padre.</li>
+                                    <li><code>rem</code>: Relativo al tamaño de la fuente del elemento raíz (`&lt;html&gt;`). ¡Muy recomendable!</li>
+                                    <li><code>vw</code>: Relativo al ancho de la ventana del navegador.</li>
+                                    <li><code>vh</code>: Relativo al alto de la ventana del navegador.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Tipografía</h3>
+                        <p>Puedes controlar el aspecto de tus textos con estas propiedades:</p>
+                        <ul>
+                            <li>`font-family`: El tipo de fuente. Puedes usar fuentes del sistema o de servicios como Google Fonts.</li>
+                            <li>`font-size`: El tamaño del texto (ej: <code>16px</code>, <code>1.2rem</code>).</li>
+                            <li>`font-weight`: El grosor de la fuente (ej: <code>bold</code>, <code>700</code>).</li>
+                            <li>`font-style`: El estilo, como <code>italic</code>.</li>
+                        </ul>
+                        <p>Para usar Google Fonts, simplemente enlazas la fuente en tu `&lt;head&gt;` y la aplicas con `font-family` en tu CSS.</p>
+                    </article>
+                </div>
+            </details>
+
+        </section>
+        <section id="maquetacion" class="card">
+            <h2>📐 Maquetación: De principiante a experto en CSS</h2>
+            <p class="intro">
+                La maquetación es el corazón de la web visual, es la forma en que organizamos y posicionamos los elementos en la pantalla para crear un diseño coherente. Dominar estos conceptos te permitirá pasar de la teoría a la práctica, construyendo cualquier tipo de diseño que imagines.
+            </p>
+
+            <details>
+                <summary>El Modelo de Caja: Todo es una caja 📦</summary>
+                <p>En CSS, cada elemento HTML es una caja, y entender cómo funcionan es fundamental. El Modelo de Caja describe cómo el espacio se distribuye alrededor de un elemento.</p>
+                <p>El modelo de caja se compone de:</p>
+                <ul>
+                    <li>Contenido (Content): El área central donde se encuentra el texto o la imagen.</li>
+                    <li>Relleno (Padding): El espacio transparente entre el contenido y el borde. Es un espacio interno.</li>
+                    <li>Borde (Border): La línea que rodea el relleno y el contenido. Puedes darle estilo, color y grosor.</li>
+                    <li>Margen (Margin): El espacio transparente fuera del borde. Se usa para separar el elemento de otros elementos adyacentes.</li>
+                </ul>
+                <div class="text-image-container">
+                    <img src="../assets/img/box-model.png" alt="Diagrama del modelo de caja de CSS">
+                </div>
+            </details>
+
+            <details>
+                <summary>Display y Position: Controlando la naturaleza de los elementos</summary>
+                <p>Las propiedades <code>display</code> y <code>position</code> te permiten controlar cómo se comportan los elementos en el flujo del documento.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3><code>display</code></h3>
+                        <p>Define el comportamiento de un elemento. Los valores más comunes son:</p>
+                        <ul>
+                            <li><code>block</code>: Ocupa todo el ancho disponible, creando un salto de línea antes y después (ej: `div`, `p`).</li>
+                            <li><code>inline</code>: Ocupa solo el espacio necesario para su contenido y no crea saltos de línea (ej: `span`, `a`).</li>
+                            <li><code>inline-block</code>: Combina lo mejor de ambos: se comporta como un elemento en línea pero acepta propiedades de ancho y alto como un bloque.</li>
+                            <li><code>none</code>: Oculta completamente el elemento, sin ocupar espacio.</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3><code>position</code></h3>
+                        <p>Permite un control más fino sobre la ubicación de un elemento. </p>
+                        <ul>
+                            <li><code>static</code>: El valor por defecto. El elemento sigue el flujo normal del documento.</li>
+                            <li><code>relative</code>: Se mueve en relación con su posición original, pero sigue ocupando su espacio en el flujo del documento.</li>
+                            <li><code>absolute</code>: Se posiciona en relación a su contenedor posicionado más cercano (no `static`). Se elimina del flujo normal, y otros elementos no dejan espacio para él.</li>
+                            <li><code>fixed</code>: Se posiciona en relación a la ventana del navegador. No se mueve al hacer scroll.</li>
+                            <li><code>sticky</code>: Un híbrido de `relative` y `fixed`. El elemento se comporta como `relative` hasta que el usuario lo desplaza a una posición específica, momento en el que se vuelve `fixed`.</li>
+                        </ul>
+                    </article>
+                </div>
+            </details>
+
+            <details>
+                <summary>Flexbox y Grid: Maestros de la maquetación</summary>
+                <p>Antes de Flexbox y Grid, la maquetación web era un desafío complejo. Estos dos sistemas modernos te dan un poder sin precedentes para crear cualquier diseño de manera eficiente.</p>
+                <article class="card">
+                    <h3>Flexbox: Alineando en una dimensión</h3>
+                    <p><strong>Flexbox</strong> es ideal para alinear elementos en una sola dimensión, ya sea en una fila o en una columna. Con él, puedes controlar la alineación, el orden y la distribución del espacio entre los elementos de forma sencilla. Es la herramienta perfecta para barras de navegación, menús, o cualquier componente con elementos que necesiten alinearse entre sí.</p>
+                    <p>Para usar Flexbox, simplemente convierte un contenedor en un `flex container` con la propiedad `display: flex;`. A partir de ahí, puedes controlar los elementos hijos con propiedades como `justify-content` y `align-items`.</p>
+                    <div class="contenedor-video">
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>Grid: Diseñando en dos dimensiones</h3>
+                    <p>Si Flexbox es para una dimensión, Grid es para dos. Te permite crear diseños complejos y estructurados con filas y columnas. Es la herramienta definitiva para el diseño de páginas completas, como un blog con múltiples columnas o una galería de imágenes.</p>
+                    <p>Para usar Grid, defines un contenedor como `grid container` con `display: grid;`. Luego, puedes definir explícitamente el tamaño de tus filas y columnas con `grid-template-rows` y `grid-template-columns`.</p>
+                    <div class="contenedor-video">
+                    </div>
+                </article>
+            </details>
+        </section>
+        <section id="estetica-experiencia" class="card">
+            <h2>✨ Estética y experiencia: Dando vida a tu diseño</h2>
+            <p class="intro">
+                Una vez que tu maquetación está en su lugar, es momento de darle personalidad a tu web. En este apartado, exploraremos las propiedades que transforman un diseño funcional en una experiencia visual memorable, añadiendo detalles que elevan la calidad y el profesionalismo de tu trabajo.
+            </p>
+
+            <details>
+                <summary>Bordes, Sombras y Efectos Visuales</summary>
+                <p>Los detalles marcan la diferencia. Con CSS, puedes añadir profundidad y suavidad a tus elementos.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Bordes y esquinas redondeadas</h3>
+                        <p>
+                            La propiedad <strong>`border-radius`</strong> es tu aliada para suavizar los bordes de cualquier elemento, dándole un toque moderno y orgánico.
+                        </p>
+                        <pre><code>.caja-suave {
+    border-radius: 10px;
+}
+.circulo {
+    border-radius: 50%;
+}</code></pre>
+                    </article>
+                    <article class="card">
+                        <h3>Sombras y Transparencias</h3>
+                        <p>
+                            Las sombras añaden profundidad y ayudan a los elementos a destacar.
+                        </p>
+                        <ul>
+                            <li>`box-shadow`: Aplica una sombra a un elemento de caja, como un `div` o una tarjeta. Se controla la posición (x, y), el desenfoque, la dispersión y el color.</li>
+                            <li>`text-shadow`: Crea una sombra detrás del texto para un efecto visual dramático.</li>
+                            <li>Transparencia: La propiedad `opacity` (de 0.0 a 1.0) hace un elemento más o menos transparente. También puedes usar `rgba()` o `hsla()` para dar transparencia solo al color, manteniendo el elemento sólido.</li>
+                        </ul>
+                    </article>
+                </div>
+            </details>
+
+            <details>
+                <summary>Movimiento y Dinamismo: Transiciones y Animaciones</summary>
+                <p>Las transiciones y animaciones son clave para crear una experiencia de usuario fluida y reactiva. Hacen que las interacciones se sientan naturales y pulidas.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Transiciones (<code>transition</code>)</h3>
+                        <p>
+                            Una transición crea un cambio suave entre dos estados de un elemento. Por ejemplo, al pasar el mouse sobre un botón, puedes hacer que su color cambie gradualmente en lugar de hacerlo de golpe.
+                        </p>
+                        <pre><code>.boton {
+    background-color: blue;
+    transition: background-color 0.3s ease-in-out;
+}
+.boton:hover {
+    background-color: darkblue;
+}</code></pre>
+                        <p>La propiedad <code>transition</code> te permite especificar la propiedad a animar, la duración, la función de tiempo (`ease`, `linear`, etc.) y el retraso.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Animaciones (<code>@keyframes</code>)</h3>
+                        <p>
+                            Las animaciones te dan un control total sobre una secuencia de estados. Usando <strong>`@keyframes`</strong>, puedes definir puntos de control para que un elemento cambie de estilo de forma progresiva.
+                        </p>
+                        <pre><code>@keyframes vibrar {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-5px); }
+    100% { transform: translateX(5px); }
+}
+.icono {
+    animation: vibrar 0.5s infinite;
+}</code></pre>
+                        <p>Con la propiedad <code>animation</code>, enlazas el elemento a la animación, defines su duración, repetición y otros parámetros.</p>
+                    </article>
+                </div>
+            </details>
+
+            <details>
+                <summary>Pseudo-clases y Pseudo-elementos: Más allá de los selectores básicos</summary>
+                <p>Estas herramientas te permiten seleccionar partes de un elemento o elementos en un estado específico que no puedes seleccionar con selectores de clase o ID.</p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Pseudo-clases (<code>:</code>)</h3>
+                        <p>Las pseudo-clases seleccionan un elemento cuando está en un estado particular.</p>
+                        <ul>
+                            <li>`:hover`: Cuando el cursor está sobre el elemento.</li>
+                            <li>`:active`: Cuando se hace clic o se pulsa sobre el elemento.</li>
+                            <li>`:focus`: Cuando el elemento recibe el foco del teclado (útil para accesibilidad).</li>
+                            <li>`:nth-child(n)`: Selecciona el enésimo elemento hijo de un padre (ej: `li:nth-child(2)` selecciona el segundo elemento de una lista).</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Pseudo-elementos (<code>::</code>)</h3>
+                        <p>Los pseudo-elementos te permiten estilizar una parte de un elemento.</p>
+                        <ul>
+                            <li>`::before`: Inserta contenido antes del contenido real del elemento. Ideal para iconos o decoraciones.</li>
+                            <li>`::after`: Inserta contenido después del contenido real.</li>
+                            <li>`::first-letter`: Estiliza la primera letra de un texto.</li>
+                        </ul>
+                        <p><strong>Dato clave:</strong> A menudo se usan `::before` y `::after` junto con la propiedad `content`. Estos pseudo-elementos son muy versátiles y se usan en trucos avanzados de CSS.</p>
+                    </article>
+                </div>
+            </details>
+
+        </section>
+
+        <section id="buenas-practicas" class="card">
+            <h2>📱 Buenas prácticas: Elevando tu CSS a un nivel profesional</h2>
+            <p class="intro">
+                Escribir código que funciona es una cosa; escribir código limpio, eficiente y fácil de mantener es otra. En este apartado, cubriremos las prácticas esenciales que todo desarrollador debe dominar para crear estilos de alta calidad, listos para la producción y pensados para el futuro.
+            </p>
+
+            <details>
+                <summary>Diseño Responsivo: La mentalidad "Mobile First"</summary>
+                <p>
+                    El diseño responsivo es la clave para que tu sitio web se adapte perfectamente a cualquier pantalla, desde un teléfono móvil hasta un monitor de escritorio. La técnica principal para lograrlo es el uso de Media Queries.
+                </p>
+                <pre><code>/* Media Query: los estilos dentro de este bloque
+    solo se aplican cuando el ancho es mayor a 768px */
+@media (min-width: 768px) {
+    .contenedor {
+        display: flex;
+    }
+}</code></pre>
+                <p>
+                    La filosofía "Mobile First" es la mejor práctica. Esto significa que primero diseñas y estilizas tu sitio para la pantalla más pequeña, y luego usas las Media Queries para añadir estilos que lo mejoren en pantallas más grandes. De esta forma, aseguras la mejor experiencia para la mayoría de los usuarios móviles, y tu código es más eficiente.
+                </p>
+            </details>
+
+            <details>
+                <summary>Organización y Mantenimiento de tu CSS</summary>
+                <p>
+                    Un buen código CSS es un código organizado. Adoptar estas prácticas te ahorrará tiempo y evitará dolores de cabeza a largo plazo.
+                </p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Reutilización de clases</h3>
+                        <p>
+                            Evita estilos en línea y repeticiones. Crea clases genéricas para patrones comunes (ej: <code>.card</code>, <code>.button</code>) y reutilízalas en tu HTML. Así, si necesitas cambiar un estilo, solo lo haces en un lugar.
+                        </p>
+                        <p>
+                            <code>&lt;button class="button primary"&gt;Comprar&lt;/button&gt;</code>
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Comentarios y Variables</h3>
+                        <p>
+                            Comentar tu código con explicaciones claras hace que sea más fácil de entender, especialmente si trabajas en equipo. Además, el uso de variables CSS (con la sintaxis <code>--nombre-variable</code>) es una herramienta poderosa.
+                        </p>
+                        <pre><code>:root {
+  --color-principal: #F16529;
+}
+p {
+  color: var(--color-principal);
+}</code></pre>
+                    </article>
+                </div>
+            </details>
+
+            <details>
+                <summary>Accesibilidad y Herramientas de Depuración</summary>
+                <p>
+                    Un diseño profesional es un diseño accesible para todos. Tu código debe ser compatible con usuarios de diferentes habilidades y dispositivos.
+                </p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Accesibilidad en CSS</h3>
+                        <p>
+                            Presta atención a los contrastes de color para que el texto sea legible (la proporción mínima es 4.5:1). Además, asegúrate de que los elementos interactivos, como enlaces y botones, sean lo suficientemente grandes para ser pulsados fácilmente y que sus estilos de `:focus` sean claros para la navegación con teclado.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Validadores y Herramientas del Navegador</h3>
+                        <p>
+                            Las herramientas de desarrollador de tu navegador (F12) son tus mejores amigas. Te permiten inspeccionar elementos, ver los estilos aplicados, depurar errores y probar cambios en tiempo real. Utiliza la sección de "Computed Styles" para ver todos los estilos que afectan a un elemento. También puedes usar validadores CSS en línea para revisar la sintaxis de tu código.
+                        </p>
+                    </article>
+                </div>
+            </details>
+        </section>
+
+        <section id="extra-motivador" class="card">
+            <h2>🚀 De una página básica a un proyecto profesional</h2>
+            <p class="intro">
+                Has dominado los fundamentos y las mejores prácticas de CSS. Es hora de consolidar todo lo que has aprendido en un ejercicio que te dará un resultado visible y tangible. En esta sección final, aplicaremos todo nuestro conocimiento para transformar un documento HTML simple en una página atractiva, y te daremos un adelanto de herramientas que te permitirán llevar tu CSS al siguiente nivel.
+            </p>
+
+            
+            <details>
+                <summary>Un vistazo al futuro: Preprocesadores CSS</summary>
+                <p>
+                    A medida que tus proyectos crezcan, escribir CSS puro puede volverse repetitivo. Los preprocesadores son herramientas que extienden las capacidades de CSS, permitiéndote usar lógica de programación como variables, anidación y funciones.
+                </p>
+                <p>
+                    Sass (Syntactically Awesome Style Sheets) y SCSS (Sassy CSS) son los más populares. Aunque al principio parezcan complejos, son un paso natural para un desarrollador que busca optimizar su flujo de trabajo.
+                </p>
+                <p>
+                    Ejemplo de SCSS:
+                </p>
+                <pre><code>$color-principal: #F16529;
+
+.tarjeta-producto {
+  background-color: $color-principal;
+  .titulo {
+    font-size: 2rem;
+  }
+}</code></pre>
+                <p>Este código se compila automáticamente a CSS, permitiéndote escribir estilos de una manera más potente y organizada.</p>
+            </details>
+
+            <details>
+                <summary>Errores comunes que debes evitar ⚠️</summary>
+                <p>
+                    Conocer las malas prácticas es tan importante como dominar las buenas. Aquí hay un par de errores que debes evitar para mantener tu código profesional:
+                </p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Abuso de <code>!important</code></h3>
+                        <p>Esta declaración fuerza una propiedad a ser la más importante, ignorando la cascada y haciendo tu código difícil de depurar. Úsalo solo como último recurso y con extrema precaución.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Estilos en línea</h3>
+                        <p>Como ya vimos, usar el atributo <code>style</code> directamente en el HTML rompe la separación de responsabilidades, haciendo que tu código sea desordenado y difícil de mantener.</p>
+                    </article>
+                </div>
+                <p>
+                    Al evitar estas prácticas, no solo escribirás un CSS más eficiente, sino que también te prepararás para colaborar en proyectos más grandes y complejos.
+                </p>
+            </details>
+        </section>
+
+        <section id="bootstrap" class="card">
+            <h2>🚀 Extra: Introducción a Bootstrap</h2>
+            <p class="intro">
+                Ya que has dominado los fundamentos de HTML y CSS, es el momento de dar el siguiente paso y aprender a trabajar con un framework de CSS. Un framework es como una caja de herramientas prefabricada, llena de componentes y reglas que te permiten construir diseños de forma mucho más rápida y eficiente. El más popular de todos es Bootstrap.
+            </p>
+
+            <details>
+                <summary>¿Qué es Bootstrap y cómo funciona?</summary>
+                <p>
+                    Bootstrap es un framework de código abierto para el desarrollo web. Ofrece una colección de plantillas de diseño basadas en HTML y CSS, así como componentes prefabricados de JavaScript. Su principal objetivo es ayudarte a crear sitios web y aplicaciones web responsivas y profesionales sin tener que escribir cada línea de CSS desde cero.
+                </p>
+                <p>
+                    En esencia, es una biblioteca de clases CSS que puedes aplicar a tus elementos HTML. Por ejemplo, en lugar de escribir estilos para un botón, simplemente añades la clase <code>btn btn-primary</code> a la etiqueta <code>&lt;button&gt;</code>. Bootstrap ya ha definido cómo se verá y se comportará ese botón.
+                </p>
+                <div class="two">
+                    <article class="card">
+                        <h3>Ventajas clave</h3>
+                        <ul>
+                            <li>Rapidez de desarrollo: Con componentes listos para usar como menús de navegación, tarjetas, formularios y botones, puedes maquetar un sitio completo en una fracción del tiempo que te llevaría con CSS puro.</li>
+                            <li>Diseño responsivo: Bootstrap se basa en un sistema de rejilla que facilita la creación de diseños que se ven bien en cualquier dispositivo.</li>
+                            <li>Consistencia: Todos los componentes de tu sitio mantendrán una apariencia coherente y profesional.</li>
+                            <li>Comunidad y soporte: Cuenta con una enorme comunidad, extensa documentación y una gran cantidad de recursos.</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>¿Cómo se usa?</h3>
+                        <p>
+                            Para empezar, solo necesitas enlazar su hoja de estilos y sus scripts de JavaScript en tu documento HTML, de forma similar a como lo harías con un archivo CSS externo.
+                        </p>
+                        <pre><code>&lt;!-- Enlace en el head --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Enlace al final del body --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+</code></pre>
+                    </article>
+                </div>
+
+                <div class="contenedor-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/qgxhrJFTOJs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </details>
+            <details>
+                <summary>El sistema de rejilla y un ejemplo práctico</summary>
+                <p>
+                    El principal concepto de Bootstrap es su sistema de rejilla. Usando las clases <code>container</code>, <code>row</code> y <code>col</code>, puedes dividir la página en columnas, controlando cómo se distribuyen en diferentes tamaños de pantalla. Esto simplifica enormemente la creación de diseños complejos y responsivos.
+                </p>
+                <p>
+                    Aquí tienes un ejemplo de un componente de tarjeta que puedes crear con unas pocas clases de Bootstrap.
+                </p>
+                <div class="contenedor-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/k8ovx51cEBg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <pre><code>&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;img src="..." class="card-img-top" alt="..."&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Título de la tarjeta&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Aquí va el contenido de la tarjeta.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Ir a algún lado&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </details>
+            <details>
+                <summary>El componente Carousel de Bootstrap</summary>
+                <p>
+                    El Carousel de Bootstrap es un componente de presentación de diapositivas que permite mostrar imágenes, texto o contenido personalizado en un formato de carrusel rotatorio. Es completamente funcional y responsivo, lo que lo hace ideal para crear galerías de imágenes o banners deslizantes en tu sitio web.
+                </p>
+                <p>
+                    Para usarlo, necesitas un contenedor principal con la clase <code>.carousel</code> y otros elementos para las diapositivas (<code>.carousel-item</code>) y los controles de navegación (flechas) e indicadores (puntos). El atributo <code>data-bs-slide</code> es clave para su funcionamiento.
+                </p>
+                <div class="contenedor-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ds2s_1L9AHs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </details>
+            <details>
+                <summary>¿Por qué aprender Bootstrap después de CSS puro?</summary>
+                <p>
+                    Aunque Bootstrap es increíblemente útil, es crucial que primero domines CSS puro. Aprender los fundamentos te da la comprensión necesaria de lo que está sucediendo "detrás de las escenas". Sin ese conocimiento, serías un simple "usuario" de un framework, incapaz de depurar o personalizar algo que no encaje en el diseño. Dominar CSS es lo que te permite manipular y extender Bootstrap, no solo usarlo por defecto, lo que te convierte en un desarrollador más completo y competente.
+                </p>
+            </details>
+        </section>
+    </main>
+   <div class="carousel-title">
+    <h5>Ejemplo de carrusel con Bootstrap</h5>
+</div>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../assets/img/1.jpg" class="d-block w-100" alt="Primera imagen del carrusel">
+        </div>
+        <div class="carousel-item">
+            <img src="../assets/img/2.png" class="d-block w-100" alt="Segunda imagen del carrusel">
+        </div>
+        <div class="carousel-item">
+            <img src="../assets/img/3.png" class="d-block w-100" alt="Tercera imagen del carrusel">
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

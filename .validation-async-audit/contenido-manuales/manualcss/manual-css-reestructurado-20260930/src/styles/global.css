@@ -1,0 +1,1064 @@
+/* =========================================================
+   GLOBAL.CSS — Manual CSS (React)
+   Base reutilizada + look nuevo (paleta + navegación superior)
+   ========================================================= */
+
+/* 01) SISTEMA DE TOKENS REUTILIZABLES */
+:root{
+  /* ============================================
+     TOKENS DE COLOR - BASE SEMÁNTICA
+     ============================================ */
+  
+  /* Paleta primitiva (valores brutos) */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  --color-primary-50: #fdf4ff;
+  --color-primary-100: #fae8ff;
+  --color-primary-200: #f3d4ff;
+  --color-primary-300: #e879f9;
+  --color-primary-400: #d946ef;
+  --color-primary-500: #c026d3;  /* Color principal */
+  --color-primary-600: #a21caf;
+  --color-primary-700: #86198f;
+  --color-primary-800: #701a75;
+  --color-primary-900: #4a044e;
+
+  --color-secondary-50: #ecfeff;
+  --color-secondary-100: #cffafe;
+  --color-secondary-200: #a5f3fc;
+  --color-secondary-300: #67e8f9;
+  --color-secondary-400: #22d3ee;
+  --color-secondary-500: #06b6d4;  /* Color secundario */
+  --color-secondary-600: #0891b2;
+  --color-secondary-700: #0e7490;
+  --color-secondary-800: #155e75;
+  --color-secondary-900: #164e63;
+
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+
+  /* ============================================
+     TOKENS SEMÁNTICOS (roles de interfaz)
+     ============================================ */
+  
+  /* Superficies y fondos */
+  --surface-primary: var(--color-neutral-50);
+  --surface-secondary: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-overlay: rgba(15, 23, 42, 0.8);
+
+  /* Texto y contenido */
+  --text-primary: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-700);
+  --text-tertiary: var(--color-neutral-500);
+  --text-inverse: #ffffff;
+  --text-link: var(--color-primary-600);
+  --text-link-hover: var(--color-primary-700);
+
+  /* Bordes y separadores */
+  --border-subtle: var(--color-neutral-200);
+  --border-medium: var(--color-neutral-300);
+  --border-strong: var(--color-neutral-400);
+
+  /* Estados interactivos */
+  --interactive-primary: var(--color-primary-500);
+  --interactive-primary-hover: var(--color-primary-600);
+  --interactive-primary-active: var(--color-primary-700);
+  --interactive-secondary: var(--color-secondary-500);
+  --interactive-secondary-hover: var(--color-secondary-600);
+
+  /* Estados de feedback */
+  --feedback-success: var(--color-success-500);
+  --feedback-success-bg: var(--color-success-50);
+  --feedback-warning: var(--color-warning-500);
+  --feedback-warning-bg: var(--color-warning-50);
+  --feedback-error: var(--color-error-500);
+  --feedback-error-bg: var(--color-error-50);
+
+  /* ============================================
+     TOKENS DE ESPACIADO
+     ============================================ */
+  --space-xs: 0.25rem;    /* 4px */
+  --space-sm: 0.5rem;     /* 8px */
+  --space-md: 1rem;       /* 16px */
+  --space-lg: 1.5rem;     /* 24px */
+  --space-xl: 2rem;       /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+
+  /* ============================================
+     TOKENS DE TIPOGRAFÍA
+     ============================================ */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ============================================
+     TOKENS DE TIPOGRAFÍA
+     ============================================ */
+  
+  /* Fuentes base (puedes cambiar estas para toda la aplicación) */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  /* Roles tipográficos semánticos */
+  --font-primary: var(--font-sans);      /* Texto general del cuerpo */
+  --font-display: var(--font-serif);     /* Títulos y elementos destacados */
+  --font-code: var(--font-mono);         /* Código y datos técnicos */
+  --font-ui: var(--font-sans);           /* Elementos de interfaz (botones, labels) */
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ============================================
+     TOKENS DE FORMA Y SOMBRA
+     ============================================ */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 10px 15px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 20px 25px rgba(15, 23, 42, 0.1);
+
+  /* ============================================
+     COMPATIBILIDAD CON TOKENS LEGACY
+     ============================================ */
+  /* Paleta NUEVA (CSS vibe: azules/violetas + acento lima) */
+  --c-1: var(--interactive-primary);
+  --c-2: var(--interactive-secondary);
+  --c-3: #a78bfa;   /* violeta suave */
+  --ink: var(--text-primary);
+  --ink-2: var(--text-secondary);
+  --bg: var(--surface-primary);
+  --card: var(--surface-secondary);
+
+  --focus: #d9f99d; /* foco visible (lima) */
+
+  /* Roles */
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+
+  /* Nav (ahora superior) */
+  --nav-bg: linear-gradient(135deg, var(--c-1), var(--c-2));
+  --nav-text: var(--text-inverse);
+
+  /* UI */
+  --primary: var(--interactive-primary);
+  --primary-hover: var(--interactive-primary-hover);
+
+  --radius: var(--radius-xl);
+  --shadow: var(--shadow-lg);
+
+  color-scheme: light;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tema oscuro: se activa con [data-theme="dark"] en <html> */
+:root[data-theme="dark"]{
+  /* Superficies y fondos */
+  --surface-primary: #020617;
+  --surface-secondary: #020617;
+  --surface-elevated: #020617;
+  --surface-overlay: rgba(15, 23, 42, 0.95);
+
+  /* Texto y contenido */
+  --text-primary: var(--color-neutral-50);
+  --text-secondary: var(--color-neutral-300);
+  --text-tertiary: var(--color-neutral-500);
+  --text-inverse: #020617;
+  --text-link: var(--color-primary-300);
+  --text-link-hover: var(--color-primary-200);
+
+  /* Bordes */
+  --border-subtle: rgba(148,163,184,.35);
+  --border-medium: rgba(148,163,184,.55);
+  --border-strong: rgba(148,163,184,.75);
+
+  /* Interactivos */
+  --interactive-primary: var(--color-primary-300);
+  --interactive-primary-hover: var(--color-primary-200);
+  --interactive-primary-active: var(--color-primary-100);
+  --interactive-secondary: var(--color-secondary-300);
+  --interactive-secondary-hover: var(--color-secondary-200);
+
+  /* Legacy / compatibilidad */
+  --bg: var(--surface-primary);
+  --card: var(--surface-elevated);
+  --ink: var(--text-primary);
+  --ink-2: var(--text-secondary);
+
+  /* Navegación superior algo más oscura */
+  --nav-bg: linear-gradient(135deg, #020617, #0f172a);
+  --nav-text: var(--text-primary);
+
+  color-scheme: dark;
+}
+
+/* 02) RESET / BASE */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  background: var(--bg);
+  color: var(--text);
+}
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+
+/* Elementos en negrita con espaciado */
+strong, b {
+  margin: 0 0.2em;
+}
+
+/* 03) ACCESIBILIDAD */
+:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+.skip-link{
+  position:absolute;
+  left:-999px;
+  top:8px;
+  background:#fff;
+  color:#000;
+  padding:.6rem .9rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+.skip-link:focus{ left:8px; z-index:9999; }
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tema 5 · demostradores de apariencia */
+.appearance-preview{margin:1rem 0;display:grid;gap:1rem}.appearance-card{max-width:65ch}.appearance-label{margin:0;color:#6d28d9;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.appearance-demo-grid,.gradient-preview-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.75rem}.appearance-demo{min-width:0;padding:1rem;border:1px solid #cbd5e1;border-radius:.65rem;background:#fff}.appearance-demo>*:first-child{margin-top:0}.appearance-demo>*:last-child{margin-bottom:0}.preview-spacing{letter-spacing:.08em}.preview-leading{line-height:1.8}.preview-words{word-spacing:.2em}.preview-transform{text-transform:uppercase;font-size:.82rem;font-weight:800;letter-spacing:.08em}.preview-decoration{color:#5b21b6;text-decoration:underline;text-decoration-color:#7c3aed;text-underline-offset:4px}.preview-shadow{color:#334155;text-shadow:2px 2px 3px rgba(15,23,42,.25)}.preview-wrap{overflow-wrap:break-word}.preview-truncate{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:.45rem;background:#f1f5f9;border-radius:.35rem}.gradient-preview-row>div{min-height:112px;padding:1rem;border-radius:.65rem;display:flex;align-items:end;color:#fff;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.45)}.gradient-linear{background:linear-gradient(to right,#7c3aed,#06b6d4)}.gradient-radial{background:radial-gradient(circle,#c4b5fd,#5b21b6)}.gradient-image{background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),linear-gradient(135deg,#0f766e,#0e7490 50%,#172554);background-size:cover}.pseudo-preview{padding:1rem;border:1px solid #ddd6fe;border-radius:.65rem;background:#faf5ff}.pseudo-preview h2{margin:0 0 .5rem}.pseudo-preview h2::first-letter{color:#7c3aed;font-size:1.3em}.pseudo-preview p::first-line{font-weight:600}.pseudo-notice::before{content:'⚠ ';color:#b45309}.pseudo-notice::after{content:' · decorativo';color:#64748b}.pseudo-notice{white-space:nowrap}
+
+/* Tema 5 · demostradores de unidades */
+.units-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.75rem;margin:1rem 0}.units-preview section{min-width:0;padding:1rem;border:1px solid #cbd5e1;border-radius:.65rem;background:#fff}.unit-rem p,.unit-rem h2{margin:.25rem 0}.unit-rem p{font-size:1rem}.unit-rem h2{font-size:2rem}.unit-rem span{display:block;margin-top:1.5rem;padding:.5rem;background:#eef2ff;border-radius:.35rem}.unit-em p{margin-top:0}.unit-button{display:block;margin:.5em 0;padding:.5em 1em;border:1px solid #334155;border-radius:.4em;background:#fff;color:#172554}.unit-button.small{font-size:.8rem}.unit-button.large{font-size:1.3rem}.unit-percent{background:#f8fafc!important}.unit-percent div{width:80%;padding:.75rem;box-sizing:border-box;border-radius:.35rem;background:#bae6fd;color:#0c4a6e;font-weight:800}.unit-vh{min-height:150px;display:flex;align-items:end;color:#fff!important;background:linear-gradient(135deg,#0f766e,#0e7490)!important}.unit-vh div{padding:.5rem;background:rgba(0,0,0,.28);border-radius:.35rem}
+
+/* Bloques didácticos del itinerario básico */
+.lesson-page{max-width:900px;margin:auto}.lesson-block,.css-map{margin:1.25rem 0;padding:1.25rem;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);background:var(--surface-secondary)}.lesson-block h2{margin-top:0}.lesson-block.need{border-left:5px solid #2563eb}.lesson-block.result{border-left:5px solid #16a34a}.lesson-block.practice{border-left:5px solid #7c3aed}.css-map{background:linear-gradient(135deg,#eff6ff,#f5f3ff)}.css-map-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;margin:.8rem 0}.css-map-grid section{padding:.75rem;border-radius:.5rem;background:#fff;border:1px solid #dbeafe}.css-map-grid span{display:block;margin-top:.35rem;font-size:.88rem;color:var(--text-secondary)}.css-map-current{margin-bottom:0}.lesson-preview{margin:1rem 0;padding:1rem;border:1px dashed #94a3b8;border-radius:.6rem;background:#f8fafc}.preview-card{max-width:260px;margin:auto;padding:1rem;border:1px solid #cbd5e1;border-radius:.75rem;background:#fff;color:#1f2937;font-family:system-ui}.preview-card h2{margin:0 0 .5rem;text-align:center;font-weight:700}.box-preview{text-align:center;font-size:.8rem}.box-margin{padding:1rem;background:#fde68a}.box-border{padding:.7rem;background:#fb923c}.box-padding{padding:.7rem;background:#86efac}.box-content{padding:.7rem;background:#fff}.preview-flex{display:flex;gap:1rem;align-items:center;justify-content:space-between}.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}.preview-grid span,.preview-responsive span{padding:.7rem;background:#dbeafe;border-radius:.35rem;text-align:center}.preview-responsive{display:flex;flex-direction:column;gap:.5rem}.preview-button,.preview-variable{padding:.75rem 1rem;border:0;border-radius:.4rem;background:#172554;color:#fff}.preview-variable{background:#2563eb}.course-index{display:grid;gap:.75rem;padding-left:1.4rem}.course-index li{display:flex;flex-wrap:wrap;gap:.5rem;align-items:baseline}.course-index a{font-weight:800;color:var(--text-link)}.course-index span{font-size:.85rem;color:var(--text-tertiary)}@media(min-width:768px){.preview-responsive{flex-direction:row}}
+.learning-guide{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.8rem;padding:.65rem .85rem;border:1px solid var(--border-subtle);border-radius:12px;background:var(--surface-secondary);color:var(--text-secondary);font-size:.9rem}.learning-guide a{margin-left:auto;color:var(--text-link);font-weight:700}.level{padding:.22rem .55rem;border-radius:999px;font-weight:800;font-size:.78rem}.level-esencial{background:#dcfce7;color:#166534}.level-profundiza{background:#dbeafe;color:#1e40af}.level-avanzado{background:#f3e8ff;color:#7e22ce}.expanded-topic{max-width:900px;margin:0 auto}.expanded-topic .layer{border-left:5px solid var(--primary)}.expanded-topic .layer.essential{border-left-color:#16a34a}.expanded-topic .layer.deepen{border-left-color:#2563eb}.expanded-topic .layer.advanced{border-left-color:#9333ea}.layer-badge{display:inline-block;margin-right:.5rem;padding:.2rem .55rem;border-radius:999px;font-size:.76rem;background:#dcfce7;color:#166534}.deepen .layer-badge{background:#dbeafe;color:#1e40af}.advanced .layer-badge{background:#f3e8ff;color:#7e22ce}
+
+/* 04) ROOT */
+#root{ min-height:100vh; }
+
+/* 05) SHELL */
+.app-shell{
+  overflow: visible;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+
+/* marca */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+/* acciones */
+.top-actions{ display:flex; align-items:center; gap:.5rem; }
+.icon-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px; height:42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.12);
+  color: var(--nav-text);
+  cursor:pointer;
+}
+.icon-btn:hover{ background: rgba(255,255,255,.18); }
+
+
+/* 07) CONTENIDO */
+.content{
+  padding: 1.2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+
+  /* ✅ NO crear stacking context que tape el menú */
+  position: relative;
+  z-index: auto;
+}
+
+
+/* 08) COMPONENTES */
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+  border: 1px solid rgba(2,6,23,.06);
+}
+.hero{
+  display:grid;
+  gap:.8rem;
+  background:
+    radial-gradient(1200px 260px at 20% 0%, rgba(167,139,250,.25), transparent 60%),
+    radial-gradient(900px 260px at 90% 10%, rgba(6,182,212,.22), transparent 60%),
+    #fff;
+}
+
+/* 09) BOTONES */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  padding: .8rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(2,6,23,.18);
+  background:#fff;
+  cursor:pointer;
+  font-weight: 900;
+}
+.btn-primary{
+  background: var(--primary);
+  border-color: transparent;
+  color:#fff;
+}
+.btn-primary:hover{ background: var(--primary-hover); }
+
+/* 10) FOOTER */
+.footer{
+  margin-top:auto;
+  background: linear-gradient(135deg, rgba(79,70,229,.92), rgba(6,182,212,.92));
+  color: #fff;
+  padding: 1rem;
+  border-top: 1px solid rgba(255,255,255,.18);
+}
+.footer-inner{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem 1rem;
+  align-items:center;
+  justify-content:space-between;
+}
+.muted{ color: rgba(255,255,255,.85); }
+
+/* 11) DETAILS / SUMMARY (reutilizable para el manual) */
+.dd{
+  margin: 1.25rem 0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(2,6,23,.06);
+  overflow: hidden;
+  border: 1px solid rgba(2,6,23,.08);
+}
+.dd > summary{
+  list-style:none;
+  cursor:pointer;
+  padding: 1rem 1.25rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(79,70,229,.10), rgba(6,182,212,.06));
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+}
+.dd > summary::-webkit-details-marker{ display:none; }
+.dd > summary::before{
+  content:"▸";
+  font-size:1.2rem;
+  transition: transform .25s ease;
+  color: var(--primary);
+}
+.dd[open] > summary::before{ transform: rotate(90deg); }
+.dd-body{
+  padding: 1.25rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(2,6,23,.06);
+}
+.dd-body p{ margin:.75rem 0; line-height:1.65; color: var(--ink-2); }
+.dd-body ul, .dd-body ol{ margin:.75rem 0 .75rem 1.25rem; }
+.dd-body li{ margin:.35rem 0; line-height:1.5; }
+
+/* 12) CALLOUTS */
+.callout{
+  margin: 1rem 0;
+  padding: .9rem 1rem;
+  border-radius: 12px;
+  background: rgba(79,70,229,.06);
+  border-left: 5px solid var(--primary);
+  font-size: .95rem;
+}
+.callout.warn{
+  background: rgba(245,158,11,.10);
+  border-left-color: #f59e0b;
+}
+.callout.tip{
+  background: rgba(16,185,129,.10);
+  border-left-color: #10b981;
+}
+
+/* Responsive */
+@media (max-width: 720px){
+  .content{ padding: 1rem; }
+  .topbar-inner{ padding: .8rem .9rem; }
+  .topnav-inner{ padding: .55rem .9rem .8rem; }
+}
+/* =========================================================
+   BLOQUE MEDIA (Manual UF1841)
+   Usa: <figure class="media">...</figure>
+   ========================================================= */
+.media{
+  margin: 1rem auto 1.5rem;   /* centra el bloque figure */
+  max-width: 900px;           /* ancho máximo coherente con el manual */
+  text-align: center;         /* centra el figcaption */
+}
+
+.media img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;             /* centra la imagen horizontalmente */
+  border-radius: .5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+.media figcaption{
+  margin-top: .4rem;
+  font-size: .85rem;
+  color: var(--muted);
+}
+/* =========================
+   BLOQUE MEDIA + TEXTO (Manual UF1841)
+   ========================= */
+
+.media-block{
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: center;
+
+  margin: 2rem 0;
+  padding: 1.5rem;
+
+  background: var(--color-cream);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+/* Imagen */
+.media-block__image img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1rem;
+  box-shadow: 0 10px 26px rgba(0,0,0,.15);
+}
+
+/* Texto */
+.media-block__content{
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* =========================
+   🔁 MODIFICADORES DE POSICIÓN
+   ========================= */
+
+/* 👉 IMAGEN A LA IZQUIERDA (por defecto) */
+.media-left{
+  grid-template-areas: "image content";
+}
+
+.media-left .media-block__image{
+  grid-area: image;
+}
+
+.media-left .media-block__content{
+  grid-area: content;
+}
+
+/* 👉 IMAGEN A LA DERECHA */
+.media-right{
+  grid-template-areas: "content image";
+}
+
+.media-right .media-block__image{
+  grid-area: image;
+}
+
+.media-right .media-block__content{
+  grid-area: content;
+}
+
+/* =========================
+   📱 RESPONSIVE (móvil)
+   ========================= */
+@media (max-width: 900px){
+  .media-block{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "content";
+    padding: 1.2rem;
+  }
+
+  .media-block__content{
+    font-size: 1rem;
+  }
+}
+/* =========================================================
+   RECURSOS — Sección de VÍDEOS recomendados
+   Usa: .resource-section.resource-videos
+   ========================================================= */
+
+.resource-section{
+  margin-top: 1.1rem;
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(31,41,55,.08);
+  padding: 1.2rem;
+}
+
+.resource-section__head{
+  display: grid;
+  gap: .35rem;
+  margin-bottom: .9rem;
+}
+
+.resource-section__title{
+  margin: 0;
+  color: var(--text);
+  font-size: 1.25rem;
+  letter-spacing: -.15px;
+}
+
+.resource-section__lead{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 85ch;
+}
+
+/* Grid de tarjetas */
+.resource-grid{
+  margin-top: .9rem;
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Tarjeta */
+.resource-card{
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(31,41,55,.10);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.resource-card__media{
+  border-bottom: 1px solid rgba(31,41,55,.08);
+  background: rgba(228,77,38,.06);
+}
+
+/* Miniatura (imagen) */
+.resource-card__thumb{
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Si en vez de img quieres iframe/video: puedes meter .media-video dentro */
+.resource-card__body{
+  padding: 1rem;
+  display: grid;
+  gap: .55rem;
+}
+
+.resource-card__kicker{
+  margin: 0;
+  font-weight: 900;
+  font-size: .85rem;
+  letter-spacing: .02em;
+  color: rgba(31,41,55,.75);
+}
+
+.resource-card__name{
+  margin: 0;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.resource-card__desc{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.resource-card__meta{
+  margin: .1rem 0 0;
+  font-size: .9rem;
+  color: rgba(31,41,55,.70);
+}
+
+.resource-card__actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .25rem;
+}
+
+/* Variante: tarjeta destacada (opcional) */
+.resource-card.is-featured{
+  border-color: rgba(241,101,41,.35);
+  box-shadow: 0 14px 34px rgba(0,0,0,.09);
+}
+
+.resource-card.is-featured .resource-card__media{
+  background: linear-gradient(135deg, rgba(228,77,38,.18), rgba(241,101,41,.10));
+}
+
+  /* =========================
+   BLOQUE QUIZ 
+   ========================= */
+.quiz-option input {
+  accent-color: var(--primary);
+}
+.quiz-option:focus-within {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* =========================
+   BLOQUE DOCUMENTACION
+   ========================= */
+   .doc-link-card{
+  margin: 1rem 0;
+  padding: 1rem 1.05rem;
+  border-radius: 14px;
+  border: 1px solid rgba(2,6,23,.10);
+  background: rgba(197, 236, 246, 0.85);
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  display: grid;
+  gap: .45rem;
+}
+
+.doc-link-card a{
+  font-weight: 900;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.doc-link-card a:hover{
+  text-decoration: underline;
+}
+
+.doc-link-card__desc{
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+/* =========================
+    BLOQUE TABLAS
+   ========================= */
+   
+
+.table-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.75);
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+}
+
+.table-wrap:focus{
+  outline: 3px solid var(--color-focus, #FFD400);
+  outline-offset: 4px;
+}
+
+.table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 640px; /* para que en móvil haya scroll y no se rompa */
+}
+
+.table caption{
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+/* ============================================
+   CLASES UTILITARIAS BASADAS EN TOKENS
+   ============================================ */
+
+/* Colores de texto */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-inverse { color: var(--text-inverse); }
+.text-success { color: var(--feedback-success); }
+.text-warning { color: var(--feedback-warning); }
+.text-error { color: var(--feedback-error); }
+
+/* Colores de fondo */
+.bg-primary { background-color: var(--surface-primary); }
+.bg-secondary { background-color: var(--surface-secondary); }
+.bg-elevated { background-color: var(--surface-elevated); }
+.bg-success { background-color: var(--feedback-success-bg); }
+.bg-warning { background-color: var(--feedback-warning-bg); }
+.bg-error { background-color: var(--feedback-error-bg); }
+
+/* Espaciado */
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+.p-2xl { padding: var(--space-2xl); }
+
+.m-xs { margin: var(--space-xs); }
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+.m-xl { margin: var(--space-xl); }
+.m-2xl { margin: var(--space-2xl); }
+
+/* Tipografía */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-md { font-size: var(--font-size-md); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+.text-3xl { font-size: var(--font-size-3xl); }
+.text-4xl { font-size: var(--font-size-4xl); }
+
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+/* Familias tipográficas */
+.font-primary { font-family: var(--font-primary); }
+.font-display { font-family: var(--font-display); }
+.font-code { font-family: var(--font-code); }
+.font-ui { font-family: var(--font-ui); }
+
+/* Alturas de línea */
+.leading-tight { line-height: var(--line-height-tight); }
+.leading-normal { line-height: var(--line-height-normal); }
+.leading-relaxed { line-height: var(--line-height-relaxed); }
+
+/* Bordes y formas */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+.border { border: 1px solid var(--border-subtle); }
+.border-medium { border: 1px solid var(--border-medium); }
+.border-strong { border: 1px solid var(--border-strong); }
+
+/* Sombras */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+/* Layout helpers */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+
+/* Componentes reutilizables usando tokens */
+.token-showcase {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.token-card {
+  background: var(--surface-elevated);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.token-sample {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-medium);
+  margin-right: var(--space-sm);
+}
+
+.color-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0;
+}
+
+.color-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.color-preview {
+  width: 100%;
+  height: 4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-xs);
+}
+
+.token-code {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-800);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.table thead th{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(
+  135deg,
+  var(--c-2),
+  var(--c-3)
+);
+
+  color: #fff;
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.table td,
+.table tbody th[scope="row"]{
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  color: var(--text, #1f2937);
+  vertical-align: top;
+}
+
+.table tbody th[scope="row"]{
+  font-weight: 800;
+  background: rgba(255,255,255,.6);
+}
+
+.table-zebra tbody tr:nth-child(odd) td,
+.table-zebra tbody tr:nth-child(odd) th[scope="row"]{
+  background: rgba(0,0,0,.02);
+}
+
+.table tfoot td{
+  padding: 12px 14px;
+  background: rgba(0,0,0,.02);
+}
+
+.cell-break{
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+/* Redondeo de esquinas */
+.table thead th:first-child{ border-top-left-radius: 14px; }
+.table thead th:last-child{ border-top-right-radius: 14px; }
+.table tfoot td:first-child{ border-bottom-left-radius: 14px; }
+.table tfoot td:last-child{ border-bottom-right-radius: 14px; }
+
+/* =========================
+   BLOQUES DE CÓDIGO · PRE / CODE (GLOBAL)
+   Se aplica en: .doc-section, .card, .dd-body
+   ========================= */
+
+.doc-section pre,
+.card pre,
+.dd-body pre,
+.lesson-block pre{
+  margin: 1rem 0 1.4rem;
+  padding: 1.1rem 1.25rem;
+
+  background: linear-gradient(135deg, #0b1220, #0e1628);
+  color: rgba(255,255,255,.92);
+
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 10px 26px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.08);
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.doc-section pre code,
+.card pre code,
+.dd-body pre code,
+.lesson-block pre code{
+  display: block;
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+               Consolas, "Liberation Mono", monospace;
+
+  font-size: .95rem;
+  line-height: 1.55;
+
+  white-space: pre;
+  word-break: normal;
+  tab-size: 2;
+
+  background: transparent;
+  border: 0;
+  padding: 0;
+
+  color: inherit;
+}
+
+/* =========================
+   CODE INLINE
+   ========================= */
+
+.doc-section p code,
+.doc-section li code,
+.card p code,
+.card li code,
+.dd-body p code,
+.dd-body li code{
+  padding: .15rem .45rem;
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+               Consolas, "Liberation Mono", monospace;
+
+  font-size: .95em;
+
+  background: rgba(31,41,55,.06);
+  color: var(--text, #1f2937);
+
+  border: 1px solid rgba(31,41,55,.12);
+  border-radius: 10px;
+}
+
+/* =========================
+   FOCO ACCESIBLE
+   ========================= */
+
+.doc-section pre:focus-visible,
+.card pre:focus-visible,
+.dd-body pre:focus-visible,
+.lesson-block pre:focus-visible{
+  outline: 3px solid var(--color-focus, #FFD400);
+  outline-offset: 4px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .doc-section pre,
+  .card pre,
+  .dd-body pre,
+  .lesson-block pre{
+    box-shadow: none;
+  }
+}

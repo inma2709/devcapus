@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Práctica: Despliega tu Portfolio en GitHub Pages</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Estilos adicionales específicos para colorear y potenciar la experiencia */
+    .bg-brand-blue-soft {
+      background-color: rgba(34, 116, 165, 0.05);
+      border-left: 4px solid #2274A5;
+    }
+    .badge-highlight {
+      background-color: #D6006D;
+      color: #fff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .step-number {
+      background: linear-gradient(135deg, #2B155A 0%, #2274A5 100%);
+      color: white;
+      font-weight: 900;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      margin-right: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .quiz-container {
+      background-color: #fcfbf7;
+      border: 2px solid #2B155A;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    .quiz-question {
+      font-weight: bold;
+      color: #2B155A;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .quiz-options {
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+    }
+    .quiz-option {
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .quiz-option:hover {
+      background-color: #e0f2fe;
+      border-color: #2274A5;
+    }
+    .quiz-option.correct {
+      background-color: #d1fae5;
+      border-color: #059669;
+      color: #065f46;
+    }
+    .quiz-option.incorrect {
+      background-color: #fee2e2;
+      border-color: #dc2626;
+      color: #991b1b;
+    }
+    .feedback-box {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1e293b;
+      display: none;
+      background: #f1f5f9;
+      padding: 0.75rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header" style="background: linear-gradient(135deg, #2B155A 0%, #2274A5 100%); color: white; padding: 3rem 1.5rem; text-align: center; border-bottom: 5px solid #FFB30F;">
+    <span class="badge-highlight" style="background-color: #FFB30F; color: #2B155A; text-transform: uppercase; font-size: 0.75rem; tracking: 0.2em; border-radius: 20px; padding: 0.35rem 1rem;">Control de Versiones & Hosting</span>
+    <h1 style="font-family: 'Segoe UI', sans-serif; font-size: 2.5rem; font-weight: 900; margin-top: 0.75rem; letter-spacing: -0.02em;">Despliega tu Portfolio con GitHub Pages</h1>
+    <p style="font-size: 1.1rem; opacity: 0.9; margin-top: 0.5rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+      La guía definitiva para que los alumnos pongan sus proyectos en línea de forma gratuita, dominen el Git Flow profesional y construyan una carta de presentación interactiva e imbatible para las empresas.
+    </p>
+  </header>
+
+  <main class="main-content">
+    
+    <!-- Introducción Semántica -->
+    <section class="content-section">
+      <h2 class="section-title" style="color: #2B155A;">¿Por qué tu Portfolio necesita un Hosting Real? 🤔</h2>
+      <p>
+        Cuando buscas trabajo como desarrollador web, enviar un currículum o un archivo de código comprimido en ZIP ya no es suficiente. Las empresas y los reclutadores técnicos quieren ver tus habilidades en acción al instante con un solo clic. Necesitan **"probar tu código"**.
+      </p>
+      <p>
+        Aquí es donde entra **GitHub Pages**, un servicio de alojamiento de sitios web estáticos provisto directamente por GitHub. Te permite vincular tu repositorio de código de forma 100% gratuita y segura.
+      </p>
+
+      <!-- El Concepto Estático -->
+      <div style="background-color: rgba(43, 21, 90, 0.04); border-left: 4px solid #2B155A; padding: 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0;">
+        <h3 style="margin: 0 0 0.5rem; color: #2B155A; font-size: 1.15rem; font-weight: bold;">💡 El Concepto Técnico: Todo es HTML, CSS y JavaScript</h3>
+        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #334155;">
+          Un sitio desplegado en GitHub Pages <strong>no necesita bases de datos dinámicas ni código complejo de servidor PHP/Python</strong>. En el fondo, no es más que tus familiares archivos <strong style="color: #D6006D;">HTML, CSS y un poco de JavaScript</strong> cargándose directamente en el navegador del visitante. Cualquier maquetación que funcione de manera local en tu ordenador se ejecutará con la misma velocidad y precisión en el hosting en la nube de GitHub Pages.
+        </p>
+      </div>
+
+      <!-- Sección de Inspiración -->
+      <div style="margin-top: 2rem;">
+        <h3 style="color: #2b155a; font-size: 1.3rem; font-weight: bold; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">🌌 Inspiración: Portfolios de Éxito en GitHub Pages</h3>
+        <p style="font-size: 0.95rem; color: #475569; margin-bottom: 1.5rem;">
+          Explora lo que otros desarrolladores profesionales han construido utilizando exactamente la misma estructura de ficheros estáticos. Presta atención a las direcciones que terminan en <strong>.github.io</strong>: ¡es la marca de identidad de un sitio servido con Pages!
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+          
+          <!-- Tarjeta Inspiración 1 -->
+          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s;">
+            <span class="badge-highlight" style="background-color: #2274A5; margin-bottom: 0.5rem; display: inline-block;">DevFolio</span>
+            <h4 style="margin: 0.5rem 0; color: #2B155A; font-weight: bold; font-size: 1.1rem;">Clean & Professional</h4>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 1rem;">
+              Un diseño limpio, con tipografía refinada y secciones perfectamente estructuradas para capturar el interés del reclutador.
+            </p>
+            <a href="https://mmacneil.github.io/devfolio/" target="_blank" style="color: #2274A5; font-weight: bold; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem;">
+              Ver Demo Live 🌐
+            </a>
+          </div>
+
+          <!-- Tarjeta Inspiración 2 -->
+          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s;">
+            <span class="badge-highlight" style="background-color: #2B155A; margin-bottom: 0.5rem; display: inline-block;">portfolYOU</span>
+            <h4 style="margin: 0.5rem 0; color: #2B155A; font-weight: bold; font-size: 1.1rem;">Interactive Layout</h4>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 1rem;">
+              Excelente ejemplo de cómo organizar tus proyectos en categorías interactivas y diseñar tarjetas de presentación modernas.
+            </p>
+            <a href="https://yousinix.github.io/portfolYOU/projects/" target="_blank" style="color: #2274A5; font-weight: bold; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem;">
+              Ver Demo Live 🌐
+            </a>
+          </div>
+
+          <!-- Tarjeta Inspiración 3 -->
+          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s;">
+            <span class="badge-highlight" style="background-color: #D6006D; margin-bottom: 0.5rem; display: inline-block;">vCard Personal</span>
+            <h4 style="margin: 0.5rem 0; color: #2B155A; font-weight: bold; font-size: 1.1rem;">Interactive vCard</h4>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 1rem;">
+              Diseño de vanguardia estilo tarjeta virtual con animaciones fluidas, menús dinámicos y adaptación móvil ejemplar.
+            </p>
+            <a href="https://codewithsadee.github.io/vcard-personal-portfolio/" target="_blank" style="color: #2274A5; font-weight: bold; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem;">
+              Ver Demo Live 🌐
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="comparison-container" style="margin-top: 1rem;">
+        <div class="comparison-card">
+          <h3 class="comparison-title" style="color: #2274A5;">Lo que el Portfolio aporta a tu marca 🚀</h3>
+          <ul>
+            <li><strong>Demostración Real:</strong> Demuestras al instante que tu maquetación, estilo responsive, interactividad móvil y semántica SEO son óptimas.</li>
+            <li><strong>Dominio del Workflow:</strong> Al desplegarlo a través de GitHub, demuestras que conoces el flujo de control de versiones real (`git commit`, `git push`), indispensable en cualquier empresa de software técnico.</li>
+            <li><strong>Accesibilidad Total:</strong> Obtienes un enlace público optimizado con certificado SSL (HTTPS) listo para adjuntar en tu perfil de LinkedIn y CV oficial.</li>
+          </ul>
+        </div>
+
+        <div class="comparison-card">
+          <h3 class="comparison-title" style="color: #D6006D;">¿Qué hosting elegir? GitHub Pages 🌟</h3>
+          <ul>
+            <li><strong>100% Gratuito:</strong> Sin costes mensuales, mantenimiento, publicidad externa ni caducidad del plan.</li>
+            <li><strong>Directo desde Git:</strong> Cada vez que realices una mejora en tu código local y hagas un `git push`, tu web se actualizará automáticamente en menos de un minuto.</li>
+            <li><strong>Dominios Custom:</strong> Puedes enlazar opcionalmente tu propio nombre de dominio personalizado (ej. `tu-nombre.com`) de forma sencilla.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guía Paso a Paso -->
+    <section class="content-section">
+      <h2 class="section-title" style="color: #2B155A;">Paso a Paso: Del Código Local a Internet 🌐</h2>
+      <p>
+        Para publicar tu primer portfolio o proyecto (como el *Currículum Digital* o la *Landing de Citas*), sigue estos pasos estructurados.
+      </p>
+
+      <!-- PASO 1 -->
+      <div style="margin-top: 2rem; display: flex; align-items: flex-start; margin-bottom: 2rem;">
+        <span class="step-number">1</span>
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #2B155A; margin: 0 0 0.5rem;">Prepara tu estructura de archivos locales</h3>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #334155;">
+            Asegúrate de que tu proyecto cuenta con un archivo principal llamado exactamente <code style="background-color: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: bold; color: #2274A5;">index.html</code> en la raíz del proyecto. GitHub Pages busca este archivo de origen exacto para arrancar tu web. Los assets (CSS, imágenes y scripts JS) deben enlazarse de forma correcta mediante rutas relativas (ej. <code style="background-color: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: bold;">./css/style.css</code>) en lugar de absolutas.
+          </p>
+        </div>
+      </div>
+
+      <!-- PASO 2 -->
+      <div style="display: flex; align-items: flex-start; margin-bottom: 2rem;">
+        <span class="step-number">2</span>
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #2B155A; margin: 0 0 0.5rem;">Crea un repositorio público en GitHub</h3>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #334155;">
+            Inicia sesión en tu cuenta de GitHub y haz clic en el botón verde <strong>"New"</strong> (o "Nuevo"). Asigna un nombre al repositorio (por ejemplo, <code style="background-color: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: bold; color: #D6006D;">mi-portfolio-profesional</code>). Es sumamente importante que lo marques como <strong>Público</strong>, puesto que los planes gratuitos de GitHub Pages requieren visibilidad externa del repositorio para el despliegue automático. Deja vacías las casillas de inicializar con README, .gitignore o licencia.
+          </p>
+        </div>
+      </div>
+
+      <!-- PASO 3 -->
+      <div style="display: flex; align-items: flex-start; margin-bottom: 2rem;">
+        <span class="step-number">3</span>
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #2B155A; margin: 0 0 0.5rem;">Vincula tu proyecto local mediante Git</h3>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #334155;">
+            Abre tu consola o terminal (Git Bash, CMD o la terminal de VS Code) posicionada en tu carpeta local de archivos del proyecto y ejecuta secuencialmente los siguientes comandos oficiales:
+          </p>
+          <pre style="background: #1e1e2f; color: #f8f8f2; padding: 1rem; border-radius: 8px; font-size: 0.85rem; line-height: 1.5; margin-top: 0.75rem; overflow-x: auto;">
+# 1. Inicializa el repositorio local
+git init
+
+# 2. Añade todos tus archivos al área de preparación (Staging Area)
+git add .
+
+# 3. Guarda el estado de tus archivos con un comentario inicial descriptivo
+git commit -m "feat: mi primer commit de portfolio listo para subir"
+
+# 4. Define tu rama principal de trabajo por defecto como main
+git branch -M main
+
+# 5. Vincula tu repositorio local con el remoto de GitHub
+git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+
+# 6. Sube los archivos a la nube en GitHub
+git push -u origin main</pre>
+        </div>
+      </div>
+
+      <!-- PASO 4 -->
+      <div style="display: flex; align-items: flex-start; margin-bottom: 2rem;">
+        <span class="step-number">4</span>
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #2B155A; margin: 0 0 0.5rem;">Activa el despliegue automático de GitHub Pages</h3>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #334155;">
+            Una vez subido el código, ve a tu repositorio recién creado en el navegador en la plataforma de GitHub:
+          </p>
+          <ol style="margin-top: 0.5rem; margin-left: 1.5rem; list-style-type: decimal; font-size: 0.9rem; line-height: 1.6; color: #334155;">
+            <li>Haz clic en la pestaña superior derecha con el icono de engranaje llamado <strong>"Settings"</strong> (Configuración).</li>
+            <li>En la barra lateral izquierda, localiza y haz clic en el menú <strong>"Pages"</strong> (Páginas) dentro del bloque de "Code and automation".</li>
+            <li>En la sección <strong>"Build and deployment"</strong>, en el desplegable de "Source", selecciona la opción <strong>"Deploy from a branch"</strong>.</li>
+            <li>En el submenú de "Branch" (Rama), selecciona en el primer desplegable la rama <strong>main</strong> y en la ruta de carpeta selecciona <strong>/ (root)</strong>.</li>
+            <li>Valida la configuración haciendo clic en el botón <strong>"Save"</strong> (Guardar).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- PASO 5 -->
+      <div style="display: flex; align-items: flex-start;">
+        <span class="step-number">5</span>
+        <div style="flex: 1;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #2B155A; margin: 0 0 0.5rem;">¡A disfrutar de tu sitio web público! 🎉</h3>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #334155;">
+            GitHub activará de fondo un proceso automático llamado **Actions** para procesar y desplegar tu sitio. Espera entre unos 30 y 60 segundos y actualiza la página de "Pages". En la sección superior se te mostrará un banner verde con tu URL mundial oficial:
+          </p>
+          <div style="background-color: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 1rem; margin-top: 0.75rem; text-align: center;">
+            <a href="#" target="_blank" style="color: #059669; font-weight: bold; font-size: 0.95rem; text-decoration: underline;">
+              https://tu-usuario-es.github.io/tu-repositorio/
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reglas de Oro -->
+    <section class="content-section bg-brand-blue-soft">
+      <h2 class="section-title" style="color: #2274A5;">Reglas de Oro del Maquetador Profesional en GitHub Pages 💡</h2>
+      <ul style="list-style-type: none; padding: 0; margin-top: 1rem;">
+        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; font-size: 0.95rem;">
+          <span style="font-size: 1.2rem; margin-right: 0.5rem;">💡</span>
+          <span><strong>Mayúsculas y minúsculas:</strong> Windows es tolerante a diferencias de tipografía, pero los servidores de despliegue de GitHub corren bajo Linux (sensible a capitalizaciones). Un enlace a <code style="background-color: #fff; border: 1px solid #cbd5e1; padding: 0.1rem 0.3rem; rounded: 4px;">./Foto.PNG</code> fallará silenciosamente si la extensión real física del archivo es <code style="background-color: #fff; border: 1px solid #cbd5e1; padding: 0.1rem 0.3rem; rounded: 4px;">.png</code>. Escribe todo siempre en minúsculas.</span>
+        </li>
+        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; font-size: 0.95rem;">
+          <span style="font-size: 1.2rem; margin-right: 0.5rem;">⚡</span>
+          <span><strong>Evita las rutas locales absolutas:</strong> Las referencias del tipo de dirección disco duro <code style="background-color: #fff; border: 1px solid #cbd5e1; padding: 0.1rem 0.3rem; rounded: 4px;">C:\MisProyectos\estilo.css</code> o puertos locales fallarán. Todas tus rutas de assets deben ser relativas al documento HTML.</span>
+        </li>
+        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; font-size: 0.95rem;">
+          <span style="font-size: 1.2rem; margin-right: 0.5rem;">🔄</span>
+          <span><strong>Mapear actualizaciones al instante:</strong> Tu web es un ente vivo. Si cambias el color de fondo en local, solo necesitas comandos ágiles para empujar la modificación en tiempo récord: <code style="background-color: #fff; border: 1px solid #cbd5e1; padding: 0.1rem 0.3rem; rounded: 4px;">git add .</code>, <code style="background-color: #fff; border: 1px solid #cbd5e1; padding: 0.1rem 0.3rem; rounded: 4px;">git commit -m "mejoras"</code> y <code style="background-color: #fff; border: 1px solid #cbd5e1; padding: 0.1rem 0.3rem; rounded: 4px;">git push</code>. Tu portfolio en internet se actualizará en background de manera completamente automatizada.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Quiz de autoevaluación interactivo incorporado -->
+    <section class="content-section" style="border: 2px solid #D6006D; border-radius: 12px; padding: 2rem;">
+      <h2 class="section-title" style="color: #D6006D; margin: 0 0 0.5rem;">Ponte a prueba: Test de Despliegue de Portfolio 📊</h2>
+      <p style="font-size: 0.9rem; color: #475569;">
+        Responde a las siguientes preguntas y comprueba al instante si estás listo para desplegar tu portafolios a producción de manera óptima:
+      </p>
+
+      <div class="quiz-container" style="border: none; margin-top: 1rem; padding: 0;">
+        
+        <!-- Pregunta 1 -->
+        <div>
+          <p class="quiz-question">1. ¿Qué nombre exacto debe tener el archivo principal en la raíz de tu proyecto para que GitHub Pages lo identifique como ejecutor de tu web?</p>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer(this, 'correct', 'q1', 'Correcto. El archivo index.html en minúsculas es el punto de entrada o home por defecto para los servidores web de GitHub Pages.')">A) index.HTML o Inicio.html</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'q1', 'Incorrecto. El servidor es sensible a minúsculas y requiere exactamente index.html en la raíz.')">B) INDEX.html o Portfolio.html</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'correct', 'q1', '¡Muy bien! Exactamente index.html en minúsculas.')">C) index.html</div>
+          </div>
+          <div id="q1-feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div>
+          <p class="quiz-question">2. Si al publicar tus proyectos en línea notas que todas las imágenes y cargadores de estilos CSS fallan en el entorno desplegado pero en local se ven bien, ¿cuál suele ser la causa común?</p>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer(this, 'correct', 'q2', 'Excelente deducción. Rutas relativas incorrectas o uso de barras diagonales absolutas de disco rompen el render en el servidor remoto.')">A) Uso de rutas locales absolutas de disco duro o capitalización incorrecta de extensiones.</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'q2', 'Incorrecto. GitHub Pages no requiere planes premium de pago para mostrar imágenes.')">B) Que GitHub Pages requiere una cuenta premium para incluir carpetas de imágenes.</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'q2', 'Incorrecto. Se pueden usar perfectamente todas las tipografías estándares sin restricciones.')">C) Que el CSS no tiene importado Google Fonts.</div>
+          </div>
+          <div id="q2-feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div>
+          <p class="quiz-question">3. ¿Qué visibilidad debe tener el repositorio en el plan gratuito para poder activar el servicio de Pages?</p>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'q3', 'Incorrecto. En los planes gratuitos, los repositorios Privados no admiten desplegar GitHub Pages.')">A) Privado</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'correct', 'q3', '¡Correcto! En las cuentas gratuitas, el código del portafolio debe tener visibilidad pública para activar el motor de Pages.')">B) Público</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'q3', 'Incorrecto. Esa visibilidad no es un tipo de repositorio estándar en GitHub.')">C) Interno u Oculto</div>
+          </div>
+          <div id="q3-feedback" class="feedback-box"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="text-align: center; padding: 2rem; color: #475569; font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 4rem;">
+    © 2026 DevCampus — Diseñado pedagógicamente por Inma Contreras para el Certificado IFCD0210
+  </footer>
+
+  <script>
+    function checkAnswer(selectedOption, status, questionId, feedbackText) {
+      // Bloquear respuestas de esta pregunta una vez respondida
+      const options = selectedOption.parentElement.querySelectorAll('.quiz-option');
+      options.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+        opt.classList.remove('correct', 'incorrect');
+      });
+
+      // Añadir clase correspondiente
+      if (status === 'correct') {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+        // Buscar y marcar la correcta
+        options.forEach(opt => {
+          if (opt.textContent.includes('C) index.html') || opt.textContent.includes('A) Uso de rutas l') || opt.textContent.includes('B) Público')) {
+            opt.classList.add('correct');
+          }
+        });
+      }
+
+      // Mostrar feedback
+      const feedbackBox = document.getElementById(questionId + '-feedback');
+      if (feedbackBox) {
+        feedbackBox.textContent = (status === 'correct' ? '🎉 ¡Excelente! ' : '❌ Ohh... ') + feedbackText;
+        feedbackBox.style.display = 'block';
+        feedbackBox.style.borderLeft = status === 'correct' ? '4px solid #059669' : '4px solid #dc2626';
+        feedbackBox.style.backgroundColor = status === 'correct' ? '#ecfdf5' : '#fef2f2';
+      }
+    }
+  </script>
+</body>
+</html>

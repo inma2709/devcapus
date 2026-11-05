@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz 60 preguntas: HTML, CSS, Bootstra  {t:"¿Qué hace 'position: sticky'?", o:["Se pega en un umbral al hacer scroll","Fija el elemento a la ventana","Lo posiciona relativo al ancestro posicionado"], a:0,
+   w:"Funciona como relative hasta alcanzar top/left especificado, luego queda 'pegado'.",
+   c:`.barra{ position:sticky; top:0 }`},Formularios, Grid y Flex</title>
+<style>
+  :root{
+    --ok:#16a34a;     /* verde */
+    --bad:#dc2626;    /* rojo  */
+    --ink:#111827;
+    --muted:#6b7280;
+    --panel:#f8fafc;
+    --border:#e5e7eb;
+    --brand:#1f1aab;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial; margin:0; color:var(--ink); background:#fff;}
+  header{
+    padding:28px 16px;
+    background:linear-gradient(135deg,var(--brand),#1487a9);
+    color:#fff; text-align:center;
+  }
+  h1{margin:.2rem 0}
+  .wrap{max-width:980px;margin:auto;padding:24px 16px}
+  .intro{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:20px;color:#111}
+  .meta{display:flex;gap:10px;flex-wrap:wrap;font-size:.95rem;color:var(--muted)}
+  .q{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    margin:12px 0;
+    background:#fff;
+  }
+  .q legend{font-weight:700;margin-bottom:6px}
+  .opts{display:grid;gap:8px}
+  .opt{
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:#fff;
+    transition:transform .05s ease;
+  }
+  .opt:hover{transform:translateY(-1px)}
+  .opt input{margin-top:3px}
+  .opt.correct{border-color:var(--ok); background: #f0fdf4}
+  .opt.incorrect{border-color:var(--bad); background:#fef2f2}
+  .explain{display:none; margin-top:8px; }
+  details{background:#f9fafb;border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+  details pre{background:#111827; color:#e5e7eb; padding:10px; border-radius:8px; overflow:auto}
+  details code{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+  .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin:20px 0}
+  button{
+    cursor:pointer; border:none; padding:12px 18px; border-radius:999px; color:#fff; background:var(--brand); font-weight:700;
+  }
+  button.secondary{background:#374151}
+  .score{
+    text-align:center; font-weight:800; font-size:1.1rem; margin:8px 0 18px;
+  }
+  .pill{display:inline-block;border:1px solid var(--border); background:#fff; padding:6px 10px; border-radius:999px}
+  .muted{color:var(--muted)}
+  .footer{padding:18px 12px;text-align:center;color:#555}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Quiz Web · 60 preguntas</h1>
+    <p class="muted" style="opacity:.9">HTML · CSS · Bootstrap · Formularios · Grid · Flexbox · Selectores</p>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <p>Selecciona una opción por pregunta. Pulsa <strong>Corregir</strong> para ver aciertos (verde) y errores (rojo). Tras corregir, puedes desplegar la explicación y ver <em>trozos de código</em> prácticos.</p>
+      <div class="meta">
+        <span class="pill">3 opciones · 1 correcta</span>
+        <span class="pill">Explicación con <code>&lt;details&gt;</code> + código</span>
+        <span class="pill">Temas mixtos (nivel inicial)</span>
+      </div>
+    </section>
+
+    <div id="quiz"></div>
+
+    <div class="controls">
+      <button id="gradeBtn">Corregir</button>
+      <button id="resetBtn" class="secondary" title="Nuevo intento con respuestas mezcladas">Reiniciar</button>
+    </div>
+    <div id="score" class="score"></div>
+  </main>
+
+  <div class="footer">Hecho con HTML, CSS y un poco de JavaScript ✨</div>
+
+<script>
+/* Helper para escapar HTML en snippets */
+function escapeHTML(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* =======================
+   Banco de preguntas (60)
+   - t: texto
+   - o: opciones
+   - a: índice correcto (se recalcula tras mezclar)
+   - w: explicación
+   - c: código (opcional)
+   ======================= */
+const questions = [
+  // HTML (1-12)
+  {t:"¿Qué declaración activa el modo estándares en HTML5?", o:["<!DOCTYPE html>","<doctype html5>","<!HTML5>"], a:0,
+   w:"Coloca el doctype al inicio del documento para evitar el modo quirks y activar el motor moderno del navegador.",
+   c:`<!DOCTYPE html>
+<html lang="es">
+<head>...`},
+  {t:"¿Qué etiqueta define el contenido principal único de la página?", o:["<main>","<section>","<article>"], a:0,
+   w:"<main> envuelve el contenido central único. No debe repetirse. <section>/<article> son partes temáticas, sí pueden repetirse.",
+   c:`<main>
+  <h1>Título de la página</h1>
+  <p>Contenido principal...</p>
+</main>`},
+  {t:"¿Qué atributo marca un texto alternativo en imágenes tan importante para la accesibilidad?", o:["alt","title","aria-label"], a:0,
+   w:"El alt describe la imagen cuando no carga o para lectores de pantalla. Es obligatorio en imágenes relevantes.",
+   c:`<img src="foto.jpg" alt="Retrato de perfil">`},
+  {t:"¿Qué etiqueta semántica es adecuada para el pie global?", o:["<footer>","<aside>","<nav>"], a:0,
+   w:"<footer> es el pie del documento o de una sección. <nav> aloja enlaces de navegación; <aside> contenido complementario.",
+   c:`<footer>
+  © 2025 Mi Sitio · Aviso legal
+</footer>`},
+  {t:"¿Qué elemento agrupa campos relacionados por contenido en formularios?", o:["<fieldset>","<group>","<section>"], a:0,
+   w:"<fieldset> agrupa controles y  mejora accesibilidad y organización visual.",
+   c:`<fieldset>
+  <legend>Datos de envío</legend>
+  <label for="cp">CP</label>
+  <input id="cp" type="text">
+</fieldset>`},
+  {t:"¿Qué meta mejora la visualización en móviles?", o:['<meta name="viewport" content="width=device-width, initial-scale=1">','<meta mobile>', '<meta responsive>'], a:0,
+   w:"Controla el ancho lógico (igual al del dispositivo) y el zoom inicial para un render responsive correcto.",
+   c:`<meta name="viewport" content="width=device-width, initial-scale=1">`},
+  {t:"¿Cuál NO es una etiqueta semántica?", o:["<div>","<header>","<article>"], a:0,
+   w:"<div> es contenedor genérico sin significado semántico. Úsalo para agrupar cuando no encaje otra etiqueta semántica.",
+   c:`<div class="bloque-visual">...</div>`},
+  {t:"¿Qué atributo asocia <label> con un control?", o:["for","name","idref"], a:0,
+   w:"El for del <label> debe coincidir con el id del control para que el clic al texto active el campo.",
+   c:`<label for="email">Email</label>
+<input id="email" type="email">`},
+  {t:"¿Qué etiqueta se usa para listas ordenadas?", o:["<ol>","<ul>","<dl>"], a:0,
+   w:"<ol> numeradas, <ul> con viñetas, <dl> definiciones (pares <dt>/<dd>).",
+   c:`<ol>
+  <li>Uno</li><li>Dos</li>
+</ol>`},
+  {t:"¿Qué atributo define la URL de un enlace?", o:["href","src","action"], a:0,
+   w:"En <a>, href apunta al destino. src es para recursos (img, script...), action en formularios.",
+   c:`<a href="https://example.com">Ir</a>`},
+  {t:"¿Qué etiqueta es adecuada para un bloque de código?", o:["<pre><code>","<kbd>","<samp>"], a:0,
+   w:"<pre> preserva espacios y saltos; <code> marca fragmentos de código.",
+   c:`<pre><code>button{ padding:.5rem; }</code></pre>`},
+  {t:"¿Qué atributo hace que un input sea obligatorio?", o:["required","must","mandatory"], a:0,
+   w:"La validación nativa impide enviar el formulario si el campo requerido está vacío.",
+   c:`<input type="email" required>`},
+
+  // CSS (13-22)
+  {t:"¿Qué propiedad hace que width incluya borde y padding?", o:["box-sizing: border-box","display: inline-block","overflow: hidden"], a:0,
+   w:"border-box simplifica layouts: el ancho declarado incluye padding y borde (evita cálculos).",
+   c:`*{ box-sizing:border-box }`},
+  {t:"¿Qué selector aplica a elementos con clase 'card' dentro de '.grid'?", o:[".grid .card",".grid > .card",".card .grid"], a:0,
+   w:"El selector de descendiente selecciona cualquier .card anidada en .grid (sin importar profundidad).",
+   c:`.grid .card{ border:1px solid #ddd }`},
+  {t:"¿Cómo se declara una variable CSS?", o:[":root{--color: #333}","var(--color) = #333","$color: #333"], a:0,
+   w:"Se definen con prefijo -- y se consumen con var(--nombre).",
+   c:`:root{ --color-base:#e010a8 }
+h1{ color: var(--color-base) }`},
+  {t:"¿Qué unidad es relativa a la fuente del elemento raíz?", o:["rem","em","vh"], a:0,
+   w:"1rem = tamaño de fuente en :root (suele ser 16px). em depende del elemento actual.",
+   c:`html{ font-size:16px } .title{ font-size:1.5rem }`},
+  {t:"¿Qué propiedad controla el espacio externo de un contenedor?", o:["margin","padding","gap"], a:0,
+   w:"margin es el espacio hacia fuera del borde; padding hacia dentro; gap separa ítems en flex/grid.",
+   c:`.box{ margin:1rem; padding:.5rem }`},
+  {t:"¿Cómo centrar horizontalmente un bloque con ancho fijo?", o:["margin: 0 auto","text-align:center","justify-self:center"], a:0,
+   w:"Con display:block y un width definido, margin auto centra horizontalmente.",
+   c:`.card{ width:320px; margin:0 auto }`},
+  {t:"¿Qué hace 'position: sticky'?", o:["Se pega en un umbral al hacer scroll","Fija el elemento a la ventana","Lo posiciona relativo al ancestro posicionado"], a:0,
+   w:"Funciona como relative hasta alcanzar top/left especificado, luego queda “pegado”.",
+   c:`.barra{ position:sticky; top:0 }`},
+  {t:"¿Qué etiqueta enlaza una hoja de estilos externa en HTML?", o:["<link rel='stylesheet' href='estilos.css'>","<style src='estilos.css'>","<css-link href='estilos.css'>"], a:0,
+   w:"<link> con rel='stylesheet' y href apunta a la hoja CSS externa. <style> es para CSS embebido, no externo.",
+   c:`<link rel="stylesheet" href="estilos.css">`},
+
+  // Formularios (23-30)
+  {t:"¿Qué atributo envía una pista visible dentro del campo de un formulario?", o:["placeholder","title","value"], a:0,
+   w:"Úsalo como ayuda breve, no como etiqueta; puede desaparecer al escribir.",
+   c:`<input placeholder="tu@correo.com">`},
+  {t:"¿Qué tipo de input valida correos?", o:["type='email'","type='text'","type='mail'"], a:0,
+   w:"Incluye teclado adaptado en móviles y validación básica de formato.",
+   c:`<input type="email" required>`},
+  {t:"¿Cómo exigir ≥8 chars, 1 mayúscula y 1 dígito?", o:["pattern='(?=.*[A-Z])(?=.*\\d).{8,}'","minlength='8'","pattern='[A-Z0-9]{8,}'"], a:0,
+   w:"Lookaheads verifican presencia sin restringir el resto de caracteres.",
+   c:`<input type="password" pattern="(?=.*[A-Z])(?=.*\\d).{8,}">`},
+  {t:"¿Qué agrupa opciones mutuamente excluyentes?", o:["input radio con mismo name","checkbox con id distinto","select multiple"], a:0,
+   w:"Mismo name en radios → solo una opción puede estar activa.",
+   c:`<input type="radio" name="pago"> Tarjeta`},
+  {t:"¿Qué atributo define la URL de envío del formulario?", o:["action","method","enctype"], a:0,
+   w:"action apunta al endpoint; method suele ser POST o GET.",
+   c:`<form action="/enviar" method="post">...</form>`},
+
+  // Flexbox (31-38)
+  {t:"¿Cuál es el eje principal por defecto en flexbox?", o:["Horizontal (row)","Vertical (column)","Depende del wrap"], a:0,
+   w:"flex-direction: row por defecto → eje X principal.",
+   c:`.c{ display:flex } /* row por defecto */`},
+  {t:"¿Qué propiedad distribuye espacio libre en eje principal?", o:["justify-content","align-items","align-content"], a:0,
+   w:"Alinea y distribuye los items a lo largo del eje principal.",
+   c:`.c{ display:flex; justify-content:space-between }`},
+  {t:"¿Qué propiedad alinea items en el eje transversal?", o:["align-items","justify-items","place-content"], a:0,
+   w:"Alineación perpendicular al eje principal (ej. vertical si row).",
+   c:`.c{ display:flex; align-items:center }`},
+  {t:"¿Cómo haces que un item crezca para ocupar espacio libre?", o:["flex-grow:1","flex-basis:auto","order:-1"], a:0,
+   w:"Un grow mayor hace que ese item reciba más espacio libre relativo a los demás.",
+   c:`.item--expansible{ flex-grow:1 }`},
+  {t:"¿Qué hace 'flex-wrap: wrap'?", o:["Permite saltar de línea","Estira los ítems verticalmente","Bloquea el crecimiento"], a:0,
+   w:"Si no caben, pasan a la siguiente línea/columna.",
+   c:`.c{ display:flex; flex-wrap:wrap; gap:1rem }`},
+  {t:"¿Para centrar completamente con flex?", o:["display:flex; justify-content:center; align-items:center;","text-align:center; margin:auto;","place-items:center;"], a:0,
+   w:"Justify + align en contenedor flex centran en ambos ejes.",
+   c:`.c{ display:flex; justify-content:center; align-items:center }`},
+
+  // Grid (39-46)
+  {t:"¿Cuántas dimensiones controla CSS Grid?", o:["Dos: filas y columnas","Una: principal","Tres"], a:0,
+   w:"Grid es bidimensional; Flexbox maneja una dimensión.",
+   c:`.g{ display:grid; grid-template-columns:1fr 1fr }`},
+  {t:"¿Qué crea una grilla de 3 columnas iguales?", o:["grid-template-columns: repeat(3, 1fr);","grid-columns: 3;","grid: 3fr;"], a:0,
+   w:"repeat(3,1fr) es la forma más concisa.",
+   c:`.g{ grid-template-columns: repeat(3,1fr) }`},
+  {t:"¿Cómo se define el alto automático de filas según contenido?", o:["grid-auto-rows: auto;","grid-template-rows: fixed;","rows: auto;"], a:0,
+   w:"Controla el tamaño de filas que el grid genera automáticamente.",
+   c:`.g{ grid-auto-rows:auto }`},
+  {t:"¿Qué propiedad coloca elementos por nombres de área?", o:["grid-template-areas","grid-area-names","grid-areas"], a:0,
+   w:"Declara el mapa con comillas; luego cada ítem usa grid-area con el nombre.",
+   c:`.g{ grid-template-areas:
+  "header header"
+  "aside  main"
+  "footer footer"; }`},
+  {t:"¿Qué propiedad separa filas/columnas en grid?", o:["gap (row-gap/column-gap)","margin-between","space-grid"], a:0,
+   w:"gap es la forma moderna (vale para flex y grid).",
+   c:`.g{ display:grid; gap:1rem }`},
+  {t:"¿Layout responsive de tarjetas sin media queries?", o:["grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));","display:block; width:33%;","float:left; width:33%;"], a:0,
+   w:"auto-fit + minmax colapsa/expande columnas según espacio disponible.",
+   c:`.g{ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) }`},
+
+  // Bootstrap (47-50)
+  {t:"¿Qué CDN mínimo se usa para estilos de Bootstrap 5?", o:["<link href='https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css' rel='stylesheet'>","<script src='bootstrap.js'>","<link href='bootstrap.css'> sin versión"], a:0,
+   w:"Usa la URL oficial versionada desde un CDN (jsDelivr/UNPKG).",
+   c:`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet">`},
+  {t:"¿Cuántas columnas tiene el grid de Bootstrap?", o:["12","8","16"], a:0,
+   w:"El sistema de rejilla es de 12 columnas.",
+   c:`<div class="row">
+  <div class="col-4">A</div><div class="col-8">B</div>
+</div>`},
+  {t:"¿Qué clase crea un contenedor centrado con padding horizontal?", o:[".container",".row",".col"], a:0,
+   w:"container es el envoltorio base. row agrupa columnas; col define columnas.",
+   c:`<div class="container">...</div>`},
+  {t:"¿Qué clase hace un botón primario?", o:["btn btn-primary","button-primary","btn primary"], a:0,
+   w:"Siempre 'btn' + variante de color.",
+   c:`<button class="btn btn-primary">Aceptar</button>`},
+
+  // EXTRA (51-60)
+  {t:"¿Qué selector aplica a todos los párrafos?", o:["p","*","#p"], a:0,
+   w:"El selector de tipo usa el nombre de la etiqueta.",
+   c:`p{ line-height:1.6 }`},
+  {t:"¿Qué selector selecciona por id='hero'?", o:["#hero",".hero","hero"], a:0,
+   w:"El símbolo # selecciona por id (único por documento).",
+   c:`#hero{ background:#f0f0f0 }`},
+  {t:"¿Qué selector selecciona por clase='card'?", o:[".card","#card","card[]"], a:0,
+   w:"El punto selecciona por clase; puede haber múltiples elementos con esa clase.",
+   c:`.card{ border-radius:8px }`},
+  {t:"¿Qué pseudo-clase aplica al pasar el ratón?", o:[":hover",":active",":focus-within"], a:0,
+   w:"hover se activa al colocar el cursor sobre el elemento.",
+   c:`a:hover{ text-decoration:underline }`},
+  {t:"¿Cómo defines 2 columnas iguales con grid-template?", o:["grid-template-columns: repeat(2, 1fr);","grid-template: 2 / 1fr;","columns: 2fr"], a:0,
+   w:"repeat(2,1fr) crea dos columnas fraccionadas del mismo tamaño.",
+   c:`.g{ display:grid; grid-template-columns: repeat(2,1fr); gap:1rem }`},
+  {t:"En grid-template-areas, ¿cómo nombras el área principal 'main' a lo ancho?", o:['"main main"','"main" "main"','"main-main"'], a:0,
+   w:"Cada línea entre comillas representa una fila; repetir el nombre extiende el área en columnas.",
+   c:`grid-template-areas:
+  "main main"
+  "main main";`},
+];
+
+/* ========= NUEVO: mezclar opciones y recalcular índice correcto ========= */
+function shuffleArray(arr){
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+function randomizeQuestion(q){
+  // Empareja cada opción con si es la correcta
+  const pairs = q.o.map((text, idx) => ({ text, isCorrect: idx === q.a }));
+  shuffleArray(pairs);
+  // Reescribe opciones e índice correcto
+  q.o = pairs.map(p => p.text);
+  q.a = pairs.findIndex(p => p.isCorrect);
+}
+function randomizeAll(){
+  questions.forEach(randomizeQuestion);
+}
+
+/* =======================
+   Render dinámico
+   ======================= */
+const $quiz = document.getElementById('quiz');
+function render(){
+  $quiz.innerHTML = '';
+  questions.forEach((q, i)=>{
+    const field = document.createElement('fieldset');
+    field.className = 'q';
+    const lg = document.createElement('legend');
+    lg.textContent = `${i+1}. ${q.t}`;
+    field.appendChild(lg);
+
+    const opts = document.createElement('div');
+    opts.className = 'opts';
+
+    q.o.forEach((txt, idx)=>{
+      const id = `q${i}_o${idx}`;
+      const label = document.createElement('label');
+      label.className = 'opt';
+      label.setAttribute('for', id);
+
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = `q${i}`;
+      input.value = idx;
+      input.id = id;
+
+      const span = document.createElement('span');
+      // Sanitiza opciones (podrían contener < > en etiquetas)
+      span.innerHTML = txt.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+      label.appendChild(input);
+      label.appendChild(span);
+      opts.appendChild(label);
+    });
+
+    const det = document.createElement('div');
+    det.className = 'explain';
+    const codeBlock = q.c ? `<pre><code>${escapeHTML(q.c)}</code></pre>` : '';
+    det.innerHTML = `<details><summary>Ver explicación</summary><p>${q.w}</p>${codeBlock}</details>`;
+
+    field.appendChild(opts);
+    field.appendChild(det);
+    $quiz.appendChild(field);
+  });
+}
+
+/* =======================
+   Corrección y reinicio
+   ======================= */
+const gradeBtn = document.getElementById('gradeBtn');
+const resetBtn = document.getElementById('resetBtn');
+const scoreEl  = document.getElementById('score');
+
+gradeBtn.addEventListener('click', ()=>{
+  let ok = 0, total = questions.length, skipped = 0;
+
+  [...$quiz.querySelectorAll('.q')].forEach((qEl, i)=>{
+    const selected = qEl.querySelector('input[type="radio"]:checked');
+    const labels = qEl.querySelectorAll('.opt');
+    labels.forEach(l=>l.classList.remove('correct','incorrect'));
+
+    if(!selected){
+      skipped++;
+    }else{
+      const chosen = Number(selected.value);
+      const right  = questions[i].a;
+      const rightLabel = qEl.querySelector(`#q${i}_o${right}`).closest('.opt');
+
+      if(chosen === right){
+        ok++;
+        rightLabel.classList.add('correct');
+      }else{
+        selected.closest('.opt').classList.add('incorrect');
+        rightLabel.classList.add('correct');
+      }
+    }
+
+    qEl.querySelectorAll('input').forEach(inp => inp.disabled = true);
+    qEl.querySelector('.explain').style.display = 'block';
+  });
+
+  scoreEl.textContent = `Resultado: ${ok}/${total} correctas  ·  ${skipped} sin responder`;
+  gradeBtn.disabled = true;
+});
+
+resetBtn.addEventListener('click', ()=>{
+  // NUEVO: mezclar de nuevo y re-renderizar
+  randomizeAll();
+  render();
+  gradeBtn.disabled = false;
+  scoreEl.textContent = '';
+});
+
+// Visual: limpiar marcas al cambiar elección antes de corregir
+$quiz.addEventListener('change', e=>{
+  if(e.target.matches('input[type="radio"]')){
+    const group = e.target.name;
+    document.querySelectorAll(`input[name="${group}"]`).forEach(r=>{
+      r.closest('.opt').classList.remove('correct','incorrect');
+    });
+  }
+});
+
+/* Inicializar: mezclar y pintar */
+randomizeAll();
+render();
+</script>
+</body>
+</html>

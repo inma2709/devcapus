@@ -1,0 +1,7 @@
+import { useState } from 'react';
+
+export default function KnowledgeCheck({ title, questions }) {
+  const [answers, setAnswers] = useState({});
+  const [checked, setChecked] = useState(false);
+  return <section className="my-12 rounded-2xl border border-amber-200 bg-amber-50 p-6 sm:p-8"><p className="text-sm font-bold uppercase tracking-widest text-amber-700">Autoevaluación</p><h2 className="mt-2 text-2xl font-bold text-brand-purple">{title}</h2><p className="mt-2 leading-7 text-slate-700">Razona antes de responder. La retroalimentación identifica el concepto que debes repasar.</p>{questions.map((item) => <fieldset className="mt-6 border-t border-amber-200 pt-5" key={item.id}><legend className="font-bold text-slate-900">{item.question}</legend>{item.options.map((option) => <label className="mt-3 block cursor-pointer text-slate-700" key={option}><input className="mr-2" type="radio" name={item.id} onChange={() => setAnswers({ ...answers, [item.id]: option })} />{option}</label>)}{checked && answers[item.id] && <p className={`mt-3 rounded-lg p-3 ${answers[item.id] === item.answer ? 'bg-emerald-100 text-emerald-950' : 'bg-orange-100 text-orange-950'}`}><strong>{answers[item.id] === item.answer ? 'Correcto. ' : 'Revisa esta idea. '}</strong>{item.feedback}</p>}</fieldset>)}<button type="button" className="mt-7 rounded-lg bg-brand-blue px-4 py-2.5 font-bold text-white hover:bg-brand-purple" onClick={() => setChecked(true)}>Revisar respuestas</button></section>;
+}

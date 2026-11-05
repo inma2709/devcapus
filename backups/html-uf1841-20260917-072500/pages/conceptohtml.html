@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>UF1841 · Curso HTML/CSS</title>
+</head>
+<body>
+    <header>
+  <nav>
+    <!-- LOGO + TEXTO (accesible) -->
+    <a class="brand" href="../index.html" aria-label="Inicio: UF1841 · Lenguajes de marcas">
+      <img src="../assets/img/html.png" >
+      
+      <span>UF1841 · Lenguajes de marcas</span>
+    </a>
+
+    <a href="../index.html">Inicio</a>
+    <a href="pages/conceptohtml.html">HTML</a>
+    <a href="conceptocss.html">CSS</a>
+    
+   <a href="ejerciciohtml.html">Ejercicios</a>
+   <a href="formularios.html">Formularios</a>
+      
+  </nav>
+</header>
+    <main>
+        <h1 class="chapter-title">Aprendiendo HTML</h1>
+        
+        <div class="hero-section">
+    <img src="../assets/img/aprenderhtml.png" alt="Aprender html">        
+    <div class="hero-text-content"> <p>HTML5 es el lenguaje de marcado estándar para crear páginas web. Es la base sobre la que se construye la web moderna, permitiendo estructurar contenido, insertar multimedia y crear formularios interactivos. Aprender HTML5 es esencial para cualquier persona interesada en el desarrollo web, ya que proporciona las herramientas necesarias para diseñar y construir sitios web accesibles y funcionales.</p>
+        <p>En este curso, exploraremos los conceptos fundamentales de HTML5, desde su estructura básica hasta las etiquetas más avanzadas. También aprenderemos sobre la semántica, la accesibilidad y las mejores prácticas para crear páginas web efectivas y atractivas.</p>
+    </div>
+</div>
+        
+        <!-- Sección de Introducción -->
+        <section id="inicio" class="card">
+            <h1>¿Qué es HTML5?</h1>
+            <p>HTML (HyperText Markup Language) es el lenguaje de marcas estándar para crear páginas web. HTML5 es la versión más reciente y avanzada de este lenguaje, que introduce nuevas características y mejoras para facilitar el desarrollo web moderno.</p>
+            <p>HTML5 fue lanzado oficialmente en octubre de 2014 por el World Wide Web Consortium (W3C) y la Web Hypertext Application Technology Working Group (WHATWG). Desde entonces, ha sido adoptado ampliamente por desarrolladores y navegadores web debido a sus numerosas ventajas y capacidades mejoradas.</p>
+        </section>
+
+      <section id="conceptos-basicos" class="card">
+    <h2>📘 Conceptos Básicos de HTML</h2>
+    <p class="intro">
+        HTML (HyperText Markup Language) es el lenguaje de marcado fundamental para la web. Define la estructura y el contenido de una página web, sirviendo como el esqueleto sobre el que se construye todo lo demás. A continuación, exploramos sus características clave y cómo ha evolucionado con HTML5.
+    </p>
+
+    <details>
+        <summary>Características clave de HTML5</summary>
+        <ul>
+            <li><strong>Elementos semánticos:</strong> Nuevas etiquetas como <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, y <code>&lt;nav&gt;</code>, que dan un significado claro al contenido, mejorando la accesibilidad y el SEO.</li>
+            <li><strong>Multimedia nativa:</strong> Permite insertar audio y video directamente con las etiquetas <code>&lt;audio&gt;</code> y <code>&lt;video&gt;</code>, sin necesidad de plugins externos como Flash.</li>
+            <li><strong>Gráficos y efectos:</strong> Incluye <code>&lt;canvas&gt;</code> para dibujar gráficos dinámicos y <code>&lt;svg&gt;</code> para gráficos vectoriales escalables.</li>
+            <li><strong>Formularios mejorados:</strong> Nuevos tipos de entrada (<code>email</code>, <code>date</code>, <code>number</code>, etc.) que simplifican la validación y mejoran la experiencia del usuario.</li>
+            <li><strong>APIs avanzadas:</strong> Proporciona APIs nativas para funcionalidades como la geolocalización, el almacenamiento local (<code>localStorage</code> y <code>sessionStorage</code>), y los procesos en segundo plano (Web Workers).</li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>Propiedades del lenguaje de marcado</summary>
+        <ul>
+            <li>✔️ <strong>Simple y universal:</strong> Un archivo HTML es un documento de texto plano, editable con cualquier editor, lo que lo hace accesible para todos.</li>
+            <li>✔️ <strong>Contenido y estructura en un solo lugar:</strong> El código y el contenido conviven en el mismo documento, lo que facilita su lectura y mantenimiento.</li>
+            <li>✔️ <strong>Flexible y adaptable:</strong> Permite que el mismo contenido se adapte a diferentes dispositivos y tamaños de pantalla, clave para el diseño web responsivo.</li>
+            <li>✔️ <strong>Estándares abiertos:</strong> Respaldado por el <a href="https://www.w3.org/" target="_blank" rel="noopener">Consorcio World Wide Web (W3C)</a>, que garantiza su consistencia y compatibilidad entre navegadores.</li>
+        </ul>
+        <p>Es vital recordar que HTML no trabaja solo. Se complementa con <strong>CSS</strong>, que le da estilo y diseño, y con <strong>JavaScript</strong>, que le añade interactividad y dinamismo. Juntos, forman el trío fundamental del desarrollo web moderno.</p>
+    </details>
+    
+    <div class="text-image-container">
+        <img src="../assets/img/estructura.png" alt="Estructura básica de una pagina en html">
+        <p>La estructura básica de una página web en HTML se compone de la declaración <code>!DOCTYPE html</code>, que define la versión de HTML, seguida de la etiqueta <code>&lt;html&gt;</code> que engloba toda la página. Dentro, se encuentran el <code>&lt;head&gt;</code>, que contiene metadatos y enlaces a hojas de estilo, y el <code>&lt;body&gt;</code>, que alberga todo el contenido visible, como textos, imágenes y enlaces.</p>
+    </div>
+</section>
+        <!-- Sección de Etiquetas -->
+        <section id="etiquetas" class="card">
+            <h2>📘 1.1 Uso de etiquetas (HTML)</h2>
+            <p>Las etiquetas HTML son los bloques de construcción esenciales de una página web. Cada etiqueta tiene una función específica y ayuda a organizar el contenido de manera lógica.</p>
+            <details>
+                <summary>Estructura básica de una etiqueta</summary>
+                <pre><code>&lt;etiqueta atributo="valor"&gt;Contenido&lt;/etiqueta&gt;</code></pre>
+                <ul>
+                    <li><strong>Etiqueta de apertura</strong> (ej: <code>&lt;p&gt;</code>), <strong>contenido</strong> y <strong>etiqueta de cierre</strong> (ej: <code>&lt;/p&gt;</code>).</li>
+                    <li><strong>Etiquetas vacías</strong>: No contienen contenido ni etiqueta de cierre, como <code>&lt;br&gt;</code> (salto de línea) o <code>&lt;img&gt;</code> (imagen).</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Clasificación y ejemplos de etiquetas</summary>
+                <table class="tabla-indice">
+                    <thead>
+                        <tr><th>Categoría</th><th>Etiquetas</th><th>Descripción / Uso</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Estructura global</strong></td><td><code>&lt;!DOCTYPE&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code></td><td>Define el tipo de documento y su estructura.</td></tr>
+                        <tr><td><strong>Metadatos</strong></td><td><code>&lt;meta&gt;</code>, <code>&lt;title&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;style&gt;</code></td><td>Información del documento, enlaces a CSS, etc.</td></tr>
+                        <tr><td><strong>Secciones</strong></td><td><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code></td><td>Organiza el contenido con significado.</td></tr>
+                        <tr><td><strong>Texto</strong></td><td><code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;blockquote&gt;</code>, <code>&lt;pre&gt;</code></td><td>Encabezados, párrafos y citas.</td></tr>
+                        <tr><td><strong>Estilo / Énfasis</strong></td><td><code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;u&gt;</code>, <code>&lt;mark&gt;</code>, <code>&lt;br&gt;</code></td><td>Énfasis y formatos de texto.</td></tr>
+                        <tr><td><strong>Enlaces</strong></td><td><code>&lt;a&gt;</code></td><td>Navegación.</td></tr>
+                        <tr><td><strong>Multimedia</strong></td><td><code>&lt;img&gt;</code>, <code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code>, <code>&lt;source&gt;</code></td><td>Imágenes, audio y vídeo.</td></tr>
+                        <tr><td><strong>Listas</strong></td><td><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;dl&gt;</code></td><td>Listas de distintos tipos.</td></tr>
+                        <tr><td><strong>Tablas</strong></td><td><code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code></td><td>Datos tabulares.</td></tr>
+                        <tr><td><strong>Formularios</strong></td><td><code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code></td><td>Captura de datos.</td></tr>
+                    </tbody>
+                </table>
+            </details>
+          
+            <details>
+                <summary>Etiquetas de estructura semántica</summary>
+                <p>Las etiquetas de estructura nos ayudan a organizar el contenido de manera lógica y semántica, facilitando la lectura y el entendimiento del contenido para los usuarios. Es importante conocerlas y usarlas adecuadamente.</p>
+                <table class="tabla-indice">
+    <thead>
+        <tr>
+            <th>Etiqueta</th>
+            <th>Descripción</th>
+            <th>Ejemplo de Uso</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>&lt;header&gt;</code></td>
+            <td>Define la cabecera de un documento o una sección. Suele contener el logo, el título o la navegación principal.</td>
+            <td><code>&lt;header&gt;...&lt;/header&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;nav&gt;</code></td>
+            <td>Define un conjunto de enlaces de navegación, como un menú principal.</td>
+            <td><code>&lt;nav&gt;&lt;ul&gt;...&lt;/ul&gt;&lt;/nav&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;main&gt;</code></td>
+            <td>Define el contenido principal y único de una página. Solo debe haber una por documento.</td>
+            <td><code>&lt;main&gt;...&lt;/main&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;article&gt;</code></td>
+            <td>Contiene una pieza de contenido independiente y autocontenida, como una entrada de blog o una noticia.</td>
+            <td><code>&lt;article&gt;...&lt;/article&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;section&gt;</code></td>
+            <td>Representa una sección temática genérica, como "Sobre Nosotros" o "Servicios".</td>
+            <td><code>&lt;section&gt;...&lt;/section&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;aside&gt;</code></td>
+            <td>Contiene información relacionada con el contenido principal, pero que podría estar separada, como una barra lateral o una nota.</td>
+            <td><code>&lt;aside&gt;...&lt;/aside&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;footer&gt;</code></td>
+            <td>Define el pie de página de un documento o sección, incluyendo información de autor, derechos de autor o enlaces de contacto.</td>
+            <td><code>&lt;footer&gt;...&lt;/footer&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;div&gt;</code></td>
+            <td>Un contenedor a nivel de bloque genérico. Se usa cuando no hay una etiqueta semántica adecuada para agrupar elementos.</td>
+            <td><code>&lt;div class="contenedor-cards"&gt;...&lt;/div&gt;</code></td>
+        </tr>
+    </tbody>
+</table>
+</details>
+    <details>
+        <summary>Etiquetas de contenido</summary>   
+        <p>Las etiquetas de contenido son aquellas que no tienen un significado semántico en el documento HTML.Estas etiquetas son las que se usan para agrupar elementos de contenido, como párrafos, listas o imágenes.</p>
+        <table class="tabla-indice">
+    <thead>
+        <tr>
+            <th>Etiqueta</th>
+            <th>Descripción</th>
+            <th>Ejemplo de Uso</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>&lt;p&gt;</code></td>
+            <td>Define un párrafo de texto. Es la etiqueta fundamental para bloques de texto.</td>
+            <td><code>&lt;p&gt;Este es un párrafo de texto.&lt;/p&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code></td>
+            <td>Etiquetas de encabezado que definen la jerarquía de títulos, del más importante (<code>&lt;h1&gt;</code>) al menos importante (<code>&lt;h6&gt;</code>).</td>
+            <td><code>&lt;h2&gt;Sección de Conceptos&lt;/h2&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;a&gt;</code></td>
+            <td>Define un hipervínculo para enlazar a otras páginas o recursos.</td>
+            <td><code>&lt;a href="https://www.ejemplo.com"&gt;Visitar Ejemplo&lt;/a&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;img&gt;</code></td>
+            <td>Inserta una imagen. Es una etiqueta de autocierre que requiere un atributo <code>src</code> para la fuente de la imagen y <code>alt</code> para accesibilidad.</td>
+            <td><code>&lt;img src="imagen.jpg" alt="Descripción de la imagen"&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code></td>
+            <td>Crean listas: <code>&lt;ul&gt;</code> para listas desordenadas (viñetas), <code>&lt;ol&gt;</code> para listas ordenadas (números) y <code>&lt;li&gt;</code> para cada elemento de la lista.</td>
+            <td><code>&lt;ul&gt;&lt;li&gt;Ítem 1&lt;/li&gt;&lt;/ul&gt;</code></td>
+        </tr>
+        <tr>
+            <td><code>&lt;span&gt;</code></td>
+            <td>Un contenedor en línea genérico. Se usa para aplicar estilo a una pequeña porción de texto sin afectar la estructura.</td>
+            <td><code>&lt;p&gt;Texto <span class="resaltado">resaltado</span>&lt;/p&gt;</code></td>
+        </tr>
+    </tbody>
+</table>
+</details>
+<details>
+  <summary> Emmet: La magia de escribir código más rápido</summary>
+  
+  <ul>
+    <li>
+      <strong>¿Qué es Emmet?:</strong> Es una herramienta que acelera el proceso de escritura de código HTML y CSS. En lugar de escribir etiquetas completas, usas atajos abreviados que se expanden automáticamente en la estructura de código completa.
+    </li>
+    <li>
+      <strong>Sintaxis simple:</strong> Se basa en selectores CSS. Por ejemplo, `ul>li*5` crea una lista desordenada (`<ul>`) con cinco elementos de lista (`<li>`) dentro.
+    </li>
+    <li>
+      <strong>Productividad:</strong> Dominar Emmet te permitirá maquetar y crear la estructura de tu web de manera exponencialmente más rápida, minimizando errores.
+    </li>
+  </ul>
+  <div class="contenedor-video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/5E6MNRTREUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</details>
+
+        </section>
+
+
+        <section class="grid">
+        <!-- Sección de Semántica -->
+        <article id="semantica" class="card">
+            <h2>📘 1.2 Importancia de las etiquetas semánticas</h2>
+            <p>Seguir una estructura semántica es fundamental para el éxito de una página. No se trata solo de que se vea bien, sino de que su código tenga un significado claro y lógico.</p>
+            <ul>
+                <li><strong>Mejora el SEO:</strong> Los motores de búsqueda comprenden mejor la jerarquía y el propósito del contenido.</li>
+                <li><strong>Aumenta la accesibilidad:</strong> Los lectores de pantalla interpretan mejor la estructura, facilitando la navegación a usuarios con discapacidades visuales.</li>
+                <li><strong>Facilita el mantenimiento:</strong> El código es más legible para otros desarrolladores y más fácil de modificar en el futuro.</li>
+            </ul>
+        </article>
+
+        <!-- Sección de Compatibilidad -->
+        <article id="compatibilidad" class="card">
+            <h2>📘 1.3 Compatibilidad de los documentos HTML</h2>
+            <p>La compatibilidad se refiere a que la web funcione correctamente en diferentes navegadores, dispositivos y sistemas operativos.</p>
+            <ul>
+                <li>Usa el `DOCTYPE` correcto (<code>&lt;!DOCTYPE html&gt;</code> para HTML5).</li>
+                <li>Utiliza la etiqueta <code>&lt;meta&gt;</code> con el `charset` (ej: <code>&lt;meta charset="utf-8"&gt;</code>) para los caracteres.</li>
+                <li><strong>Prueba el sitio en varios navegadores</strong> para asegurar una experiencia consistente.</li>
+            </ul>
+        </article>
+
+        <!-- Sección de Editores -->
+        <article id="editores" class="card">
+            <h2>📘 1.4 Editores de texto para desarrollo HTML</h2>
+            <p>Aunque puedes usar cualquier programa de texto, los  editores de código especializados  facilitan mucho el trabajo.</p>
+            <ul>
+                <li><strong>Resaltado de sintaxis:</strong> Colorea el código.</li>
+                <li><strong>Autocompletado de código:</strong> Sugiere etiquetas y atributos.</li>
+                <li><strong>Vista previa en vivo:</strong> Muestra la página en tiempo real.</li>
+            </ul>
+            <p>
+                En programación podemos trabajar con dos tipos de herramientas: 
+<strong>editores de código</strong>, como Visual Studio Code, Sublime Text o Notepad++, que son ligeros, rápidos y se centran en escribir código; 
+y los <strong>entornos de desarrollo integrados (IDE)</strong>, como Eclipse, NetBeans o IntelliJ IDEA, que además de editar permiten compilar, depurar y gestionar proyectos completos, especialmente en lenguajes como Java o PHP.
+</p>
+
+        </article>
+         </section>
+           <!-- Sección de Plantillas e Inspiración para tu Portafolio -->
+           <section id="conceptos-basicos" class="card">
+    <h2>📘1.5 ¿Cómo diseñar una web con HTML?</h2>
+        <p class="intro">
+       En esta sección, vamos a explorar dónde encontrar ideas para el diseño de tu futuro portafolio. El objetivo no es copiar, sino  inspirarse  en estructuras, estilos y diseños que te gusten para luego crear algo único. Un portafolio no solo muestra tu trabajo, sino también tu capacidad de diseño y tu personalidad.
+</p>
+    <details>
+        <summary>Plantillas e ideas para tu portfolio</summary>
+    <article id="plantillas" class="card">
+       
+        <h3>Dónde Encontrar Ideas y Recursos</h3>
+        <p>A continuación, te mostramos algunas de las mejores plataformas para buscar inspiración y recursos de diseño:</p>
+       <ul>
+            <li>
+                <strong>Nice HTML:</strong> Este sitio web te proporciona plantillas y bloques de código HTML semántico listos para usar. Es una herramienta ideal para entender cómo se estructuran diferentes secciones, desde un encabezado hasta un pie de página. 
+                <a href="https://nicepage.com/html-templates" target="_blank" rel="noopener">Visita Nice HTML</a>
+            </li>
+            <li>
+                <strong>PlantillasgratisHtml:</strong>Plantillas web de diseño moderno y profesional, basadas en los estándares actuales como HTML5 y CSS3. Puedes descargar plantillas gratuitas y de pago, que incluyen desde páginas de inicio hasta portafolios completos.
+                <a href="https://plantillashtmlgratis.com/" target="_blank" rel="noopener">Ir a Plantillas Html</a>
+            </li>
+            <li>
+                <strong>CodePen y JSFiddle:</strong> Aunque se centran en el código front-end en general, estas plataformas son fantásticas para explorar, modificar y aprender de proyectos de HTML, CSS y JavaScript. Puedes ver cómo los desarrolladores construyen efectos y componentes interactivos desde cero.
+                <a href="https://codepen.io/" target="_blank" rel="noopener">Ir a CodePen</a> y <a href="https://jsfiddle.net/" target="_blank" rel="noopener">Ir a JSFiddle</a>
+            </li>
+            <li>
+                <strong>GitHub:</strong> El repositorio de código más grande del mundo. Puedes buscar repositorios de proyectos de portafolios de código abierto para ver cómo otros desarrolladores han estructurado su trabajo. Es una fuente de inspiración invaluable y una oportunidad para aprender de proyectos reales.
+                <a href="https://github.toidicode.com/" target="_blank" rel="noopener">Ir a repositorio de código GitHub</a>
+            </li>
+        </ul>
+        <p>Recuerda que no hay una plantilla perfecta. El diseño es personal y depende de tu estilo y de tus necesidades. ¡Busca inspiración y experimenta con diferentes estructuras y estilos!</p>
+    </article>
+</details>
+<details>
+    <summary> Nomenclatura en HTML y CSS</summary>
+    <p>La nomenclatura se refiere a las reglas para nombrar archivos y utilizar las etiquetas correctas. Seguir estas normas hace que tu código sea profesional, fácil de leer y de mantener, tanto para ti como para otros desarrolladores.</p>
+
+    <h3>Nomenclatura de Archivos y Carpetas</h3>
+    <ul>
+        <li><strong>Usa siempre nombres en minúsculas :</strong> : Usa solo letras minúsculas. Evita las mayúsculas para no tener problemas con los servidores que distinguen entre mayúsculas y minúsculas (por ejemplo, Image.jpg y image.jpg son dos archivos diferentes para el servidor, lo que puede causar errores).</li>
+        <li><strong>Sin espacios:</strong> Usa guiones (<code>-</code>) o guiones bajos (<code>_</code>) para separar palabras en nombres de archivos y carpetas. Ejemplo: <code>mi-archivo.html</code> o <code>mi_archivo.html</code>. Evita usar espacios, ya que pueden causar problemas en URLs.</li>
+        <li><strong>Extensiones correctas:</strong> Usa las extensiones adecuadas para cada tipo de archivo: <code>.html</code> para archivos HTML, <code>.</code> para archivos CSS, <code>.png</code> para imágenes, etc.</li>
+        <li><strong>Nombres descriptivos:</strong> Nombra tus archivos y carpetas de forma clara, como <code>assets/</code> para recursos, <code>css/</code> para estilos y <code>img/</code> para imágenes.</li>
+        <li><strong>Escribir en inglés:</strong> Es una convención de la industria. Facilita la colaboración en proyectos internacionales y te ayuda a entender la documentación y los recursos técnicos.</li>
+    </ul>
+
+    
+</details>
+<details>
+    <summary>Estructura Escalable del Proyecto</summary>
+    <article class="card">
+        <p>Crear una estructura de carpetas bien organizada es fundamental para cualquier proyecto de desarrollo web. Una buena estructura te permite escalar tu proyecto, facilita la colaboración con otros desarrolladores y te ayuda a encontrar archivos rápidamente a medida que tu proyecto crece.</p>
+
+        <h3>Estructura de Proyecto Sugerida</h3>
+        <p>Esta es una estructura de carpetas común y altamente recomendada. ¡Vamos a crearla en Visual Studio Code!</p>
+        <pre><code>
+mi-proyecto/
+├── index.html
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── main.js
+│   │   └── modules/
+│   │       ├── carousel.js
+│   │       └── form-validator.js
+│   └── img/
+│       ├── logo.png
+│       ├── favicon.ico
+│       └── background.jpg
+├── vendors/
+│   ├── bootstrap.min.css
+│   └── bootstrap.bundle.min.js
+└── pages/
+    ├── about.html
+    ├── contact.html
+    └── services.html
+        </code></pre>
+
+        <h3>Descripción de cada Carpeta y Archivo</h3>
+        <ul>
+            <li><strong><code>mi-proyecto/</code></strong>: Es la carpeta raíz de tu proyecto.</li>
+            <li><strong><code>index.html</code></strong>: Tu página de inicio principal, ubicada en la raíz.</li>
+            <li><strong><code>assets/</code></strong>: Contiene todos los recursos estáticos (CSS, JS, imágenes).
+                <ul>
+                    <li><strong><code>css/</code></strong>: Para tus hojas de estilo (`style.css`).</li>
+                    <li><strong><code>js/</code></strong>: Para tus scripts de JavaScript.
+                        <ul>
+                            <li><strong><code>main.js</code></strong>: El script principal que coordina la lógica de tu web.</li>
+                            <li><strong><code>modules/</code></strong>: Para scripts específicos y reutilizables (ej. <code>carousel.js</code>, <code>form-validator.js</code>).</li>
+                        </ul>
+                    </li>
+                    <li><strong><code>img/</code></strong>: Para todas tus imágenes (<code>logo.png</code>, <code>background.jpg</code>). También aquí se guarda el <strong>favicon</strong> (<code>favicon.ico</code>).</li>
+                </ul>
+            </li>
+            <li><strong><code>vendors/</code></strong>: Para librerías y frameworks de terceros que no has escrito tú (ej. Bootstrap). Aquí irían los archivos de Bootstrap (`bootstrap.min.css`, `bootstrap.bundle.min.js`).</li>
+            <li><strong><code>pages/</code></strong>: Opcional, para páginas HTML adicionales (<code>about.html</code>, <code>contact.html</code>, <code>services.html</code>).</li>
+        </ul>
+
+        <h3>El Favicon</h3>
+        <p>El favicon es el pequeño ícono de la pestaña del navegador. Aunque tradicionalmente iba en la raíz, la buena práctica es colocarlo en <code>assets/img/</code>.</p>
+        <p>Para enlazarlo en tu HTML (dentro de la etiqueta <code>&lt;head&gt;</code>):</p>
+        <pre><code>
+&lt;head&gt;
+  &lt;!-- ... otros metadatos ... --&gt;
+  &lt;link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"&gt;
+&lt;/head&gt;
+        </code></pre>
+
+        <h3>Organización de Scripts en <code>js/</code></h3>
+        <p>La carpeta <code>js/</code> no solo contiene <code>main.js</code>. Para proyectos más grandes, se recomienda:</p>
+        <ul>
+            <li><strong><code>main.js</code></strong>: Actúa como el coordinador, importando y ejecutando otros módulos.</li>
+            <li><strong><code>modules/</code></strong>: Contiene scripts que realizan funciones específicas (ej. la lógica de un carrusel, la validación de un formulario). Esto hace el código más organizado y reutilizable.</li>
+        </ul>
+
+    </article>
+</details>
+
+<details>
+    <summary>Insertando imagenes</summary>
+    <p class="intro">
+        <p>Las imágenes son uno de los elementos más importantes en una página web. Sin embargo, también son el principal factor que puede ralentizar su carga. Prestar atención a su optimización es vital para mejorar la experiencia del usuario y el posicionamiento en buscadores (SEO).</p>
+<article class="card">
+        <h3>Carga Diferida (Lazy Loading) 😴</h3>
+        <p>La carga diferida es una técnica de optimización que retrasa la carga de las imágenes que no son visibles en la pantalla hasta que el usuario se desplaza hacia ellas. Esto reduce el tiempo de carga inicial de la página, ya que el navegador no descarga todas las imágenes de golpe. En HTML, puedes implementar esto fácilmente con el atributo <code>loading</code>:</p>
+        <pre><code>
+&lt;img src="imagen.jpg" alt="Descripción de la imagen" loading="lazy"&gt;
+        </code></pre>
+        <p>Cuando el navegador detecta <code>loading="lazy"</code>, solo carga la imagen cuando el usuario se acerca a ella, mejorando la velocidad de carga de tu web.</p>
+    </article>
+        <article class="card">
+        <h3>Tipos de Formatos de Imagen 🖼️</h3>
+        <p>Cada formato de imagen tiene un propósito y un uso recomendado. Elegir el formato correcto es crucial para la calidad visual y el rendimiento. Aquí tienes una tabla comparativa de los formatos más comunes:</p>
+        
+    
+        <table class="tabla-indice">
+            <thead>
+                <tr>
+                    <th>Formato</th>
+                    <th>Ideal para</th>
+                    <th>Ventajas</th>
+                    <th>Compatibilidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>JPG / JPEG</strong></td>
+                    <td>Fotografías, imágenes con degradados.</td>
+                    <td>Gran compresión (archivos pequeños).</td>
+                    <td>Excelente (universal).</td>
+                </tr>
+                <tr>
+                    <td><strong>PNG</strong></td>
+                    <td>Gráficos, iconos, logos con transparencia.</td>
+                    <td>Soporta transparencia, compresión sin pérdida.</td>
+                    <td>Excelente (universal).</td>
+                </tr>
+                <tr>
+                    <td><strong>GIF</strong></td>
+                    <td>Animaciones cortas, imágenes con pocos colores.</td>
+                    <td>Admite animaciones, archivos pequeños.</td>
+                    <td>Excelente (universal).</td>
+                </tr>
+                <tr>
+                    <td><strong>SVG</strong></td>
+                    <td>Logos, iconos, diagramas.</td>
+                    <td>Vectorial, no se pixela al escalar.</td>
+                    <td>Muy buena (casi todos los navegadores modernos).</td>
+                </tr>
+                <tr>
+                    <td><strong>WebP</strong></td>
+                    <td>Todo tipo de imágenes (fotos, gráficos).</td>
+                    <td>Mejor compresión que JPG y PNG, soporta transparencia.</td>
+                    <td>Muy buena (navegadores modernos).</td>
+                </tr>
+                <tr>
+                    <td><strong>AVIF</strong></td>
+                    <td>Fotografías, gráficos complejos.</td>
+                    <td>Compresión superior, alta calidad y soporte HDR.</td>
+                    <td>Buena (navegadores modernos como Chrome, Firefox y Edge).</td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+        <article class="card">
+        <h3>Recursos para Imágenes Gratis y con Licencia 🆓</h3>
+        <p>Para evitar problemas de derechos de autor, es fundamental utilizar imágenes de fuentes fiables que ofrezcan licencias de uso. Aquí tienes tres de los bancos de imágenes más populares y seguros:</p>
+        <ul>
+            <li>
+                <a href="https://unsplash.com/" target="_blank" rel="noopener"><strong>Unsplash</strong></a>: Ofrece miles de fotos de alta resolución con una licencia que permite su uso gratuito para proyectos comerciales y personales sin necesidad de dar crédito (aunque es un buen gesto).
+            </li>
+            <li>
+                <a href="https://www.pexels.com/" target="_blank" rel="noopener"><strong>Pexels</strong></a>: Similar a Unsplash, Pexels tiene una gran biblioteca de fotos y videos de stock de alta calidad y completamente gratuitos para cualquier uso.
+            </li>
+            <li>
+                <a href="https://pixabay.com/" target="_blank" rel="noopener"><strong>Pixabay</strong></a>: Es una de las plataformas más conocidas, con una enorme colección de imágenes, vectores e ilustraciones libres de derechos de autor para uso personal y comercial.
+            </li>
+        </ul>
+    </article>
+
+     <article class="card">
+        <h3>Inserción de Imágenes 🖼️</h3>
+        <p>Para insertar una imagen en HTML, usas la etiqueta <code>&lt;img&gt;</code>. Es una etiqueta de autocierre, lo que significa que no necesita una etiqueta de cierre como la mayoría. Solo tienes que especificar la ruta del archivo de la imagen en el atributo <code>src</code> y una descripción en el atributo <code>alt</code>, que es vital para la accesibilidad y el SEO.</p>
+        <p>Por ejemplo, si tienes una imagen llamada <code>foto-perfil.jpg</code> en la carpeta <code>assets/img/</code>, el código sería el siguiente:</p>
+        <pre><code>
+&lt;img src="assets/img/foto-perfil.jpg" alt="Foto de perfil del desarrollador"&gt;
+        </code></pre>
+    </article>
+
+    <article class="card">
+    <h3>Importancia de la etiqueta Alt</h3>
+    <p>El atributo <code>alt</code> (del inglés "alternative text") es un elemento fundamental de la etiqueta <code>&lt;img&gt;</code> que a menudo se pasa por alto. Aunque el navegador no lo muestra al usuario, su valor es crucial para la accesibilidad y el posicionamiento en buscadores.</p>
+    <p>La principal función del atributo <code>alt</code> es proporcionar una descripción textual de la imagen, que es utilizada por los lectores de pantalla para describir el contenido de la imagen a los usuarios con discapacidades visuales. Sin este texto, un usuario que no pueda ver la imagen no entendería su propósito, haciendo la web menos accesible.</p>
+    <p>Además, el texto alternativo es una pista importante para los motores de búsqueda, ya que les ayuda a entender el contenido de la imagen. Esto es especialmente vital para el posicionamiento por imágenes. Cuando un usuario realiza una búsqueda de imágenes en Google u otros buscadores, el algoritmo utiliza el texto `alt` y el nombre del archivo para determinar de qué trata la imagen y si es relevante para la consulta del usuario. Un `alt` bien escrito puede hacer que tu imagen aparezca en los resultados de búsqueda, atrayendo más tráfico a tu sitio web.</p></p>
+    <pre><code>
+&lt;!-- Ejemplo de uso correcto --&gt;
+&lt;img src="laptop-en-escritorio.jpg" alt="Un desarrollador trabajando en su laptop en un escritorio ordenado"&gt;
+
+&lt;!-- Ejemplo de uso incorrecto --&gt;
+&lt;img src="imagen1.jpg" alt=""&gt;
+&lt;img src="imagen2.jpg" alt="imagen-2"&gt;
+    </code></pre>
+</article>
+</details>
+<details>
+<summary>Insertando videos</summary>
+<p class="intro">
+    Incluir videos en tu sitio web puede mejorar significativamente la experiencia del usuario, proporcionando contenido dinámico y atractivo. HTML5 facilita la integración de videos con la etiqueta <code>&lt;video&gt;</code>, que permite reproducir videos directamente en la página sin necesidad de plugins adicionales o también podemos embeber videos desde plataformas externas como YouTube o Vimeo usando la etiqueta <code>&lt;iframe&gt;</code>. A continuación, exploraremos ambas opciones y sus ventajas.    
+</p>
+
+    
+    <article class="card">
+        
+                
+
+        <h3>1. Vídeos Nativos con la Etiqueta <code>&lt;video&gt;</code></h3>
+        <p>Esta es la forma más semántica y controlable de insertar un vídeo. A diferencia de <code>&lt;img&gt;</code>, la etiqueta <code>&lt;video&gt;</code> no es de autocierre y permite añadir varios elementos y atributos para mejorar la compatibilidad y la experiencia de usuario.</p>
+        <pre><code>
+&lt;video src="ruta/a/tu/video.mp4" controls width="600" height="400"&gt;
+    Tu navegador no soporta el elemento de video.
+&lt;/video&gt;
+        </code></pre>
+        <ul>
+            <li><strong><code>src</code>:</strong> Define la ruta del archivo de vídeo.</li>
+            <li><strong><code>controls</code>:</strong> Añade los controles de reproducción (pausa, volumen, barra de progreso).</li>
+            <li><strong><code>width</code> y <code>height</code>:</strong> Establecen el tamaño del reproductor.</li>
+        </ul>
+
+        <p>Para asegurarte de que tu vídeo se reproduzca en la mayoría de los navegadores, puedes usar la etiqueta <code>&lt;source&gt;</code> dentro de <code>&lt;video&gt;</code> para ofrecer múltiples formatos.</p>
+        <pre><code>
+&lt;video controls width="600" height="400"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    Tu navegador no soporta el elemento de video.
+&lt;/video&gt;
+        </code></pre>
+        <p>Además, puedes usar el atributo <code>loading="lazy"</code> en la etiqueta <code>&lt;video&gt;</code> para la carga diferida, lo que mejora la velocidad de tu web.</p>
+        
+        <hr>
+
+        <h3>2. Embeber Vídeos de Terceros (YouTube, Vimeo)</h3>
+        <p>Esta es la opción más sencilla y popular. Al embeber un vídeo, no alojas el archivo tú mismo, sino que lo insertas directamente desde plataformas como YouTube o Vimeo.</p>
+        <h4>Ventajas:</h4>
+        <ul>
+            <li><strong>Fácil de usar:</strong> Simplemente copias un fragmento de código <code>&lt;iframe&gt;</code> que la plataforma te proporciona.</li>
+            <li><strong>Ahorro de recursos:</strong> No consumes ancho de banda de tu servidor. La plataforma se encarga de la reproducción y la optimización.</li>
+            <li><strong>Funcionalidades extra:</strong> Obtienes automáticamente las funciones de la plataforma, como la alta calidad, subtítulos y opciones de compartir.</li>
+        </ul>
+        <h4>Ejemplo de Código de YouTube:</h4>
+        <pre><code>
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/ejemplo-ID" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+        </code></pre>
+        <p>En resumen, utiliza la etiqueta <strong><code>&lt;video&gt;</code></strong> para tener control total sobre tu contenido y optimizarlo, o la etiqueta <strong><code>&lt;iframe&gt;</code></strong> para una solución rápida y sin complicaciones que aprovecha las capacidades de plataformas como YouTube.</p>
+    </article>
+</details>
+
+<details>
+    <summary>Inserción de Enlaces en HTML</summary>
+   
+       <p class="intro">
+        Los enlaces, o hipervínculos, son lo que convierte una colección de documentos en una red. Permiten a los usuarios navegar de una página a otra o a una sección específica del mismo documento. La etiqueta que se usa para crear un enlace es <code>&lt;a&gt;</code>.</d>
+
+        
+        
+ <article class="card">
+        <h3>1. Enlaces a Páginas Externas</h3>
+        <p>Para enlazar a otra página web, necesitas dos cosas: la etiqueta <code>&lt;a&gt;</code> y el atributo <code>href</code>, que define la dirección del destino.</p>
+        <pre><code>
+&lt;a href="https://www.ejemplo.com"&gt;Visitar ejemplo&lt;/a&gt;
+        </code></pre>
+        <ul>
+            <li><strong><code>href</code> (Hypertext Reference):</strong> El atributo más importante. Contiene la URL completa del sitio al que quieres enlazar.</li>
+        </ul>
+
+        <hr>
+
+        <h3>2. Enlaces a Secciones de la Misma Página</h3>
+        <p>Puedes crear un índice o un menú de navegación que lleve a los usuarios a diferentes partes de la misma página. Para esto, necesitas un  ID  en el elemento de destino y un <code>href</code> que apunte a ese ID.</p>
+        <pre><code>
+&lt;!-- Enlace en el menú de navegación --&gt;
+&lt;a href="#contacto"&gt;Ir a la sección de Contacto&lt;/a&gt;
+
+&lt;!-- Sección de destino con un ID --&gt;
+&lt;section id="contacto"&gt;
+    &lt;h2&gt;Información de Contacto&lt;/h2&gt;
+    &lt;p&gt;Puedes contactarnos aquí...&lt;/p&gt;
+&lt;/section&gt;
+        </code></pre>
+
+        <hr>
+
+        <h3>3. Atributos Adicionales Importantes</h3>
+        <p>La etiqueta <code>&lt;a&gt;</code> tiene otros atributos útiles para controlar su comportamiento:</p>
+        <ul>
+            <li><strong><code>target="_blank"</code>:</strong> Cuando lo añades, el enlace se abrirá en una  nueva pestaña  del navegador. Es una buena práctica para que los usuarios no abandonen tu sitio cuando hacen clic en un enlace externo.</li>
+            <li><strong><code>download</code>:</strong> Si quieres que el enlace, en lugar de abrir un archivo, lo descargue, puedes añadir este atributo. Es ideal para archivos como PDFs, imágenes o documentos.</li>
+        </ul>
+        <pre><code>
+&lt;!-- Abre el enlace en una nueva pestaña --&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;Ir a Google en una nueva pestaña&lt;/a&gt;
+
+&lt;!-- Descarga el archivo al hacer clic --&gt;
+&lt;a href="documento.pdf" download&gt;Descargar PDF&lt;/a&gt;
+        </code></pre>
+        <p>En resumen, la etiqueta <code>&lt;a&gt;</code> es tu herramienta para conectar tu contenido. Con el atributo <code>href</code> defines el destino, y con <code>target</code> y <code>download</code> controlas cómo se comporta el enlace.</p>
+    </article>
+</details>
+    <details>
+    <summary> Inserción de Iconos</summary>
+    <p class="intro">
+        Los iconos son pequeños gráficos que representan un concepto o acción. Son fundamentales para mejorar la usabilidad y el atractivo visual de una web. La forma más sencilla de insertarlos es a través de una librería de iconos.
+    </p>
+
+   
+    <article class="card">
+        <h3> Usando una Librería de Iconos</h3>
+        <p>Las librerías de iconos como <strong>Font Awesome</strong> o <strong>Google Icons</strong> son colecciones de iconos que se comportan como una fuente de texto. La principal ventaja es que son vectoriales y escalables, por lo que no pierden calidad al cambiar de tamaño.</p>
+        <p>Para usarlos, primero necesitas un enlace a la librería en la sección <code>&lt;head&gt;</code> de tu HTML. Por ejemplo, con Google Icons:</p>
+        <pre><code>
+&lt;head&gt;
+  &lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"&gt;
+&lt;/head&gt;
+        </code></pre>
+        <p>Luego, insertas el icono donde lo necesites usando una etiqueta <code>&lt;span&gt;</code> con el nombre del icono como texto. El estilo de la librería se encargará de mostrarlo correctamente.</p>
+        <pre><code>
+&lt;!-- Icono de usuario --&gt;
+&lt;span class="material-icons"&gt;person&lt;/span&gt;
+
+&lt;!-- Icono de carrito de compras --&gt;
+&lt;span class="material-icons"&gt;shopping_cart&lt;/span&gt;
+        </code></pre>
+        <p>Aquí tienes tu icono: <span class="material-icons">check_circle</span></p>
+        <p>Para saber el nombre exacto de cada icono, tienes que ir a la página de <a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:star:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%231f1f1f" target="_blank" rel="noopener">Google Fonts Icons</a> y usar su buscador. Una vez que encuentras el icono que te gusta, haces clic en él y te mostrará el nombre exacto que necesitas para ponerlo en tu código HTML.</p>
+    </article>
+
+</details>
+
+
+           
+</section>
+<section id="figma" class="card">
+    <h2>📘 1.6 Del proyecto al diseño: Figma.</h2>
+    <p class="intro">
+        Una vez que tengas una idea clara de lo que te gusta, pasaremos a la fase de diseño. En el próximo ejercicio, usarás Figma, una de las herramientas de diseño más potentes y populares del mundo, para crear un plan visual de tu propio portafolio.
+    </p>
+
+    <details>
+        <summary>¿Por qué Figma?</summary>
+        <article id="figma" class="card">
+            <h3>¿Qué es Figma y por qué usarlo?</h3>
+            <p>
+                Figma es una herramienta de diseño de interfaces que funciona completamente en tu navegador. Imagina un programa como Photoshop o Sketch, pero con la capacidad de  colaborar en tiempo real  como si fuera un Google Docs. Esta es su principal ventaja y la razón por la que es un estándar en la industria.
+            </p>
+            <p>Es el puente perfecto entre el diseño visual y la programación, permitiéndote planificar antes de escribir código.</p>
+
+            <h4>Ventajas Clave de Figma:</h4>
+            <ul>
+                <li>
+                    <strong>Colaboración en tiempo real:</strong> Puedes trabajar en el mismo archivo con otras personas al mismo tiempo. Los cambios se guardan instantáneamente, lo que facilita el trabajo en equipo.
+                </li>
+                <li>
+                    <strong>Basado en el navegador:</strong> No necesitas instalar un programa pesado. Funciona en cualquier sistema operativo (Windows, Mac, Linux) directamente desde tu navegador.
+                </li>
+                <li>
+                    <strong>Prototipado interactivo:</strong> Figma te permite crear maquetas interactivas. Puedes simular el flujo de la web (cómo se navega entre páginas) antes de escribir una sola línea de código.
+                </li>
+                <li>
+                    <strong>Herramienta para programadores:</strong> Figma genera automáticamente fragmentos de código CSS para los elementos que diseñas. Esto te ayuda a traducir el diseño visual a código de manera más precisa y rápida.
+                </li>
+            </ul>
+        </article>
+    </details>
+
+    <hr>
+
+    <details>
+        <summary>Cómo usar Figma</summary>
+        <article id="ejercicio" class="card">
+            <h3>Tu primer ejercicio: Diseñando tu portafolio 🎨</h3>
+            <p>
+                Ahora que entiendes la importancia de Figma, vamos a usarlo como el "plano" de tu proyecto. El objetivo es que combines la inspiración que has obtenido con la estructura semántica que hemos aprendido, creando un plan sólido para tu proyecto final.
+            </p>
+            <ol>
+                <li>
+                    <strong>Crea un lienzo (Frame):</strong> En Figma, el primer paso es crear un "Frame" del tamaño de la pantalla que vas a diseñar (por ejemplo, 1440x1024 para escritorio).
+                </li>
+                <li>
+                    <strong>Diseña la estructura (Wireframing):</strong> Usando formas simples (rectángulos para las secciones, círculos para imágenes), organiza las secciones que ya definimos: "Página principal", "Sobre Mí", "Proyectos" y "Contacto".
+                </li>
+                <li>
+                    <strong>Aplica los estilos:</strong> Una vez que la estructura esté clara, añade los colores, fuentes e imágenes que elegiste.
+                </li>
+                <li>
+                    <strong>Prepara los recursos:</strong> Figma te permite exportar imágenes, logos y otros elementos en los formatos correctos (JPG, PNG, SVG).
+                </li>
+                <li>
+                    <strong>¡A programar!</strong> Con tu diseño en Figma como guía, usarás la información de la herramienta para crear tu portafolio con HTML y CSS.
+                </li>
+            </ol>
+            <p>
+                Este proceso te enseña a planificar antes de construir, una habilidad esencial para cualquier desarrollador.
+            </p>
+            <div class="contenedor-video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/xGL6wv4CmCk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </article>
+    </details>
+</section>
+           
+           <section class="grid">
+    <article id="validadores" class="card">
+        <h2>📘 1.7 Validadores y su Importancia</h2>
+        <p>La validación es el proceso de verificar que tu código HTML cumple con los estándares del  World Wide Web Consortium (W3C) . Es una herramienta esencial para asegurar que tu página web sea robusta, accesible y compatible. .</p>
+        <ul>
+            <li><strong>Detección de errores:</strong> Un validador te ayuda a encontrar errores de sintaxis, etiquetas mal anidadas, o atributos incorrectos que el navegador podría pasar por alto.</li>
+            <li><strong>Mejora la accesibilidad:</strong> Un código validado es más fácil de interpretar por tecnologías de asistencia, como los lectores de pantalla.</li>
+            <li><strong>Compatibilidad entre navegadores:</strong> Asegura que el código se interprete de manera consistente, reduciendo comportamientos inesperados.</li>
+        </ul>
+        <p>Para validar tu código, puedes usar el <a href="https://validator.w3.org/" target="_blank" rel="noopener">Validador de Marcado del W3C</a>, una herramienta oficial y gratuita.</p>
+    </article>
+
+    <article id="buenas-practicas" class="card">
+        <h2>📘 1.8 Buenas Prácticas</h2>
+        <p>Más allá de la sintaxis, las buenas prácticas se refieren a escribir código de manera que sea  legible, eficiente y fácil de mantener . Esto beneficia tanto a otros desarrolladores como a tu yo del futuro.</p>
+        <ul>
+            <li><strong>Comenta tu código:</strong> Usa <code>&lt;!-- Comentario --&gt;</code> para explicar secciones complejas o el propósito de un bloque de código.</li>
+            <li><strong>Usa nombres de clase y ID descriptivos:</strong> Evita nombres genéricos como <code>clase1</code>. Opta por nombres que describan su función, como <code>carrusel-productos</code> o <code>menu-principal</code>.</li>
+            <li><strong>Estructura semántica:</strong> Utiliza etiquetas como <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, y <code>&lt;footer&gt;</code> en lugar de <code>&lt;div&gt;</code> para dar un significado claro al contenido.</li>
+        </ul>
+        <p>Adoptar estas prácticas te ayudará a crear un código más profesional y colaborativo.</p>
+    </article>
+
+    <article id="consejos-estilo" class="card">
+        <h2>📘 1.9 Consejos de Estilo</h2>
+        <p>El estilo del código no afecta su funcionamiento, pero es crucial para la  legibilidad y la colaboración . Seguir un estilo de codificación consistente hace que el código sea más profesional y ordenado.</p>
+        <ul>
+            <li><strong>Usa la sangría (indentación):</strong> Utiliza sangría para anidar etiquetas, reflejando su jerarquía. Esto hace que la estructura sea visualmente clara.</li>
+            <li><strong>Atributos entre comillas:</strong> Coloca siempre los valores de los atributos entre comillas dobles, como <code>class="card"</code>.</li>
+            <li><strong>Organiza los atributos:</strong> Si una etiqueta tiene muchos atributos (<code>id</code>, <code>class</code>, <code>src</code>), organízalos de forma consistente. Una buena práctica es poner el <code>id</code> y <code>class</code> al principio.</li>
+        </ul>
+       
+    </article>
+</section>
+
+<section id="ux-usabilidad" class="card">
+  <h2>📘 1.10 Del plan a la práctica: UX, usabilidad y casos de uso.</h2>
+  <p class="intro">
+    Antes de escribir una sola línea de código, es fundamental entender para quién y por qué estamos construyendo una web. En este ejercicio, nos centraremos en tres conceptos esenciales que guiarán nuestro proyecto: la Experiencia de Usuario (UX), la Usabilidad y los Casos de Uso.
+  </p>
+
+  <details>
+    <summary>¿Por qué es importante la UX y la usabilidad?</summary>
+    <article id="ux-usabilidad-detalles" class="card">
+      <h3>¿Qué son UX y Usabilidad?</h3>
+      <p>
+        La   Experiencia de Usuario (UX)   es la sensación y percepción global de una persona al interactuar con un producto o servicio digital. Imagina cómo se siente un usuario al navegar por tu sitio: ¿se frustra, se siente confundido o lo disfruta? Por otro lado, la   Usabilidad   es la eficiencia y facilidad de uso de la web. Es un componente clave de la UX, que responde a preguntas como: ¿es fácil encontrar la información? ¿Se puede completar una tarea sin errores?
+      </p>
+      <p>
+        En el desarrollo web, la UX es el "porqué" y la usabilidad es el "cómo". Ambos son cruciales para crear productos que no solo funcionen, sino que también sean adoptados y disfrutados por los usuarios.
+      </p>
+
+      <h4>Ventajas Clave de un Diseño UX/UI centrado en el usuario:</h4>
+      <ul>
+        <li>
+          <strong>Mayor satisfacción del usuario:</strong> Un sitio web fácil y agradable de usar genera confianza y fidelidad.
+        </li>
+        <li>
+          <strong>Menos errores y frustración:</strong> Un buen diseño usable reduce la probabilidad de que los usuarios se pierdan o cometan errores.
+        </li>
+        <li>
+          <strong>Aumenta la conversión:</strong> Si tu sitio es una tienda online, una buena UX puede significar más ventas. Si es un blog, significa más lectores que regresan.
+        </li>
+        <li>
+          <strong>Diferenciación de la competencia:</strong> Una experiencia superior te hace destacar en un mercado saturado.
+        </li>
+      </ul>
+    </article>
+  </details>
+
+  <hr>
+
+  <details>
+    <summary>Los Casos de Uso y la profesión de UX Designer</summary>
+    <article id="casos-uso" class="card">
+      <h3>Planificando con Casos de Uso y el Futuro del Diseño UX</h3>
+      <p>
+        Un   Caso de Uso   es una descripción de cómo un usuario típico interactuará con tu web para lograr un objetivo específico. Por ejemplo, en tu portafolio, un caso de uso podría ser: "El usuario entra al sitio, navega a la sección de Proyectos y hace clic en un proyecto para ver los detalles". Planificar estos escenarios antes de empezar a programar te asegura que tu web esté diseñada para resolver las necesidades reales de tus visitantes.
+      </p>
+      <p>
+        La profesión de   Diseñador de Experiencia de Usuario (UX Designer)   es una de las más demandadas y con un futuro prometedor. ¿Por qué? Porque, aunque la inteligencia artificial puede generar código y diseños básicos, lo que hace un diseñador de UX es fundamentalmente humano:
+      </p>
+      <ol>
+        <li>
+          <strong>Empatía:</strong> Los UX Designers comprenden las emociones, motivaciones y miedos de los usuarios.
+        </li>
+        <li>
+          <strong>Pensamiento crítico:</strong> Analizan problemas complejos desde múltiples perspectivas.
+        </li>
+        <li>
+          <strong>Estrategia:</strong> Conectan las necesidades del usuario con los objetivos de negocio de la empresa.
+        </li>
+      </ol>
+      <p>
+        Estas habilidades humanas de empatía y pensamiento estratégico son extremadamente difíciles de replicar por una IA, lo que convierte a la disciplina del diseño de experiencia de usuario en una profesión de futuro, a prueba de automatización.
+      </p>
+      <div class="contenedor-video">
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/mE6yiaAjS6Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </article>
+  </details>
+</section>
+<section id="portafolio" class="card">
+  <h2>📘 1.8 La importancia de un portafolio para tu carrera. Ejercicio final</h2>
+  <p class="intro">
+    En el mundo del desarrollo web, tu portafolio no es solo una colección de proyectos; es una demostración en vivo de tus habilidades, tu creatividad y tu capacidad para aplicar lo que has aprendido. Es tu mejor carta de presentación para conseguir tu primer empleo, especialmente si no tienes experiencia previa.
+  </p>
+
+  <details>
+    <summary>¿Por qué un portafolio es crucial?</summary>
+    <article id="portafolio-detalles" class="card">
+      <h3>El portafolio como tu mejor currículum</h3>
+      <p>
+        Cuando un reclutador o un gerente de contratación evalúa a un candidato sin experiencia, lo primero que busca son pruebas tangibles de sus habilidades. Tu portafolio ofrece eso: proyectos reales que puedes mostrar y de los que puedes hablar en una entrevista.
+      </p>
+      <p>
+        Un portafolio bien diseñado demuestra que no solo entiendes la teoría, sino que sabes cómo aplicarla en la práctica. Refleja tu capacidad para resolver problemas, tu atención al detalle y tu comprensión de la **experiencia de usuario (UX)** y la **usabilidad**. Cada proyecto es una oportunidad para mostrar cómo has abordado un **caso de uso** específico, desde la planificación hasta la implementación.
+      </p>
+
+      <h4>Consejos para un portafolio efectivo:</h4>
+      <ul>
+        <li>
+          <strong>Demuestra tu proceso:</strong> No solo muestres el resultado final. Explica cómo pensaste, qué problemas resolviste y qué decisiones tomaste.
+        </li>
+        <li>
+          <strong>Calidad sobre cantidad:</strong> Es mejor tener 3-4 proyectos sólidos y bien documentados que 10 proyectos incompletos o de baja calidad.
+        </li>
+        <li>
+          <strong>Cuenta tu historia:</strong> Tu portafolio es un reflejo de tu personalidad y pasión por el desarrollo.
+        </li>
+      </ul>
+      <p>
+        Si buscas inspiración, <a href="https://www.irinadelgado.com/portafolio-de-3-paginas-con-html-y-css-flex/" target="_blank">este portafolio de 4 páginas</a> creado por la misma instructora es un excelente ejemplo de cómo combinar HTML y CSS para un resultado profesional.
+      </p>
+    </article>
+  </details>
+
+  <hr>
+
+  <details>
+    <summary>Cómo crear tu portafolio</summary>
+    <article id="ejercicio-portafolio" class="card">
+      <h3>Tu primer proyecto: ¡Crea tu portafolio! 🎨</h3>
+      <p>
+        Ahora que entiendes la importancia de un portafolio, es hora de poner manos a la obra. Tu primer gran proyecto en este curso será crear tu propio portafolio utilizando todo lo que hemos aprendido hasta ahora. ¡No te preocupes! El siguiente video es un tutorial completo que te guiará paso a paso para construir un portafolio desde cero.
+      </p>
+      <div class="contenedor-video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/EgsW2fcC9uU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <p>
+        Recuerda, este proyecto es la base de tu futuro como desarrollador. Tómate tu tiempo, sé minucioso y no tengas miedo de experimentar.
+      </p>
+    </article>
+  </details>
+</section>
+ <section id="ampliacion" class="card">
+    <p class="intro">
+        <h2> Ampliación: Recursos adicionales para profundizar.</h2>
+        A lo largo de este módulo, hemos cubierto los fundamentos esenciales del desarrollo web con HTML. Sin embargo, el mundo del desarrollo web es amplio y en constante evolución. Para aquellos que deseen profundizar más allá de lo básico, aquí hay una lista de recursos adicionales que pueden ayudarte a expandir tus conocimientos y habilidades. Y sobre todo ten en cuenta que la mejor forma de aprender es practicando, así que no dudes en experimentar y crear tus propios proyectos.
+    </p>
+    <details>
+     <summary>Recursos adicionales para profundizar.</summary>
+    <article id="validadores" class="card">
+        <h3>📘 Recursos para Ampliar tus Conocimientos</h3>
+        <ul>
+            <li><a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener">MDN Web Docs - HTML</a>: La documentación oficial de Mozilla es una fuente confiable y completa para aprender HTML y otros lenguajes web.</li>
+            <li><a href="https://www.w3schools.com/html/" target="_blank" rel="noopener">W3Schools - HTML Tutorial</a>: Un recurso interactivo con ejemplos prácticos y ejercicios para aprender HTML desde cero.</li>
+            <li><a href="https://html.com/" target="_blank" rel="noopener">HTML.com</a>: Un sitio dedicado exclusivamente a enseñar HTML con tutoriales claros y concisos.</li>
+            <li><a href="https://www.freecodecamp.org/learn/responsive-web-design/" target="_blank" rel="noopener">freeCodeCamp - Responsive Web Design</a>: Un curso gratuito que cubre HTML, CSS y diseño web responsivo.</li>
+            <li><a href="https://www.udemy.com/course/web-development-bootcamp/" target="_blank" rel="noopener">The Web Developer Bootcamp (Udemy)</a>: Un curso pago pero muy completo que abarca HTML, CSS, JavaScript y más.</li>
+            <li><a href="https://www.youtube.com/c/TraversyMedia" target="_blank" rel="noopener">Traversy Media (YouTube)</a>: Un canal de YouTube con tutoriales prácticos sobre desarrollo web, incluyendo HTML.</li>
+            <li><a href="https://www.codecademy.com/learn/learn-html" target="_blank" rel="noopener">Codecademy - Learn HTML</a>: Una plataforma interactiva para aprender HTML con ejercicios prácticos.</li>
+            <li><a href="https://newsletter.cuarzo.dev/t/Cursos" target="_blank" rel="noopener">HTML cursos </a>: Cursos profesionales sobre HTML y desarrollo web.</li>
+        </ul>
+    </article>
+ </section>
+ 
+ </main>
+
+    </main>
+
+    
+  <footer> UF1841  Elaboración de documentos web mediante lenguajes de marcas.
+   <p>Desarrollado por: M Inmaculada Contreras Iñiguez - 2025 © Todos los derechos reservados.
+  </footer>
+</body>
+</html>

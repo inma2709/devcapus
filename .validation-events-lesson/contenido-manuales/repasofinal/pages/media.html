@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimedia en HTML</title>
+  <link rel="stylesheet" href="../styles/styles.css"><!-- Reutiliza tu hoja -->
+</head>
+<body>
+
+  <header>
+    <h1>Insertar Multimedia en HTML</h1>
+  </header>
+
+  <main>
+    <!-- ============================
+         SECCIÓN: Explicación general
+         ============================ -->
+    <section class="repaso">
+      <h2 class="repaso">¿Qué es multimedia en HTML?</h2>
+      <p>
+        En HTML podemos incluir <strong>imágenes, audio, vídeo y contenido externo</strong> 
+        para enriquecer nuestras páginas. Estos archivos pueden estar en <em>carpetas locales</em>
+        de nuestro proyecto o provenir de <em>URLs externas</em>.
+      </p>
+    </section>
+
+    <!-- ============================
+         SECCIÓN: IMÁGENES
+         ============================ -->
+    <section class="repaso">
+      <h2 class="repaso">Imágenes</h2>
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__title">Imagen local</h3>
+          <p class="card__body">Se carga desde nuestra carpeta <code>/assets/imagenes</code>:</p>
+          <pre><code>&lt;img src="assets/imagenes/foto.png" alt="Descripción"&gt;</code></pre>
+          <img src="../assets/imagenes/banner.png" alt="Ejemplo local" class="imagenes">
+        </article>
+
+        <article class="card">
+          <h3 class="card__title">Imagen externa</h3>
+          <p class="card__body">Se carga desde una URL completa (ejemplo: Unsplash):</p>
+          <pre><code>&lt;img src="https://picsum.photos/400/200" alt="Ejemplo externo"&gt;</code></pre>
+          <img src="https://picsum.photos/400/200" alt="Ejemplo externo" class="imagenes">
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================
+         SECCIÓN: AUDIO
+         ============================ -->
+    <section class="repaso">
+      <h2 class="repaso">Audio</h2>
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__title">Audio local</h3>
+          <p class="card__body">Archivo <code>.mp3</code> dentro del proyecto:</p>
+          <pre><code>&lt;audio controls&gt;
+  &lt;source src="assets/audio/mimusica.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+          <audio controls>
+            <source src="../assets/audio/mimusica.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio.
+          </audio>
+        </article>
+
+        <article class="card">
+          <h3 class="card__title">Audio externo</h3>
+          <p class="card__body">Cargando desde un servidor externo:</p>
+          <pre><code>&lt;audio controls src="https://www.w3schools.com/html/horse.mp3"&gt;&lt;/audio&gt;</code></pre>
+          <audio controls src="https://www.w3schools.com/html/horse.mp3"></audio>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================
+         SECCIÓN: VÍDEO
+         ============================ -->
+    <section class="repaso">
+      <h2 class="repaso">Vídeo</h2>
+      <div class="repaso-grid">
+        <article class="card">
+          <h3 class="card__title">Vídeo local</h3>
+          <p class="card__body">Archivo <code>.mp4</code> en la carpeta del proyecto:</p>
+          <pre><code>&lt;video controls width="320"&gt;
+  &lt;source src="assets/videos/demo.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+          <video controls width="320">
+            <source src="../assets/videos/demo.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+          </video>
+        </article>
+
+        <article class="card">
+          <h3 class="card__title">Vídeo externo</h3>
+          <p class="card__body">Desde una URL pública:</p>
+          <pre><code>&lt;video controls width="320" 
+  src="https://www.w3schools.com/html/mov_bbb.mp4"&gt;&lt;/video&gt;</code></pre>
+          <video controls width="320" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================
+         SECCIÓN: EMBED YOUTUBE
+         ============================ -->
+    <section class="repaso">
+      <h2 class="repaso">Contenido embebido: YouTube</h2>
+      <article class="sabermas">
+        <h3>¿Qué es <code>&lt;iframe&gt;</code>?</h3>
+        <p>
+          Para insertar vídeos de YouTube no usamos <code>&lt;video&gt;</code>, sino un 
+          <code>&lt;iframe&gt;</code> que embebe el reproductor de YouTube.
+        </p>
+        <pre><code>&lt;iframe width="560" height="315"
+  src="https://www.youtube.com/embed/VIDEO_ID"
+  title="Reproductor de YouTube"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;&lt;/iframe&gt;</code></pre>
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Ejemplo de YouTube"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 · Ejemplo de Multimedia en HTML con estilos propios</p>
+  </footer>
+</body>
+</html>
+

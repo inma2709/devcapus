@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Módulo: Formularios accesibles</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Cabecera -->
+  <header class="page-header">
+    <h1 class="page-title">Formularios Accesibles</h1>
+    <p class="page-subtitle">Semántica, validación nativa y buenas prácticas sin JavaScript</p>
+  </header>
+
+  <main class="main-content">
+
+    <!-- 0) Vídeo de introducción (manteniendo el bloque original con CSS en línea) -->
+   <section class="card" id="intro-video" style="padding:20px; text-align:center; background-color:#f9f9f9; border:1px solid #ddd; margin-bottom:20px;">
+  <h2 class="section-title" style="border-bottom:none; margin-bottom:10px;">Introducción al formulario</h2>
+  <p style="font-size:1rem; color:#555; margin-bottom:20px;">
+    Te dejamos este vídeo explicativo antes de completar el formulario. Haz clic en reproducir para verlo directamente aquí:
+  </p>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/bj7Xtdsjclk"
+    title="YouTube video player"
+    frameborder="0"
+    style="display:block; margin:0 auto; max-width:100%; border-radius:12px;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</section>
+scindibles + explicación de FORM/INPUT/SUBMIT + formulario mailto -->
+    <section class="card" id="imprescindibles">
+      <div class="card-body">
+        <h2 class="section-title">2) ¿Cuáles son los campos imprescindibles?</h2>
+        <p>Para un <strong>formulario de contacto</strong> típico:</p>
+        <ol>
+          <li><strong>Nombre y apellidos</strong> (identifica al remitente).</li>
+          <li><strong>Correo electrónico</strong> (para poder responder).</li>
+          <li><strong>Mensaje</strong> (motivo de contacto).</li>
+          <li><strong>Aceptación de la política de privacidad</strong> (cumplimiento legal).</li>
+        </ol>
+        <p>Opcionales frecuentes: <em>Teléfono</em>, <em>Provincia/País</em>, <em>Preferencia de contacto</em>, <em>Fecha</em>, <em>DNI/NIE</em> (si aplica).</p>
+
+       <!-- Explicaciones -->
+<h3 class="structure-title">✦ La etiqueta &lt;form&gt;</h3>
+<p>
+  La etiqueta <code>&lt;form&gt;</code> abre y cierra cualquier formulario.
+  Con <code>action</code> indicamos a dónde se envían los datos,
+  y con <code>method</code> cómo se envían (<code>get</code> o <code>post</code>).
+</p>
+
+<div class="code-box">
+<pre><code>&lt;form action="mailto:hola@gmail.com" method="post" enctype="text/plain"&gt;
+  &lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+  &lt;input type="text" id="nombre" name="nombre"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;label for="mensaje"&gt;Mensaje:&lt;/label&gt;
+  &lt;textarea id="mensaje" name="mensaje"&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;input type="submit" value="Enviar"&gt;
+&lt;/form&gt;</code></pre>
+</div>
+
+
+        <h3 class="structure-title">✦ La etiqueta &lt;input&gt;</h3>
+        <p>
+          <code>&lt;input&gt;</code> crea campos de entrada. Tipos: <code>text</code>, <code>email</code>, <code>password</code>, <code>checkbox</code>, <code>radio</code>, etc.
+        </p>
+        <div class="code-box"><pre><code>&lt;input type="text" name="nombre" placeholder="Escribe tu nombre"&gt;</code></pre></div>
+
+        <h3 class="structure-title">✦ La etiqueta &lt;input type="submit"&gt;</h3>
+        <p>Botón especial que envía el formulario.</p>
+        <div class="code-box"><pre><code>&lt;input type="submit" value="Enviar"&gt;</code></pre></div>
+
+      </div>
+    </section>
+
+    <!-- Formulario sencillo que envía por mailto -->
+<h3 class="structure-title">📌 Ejemplo de formulario sencillo (mailto)</h3>
+<p>
+  Tres tipos de campos (texto, email y área de texto) que envían a 
+  <strong>hola@gmail.com</strong> usando <code>mailto:</code>.
+</p>
+
+<!-- Formulario funcional con <small id="..."> para ayudas -->
+<form action="mailto:hola@gmail.com" method="post" style="margin-top:20px;">
+
+  <label for="nombre">Nombre y apellidos:</label><br>
+  <input class="field" type="text" id="nombre" name="nombre" 
+         placeholder="Escribe tu nombre"
+         aria-describedby="ayuda-nombre"
+         required>
+  <small id="ayuda-nombre">Escribe tu nombre real para poder dirigirnos a ti.</small><br><br>
+
+  <label for="email">Correo electrónico:</label><br>
+  <input class="field" type="email" id="email" name="email" 
+         placeholder="ejemplo@correo.com"
+         aria-describedby="ayuda-email"
+         required>
+  <small id="ayuda-email">Introduce un correo válido: lo usaremos para responderte.</small><br><br>
+
+  <label for="mensaje">Mensaje:</label><br>
+  <textarea class="field" id="mensaje" name="mensaje" rows="4" cols="40"
+            placeholder="Escribe tu mensaje aquí..."
+            aria-describedby="ayuda-mensaje"
+            required></textarea>
+  <small id="ayuda-mensaje">Cuéntanos tu consulta en unas pocas líneas.</small><br><br>
+
+  <input class="btn btn-primary" type="submit" value="Enviar formulario">
+</form>
+
+
+<!-- Código mostrado como ejemplo comentado -->
+<div class="code-box" style="margin-top:20px;">
+<pre><code>&lt;!-- Formulario sencillo que envía por mailto --&gt;
+&lt;form action="mailto:hola@gmail.com" method="post" enctype="text/plain"&gt;
+
+  &lt;!-- Campo de texto para el nombre --&gt;
+  &lt;label for="nombre"&gt;Nombre y apellidos:&lt;/label&gt;
+  &lt;input type="text" id="nombre" name="nombre"
+         placeholder="Escribe tu nombre"
+         aria-describedby="ayuda-nombre"
+         required&gt;
+  &lt;small id="ayuda-nombre"&gt;Escribe tu nombre real para poder dirigirnos a ti.&lt;/small&gt;
+
+  &lt;!-- Campo específico de tipo email (validación nativa) --&gt;
+  &lt;label for="email"&gt;Correo electrónico:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email"
+         placeholder="ejemplo@correo.com"
+         aria-describedby="ayuda-email"
+         required&gt;
+  &lt;small id="ayuda-email"&gt;Introduce un correo válido: lo usaremos para responderte.&lt;/small&gt;
+
+  &lt;!-- Campo de área de texto para mensajes largos --&gt;
+  &lt;label for="mensaje"&gt;Mensaje:&lt;/label&gt;
+  &lt;textarea id="mensaje" name="mensaje" rows="4" cols="40"
+            placeholder="Escribe tu mensaje aquí..."
+            aria-describedby="ayuda-mensaje"
+            required&gt;&lt;/textarea&gt;
+  &lt;small id="ayuda-mensaje"&gt;Cuéntanos tu consulta en unas pocas líneas.&lt;/small&gt;
+
+  &lt;!-- Botón de envío del formulario --&gt;
+  &lt;input type="submit" value="Enviar formulario"&gt;
+
+&lt;/form&gt;
+</code></pre>
+</div>
+
+  
+
+  <!-- 2) Accesibilidad (en tarjetas, 1 columna) -->
+<section class="card" id="accesibilidad">
+  <div class="card-body">
+    <h2 class="section-title">3) Accesibilidad en formularios (sin JavaScript)</h2>
+  </div>
+</section>
+
+<!-- Tarjeta: Checklist de accesibilidad -->
+<section class="card">
+  <div class="card-body">
+    <h3 class="structure-title">Checklist esencial</h3>
+    <ul class="checklist">
+      <li><strong>Estructura semántica:</strong> usa <code>&lt;form&gt;</code>, agrupa con <code>&lt;fieldset&gt;</code>/<code>&lt;legend&gt;</code>.</li>
+      <li><strong>Etiqueta visible por campo:</strong> <code>&lt;label for="id"&gt;</code> asociado al control con <code>id</code> único.</li>
+      <li><strong>No usar el placeholder como etiqueta:</strong> es solo pista; la etiqueta debe estar <em>siempre</em> visible.</li>
+      <li><strong>Tipos correctos:</strong> <code>email</code>, <code>tel</code>, <code>date</code>… (activan teclados adecuados y validación nativa).</li>
+      <li><strong>Atributos nativos:</strong> <code>required</code>, <code>pattern</code>, <code>min</code>, <code>maxlength</code>, <code>autocomplete</code>, etc.</li>
+      <li><strong>Mensajes nativos:</strong> aprovecha la validación nativa sin JavaScript.</li>
+      <li><strong>Ayudas y errores visibles:</strong> usa <code>&lt;small&gt;</code> y <code>aria-describedby</code> para enlazar con el campo.</li>
+      <li><strong>Botón claro y accesible:</strong> usa <code>&lt;input type="submit"&gt;</code> o <code>&lt;button type="submit"&gt;</code> con texto descriptivo.</
+    </ul>
+  </div>
+</section>
+
+<!-- Tarjeta: Ejemplo A -->
+<section class="card">
+  <div class="card-body">
+    <h3 class="structure-title">1) Ejemplo A · Datos personales</h3>
+    <p>Con <code>fieldset</code>/<code>legend</code>, etiquetas visibles y ayuda con <code>aria-describedby</code>:</p>
+
+    <!-- Código del formulario -->
+    <div class="code-box"><pre><code>&lt;form action="#" method="post"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Datos personales&lt;/legend&gt;
+
+    &lt;label for="nombre"&gt;Nombre y apellidos&lt;/label&gt;
+    &lt;input id="nombre" name="nombre" type="text" required
+           aria-describedby="ayuda-nombre"
+           autocomplete="name"&gt;
+    &lt;small id="ayuda-nombre"&gt;Escribe tu nombre real para poder dirigirnos a ti.&lt;/small&gt;
+
+    &lt;label for="email"&gt;Correo electrónico&lt;/label&gt;
+    &lt;input id="email" name="email" type="email" required
+           aria-describedby="ayuda-email"
+           autocomplete="email"&gt;
+    &lt;small id="ayuda-email"&gt;Usaremos este correo para responderte.&lt;/small&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre></div>
+
+    <!-- Explicación didáctica con fondo celeste -->
+    <div style="background-color:#e3f6ff; padding:1rem; border-radius:8px; margin-top:1rem;">
+      <h4 style="margin-top:0;">🔎 Explicación didáctica del campo <code>&lt;input id="email"...&gt;</code></h4>
+      <ul style="margin:0; padding-left:1.2rem;">
+        <li><strong>id="email"</strong>: identificador único para enlazarlo con la etiqueta <code>&lt;label for="email"&gt;</code>.</li>
+        <li><strong>name="email"</strong>: es el nombre de la variable que se enviará al servidor (ej.: <code>email=usuario@mail.com</code>).</li>
+        <li><strong>type="email"</strong>: valida automáticamente que tenga formato de correo (ej.: <em>texto@dominio.com</em>).</li>
+        <li><strong>required</strong>: lo convierte en obligatorio; si está vacío, el navegador muestra un mensaje de error.</li>
+        <li><strong>aria-describedby="ayuda-email"</strong>: enlaza el campo con el texto de ayuda en <code>&lt;small id="ayuda-email"&gt;</code>, que los lectores de pantalla también leen.</li>
+        <li><strong>autocomplete="email"</strong>: permite al navegador sugerir correos previamente usados para ahorrar tiempo.</li>
+      </ul>
+      <p style="margin-top:.5rem;"><em>En resumen:</em> este campo garantiza que el alumno escriba un correo válido, siempre con ayuda visible y accesible. ✅</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Tarjeta: Ejemplo B -->
+<section class="card">
+  <div class="card-body">
+    <h3 class="structure-title">2) Ejemplo B · Preferencias de contacto</h3>
+    <p>Radios/checkbox con <code>fieldset</code> + menú desplegable y contraseña con <code>pattern</code>:</p>
+
+    <!-- Código del formulario actualizado -->
+    <div class="code-box"><pre><code>&lt;form action="#" method="post"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Preferencias de contacto&lt;/legend&gt;
+
+    &lt;p&gt;¿Cómo prefieres que te contactemos?&lt;/p&gt;
+    &lt;div role="group" aria-labelledby="pref-contacto"&gt;
+      &lt;span id="pref-contacto" class="sr-only"&gt;Método de contacto&lt;/span&gt;
+
+      &lt;input type="radio" id="pref-email" name="pref" value="email" checked&gt;
+      &lt;label for="pref-email"&gt;Email&lt;/label&gt;
+
+      &lt;input type="radio" id="pref-tel" name="pref" value="tel"&gt;
+      &lt;label for="pref-tel"&gt;Teléfono&lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Menú desplegable: franja horaria preferida --&gt;
+    &lt;label for="horario"&gt;Franja horaria preferida&lt;/label&gt;
+    &lt;select id="horario" name="horario" aria-describedby="ayuda-horario" required&gt;
+      &lt;option value="" disabled selected&gt;Selecciona una opción&lt;/option&gt;
+      &lt;option value="manana"&gt;Mañana (09:00–12:00)&lt;/option&gt;
+      &lt;option value="tarde"&gt;Tarde (16:00–19:00)&lt;/option&gt;
+      &lt;option value="noche"&gt;Noche (19:00–21:00)&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;small id="ayuda-horario"&gt;Elige cuándo prefieres ser contactado/a.&lt;/small&gt;
+
+    &lt;div&gt;
+      &lt;input type="checkbox" id="acepta" name="acepta" required&gt;
+      &lt;label for="acepta"&gt;Acepto la política de privacidad&lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de contraseña con pattern: mínimo 8, 1 mayúscula, 1 minúscula y 1 número --&gt;
+    &lt;label for="pass"&gt;Contraseña (para tu área privada)&lt;/label&gt;
+    &lt;input type="password" id="pass" name="pass"
+           pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}"
+           title="Mínimo 8 caracteres, al menos 1 mayúscula, 1 minúscula y 1 número"
+           aria-describedby="ayuda-pass"
+           required&gt;
+    &lt;small id="ayuda-pass"&gt;Usa 8+ caracteres, con mayúsculas, minúsculas y números.&lt;/small&gt;
+
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre></div>
+
+    <!-- Explicación didáctica con fondo celeste -->
+    <div style="background-color:#e3f6ff; padding:1rem; border-radius:8px; margin-top:1rem;">
+      <h4 style="margin-top:0;">🔎 Explicación didáctica (select + password con pattern)</h4>
+      <ul style="margin:0; padding-left:1.2rem;">
+        <li><strong>&lt;select id="horario" name="horario"&gt;</strong> crea un <em>menú desplegable</em> para elegir una sola opción.</li>
+        <li>La opción <strong>placeholder</strong> se logra con <code>&lt;option disabled selected&gt;</code> (obliga a elegir una válida).</li>
+        <li><strong>aria-describedby="ayuda-horario"</strong> enlaza el select con el texto de ayuda en <code>&lt;small id="ayuda-horario"&gt;</code>, mejorando la accesibilidad.</li>
+        <li><strong>&lt;input type="password" ...&gt;</strong> oculta lo que se escribe y activa la validación nativa.</li>
+        <li><strong>pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}"</strong> exige:
+          <ul style="margin:.25rem 0 .25rem 1rem;">
+            <li>al menos una minúscula <code>(?=.*[a-z])</code></li>
+            <li>al menos una mayúscula <code>(?=.*[A-Z])</code></li>
+            <li>al menos un número <code>(?=.*\d)</code></li>
+            <li>mínimo 8 caracteres <code>{8,}</code></li>
+          </ul>
+        </li>
+        <li><strong>title="..."</strong> define el mensaje de ayuda que verá el usuario si no cumple el patrón.</li>
+        <li><strong>required</strong> en ambos campos obliga a elegir una franja y a cumplir la calidad de contraseña antes de enviar.</li>
+      </ul>
+      <p style="margin-top:.5rem;"><em>En resumen:</em> el desplegable guía la preferencia de contacto y la contraseña usa reglas claras para mejorar la seguridad, todo con ayudas visibles y accesibles. ✅</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Tarjeta: Ejemplo C -->
+<section class="card">
+  <div class="card-body">
+    <h3 class="structure-title">1) Ejemplo C · Campo con <code>datalist</code></h3>
+    <p>El elemento <code>&lt;datalist&gt;</code> permite ofrecer <strong>sugerencias</strong> en un campo de texto sin obligar a elegirlas. El usuario puede escribir libremente o seleccionar una de la lista.</p>
+
+    <!-- Código del formulario actualizado -->
+    <div class="code-box"><pre><code>&lt;form action="#" method="post"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Datos de ubicación&lt;/legend&gt;
+
+    &lt;label for="ciudad"&gt;Ciudad&lt;/label&gt;
+    &lt;input id="ciudad" name="ciudad" list="ciudades"
+           placeholder="Escribe o selecciona una ciudad"
+           aria-describedby="ayuda-ciudad" required&gt;
+
+    &lt;datalist id="ciudades"&gt;
+      &lt;option value="Madrid"&gt;
+      &lt;option value="Barcelona"&gt;
+      &lt;option value="Sevilla"&gt;
+      &lt;option value="Valencia"&gt;
+      &lt;option value="Bilbao"&gt;
+    &lt;/datalist&gt;
+    &lt;small id="ayuda-ciudad"&gt;Puedes escribir tu ciudad o elegir una sugerida.&lt;/small&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre></div>
+
+    <!-- Explicación didáctica con fondo celeste -->
+    <div style="background-color:#e3f6ff; padding:1rem; border-radius:8px; margin-top:1rem;">
+      <h4 style="margin-top:0;">🔎 Explicación didáctica (<code>datalist</code>)</h4>
+      <ul style="margin:0; padding-left:1.2rem;">
+        <li><strong>&lt;input list="ciudades"&gt;</strong>: el atributo <code>list</code> conecta el campo con el datalist.</li>
+        <li><strong>&lt;datalist id="ciudades"&gt;</strong>: define las <em>sugerencias</em> que se mostrarán al escribir.</li>
+        <li><strong>&lt;option value="..."&gt;</strong>: cada opción se sugiere al usuario, pero no es obligatoria.</li>
+        <li><strong>Flexibilidad:</strong> el usuario puede elegir una opción de la lista o escribir una diferente.</li>
+        <li><strong>Accesibilidad:</strong> con <code>aria-describedby</code> se enlaza el campo a la ayuda visible.</li>
+      </ul>
+      <p style="margin-top:.5rem;"><em>En resumen:</em> <code>datalist</code> ofrece comodidad sin limitar al usuario, ideal para ciudades, profesiones, temas frecuentes, etc. ✅</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Tarjeta: Tipos de input -->
+<section class="card">
+  <div class="card-body">
+    <h3 class="comparison-title">4) Tipos de &lt;input&gt; comunes + ejemplo</h3>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Tipo</th><th>Uso típico</th><th>Ejemplo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>text</code></td><td>Texto libre corto</td><td><code>&lt;input type="text" name="nombre"&gt;</code></td></tr>
+          <tr><td><code>email</code></td><td>Correo válido</td><td><code>&lt;input type="email" name="email" required&gt;</code></td></tr>
+          <tr><td><code>tel</code></td><td>Teléfono</td><td><code>&lt;input type="tel" name="tel" autocomplete="tel"&gt;</code></td></tr>
+          <tr><td><code>url</code></td><td>Dirección web</td><td><code>&lt;input type="url" name="web"&gt;</code></td></tr>
+          <tr><td><code>number</code></td><td>Números con control</td><td><code>&lt;input type="number" min="0" max="10"&gt;</code></td></tr>
+          <tr><td><code>date</code></td><td>Fecha</td><td><code>&lt;input type="date" name="nacimiento"&gt;</code></td></tr>
+          <tr><td><code>time</code></td><td>Hora</td><td><code>&lt;input type="time" name="hora"&gt;</code></td></tr>
+          <tr><td><code>datetime-local</code></td><td>Fecha y hora (local)</td><td><code>&lt;input type="datetime-local"&gt;</code></td></tr>
+          <tr><td><code>password</code></td><td>Contraseñas</td><td><code>&lt;input type="password" name="pass"&gt;</code></td></tr>
+          <tr><td><code>search</code></td><td>Búsquedas</td><td><code>&lt;input type="search" name="q"&gt;</code></td></tr>
+          <tr><td><code>checkbox</code></td><td>Opción múltiple</td><td><code>&lt;input type="checkbox" name="acepto"&gt;</code></td></tr>
+          <tr><td><code>radio</code></td><td>Opción única</td><td><code>&lt;input type="radio" name="rol" value="alumno"&gt;</code></td></tr>
+          <tr><td><code>range</code></td><td>Rango con deslizador</td><td><code>&lt;input type="range" min="0" max="100"&gt;</code></td></tr>
+          <tr><td><code>file</code></td><td>Subir archivo</td><td><code>&lt;input type="file" name="cv"&gt;</code></td></tr>
+          <tr><td><code>color</code></td><td>Selector de color</td><td><code>&lt;input type="color" name="tema"&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Tarjeta: Atributos nativos -->
+<section class="card">
+  <div class="card-body">
+    <h3 class="structure-title">5) Atributos nativos útiles (sin JS)</h3>
+    <ul>
+      <li><code>required</code>: obliga a completar — <code>&lt;input required&gt;</code></li>
+      <li><code>pattern</code>: regex de formato — <code>&lt;input pattern="\\d{9}" title="9 cifras"&gt;</code></li>
+      <li><code>min</code>/<code>max</code>/<code>step</code>: límites/paso — <code>&lt;input type="number" min="1" max="5" step="1"&gt;</code></li>
+      <li><code>minlength</code>/<code>maxlength</code>: longitud — <code>&lt;input minlength="3" maxlength="20"&gt;</code></li>
+      <li><code>autocomplete</code>: sugerencias — <code>&lt;input autocomplete="email"&gt;</code></li>
+      <li><code>multiple</code>: varios valores (email/file) — <code>&lt;input type="file" multiple&gt;</code></li>
+      <li><code>readonly</code>/<code>disabled</code>: solo lectura / deshabilitado.</li>
+      <li><code>aria-describedby</code>: enlaza ayudas/errores visibles con el campo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Tarjeta: Mensajes nativos -->
+<section class="card">
+  <div class="card-body">
+    <h3 class="structure-title">6) Mensajes nativos de validación</h3>
+    <p>El texto exacto depende del navegador/idioma; estos ejemplos disparan mensajes típicos:</p>
+    <div class="code-box"><pre><code>&lt;!-- Requerido vacío: "Rellena este campo." --&gt;
+&lt;input type="text" required&gt;
+
+&lt;!-- Email inválido: "Introduce una dirección de correo electrónico." --&gt;
+&lt;input type="email" required value="no-valido"&gt;
+
+&lt;!-- Patrón no coincidente: usa el mensaje por defecto o el de title --&gt;
+&lt;input type="text" pattern="\\d{9}" title="Debe contener 9 cifras" value="123"&gt;
+
+&lt;!-- Mínimo no cumplido: "El valor debe ser mayor o igual que 18." --&gt;
+&lt;input type="number" min="18" value="16"&gt;
+
+&lt;!-- Longitud mínima no alcanzada: "Longitud mínima de 8 caracteres." --&gt;
+&lt;input type="password" minlength="8" value="12345"&gt;</code></pre></div>
+
+    <p class="quote"><strong>Consejo:</strong> añade <code>title</code> para mensajes más claros cuando uses <code>pattern</code>. Ej.: <code>&lt;input pattern="\\d{5}" title="Usa un código postal de 5 cifras"&gt;</code></p>
+  </div>
+</section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="page-footer">
+    <p>&copy; 2025 Formulario en html</p>
+  </footer>
+</body>
+</html>

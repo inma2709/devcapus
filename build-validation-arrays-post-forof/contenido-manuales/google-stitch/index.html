@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manual de introducción a Google Stitch para diseñar interfaces con IA a partir de prompts bien estructurados.">
+  <title>Diseño de interfaces con IA · Google Stitch</title>
+  <style>
+    :root{--ink:#17223b;--muted:#586174;--purple:#5b3fc4;--blue:#2563eb;--sky:#eaf2ff;--lilac:#f4f1ff;--line:#ded9f5;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fafbff;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}.hero{padding:64px 24px 56px;color:white;background:linear-gradient(130deg,#332177,#5b3fc4 55%,#2563eb)}.wrap{width:min(960px,100%);margin:auto}.eyebrow{margin:0;color:#dcd5ff;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}h1,h2,h3{line-height:1.15}h1{max-width:800px;margin:12px 0 16px;font-size:clamp(2.2rem,6vw,4.5rem)}h2{margin:0 0 18px;color:#352180;font-size:clamp(1.55rem,3vw,2.2rem)}h3{margin:0 0 8px;font-size:1.08rem}.lead{max-width:700px;margin:0;font-size:1.15rem;color:#f2f0ff}.key{display:inline-block;margin-top:28px;padding:12px 17px;border-radius:12px;background:#ffffff21;font-weight:700}nav{position:sticky;top:0;z-index:3;border-bottom:1px solid var(--line);background:#fffffff5;backdrop-filter:blur(12px)}nav .wrap{display:flex;gap:18px;overflow:auto;padding:12px 24px}nav a{flex:none;color:var(--purple);font-size:.88rem;font-weight:750;text-decoration:none}main{padding:42px 24px 72px}section{margin:0 0 54px;scroll-margin-top:56px}p{margin:0 0 16px}ul,ol{padding-left:23px}li{margin:7px 0}.notice{margin:22px 0;padding:20px 22px;border-left:5px solid var(--blue);border-radius:0 14px 14px 0;background:var(--sky)}.notice strong{color:#1f3d92}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0}.card{padding:23px;border:1px solid var(--line);border-radius:16px;background:var(--white);box-shadow:0 5px 18px #2f236e0d}.card p:last-child{margin-bottom:0}.tag{display:inline-block;margin-bottom:12px;padding:4px 10px;border-radius:100px;background:var(--lilac);color:var(--purple);font-size:.78rem;font-weight:800}blockquote,pre{margin:18px 0;border-radius:14px}blockquote{padding:18px 20px;border-left:5px solid var(--purple);background:var(--lilac);font-weight:650}pre{overflow:auto;padding:20px;background:#1d2540;color:#f3f5ff;font:.9rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap}.video{overflow:hidden;margin:24px 0;border:1px solid var(--line);border-radius:16px;background:#000;box-shadow:0 8px 24px #2f236e14}.video iframe{display:block;width:100%;aspect-ratio:16/9;border:0}.video-note{margin:0;padding:12px 16px;background:white;color:var(--muted);font-size:.9rem}.video-note a{color:var(--purple);font-weight:800}.compare{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;margin:24px 0;border:1px solid var(--line);border-radius:16px}.compare>div{padding:22px}.compare>div:first-child{border-right:1px solid var(--line);background:#fffafb}.compare>div:last-child{background:#f8faff}.compare p{margin:0}.steps{counter-reset:step;list-style:none;padding:0}.steps li{position:relative;min-height:44px;margin:15px 0;padding:3px 0 3px 58px}.steps li:before{position:absolute;left:0;top:0;display:grid;width:38px;height:38px;place-items:center;border-radius:50%;background:var(--purple);color:white;content:counter(step);counter-increment:step;font-weight:800}.activity{padding:28px;border:2px solid #f0c84d;border-radius:18px;background:linear-gradient(135deg,#fffdf4,#fff8d8)}.activity h2{color:#705400}.checklist{padding:22px;border-radius:16px;background:var(--lilac)}.checklist li{list-style:none}.checklist li:before{margin-right:10px;color:var(--purple);content:'□';font-size:1.2rem;font-weight:900}a.button{display:inline-block;margin-top:10px;padding:11px 16px;border-radius:10px;background:white;color:var(--purple);font-weight:800;text-decoration:none}footer{padding:28px 24px;text-align:center;color:white;background:#17223b}@media(max-width:650px){.hero{padding-top:46px}.grid,.compare{grid-template-columns:1fr}.compare>div:first-child{border-right:0;border-bottom:1px solid var(--line)}}
+    .prompt-guide{margin:28px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--white);box-shadow:0 8px 24px #2f236e12}.prompt-guide img{display:block;width:100%;height:auto}.prompt-guide figcaption{padding:13px 18px;color:var(--muted);font-size:.92rem;text-align:center}
+  </style>
+</head>
+<body>
+  <header class="hero">
+<div class="wrap">
+<p class="eyebrow">Planificación y diseño · Manual</p>
+<h1>Diseño de interfaces con IA: Google Stitch</h1>
+<p class="lead">Usa Stitch para comprobar una idea fundamental: diseñar con inteligencia artificial exige saber qué interfaz se necesita y saber pedirla.</p>
+<p class="key">Idea clave: si no sé cómo se estructura una web, tampoco sé pedírsela bien a una IA.</p>
+<br>
+<a class="button" href="https://stitch.withgoogle.com/" target="_blank" rel="noopener noreferrer">Abrir Google Stitch ↗</a>
+</div>
+</header>
+  <nav aria-label="Índice del manual">
+<div class="wrap">
+<a href="#stitch">Qué es Stitch</a>
+<a href="#video">Vídeo</a>
+<a href="#prompt">El prompt</a>
+<a href="#estructura">Estructura</a>
+<a href="#ejemplo">Ejemplo</a>
+<a href="#actividad">Actividad</a>
+</div>
+</nav>
+  <main class="wrap">
+    <section id="stitch">
+<h2>1. Diseñar con IA no es delegar todas las decisiones</h2>
+<p>Hasta ahora has diseñado interfaces de forma manual en Penpot. Ya conoces páginas, cabeceras, botones, tarjetas, formularios, componentes, filas, columnas, espaciados y jerarquía visual.</p>
+<p>Google Stitch es una herramienta de diseño de interfaces asistida por IA. A partir de una descripción escrita puede proponer una interfaz de alta fidelidad. No dibujamos cada elemento uno a uno: explicamos qué queremos construir.</p>
+<div class="notice">
+<strong>La pregunta importante no es “¿puede la IA hacer una web?”.</strong>
+<br>Es: “¿sé definir qué debe tener esa web y para qué sirve cada parte?”.</div>
+<div class="grid">
+<article class="card">
+<span class="tag">Prompt impreciso</span>
+<h3>“Hazme una web de veterinaria.”</h3>
+<p>La IA tendrá que decidir el objetivo, las secciones, los contenidos y la acción principal.</p>
+</article>
+<article class="card">
+<span class="tag">Prompt pensado</span>
+<h3>Una instrucción con contexto</h3>
+<p>Indica el público, objetivo, estructura, contenido y estilo. Tú conservas las decisiones de diseño importantes.</p>
+</article>
+</div>
+</section>
+    <section id="video">
+<h2>2. Mira Stitch en acción</h2>
+<p>Antes de empezar, visualiza este vídeo de introducción. Mientras lo ves, identifica qué decisiones sigue tomando la persona que diseña y cuáles puede proponer la IA.</p>
+<div class="video">
+<iframe src="https://www.youtube-nocookie.com/embed/su6vYWI0ci4" title="Vídeo de introducción a Google Stitch" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+<p class="video-note">¿No se carga el reproductor? <a href="https://www.youtube.com/watch?v=su6vYWI0ci4" target="_blank" rel="noopener noreferrer">Ver el vídeo en YouTube ↗</a>
+</p>
+</div>
+</section>
+    <section id="prompt">
+<h2>3. ¿Qué es un prompt?</h2>
+<p>Un <strong>prompt</strong> es la instrucción que damos a una herramienta de inteligencia artificial. Cuanto más claro y útil sea el contexto, más fácil será obtener una propuesta que puedas evaluar y mejorar.</p>
+<div class="compare">
+<div>
+<span class="tag">Prompt pobre</span>
+<p>“Hazme una web para un gimnasio.”</p>
+</div>
+<div>
+<span class="tag">Prompt pensado como desarrollador/a</span>
+<p>“Diseña una landing responsive para un gimnasio dirigido a adultos de 25 a 50 años. Incluye header con navegación y CTA de inscripción, hero, actividades mediante tarjetas, horarios, tarifas, entrenadores, testimonios, formulario y footer.”</p>
+</div>
+</div>
+<h3>Un prompt útil responde, como mínimo, a estas preguntas</h3>
+<ul>
+<li>¿Qué tipo de página estás diseñando?</li>
+<li>¿Para quién está pensada y cuál es su objetivo?</li>
+<li>¿Qué secciones debe contener?</li>
+<li>¿Qué contenido y acciones son esenciales?</li>
+<li>¿Qué estilo visual debe transmitir?</li>
+</ul>
+<figure class="prompt-guide"><img src="guia-prompt-perfecto.png" alt="Infografía: guía del prompt perfecto con rol, objetivo, contexto, instrucciones, formato, criterios de éxito, limitaciones y checklist final." loading="lazy" decoding="async"><figcaption>Guía visual para crear prompts claros y obtener mejores resultados con herramientas de inteligencia artificial.</figcaption></figure>
+</section>
+    <section id="estructura">
+<h2>4. Piensa la estructura antes de escribir</h2>
+<p>Antes de abrir Stitch, organiza mentalmente la página. Por ejemplo, una clínica veterinaria podría necesitar:</p>
+<div class="grid">
+<article class="card">
+<h3>Header</h3>
+<p>Logotipo, Inicio, Servicios, Equipo, Contacto y botón “Pedir cita”.</p>
+</article>
+<article class="card">
+<h3>Hero</h3>
+<p>Título, texto introductorio, imagen y llamada a la acción.</p>
+</article>
+<article class="card">
+<h3>Servicios</h3>
+<p>Tarjetas para consulta, vacunación, urgencias o cirugía.</p>
+</article>
+<article class="card">
+<h3>Contacto y footer</h3>
+<p>Dirección, teléfono, horario, formulario, enlaces legales y redes.</p>
+</article>
+</div>
+<p>Esta estructura visual se convertirá más adelante en HTML y CSS:</p>
+<pre>&lt;header&gt;...&lt;/header&gt;
+&lt;main&gt;
+  &lt;section class="hero"&gt;...&lt;/section&gt;
+  &lt;section class="servicios"&gt;
+    &lt;article&gt;...&lt;/article&gt;
+    &lt;article&gt;...&lt;/article&gt;
+  &lt;/section&gt;
+  &lt;section class="contacto"&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</pre>
+</section>
+    <section id="ejemplo">
+<h2>5. Ejemplo guiado: HuellaVet</h2>
+<p>Prueba primero una petición sencilla y observa qué decisiones ha tomado la herramienta. Después utiliza un prompt con requisitos concretos:</p>
+<pre>Diseña una landing page responsive para una clínica veterinaria llamada HuellaVet.
+
+El público principal son personas que tienen perros y gatos. La página debe transmitir confianza, profesionalidad y cercanía.
+
+Incluye una cabecera con logotipo, Inicio, Servicios, Equipo y Contacto, además de un botón destacado para pedir cita. Crea una sección hero con título, texto, una imagen de una veterinaria atendiendo a un perro y el botón “Pide tu cita”.
+
+Después añade una sección de servicios con cuatro tarjetas: consulta veterinaria, vacunación, cirugía y urgencias. Añade una sección sobre la clínica con imagen y texto, tres opiniones de clientes y una sección de contacto con dirección, teléfono, horario y formulario.
+
+Termina con un footer de contacto, enlaces legales y redes sociales. Utiliza un diseño moderno, limpio y accesible, con colores suaves y buena separación entre elementos.</pre>
+<div class="notice">
+<strong>Compara los resultados.</strong>
+<br>¿Qué secciones aparecieron porque se las pediste? ¿Qué decisiones dejó la IA en tus manos? ¿Falta una acción importante?</div>
+<h3>Iterar también es diseñar</h3>
+<p>No necesitas acertar a la primera. Observa el resultado y usa nuevas instrucciones para mejorarlo:</p>
+<div class="grid">
+<article class="card">
+<h3>Claridad</h3>
+<p>“Haz más visible la llamada a la acción.”</p>
+</article>
+<article class="card">
+<h3>Organización</h3>
+<p>“Reorganiza los servicios en una cuadrícula de tres columnas.”</p>
+</article>
+<article class="card">
+<h3>Jerarquía</h3>
+<p>“Reduce el tamaño de la sección principal.”</p>
+</article>
+<article class="card">
+<h3>Simplicidad</h3>
+<p>“Simplifica el footer y reduce el número de enlaces.”</p>
+</article>
+</div>
+</section>
+    <section id="actividad" class="activity">
+<h2>6. Actividad: diseña tu propia interfaz con Stitch</h2>
+<p>
+<strong>Reto:</strong> no existe un diseño que tengas que copiar. Elige una idea propia: academia, tienda, gimnasio, peluquería, asociación, restaurante, protectora, biblioteca, agencia de viajes, videojuego o portfolio.</p>
+<ol class="steps">
+<li>
+<strong>Define tu proyecto.</strong> Escribe su nombre, tipo de página, objetivo principal y usuario al que se dirige.</li>
+<li>
+<strong>Decide sus partes.</strong> Haz una lista previa: header, hero, servicios, galería, opiniones, contacto, footer… solo las que tu proyecto necesite.</li>
+<li>
+<strong>Escribe el primer prompt.</strong> Incluye tipo de web, público, objetivo, secciones, contenido importante y estilo visual.</li>
+<li>
+<strong>Genera y analiza.</strong> Comprueba si responde al objetivo, si la información está organizada y si se entiende la acción principal.</li>
+<li>
+<strong>Mejora el diseño.</strong> Realiza al menos tres modificaciones mediante nuevos prompts y explica por qué las has pedido.</li>
+</ol>
+<div class="checklist">
+<h3>Entrega</h3>
+<ul>
+<li>Nombre y descripción breve del proyecto.</li>
+<li>Lista de secciones elegidas.</li>
+<li>Prompt inicial y captura del primer resultado.</li>
+<li>Los tres prompts de mejora.</li>
+<li>Captura del diseño final.</li>
+<li>Reflexión: ¿qué cambia entre pedir “hazme una web” y describir exactamente lo que necesitas?</li>
+</ul>
+</div>
+</section>
+    <section>
+<blockquote>La inteligencia artificial puede generar una interfaz, pero necesita que nosotros sepamos qué interfaz queremos.</blockquote>
+<p>Aprender HTML, CSS, diseño y estructura web no pierde importancia al utilizar IA. Al contrario: cuanto más sabes, mejores instrucciones puedes dar y mejor puedes evaluar los resultados.</p>
+</section>
+  </main>
+<footer>DevCampus · Diseño de interfaces con IA</footer>
+</body>
+</html>

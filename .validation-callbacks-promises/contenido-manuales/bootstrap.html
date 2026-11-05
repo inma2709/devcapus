@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manual Completo de Bootstrap para Principiantes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="bootstrap.css" rel="stylesheet">
+    <style>
+        /* Estilos básicos para este manual */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 960px;
+        }
+        .header-bg {
+            background-image: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        }
+        pre {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        code {
+            color: #d63384;
+            font-size: 0.9em;
+        }
+        .card-custom {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            border-left: 4px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-bg text-white text-center py-5 mb-5">
+        <div class="container">
+            <h1 class="display-4">Manual de Bootstrap para Principiantes 🚀</h1>
+            <p class="lead">Tu guía completa para dominar el framework más popular del desarrollo web.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mb-5">
+            <div class="card card-custom p-4">
+                <h2 class="section-title text-primary">1. ¿Qué es Bootstrap y por qué usarlo?</h2>
+                <p>¡Hola, futuro desarrollador! 🤓 Bootstrap es un framework de código abierto para HTML, CSS y JavaScript. Imagina que es como una caja de LEGOs muy bien organizada para construir páginas web. Su principal ventaja es que te permite crear sitios web responsivos de manera rápida y eficiente. Esto significa que tu página se verá bien y funcionará correctamente en cualquier dispositivo, sin que tengas que programar versiones diferentes para cada uno.</p>
+                <p>¿Por qué es tan útil para principiantes?</p>
+                <ul>
+                    <li>Ahorra tiempo: Ya no tienes que escribir todo el código CSS para estilos básicos.</li>
+                    <li>Consistencia: Mantiene un diseño uniforme en todo tu proyecto.</li>
+                    <li>Responsividad integrada: Su sistema de cuadrícula facilita que tu diseño se adapte automáticamente.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="card card-custom p-4">
+                <h2 class="section-title text-primary">2. Preparando el terreno: Instalar Bootstrap ✨</h2>
+                <p>La forma más fácil y rápida de usar Bootstrap es a través de su CDN (Content Delivery Network). Simplemente copias y pegas los siguientes enlaces en la sección <code>&lt;head&gt;</code> de tu archivo HTML. ¡No necesitas descargar nada!</p>
+                <p>Visita el enlace de documentación de Bootstrap y copia directamente el enlace donde te viene para enlazar bootstrap. Luego pon al final de tu body pero antes d ela etiqueta de cierre la llamada al script de bootstrap</p>
+                <h3 class="mt-4">¿Cuándo hacer la llamada a los scripts?</h3>
+                <p>El mejor lugar para hacer la llamada a los scripts es justo antes de la etiqueta de cierre <code>&lt;/body&gt;</code>. Esto asegura que el navegador cargue primero todo el contenido HTML y CSS, haciendo que tu página sea visible más rápido. El JavaScript de Bootstrap, que a menudo manipula el HTML, necesita que este ya esté cargado para funcionar correctamente.</p>
+            </div>
+        </section>
+
+       <section class="mb-5">
+<section class="mb-5">
+  <div class="card card-custom p-4">
+    <h2 class="section-title text-primary">3. La piedra angular: El Sistema de Cuadrícula 🗺️</h2>
+    
+    <p>
+      El <strong>Sistema de Cuadrícula</strong> es el corazón de Bootstrap y se basa siempre en 
+      <strong>12 columnas invisibles</strong> que forman cada fila.  
+      Esto significa que cada fila de tu página web se divide en 12 partes iguales y tú decides cuántas ocupa cada elemento.
+    </p>
+
+    <h4 class="mt-4">La estructura básica es:</h4>
+    <ul>
+      <li><code>.container</code>: Es como una caja principal que centra y organiza todo tu contenido.</li>
+      <li><code>.row</code>: Dentro del contenedor, defines una fila (piensa en una línea horizontal que se divide en 12 partes).</li>
+      <li><code>.col</code>: Dentro de cada fila, colocas tus columnas.  
+        Puedes indicar cuántas de las 12 ocupa cada una:  
+        <ul>
+          <li><code>.col-12</code> → ocupa toda la fila (12/12 = 100%).</li>
+          <li><code>.col-6</code> → ocupa la mitad de la fila (6/12 = 50%).</li>
+          <li><code>.col-4</code> → ocupa un tercio de la fila (4/12 ≈ 33%).</li>
+          <li><code>.col-3</code> → ocupa una cuarta parte de la fila (3/12 = 25%).</li>
+          <li><code>.col-2</code> → ocupa una sexta parte de la fila (2/12 ≈ 16%).</li>
+          <li><code>.col-1</code> → ocupa una doceava parte de la fila (1/12 ≈ 8%).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4 class="mt-4">Ejemplo para entenderlo</h4>
+    <p>
+      ✔️ Dos columnas iguales: <code>.col-6</code> + <code>.col-6</code> → 6 + 6 = 12 (mitad y mitad).<br>
+      ✔️ Tres columnas iguales: <code>.col-4</code> + <code>.col-4</code> + <code>.col-4</code> → 4 + 4 + 4 = 12 (tercios).<br>
+      ✔️ Cuatro columnas iguales: <code>.col-3</code> × 4 → 3 × 4 = 12 (cuartos).<br>
+      ✔️ Seis columnas iguales: <code>.col-2</code> × 6 → 2 × 6 = 12.
+    </p>
+
+    <h4 class="mt-4">Regla de oro: ¿puede ser menos o más de 12?</h4>
+    <ul>
+      <li><strong>Puede ser MENOS de 12</strong> ✅  
+        Si la suma no llega a 12, la fila queda con <em>espacio vacío al final</em>.  
+        Ej.: <code>.col-4 + .col-4</code> = 8 &lt; 12 → quedan 4 columnas de hueco a la derecha.
+      </li>
+      <li class="mt-2"><strong>No debe ser MÁS de 12</strong> ❌  
+        Si te pasas, Bootstrap “rompe” la fila y las columnas que no caben <em>bajan a la siguiente línea</em>.  
+        Ej.: <code>.col-8 + .col-6</code> = 14 &gt; 12 → la segunda columna saltará abajo.
+      </li>
+    </ul>
+
+    <h4 class="mt-4">Caso práctico: quiero <code>6</code> + <code>3</code> y un hueco de <code>3</code></h4>
+    <p>
+      Tienes varias formas de hacerlo, según lo que quieras conseguir:
+    </p>
+
+    <ol>
+      <li><strong>Dejar el hueco al final sin más</strong> (suma 9, sobran 3):<br>
+        Pon dos columnas: <code>.col-6</code> y <code>.col-3</code>. Como 6+3=9, <em>quedan 3 columnas vacías al final</em>.  
+        Es válido si solo quieres ese espacio en blanco (no puedes “meter” nada ahí porque no hay columna).
+      </li>
+
+      <li class="mt-2"><strong>Reservar el hueco como columna vacía</strong> (para que se <em>vea</em> claramente):<br>
+        Añade una tercera columna <code>.col-3</code> vacía.  
+        Así la fila es: <code>.col-6</code> + <code>.col-3</code> + <code>.col-3</code> = 12.  
+        Ventaja: el hueco queda “materializado” como columna y mantiene el layout siempre igual.
+      </li>
+
+      <li class="mt-2"><strong>Quiero un botón en ese hueco</strong> (a la derecha):<br>
+        Dos opciones:
+        <ul>
+          <li><em>Exactamente 3 columnas de ancho:</em> crea una tercera columna <code>.col-3</code> y coloca dentro tu botón.<br>
+            <small>Fila: <code>.col-6</code> + <code>.col-3</code> + <code>.col-3</code> (con el botón).</small>
+          </li>
+          <li><em>Que el botón ocupe lo mínimo pero quede pegado a la derecha:</em> usa una columna auto-ajustada <code>.col-auto</code> con <code>ms-auto</code> para empujarla al borde derecho:<br>
+            <code>&lt;div class="col-6"&gt;…&lt;/div&gt; &lt;div class="col-3"&gt;…&lt;/div&gt; &lt;div class="col-auto ms-auto"&gt;&lt;button class="btn btn-primary"&gt;Botón&lt;/button&gt;&lt;/div&gt;</code><br>
+            Aquí <code>ms-auto</code> agrega un margen-izquierdo automático que empuja esta tercera columna al extremo derecho, y <code>.col-auto</code> hace que la columna mida lo que mida su contenido (el botón).
+          </li>
+        </ul>
+      </li>
+
+      <li class="mt-2"><strong>Hueco “antes” de una columna</strong> (por ejemplo, 6, hueco 3, y luego 3 con contenido):<br>
+        Usa <code>offset-3</code> para desplazar una columna 3 columnas a la derecha:  
+        <small><code>.col-6</code> + <code>.col-3.offset-3</code> → la segunda columna aparece con un hueco de 3 “antes”.</small>
+      </li>
+    </ol>
+
+    <div class="alert alert-info mt-3">
+      💡 <strong>Recuerda</strong>:  
+      - La suma de una fila puede ser <strong>12 justas</strong> (ideal), <strong>menos de 12</strong> (queda espacio vacío) pero <strong>nunca más de 12</strong> (las columnas sobrantes bajan).<br>
+      - Si quieres poner contenido en el “hueco”, <strong>necesitas una columna</strong> para ese contenido (por ejemplo <code>.col-3</code> o <code>.col-auto ms-auto</code>).  
+      - <code>offset-*</code> crea huecos a la <em>izquierda</em> de una columna; <code>ms-auto</code> empuja una columna hacia la derecha en la fila.
+    </div>
+  </div>
+</section>
+
+
+        <section class="mb-5">
+            <div class="card card-custom p-4">
+                <h2 class="section-title text-primary">4. Añadiendo Componentes: ¡Hagamos algo de verdad! 🎨</h2>
+                <p>Ahora que tienes tu estructura, es momento de usar los componentes de Bootstrap. Puedes encontrar todos los componentes y su código en la <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank">documentación oficial</a>. Recuerda que no son elementos HTML especiales, sino clases CSS prediseñadas que aplicas a un <code>&lt;div&gt;</code> normal.</p>
+                <h4 class="mt-4">Ejemplo práctico: Un botón y una tarjeta</h4>
+                <pre><code>&lt;!-- Un botón --&gt;
+&lt;button type="button" class="btn btn-primary"&gt;Mi Botón&lt;/button&gt;
+
+&lt;!-- Una tarjeta (card) --&gt;
+&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Título de la tarjeta&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Este es un ejemplo de una tarjeta de Bootstrap.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Ir a algún lugar&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+         <section class="mb-5">
+  <div class="card card-custom p-4">
+    <h2 class="section-title text-primary">4. Clases de utilidad y personalización 🖌️</h2>
+    <p>
+      Además de componentes (botones, tarjetas, etc.), Bootstrap incluye cientos de 
+      <strong>clases de utilidad</strong>.  
+      Estas son <em>atajos</em> que aplicas directamente en el atributo <code>class</code> de tus etiquetas HTML 
+      para modificar rápidamente estilos muy comunes, sin tener que escribir CSS a mano.
+    </p>
+
+    <h4 class="mt-4">📌 Ejemplos de clases de utilidad</h4>
+    <ul>
+      <li><code>m-3</code>: Agrega un margen de 3 unidades en todos los lados.</li>
+      <li><code>mt-5</code>: Agrega un margen superior (margin-top) de 5 unidades.</li>
+      <li><code>p-4</code>: Agrega un padding (espaciado interno) de 4 unidades en todos los lados.</li>
+      <li><code>text-center</code>: Centra el texto o elementos inline.</li>
+      <li><code>d-flex justify-content-center</code>: Convierte el contenedor en flexbox y centra su contenido horizontalmente.</li>
+      <li><code>bg-light</code>: Aplica un fondo de color gris claro.</li>
+    </ul>
+
+    <p>
+      🔎 Se colocan siempre en el atributo <code>class</code> del elemento al que quieras aplicar el estilo.  
+      Por ejemplo:
+    </p>
+    <pre><code>&lt;p class="text-center bg-light p-4"&gt;
+  Este texto está centrado, con fondo gris claro y padding.
+&lt;/p&gt;
+
+&lt;div class="d-flex justify-content-center bg-light p-4"&gt;
+  &lt;button class="btn btn-primary"&gt;Botón centrado con flex&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+    <h4 class="mt-4">📏 ¿Qué significan los números?</h4>
+    <p>
+      Bootstrap utiliza una escala basada en la unidad <code>rem</code>.  
+      Un <code>rem</code> equivale al tamaño de fuente base definido en el navegador, que normalmente es 
+      <strong>16px</strong>.
+    </p>
+    <p>
+      Por tanto, la escala es:
+    </p>
+    <ul>
+      <li><code>0</code> = 0</li>
+      <li><code>1</code> = 0.25rem (≈4px)</li>
+      <li><code>2</code> = 0.5rem (≈8px)</li>
+      <li><code>3</code> = 1rem (≈16px)</li>
+      <li><code>4</code> = 1.5rem (≈24px)</li>
+      <li><code>5</code> = 3rem (≈48px)</li>
+    </ul>
+
+    <div class="alert alert-info mt-3">
+      💡 <strong>Recuerda:</strong> 
+      - <code>px</code> son píxeles fijos.  
+      - <code>em</code> es relativo al tamaño de fuente del <em>padre</em>.  
+      - <code>rem</code> es relativo al tamaño de fuente <em>raíz</em> (normalmente 16px).  
+      Bootstrap usa <code>rem</code> para que los diseños sean más flexibles y accesibles.
+    </div>
+  </div>
+</section>
+
+
+  
+<section class="mb-5">
+  <div class="card card-custom p-4">
+    <h2 class="section-title text-primary">5. Los Contenedores en Bootstrap 📦</h2>
+
+    <p>
+      Los <strong>contenedores</strong> son el elemento más básico de diseño en Bootstrap.
+      Sirven para <em>contener, centrar y dar espacio</em> al contenido.
+      Siempre que uses el <strong>sistema de cuadrícula</strong> necesitas un contenedor.
+    </p>
+
+    <h4 class="mt-4">Tipos de contenedores</h4>
+    <ul>
+      <li><code>.container</code>: Tiene un <em>máximo ancho</em> que cambia según el tamaño de la pantalla (se va “agrandando” en cada breakpoint).</li>
+      <li><code>.container-{breakpoint}</code>: Es <code>width:100%</code> hasta llegar al breakpoint indicado, y después se comporta como un <code>.container</code>.  
+        Ejemplo: <code>.container-lg</code> ocupa todo el ancho hasta 992px, y luego se centra con un ancho fijo.</li>
+      <li><code>.container-fluid</code>: Siempre ocupa el <code>100%</code> del ancho disponible en todos los tamaños de pantalla.</li>
+    </ul>
+
+   
+
+    <div class="alert alert-info mt-3">
+      💡 <strong>Tip docente:</strong> Piensa en los contenedores como la “caja base” de tu layout.  
+      <code>.container</code> se adapta, <code>.container-fluid</code> siempre llena todo,  
+      y <code>.container-lg</code> o similares son híbridos (fluido hasta un punto y luego centrado).
+    </div>
+
+    <p class="mt-3">
+      📖 Puedes leer la explicación oficial en la documentación de Bootstrap:  
+      <a href="https://getbootstrap.com/docs/5.3/layout/containers/" target="_blank" class="btn btn-outline-primary btn-sm">
+        Ver cómo funcionan los contenedores →
+      </a>
+    </p>
+  </div>
+</section>
+
+
+
+        <section class="mb-5">
+            <div class="card card-custom p-4">
+                <h2 class="section-title text-primary">5. Personalizando Bootstrap. Evita el uso de important!</h2>
+                <p>Para personalizar Bootstrap, lo mejor es crear tu propio archivo CSS y enlazarlo después del CSS de Bootstrap. Esto aprovecha la cascada de CSS, dando prioridad a tus estilos sin usar la mala práctica de <code>!important</code>.</p>
+                <pre><code>/* Tu CSS en styles.css */
+.btn-primary {
+  background-color: #28a745; /* ¡Cambiamos el color azul a verde! */
+  border-color: #28a745;
+}</code></pre>
+              
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">¡Ahora ya tienes las bases para empezar a construir sitios web increíbles! 💻</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

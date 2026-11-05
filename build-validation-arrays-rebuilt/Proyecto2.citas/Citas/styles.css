@@ -1,0 +1,280 @@
+:root {
+  --bg: #f3efe7;
+  --panel: #fffaf3;
+  --text: #1f1a17;
+  --muted: #6d625a;
+  --brand: #1f6f78;
+  --brand-dark: #15565d;
+  --danger: #a94442;
+  --line: #e7ddd1;
+  --shadow: 0 10px 30px rgba(31, 26, 23, 0.08);
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(31, 111, 120, 0.12), transparent 35%),
+    linear-gradient(180deg, #f8f4ee 0%, var(--bg) 100%);
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(100% - 1.5rem, 980px);
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 2.5rem 0 1.25rem;
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+}
+
+.hero-text {
+  margin-bottom: 0;
+  max-width: 42rem;
+  color: var(--muted);
+}
+
+.layout {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 2.5rem;
+}
+
+.panel {
+  background: rgba(255, 250, 243, 0.92);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.stat-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.stat-card strong {
+  font-size: 1.6rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.field,
+.field-row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #cfc3b7;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.field input:focus,
+.primary-btn:focus,
+.secondary-btn:focus,
+.card-actions button:focus {
+  outline: 3px solid rgba(31, 111, 120, 0.25);
+  outline-offset: 2px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.primary-btn,
+.secondary-btn,
+.card-actions button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.primary-btn {
+  background: var(--brand);
+  color: white;
+  font-weight: 700;
+}
+
+.primary-btn:hover {
+  background: var(--brand-dark);
+}
+
+.secondary-btn {
+  background: #efe7dd;
+  color: var(--text);
+}
+
+.secondary-btn:hover {
+  background: #e3d7ca;
+}
+
+.cards-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card-top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card-time {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--brand);
+}
+
+.card-client {
+  margin: 0.2rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card-service,
+.card-price {
+  margin: 0;
+  color: var(--muted);
+}
+
+.card-price {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.edit-btn {
+  background: #dcecf0;
+  color: var(--brand-dark);
+}
+
+.edit-btn:hover {
+  background: #cbe3e7;
+}
+
+.delete-btn {
+  background: #f6dfdc;
+  color: var(--danger);
+}
+
+.delete-btn:hover {
+  background: #f1cbc7;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed #cdbdad;
+  border-radius: 14px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: start;
+  }
+
+  .summary {
+    grid-column: 1 / -1;
+  }
+
+  .field-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

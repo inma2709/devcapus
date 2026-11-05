@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+   <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <title>Aprendiendo HTML y CSS</title>
+</head>
+<body>
+    <header>
+<h1>Repaso final de css y html</h1>
+        <!-- Navegación principal se puede hacer tambien sin lista pero si luego queremos subpaginas haremos una
+         lista. atención a la hora de declarar los estilos -->
+                <nav>
+            <ul>
+                <li><a href="pages/estructura.html">Estructuras</a></li>
+                <li><a href="pages/etiquetas.html">Etiquetas semanticas</a></li>
+                <li><a href="pages/gridflex.html">Grid y flex</a></li>
+                <li><a href="pages/formularios.html">Formularios</a></li>
+                <li><a href="pages/css.html">CSS</a></li>
+                <li><a href="pages/media.html">Imágenes y multimedia</a></li>
+                <li><a href="../html/tallermaquetacion.html">Taller de Maquetación</a></li>
+            </ul>
+        </nav>        
+    </header>
+    <main>
+        <!-- =========================
+     REPASO: Estructura creada
+     ========================= -->
+<section class="repaso">
+  <h2>Estructura del proyecto creada</h2>
+
+  <div class="grid repaso-grid">
+    <article class="card">
+      <h3 class="card__title">index.html</h3>
+      <p class="card__body">Archivo principal que carga estilos, scripts y organiza la web.</p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">/styles</h3>
+      <p class="card__body">Aquí van <code>base.css</code>, <code>layout.css</code> y <code>components.css</code> para la maquetación.</p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">/pages</h3>
+      <p class="card__body">Carpeta para páginas secundarias (UD1, UD2…).</p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">/assets/icons</h3>
+      <p class="card__body">Iconos en SVG o PNG para reutilizar.</p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">/assets/imagenes</h3>
+      <p class="card__body">Imágenes generales del proyecto.</p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">/assets/media</h3>
+      <p class="card__body">Archivos de audio o vídeo.</p>
+    </article>
+  </div>
+  <div class="sabermas">
+  <h3>💡 Saber más: usar CMD para crear estructura</h3>
+  <p>
+    Además de crear carpetas y archivos desde el explorador de VS Code,
+    puedes usar la <strong>CMD</strong> (símbolo del sistema) en Windows.
+  </p>
+  <p>Pasos básicos:</p>
+  <ol>
+    <li>Abrir CMD en la carpeta del proyecto (clic derecho + <em>Abrir terminal aquí</em>).</li>
+    <li>Crear una carpeta:
+      <pre><code>mkdir pages</code></pre>
+    </li>
+    <li>Entrar en la carpeta:
+      <pre><code>cd pages</code></pre>
+    </li>
+    <li>Crear archivos vacíos:
+      <pre><code>echo.> estructura.html
+echo.> etiquetas.html
+echo.> gridflex.html</code></pre>
+    </li>
+  </ol>
+  <p>
+    Con <code>mkdir</code> creas carpetas y con <code>echo.&gt;</code> creas archivos vacíos en CMD.
+  </p>
+</div>
+
+</section>
+
+<!-- ============================
+     SABER MÁS: Migas de pan
+     ============================ -->
+<section class="sabermas">
+  <h3>📌 Saber más: Migas de pan (Breadcrumbs)</h3>
+  <p>
+    Las <strong>migas de pan</strong> son un sistema de navegación secundaria que 
+    muestra al usuario dónde se encuentra dentro de la estructura del sitio.  
+    Mejoran la <em>usabilidad</em> porque permiten:
+  </p>
+  <ul>
+    <li>Entender la jerarquía de las páginas.</li>
+    <li>Volver rápidamente a niveles anteriores.</li>
+    <li>Mejorar la accesibilidad y la experiencia de usuario.</li>
+    <li>Aportar beneficios de <em>SEO</em> al mostrar enlaces internos claros.</li>
+  </ul>
+
+  <p>🔎 Ejemplo en HTML:</p>
+  <pre><code>&lt;nav aria-label="Breadcrumb"&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href="index.html"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="cursos.html"&gt;Cursos&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;HTML y CSS&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+</code></pre>
+
+  <p>
+    El usuario verá la ruta <strong>Inicio › Cursos › HTML y CSS</strong>, y podrá navegar 
+    fácilmente hacia atrás.  
+  </p>
+</section>
+
+
+
+     <!-- =========================
+     SECCIÓN: Colores en :root
+     ========================= -->
+<section class="repaso" aria-labelledby="t-colores">
+  <h2 id="t-colores">🎨 Colores en :root</h2>
+
+  <p>
+    En CSS podemos definir variables globales de color dentro del selector
+    <code>:root</code>. Esto nos permite mantener una paleta consistente en todo el proyecto.
+  </p>
+
+  <pre><code>:root {
+    
+    --color-base: #118AB2;
+    --color-secundario: #073B4C;
+    --color-sabermas:#80ffdb;
+    --fuente-principal: 'Arial', sans-serif;
+    --fuente-secundaria: 'Courier New', strong;
+
+}
+  
+</code></pre>
+
+  <p>
+    Una vez declaradas, podemos usar las variables así:
+    <code>color: var(--color-base);</code> o <code>background: var(--color-sabermas);</code>.
+  </p>
+
+  <div class="sabermas">
+    <h3>💡 Explora más paletas</h3>
+    <p>
+      Puedes inspirarte y generar tus propios colores en 
+      <a href="https://coolors.co/palettes/trending" target="_blank" rel="noopener">
+        Coolors — Paletas en tendencia
+      </a>.
+    </p>
+    <p>
+      Ejemplo de imagen de una paleta:  
+      Ejemplo de imagen de una paleta:  
+< href="https://images.unsplash.com/photo-1503602642458-232111445657?w=800" 
+   target="_blank" rel="noopener">
+  <img src="assets/imagenes/coloors.png" 
+       alt="Ejemplo de paleta de colores desde carpeta local"
+       class="imagenes" />
+    </p>
+</a>
+
+      </a>
+    </p>
+  </div>
+</section>
+
+
+    </main>
+    <footer>
+        <p>Curso de desarrollo web - ICI</p>
+    </footer>
+</body>
+</html>

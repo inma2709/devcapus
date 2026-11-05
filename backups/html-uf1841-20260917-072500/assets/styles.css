@@ -1,0 +1,663 @@
+/* =========================================================
+   0) RESET + NORMALIZACIÓN SUAVE
+   - Reinicio y normalización para consistencia entre navegadores.
+   - Se establece el modelo de caja (box-sizing) y el comportamiento del scroll.
+   =======================================================*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Fuente del sistema para mejor rendimiento y familiaridad. */
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu;
+    color: var(--text);
+    /* Gradiente de fondo inspirado en los colores de HTML5. */
+    background: linear-gradient(120deg, #c5def2, #f9f6f5 40%, #c3f4e9);
+    min-height: 100vh;
+    line-height: 1.5; /* Mejora la legibilidad del texto. */
+}
+
+/* Ritmo vertical: Espaciado consistente para elementos de texto. */
+p, ul, ol {
+    margin-block: .75rem;
+}
+h1,h2, h3, h4 {
+    margin-block: 1rem .5rem;
+    line-height: 1.2;
+}
+
+/* Centra el contenedor completo */
+.carousel-title {
+    text-align: center;
+}
+
+/* El h5 ocupará todo el ancho disponible para que la línea se vea de lado a lado */
+.carousel-title h5 {
+     margin-block: .5rem .25rem;
+    line-height: 1.2;
+    color: rgb(18, 18, 18);
+    border-bottom: #de5a18 solid 4px;
+    padding-bottom: .3rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul, ol {
+    padding-left: 1.25rem;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+/* Asegura que los anclajes (enlaces a secciones) no queden ocultos bajo el header fijo. */
+section, [id] {
+    scroll-margin-top: 90px;
+}
+
+.chapter-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    color: #333; /* Un gris oscuro para un toque profesional */
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    padding: 1.5rem 0;
+    border-bottom: 4px solid #F16529; /* Un acento de color de tu paleta */
+    margin: 2rem auto;
+    width: fit-content;
+}
+
+/* =========================================================
+   1) TOKENS (PALETA HTML5)
+   - Definición de variables CSS para mantener la consistencia de la paleta de colores.
+   =======================================================*/
+:root {
+    /* Colores de marca HTML5 */
+    --brand: #f98315; /* Naranja principal (escudo HTML5) */
+    --brand-2: #F16529; /* Naranja oscuro */
+    --brand-3: #ffefdb; /* Naranja claro (para fondos y hover) */
+    
+
+    /* Tipografía y superficies */
+    --text: #111827; /* Texto principal oscuro */
+    --text-inverse: #ffffff; /* Texto claro (para contraste) */
+    --paper: #ffffff; /* Superficies claras (tarjetas, fondos) */
+    --muted: #4b5563; /* Texto secundario, para descripciones */
+
+    /* Componentes y acentos */
+    --card: #ffffff; /* Fondo de tarjetas */
+    --chip: #E44D26; /* Pastillas y botones suaves */
+    --border: #E44D26; /* Bordes y líneas de acento */
+    --accent: #E44D26; /* Enlaces y énfasis */
+
+    /* Estados de color */
+    --ok: #16a34a; /* Éxito */
+    --warn: #f59e0b; /* Aviso */
+    --logo-size: 86px; /* Tamaño fijo del logo */
+}
+
+/* =========================================================
+   2) CABECERA Y NAVEGACIÓN (contraste alto sobre brand)
+   - Diseño del encabezado principal de la página, fijo en la parte superior.
+   - Estilo de la barra de navegación y sus enlaces.
+   =======================================================*/
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(90deg, var(--brand-3), var(--brand-2));
+    border-bottom: 6px solid var(--border);
+}
+
+nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center;
+    padding: 0.8rem 1rem;
+}
+
+/* Estilo para los enlaces de navegación. */
+nav a {
+    color: var(--text-inverse);
+    text-decoration: none;
+    padding: .6rem .9rem;
+    border-radius: .6rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: background .2s ease, color .2s ease, transform .05s ease;
+}
+
+/* Hover y foco accesible. */
+nav a:hover,
+nav a:focus-visible {
+    background: var(--brand-3);
+    color: var(--text);
+    outline: none;
+}
+
+/* Micro feedback al pulsar. */
+nav a:active {
+    transform: translateY(1px);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: var(--text-inverse);
+    text-decoration: none;
+    padding: .5rem .75rem;
+    border-radius: .6rem;
+}
+
+.brand img {
+    width: var(--logo-size);
+    height: var(--logo-size);
+    object-fit: contain;
+    display: block;
+}
+
+/* =========================================================
+   3) CONTENEDOR PRINCIPAL Y REJILLAS
+   - Estilo para el contenedor principal de la página (main).
+   - Clases para crear diseños de rejilla (Grid) de forma rápida.
+   =======================================================*/
+main {
+    max-width: 1100px;
+    margin: 1.2rem auto;
+    padding: 0 1rem;
+}
+
+/* Rejilla responsive con columnas de ancho flexible. */
+.grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.two {
+  display: grid;
+  gap: 20px; /* Opcional: añade espacio entre las tarjetas */
+  
+}
+
+/* =========================================================
+   4) TARJETAS Y COMPONENTES
+   - Estilo para la clase "card" que se usa en varias secciones.
+   =======================================================*/
+.card {
+    background: var(--card);
+    border: 1px solid color-mix(in srgb, var(--border) 35%, #fff);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: justify;
+}
+/* Añade esto a tu archivo CSS */
+.card pre {
+    white-space: pre-wrap; /* Permite que el texto salte de línea */
+    word-wrap: break-word; /* Rompe palabras largas si es necesario */
+    overflow-x: auto; /* Muestra una barra de desplazamiento horizontal si el código es muy largo */
+    max-width: 100%; /* Asegura que el pre no exceda el ancho de su contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    padding: 0.8rem;
+    background-color: #f4f4f4;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Opcional: Para mejorar la legibilidad del código */
+.card pre code {
+    font-size: 0.9em;
+    line-height: 1.4;
+    display: block; /* Para que el pre-wrap funcione correctamente */
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    margin: .2rem 0 .6rem;
+    color: var(--text);
+}
+
+.chip {
+    display: inline-block;
+    background: var(--chip);
+    padding: .25rem .6rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    color: var(--text);
+    border: 1px solid color-mix(in srgb, var(--border) 35%, #fff);
+}
+
+/* =========================================================
+   5) TEMARIO (DETAILS / SUMMARY)
+   - Estilo para los componentes de acordeón.
+   =======================================================*/
+details {
+    background: #fff7f3;
+    border: 1px solid color-mix(in srgb, var(--border) 35%, #fff);
+    border-radius: .8rem;
+    padding: .8rem;
+    margin: .6rem 0;
+}
+details summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* =========================================================
+   6) TIPOGRAFÍA Y UTILIDADES
+   - Estilos para títulos y clases de color.
+   =======================================================*/
+section h2 {
+    margin: .2rem 0 .6rem;
+}
+.list {
+    line-height: 1.8;
+}
+.ok {
+    color: var(--ok);
+}
+.warn {
+    color: var(--warn);
+}
+
+/* =========================================================
+   7) ENLACES DE TEMARIO COMO BOTONES
+   - Estilo para los enlaces de navegación del temario.
+   =======================================================*/
+.temario-links {
+    list-style: none;
+    margin: .5rem 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+.temario-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .55rem .9rem;
+    border-radius: .6rem;
+    background: var(--brand);
+    color: var(--text-inverse);
+    border: 4px solid var(--border);
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform .05s ease, background .2s ease, color .2s ease;
+}
+.temario-link:hover,
+.temario-link:focus-visible {
+    background: var(--brand-3);
+    outline: none;
+}
+.temario-link:active {
+    transform: translateY(1px);
+}
+
+/* =========================================================
+   8) ESTILO PARA TABLAS
+   - Diseño de tablas con un estilo limpio y consistente.
+   =======================================================*/
+.tabla-indice {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.tabla-indice thead {
+    background: var(--brand);
+    color: var(--text-inverse);
+}
+.tabla-indice th,
+.tabla-indice td {
+    padding: 0.75rem 1rem;
+    border: 3px solid var(--border);
+    text-align: left;
+}
+.tabla-indice tbody tr:nth-child(odd) {
+    background: var(--paper);
+}
+.tabla-indice tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--paper) 95%, transparent);
+}
+.tabla-indice tbody tr:hover {
+    background: var(--brand-3);
+    color: var(--text);
+}
+.tabla-indice tbody tr:last-child {
+    border-bottom: 3px solid var(--border);
+}
+
+/* =========================================================
+   9) SECCIONES DE IMAGEN Y TEXTO (Flexbox)
+   - Se consolidan y optimizan las reglas para las secciones con patrón imagen/texto.
+   =======================================================*/
+/* Estilo base para las secciones de imagen y texto, aplicable en móviles */
+.text-image-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+/* Estilos específicos para la sección `hero` */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: #eec5ab; /* Opcional: Color de fondo para esta sección */
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+}
+.hero-section h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0e0b0b;
+    text-align: center
+}
+.hero-text-content {
+    color: #0e0b0b;
+    text-align: center;
+    max-width: 800px;
+    font-weight: 500;
+}
+.hero-text-content p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.hero-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el contenedor padre */
+.text-image-container {
+    display: flex; /* Habilita Flexbox en el contenedor */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    flex-direction: column; /* Apila los elementos verticalmente */
+     justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+}
+
+/* Estilos para el elemento de imagen */
+.text-image-container img {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    padding: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* alignment-baseline: middle; <-- Esta propiedad no se usa para alinear imágenes */
+}
+
+
+/* =========================================================
+   10) PIE DE PÁGINA
+   - Estilo para el pie de página.
+   =======================================================*/
+footer {
+    border-top: 1px solid color-mix(in srgb, var(--border) 35%, #fff);
+    color: var(--muted);
+    padding: 1.2rem;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+/* =========================================================
+   11) VIDEOS Y OTROS COMPONENTES
+   - Estilos para elementos específicos como videos.
+   =======================================================*/
+.contenedor-video {
+    display: flex;
+    justify-content: center;
+    margin-block: 1rem;
+}
+
+/* Estilos para el carrusel y las imágenes */
+
+/* Contenedor del carrusel para limitar su tamaño */
+#carouselExampleControls {
+    max-width: 800px; /* Ancho máximo deseado para el carrusel */
+    margin: 40px auto; /* Centra el carrusel y añade margen arriba/abajo */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra para el marco */
+    border-radius: 10px; /* Esquinas redondeadas para el marco */
+    overflow: hidden; /* Asegura que la sombra y el borde redondeado se apliquen bien */
+}
+
+/* Estilos para las imágenes dentro del carrusel */
+#carouselExampleControls .carousel-item img {
+    height: 400px; /* Altura fija para todas las imágenes del carrusel */
+    object-fit: cover; /* Recorta la imagen para que cubra el espacio sin distorsionarse */
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del item del carrusel */
+    border: 5px solid #fff; /* Borde blanco de 5px alrededor de cada imagen */
+    box-sizing: border-box; /* Incluye el padding y el border en el tamaño total */
+}
+
+/* Opcional: Estilos para las flechas de navegación si quieres personalizarlas */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo para los iconos */
+    border-radius: 50%; /* Hace los iconos circulares */
+    padding: 15px; /* Aumenta el tamaño del área clickeable */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Hace que las áreas de click de las flechas sean más pequeñas */
+}
+
+/* =========================================================
+   ESTILOS GENERALES DEL FORMULARIO
+   ========================================================= */
+
+/* Estilos para el contenedor del formulario */
+#contacto {
+    max-width: 700px;
+    margin: 4rem auto;
+    padding: 3rem;
+    position: relative; /* Para que la imagen de fondo se ajuste a este contenedor */
+    overflow: hidden; /* Oculta la parte de la imagen que se desborda */
+    background: #fff; /* Fondo blanco por si la imagen no carga */
+}
+
+/* Imagen de fondo para el formulario */
+#contacto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.imgur.com/eQ3qG5V.png'); /* URL de la imagen que te di */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15; /* Opacidad del 15% para que no opaque el texto */
+    z-index: 0;
+}
+
+/* Asegura que el contenido del formulario esté por encima de la imagen */
+#contacto h2,
+#contacto p,
+#contacto form {
+    position: relative;
+    z-index: 1;
+}
+
+.chapter-title {
+    color: var(--text);
+    border: none;
+    padding: 0;
+}
+
+.intro {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* =========================================================
+   ESTILOS DE LOS CAMPOS DEL FORMULARIO
+   ========================================================= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+fieldset {
+    border: 2px solid var(--border);
+    padding: 2rem;
+    border-radius: .8rem;
+    position: relative;
+    background: rgba(255, 255, 255, 0.7); /* Fondo semi-transparente para la legibilidad del texto */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque detrás del texto */
+}
+
+legend {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--brand-2);
+    padding: 0 .5rem;
+    background: white;
+    width: fit-content;
+    margin-left: -0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: .4rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: .8rem;
+    border: 1px solid var(--border);
+    border-radius: .5rem;
+    font-size: 1rem;
+    background: #f9f9f9;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 2px var(--brand-3);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .8rem;
+    margin-top: 1rem;
+}
+
+button[type="submit"] {
+    background: var(--brand-2);
+    color: var(--text-inverse);
+    border: none;
+    padding: .75rem 1.5rem;
+    border-radius: .5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+button[type="submit"]:hover {
+    background: #ff5e00;
+}
+
+/* =========================================================
+   12) MEDIA QUERIES (ADAPTABILIDAD)
+   - Reglas para adaptar el diseño a diferentes tamaños de pantalla.
+   =======================================================*/
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .brand {
+        margin: 0;
+    }
+}
+
+/* Para pantallas grandes (tablet y escritorio) */
+@media (min-width: 768px) {
+    /* Estilo para la sección de cabecera con imagen y texto */
+    .hero-section {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: left;
+        padding: 2.5rem;
+    }
+    .hero-section img {
+        flex-shrink: 0;
+        max-width: 40%;
+        margin-right: 2rem;
+    }
+    .hero-text-content {
+        flex-grow: 1;
+        text-align: left;
+        max-width: 60%;
+    }
+    /* Estilo para los contenedores de imagen y texto generales */
+    .text-image-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+         justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    }
+    .text-image-container img {
+        margin-right: 1.5rem;
+         justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    }
+}

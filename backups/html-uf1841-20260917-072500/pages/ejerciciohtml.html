@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>UF1841 · Curso HTML/CSS</title>
+</head>
+<body>
+    <header>
+  <nav>
+    <!-- LOGO + TEXTO (accesible) -->
+    <a class="brand" href="../index.html" aria-label="Inicio: UF1841 · Lenguajes de marcas">
+      <img src="../assets/img/html.png" >
+      
+      <span>UF1841 · Lenguajes de marcas</span>
+    </a>
+
+    <a href="../index.html">Inicio</a>
+    <a href="pages/conceptohtml.html">HTML</a>
+    <a href="conceptocss.html">CSS</a>
+   
+    <a href="ejerciciohtml.html">Ejercicios</a>
+        <a href="formularios.html">Formularios</a>
+  </nav>
+</header>
+<main>
+    
+   <h1 class="chapter-title">Ejercicios de HTML y CSS</h1>
+        <div class="hero-section">
+            <img src="../assets/img/ejercicios.png" alt="Ejercicios de HTML y CSS" >
+            <div class="hero-text-content">
+                <p>¡Bienvenido a la sección de ejercicios prácticos de HTML y CSS! Aquí pondrás en práctica todo lo aprendido en los módulos anteriores, construyendo tu propio portafolio digital desde cero. Cada ejercicio está diseñado para reforzar tus habilidades y ayudarte a comprender mejor cómo estructurar y diseñar páginas web efectivas.</p>
+                <p>Recuerda que la práctica es clave para dominar cualquier lenguaje de programación. No dudes en experimentar, cometer errores y aprender de ellos. ¡Manos a la obra!</p>
+            </div>
+        </div>
+
+    
+        
+    
+    
+    <section class="intro">
+
+        <article class="card">
+            <h3>Objetivos Clave de un Portfolio Digital</h3>
+            <p>Un portafolio web va más allá de ser una simple colección de trabajos. Su propósito fundamental es:</p>
+            <ul>
+                <li><strong>Presentación Profesional</strong>: Actúa como un currículum vitae interactivo y visual, permitiéndote destacar de manera única.</li>
+                <li><strong>Demostración de Habilidades</strong>: Es la prueba de que sabes lo que haces. Muestra tus conocimientos técnicos, tu capacidad de resolución de problemas y tu estilo de trabajo.</li>
+                <li><strong>Networking y Conexión</strong>: Facilita que reclutadores, posibles clientes o colaboradores te encuentren y contacten fácilmente.</li>
+                <li><strong>Almacén de Proyectos</strong>: Te sirve como un registro personal de tu progreso, un lugar donde puedes volver a ver tu crecimiento como desarrollador.</li>
+            </ul>
+        </article>
+        
+        <article class="card">
+            <h3>Tu Portafolio como el Esqueleto de la Web</h3>
+            <p>Antes de pensar en los colores, las fuentes o las animaciones, debemos construir la base de nuestra página. Utilizaremos HTML (HyperText Markup Language) para crear el esqueleto de tu portafolio. HTML es el lenguaje que define la estructura y el contenido de la web: los títulos, los párrafos, las imágenes y los enlaces.</p>
+            <p>Sin este esqueleto, la web no podría sostenerse. Con cada ejercicio, irás construyendo una sección vital de esta estructura, desde la cabecera hasta el pie de página, asegurando que tu portafolio sea sólido y funcional desde el principio.</p>
+        </article>
+   
+</section>
+       <details>
+    <summary>Ejercicio 1: Estructura Básica 🧱</summary>
+    <p>
+        El primer paso en cualquier página web es definir su esqueleto. En este ejercicio, crearás el documento HTML con las etiquetas esenciales que todo navegador necesita para interpretar el contenido.
+    </p>
+    <article class="card">
+        <h3>Objetivo:</h3>
+        <ul>
+            <li>Crea un archivo llamado <code>index.html</code>.</li>
+            <li>Incluye el <strong>tipo de documento</strong> (<code>&lt;!DOCTYPE html&gt;</code>).</li>
+            <li>Define la etiqueta raíz <code>&lt;html&gt;</code>.</li>
+            <li>Añade la sección de metadatos (<code>&lt;head&gt;</code>) y el cuerpo de la página (<code>&lt;body&gt;</code>).</li>
+            <li>Dentro del <code>&lt;head&gt;</code>, coloca la etiqueta <code>&lt;title&gt;</code> con el texto "Mi Primera Página".</li>
+            <li>Dentro del <code>&lt;body&gt;</code>, añade un título principal usando <code>&lt;h1&gt;</code> que diga "Mi Página Web".</li>
+        </ul>
+    </article>
+    <div class="tip">
+        <h3>💡 Recordatorio de Emmet</h3>
+        <p>
+            ¡No olvides que Emmet puede acelerar tu trabajo! Para generar la estructura básica de HTML de forma automática, escribe `!` o `html:5` en tu editor de código y presiona la tecla Tab o Enter. Esto te dará el esqueleto de un documento HTML5 en segundos, ahorrándote tiempo y esfuerzo.
+        </p>
+    </div>
+</details>
+        <details>
+    <summary>Ejercicio 2: Etiquetas de Texto y Listas ✍️</summary>
+    <p>
+        Ahora que tienes la estructura, es momento de llenarla con contenido. Usa las etiquetas de texto para dar jerarquía y significado a tu información.
+    </p>
+    <article class="card">
+        <h3>Objetivo:</h3>
+        <p>Añade contenido detallado a tu sección "Acerca de Mí" para que refleje tus conocimientos y experiencia.</p>
+        
+        <h4>Biografía y Presentación</h4>
+        <ul>
+            <li>Escribe un párrafo (<code>&lt;p&gt;</code>) con una breve biografía. Dentro de este, usa <code>&lt;strong&gt;</code> para resaltar palabras clave y <code>&lt;em&gt;</code> para dar énfasis.</li>
+        </ul>
+        
+        <h4>Habilidades Técnicas 💻</h4>
+        <ul>
+            <li>Crea una lista desordenada (<code>&lt;ul&gt;</code>) para enumerar tus habilidades técnicas. Puedes clasificarlas, por ejemplo, en "Lenguajes", "Frameworks" y "Herramientas".</li>
+        </ul>
+
+        <h4>Proyectos Destacados 🚀</h4>
+        <ul>
+            <li>Crea una lista ordenada (<code>&lt;ol&gt;</code>) para tus proyectos. Para cada proyecto, usa un elemento de lista (<code>&lt;li&gt;</code>) y anida dentro: un título, un párrafo con una breve descripción y, una imagen representativa del proyecto. Además, añade un enlace (<code>&lt;a&gt;</code>) a su repositorio en GitHub o al proyecto si está desplegado.</li>
+        </ul>
+
+        <h4>Certificaciones y Cursos 🏅</h4>
+        <ul>
+            <li>Crea una lista ordenada (<code>&lt;ol&gt;</code>) para tus certificaciones oficiales y una lista desordenada (<code>&lt;ul&gt;</code>) para los cursos no oficiales o _bootcamps_ que hayas completado.</li>
+        </ul>
+
+        <h4>Bibliografía 📚</h4>
+        <ul>
+            <li>Crea una lista desordenada (<code>&lt;ul&gt;</code>) para tus libros y artículos de referencia. Por cada elemento de la lista, añade el título y el autor, y una imagen de la portada del libro o una foto de tu biblioteca.</li>
+        </ul>
+    </article>
+</details>
+<details>
+    <summary> Alternativa al Portfolio: ¡Crea tu Blog Personal! 📝</summary>
+    <p>
+        Si aún no tienes proyectos o formación que mostrar en un portafolio, ¡no hay problema! La mejor manera de demostrar tu pasión y compromiso es creando un blog personal. Con esta alternativa, te centrarás en la creación de contenido y el desarrollo continuo.
+    </p>
+    <article class="card">
+        <h3>Objetivo:</h3>
+        <p>En lugar de una página de portafolio, crea la estructura para un blog personal.</p>
+        <ul>
+            <li>Página de inicio: Crea un título principal (<code>&lt;h1&gt;</code>) para tu blog, como "El Blog de Juan", seguido de una breve descripción (<code>&lt;p&gt;</code>) sobre lo que encontrarás en él.</li>
+            <li>Artículos o Entradas: Para cada entrada de blog, utiliza un título (<code>&lt;h2&gt;</code>) y un párrafo (<code>&lt;p&gt;</code>) para el contenido.</li>
+            <li>Navegación: Utiliza una lista desordenada (<code>&lt;ul&gt;</code>) para enlazar las entradas del blog. Puedes crear anclas (<code>&lt;a href="#titulo-articulo"&gt;</code>) para que la navegación te lleve a cada artículo dentro de la misma página.</li>
+            <li>Fecha y Autor: Añade información adicional a cada entrada, como la fecha de publicación y el autor, utilizando etiquetas de texto como <code>&lt;p&gt;</code> o <code>&lt;em&gt;</code>.</li>
+        </ul>
+    </article>
+</details>
+
+<details>
+    <summary>Ejercicio 3: Recursos Multimedia 🖼️</summary>
+    <p>
+        Las páginas web no son solo texto. En este ejercicio, aprenderás a insertar imágenes y videos para hacer tu sitio más atractivo.
+    </p>
+    <article class="card">
+        <h3>Objetivo:</h3>
+        <ul>
+            <li>Inserta una imagen de internet usando la etiqueta <code>&lt;img&gt;</code>. Debes incluir el atributo <code>src</code> con la URL de la imagen y el atributo <code>alt</code> con un texto descriptivo.</li>
+            <li>Debajo de la imagen, inserta un video usando la etiqueta <code>&lt;video&gt;</code>. Utiliza la URL de un video de demostración y añade el atributo <code>controls</code> para que el usuario pueda reproducirlo, pausarlo, etc.</li>
+            <li>Añade una imagen representativa para cada uno de los proyectos y para los libros o bibliografía.</li>
+        </ul>
+    </article>
+</details>
+        <details>
+            <summary>Ejercicio 4: Barra de Navegación (Anclas) 🧭</summary>
+            <p>
+                Una buena navegación es clave. Aquí, crearás una barra de navegación que permitirá a los usuarios moverse entre las secciones de tu página sin recargarla.
+            </p>
+            <article class="card">
+                <h3>Objetivo:</h3>
+                <ul>
+                    <li>Crea una barra de navegación con una lista desordenada (<code>&lt;ul&gt;</code>).</li>
+                    <li>Define tres secciones en tu página: "Sobre Mí", "Proyectos" y "Contacto". Usa etiquetas de título (como <code>&lt;h2&gt;</code>) para cada sección y asígnales un <code>id</code> único (ej. <code>id="proyectos"</code>).</li>
+                    <li>En la barra de navegación, crea tres enlaces (<code>&lt;a&gt;</code>) que utilicen anclas (<code>href="#nombre-del-id"</code>) para dirigir a cada una de las secciones que acabas de crear.</li>
+                </ul>
+            </article>
+        </details>
+
+        <details>
+            <summary>Ejercicio 5: Página Completa 💻</summary>
+            <p>
+                Llegó el momento de unificar todo. Combina el código de los cuatro ejercicios anteriores en un solo archivo para crear una página web completa y funcional.
+            </p>
+            <article class="card">
+                <h3>Objetivo:</h3>
+                <ul>
+                    <li>Abre el archivo del Ejercicio 1 y añade todo el contenido de los Ejercicios 2, 3 y 4.</li>
+                    <li>Asegúrate de que la estructura sea coherente: la barra de navegación debe estar en la parte superior, seguida de las diferentes secciones de contenido.</li>
+                    <li>Añade un pie de página (`&lt;footer&gt;`) al final de tu documento con un texto como "© 2024 Mi Nombre".</li>
+                    <li>Verifica que todos los enlaces de la barra de navegación funcionan correctamente al hacer clic en ellos.</li>
+                </ul>
+                <>
+                    <strong>Nota:</strong> Si necesitas ayuda o tienes dudas, no dudes en preguntar.
+                
+            </article>
+        </details>
+    </section>
+</main>

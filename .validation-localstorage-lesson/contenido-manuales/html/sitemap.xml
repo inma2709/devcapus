@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Página Principal -->
+  <url>
+    <loc>https://tu-dominio.com/</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://tu-dominio.com/img/tema1/aprenderhtml.png</image:loc>
+      <image:title>Curso HTML UF1841 por Inma Contreras Docente Tecnología</image:title>
+      <image:caption>Manual para aprender HTML creado por Inma Contreras, especialista en tecnología</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Sobre Inma Contreras - MUY IMPORTANTE PARA MARCA PERSONAL -->
+  <url>
+    <loc>https://tu-dominio.com/sobre-inma-contreras</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Tema 0: VS Code -->
+  <url>
+    <loc>https://tu-dominio.com/tema0</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tema 1: Diseño Web -->
+  <url>
+    <loc>https://tu-dominio.com/tema1</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tema 2: Prototipado -->
+  <url>
+    <loc>https://tu-dominio.com/tema2</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tema 3: Lenguajes de Marcado -->
+  <url>
+    <loc>https://tu-dominio.com/tema3</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tema 4: Introducción HTML -->
+  <url>
+    <loc>https://tu-dominio.com/tema4</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tema 5: Etiquetas HTML (MUY IMPORTANTE PARA SEO) -->
+  <url>
+    <loc>https://tu-dominio.com/tema5</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Tema 6: Head y SEO (CRÍTICO PARA SEO) -->
+  <url>
+    <loc>https://tu-dominio.com/tema6</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Tema 7: Body -->
+  <url>
+    <loc>https://tu-dominio.com/tema7</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tema 8: Listas y Tablas -->
+  <url>
+    <loc>https://tu-dominio.com/tema8</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tema 9: Navegación -->
+  <url>
+    <loc>https://tu-dominio.com/tema9</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tema 10: Formularios -->
+  <url>
+    <loc>https://tu-dominio.com/tema10</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tema 11: Footer -->
+  <url>
+    <loc>https://tu-dominio.com/tema11</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Tema 12: Maquetación -->
+  <url>
+    <loc>https://tu-dominio.com/tema12</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tema 13: Buenas Prácticas -->
+  <url>
+    <loc>https://tu-dominio.com/tema13</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tema 14: Test -->
+  <url>
+    <loc>https://tu-dominio.com/tema14</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tema 15: Ejercicio Final -->
+  <url>
+    <loc>https://tu-dominio.com/tema15</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

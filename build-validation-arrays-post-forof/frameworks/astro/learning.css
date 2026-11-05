@@ -1,0 +1,29 @@
+.autonomous { margin: 2.4rem 0; padding: 1.4rem; border: 1px solid #dcd0e5; border-radius: .8rem; background: #fff; font-family: Inter, system-ui, sans-serif; line-height: 1.65; }
+.autonomous h2 { margin-top: 0; font-size: 1.25rem; }
+.autonomous h3 { margin-top: 1.5rem; }
+.autonomous dt { margin-top: .7rem; font-weight: 800; }
+.autonomous dd { margin: .1rem 0 .7rem; }
+
+/* Solo el código en línea recibe una cápsula lila. */
+.autonomous :not(pre) > code { padding: .1rem .3rem; border-radius: .25rem; background: #f1e8f4; color: #39214b; font-family: "Cascadia Code", Consolas, monospace; }
+
+/* El código de bloques hereda el contraste oscuro de styles.css. */
+.autonomous pre { margin: 1.25rem 0; padding: 1rem 1.1rem; overflow-x: auto; border: 1px solid #39284b; border-radius: .55rem; background: #20172b; color: #f7f1ff; font: .88rem/1.6 "Cascadia Code", Consolas, monospace; tab-size: 2; white-space: pre; }
+.autonomous pre code { display: block; padding: 0; border: 0; border-radius: 0; background: transparent; color: inherit; font: inherit; white-space: inherit; }
+
+.autonomous details { margin: 1rem 0; padding: .8rem 1rem; border: 1px solid #d8c6e1; border-left: 4px solid #8b2b85; border-radius: .55rem; background: #f7effa; }
+.autonomous summary { cursor: pointer; color: #5e1762; font-weight: 800; }
+.autonomous summary:focus-visible, .table-scroll:focus-visible { outline: 3px solid #e66a2c; outline-offset: 3px; }
+.autonomous details[open] summary { margin-bottom: .65rem; }
+.autonomous .diagram { margin: 1rem 0; padding: .8rem 1rem; border: 1px dashed #b9a6c5; background: #fbf9fd; }
+.autonomous .diagram p { margin: 0; line-height: 1.9; }
+
+.autonomous .table-scroll { max-width: 100%; margin: 1.5rem 0; overflow-x: auto; border: 1px solid #dfd4e6; border-radius: .6rem; background: #fff; }
+.autonomous table { width: 100%; min-width: 40rem; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+.autonomous th, .autonomous td { padding: .8rem .9rem; border-bottom: 1px solid #e7dfea; text-align: left; vertical-align: top; }
+.autonomous th { background: #3b1a51; color: #fff; font-weight: 800; }
+.autonomous tbody tr:nth-child(even) { background: #faf6fc; }
+.autonomous tbody tr:hover { background: #f3eafa; }
+.autonomous tbody tr:last-child td { border-bottom: 0; }
+
+@media (max-width: 520px) { .autonomous { margin-inline: -.2rem; padding: 1rem; } .autonomous pre { margin-inline: -.15rem; padding: .85rem; font-size: .8rem; } .autonomous table { min-width: 34rem; font-size: .86rem; } .autonomous th, .autonomous td { padding: .7rem; } }

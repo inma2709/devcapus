@@ -1,0 +1,250 @@
+/* anulamos los margenes y paddings por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}   
+/*damos de alta los colores de nuestra marca*/
+
+:root {
+    
+    --color-base: #e010a8;
+    --color-secundario: #073B4C;
+    --color-sabermas: #F0FFFF;
+    --fuente-principal: 'Arial', sans-serif;
+    --fuente-secundaria: 'Courier New', strong;
+    --color-hoover: #118AB2; /* color para el efecto hover */
+   
+
+}
+
+/* estilos generales del body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+
+  
+/* estilos para el header */
+
+header {
+
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* estilos para el título principal */
+
+header {
+  background-image: url("../assets/imagenes/banner.png");
+  background-size: cover;      /* ocupa todo el ancho */
+  background-position: center; /* centrada */
+  
+  padding: 40px 20px;
+  text-align: center;
+}
+header h1 {
+  color: var(--color-secundario);/* color de la marca */  
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin: 0;
+  
+}
+
+/* ✅ Hacer horizontal la lista del menú */
+nav ul{
+  display:flex;              /* Flex en la LISTA */
+  justify-content:center;    /* centrar */
+  align-items:center;
+  gap:1rem;                  /* separación entre botones */
+  list-style:none;           /* sin puntos */
+  margin:0;                  /* quitar márgenes por defecto */
+  padding:0;
+  flex-wrap:wrap;   /* que baje a otra línea si no cabe */  color: var(--color-base)  ;     
+}
+
+nav li{ margin:0; }          /* sin márgenes extra */
+
+/* ✅ Estilo de “botón” para los enlaces */
+nav a{
+  display:inline-block;
+  padding:.6rem 1.1rem;
+  border-radius:8px;
+  background:var(--color-sabermas) ; /* botón semitransparente */
+  color:var(--color-base);                           /* buen contraste sobre el header */
+  font-weight:600;
+  text-decoration-color: #073B4C;
+ text-decoration-style: dotted;   
+ /*existen varias opciones: solid, double, dotted, dashed, wavy*/
+    text-decoration-thickness: 5px;/* grosor de la línea */
+
+  
+}
+
+nav a:hover{
+  background: var(--color-hoover);
+}
+/* ============================================================
+   SECCIÓN REPASO — Tarjeta con Grid de 2 columnas
+   ============================================================
+
+   .repaso
+   - Actúa como tarjeta contenedora de toda la sección.
+   - Se le da fondo suave, padding, bordes redondeados y sombra
+     para que se diferencie visualmente del resto del contenido.
+   - Incluye un <h2> centrado para el título de la sección.
+
+   .repaso-grid
+   - Es un grid que organiza las tarjetas internas (article.card).
+   - Por defecto, usa 2 columnas iguales (repeat(2, 1fr)).
+   - Tiene un gap (espacio) entre tarjetas de 1rem.
+   - En pantallas pequeñas (menor a 768px) pasa a 1 sola columna
+     para ser responsive y legible en móviles.
+
+   .card
+   - Cada tarjeta individual (ej. index.html, /styles, /pages…).
+   - Fondo blanco, borde suave y sombra ligera.
+   - Padding interno para dar aire al texto.
+   - Al pasar el ratón (hover), la tarjeta se “eleva” con
+     translateY y una sombra más marcada → efecto dinámico.
+
+   .card__title
+   - Encabezado de la tarjeta. Más grande y con color destacado
+     (usa variable --brand-2).
+
+   .card__body
+   - Texto descriptivo. Tamaño ligeramente menor y tono gris
+     (#444) para diferenciar del título.
+
+   Resultado:
+   - Una tarjeta contenedora (.repaso) con título + un grid de
+     sub-tarjetas (.card), en dos columnas en escritorio y
+     en una sola columna en móvil.
+   ============================================================ */
+
+/* La tarjeta principal */
+.repaso {
+  font-family: var(--fuente-principal);
+  background: #fafafa;            /* fondo suave */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+h2.repaso{
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: green;
+}
+
+
+
+
+/* Grid de dos columnas */
+.repaso-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* dos columnas iguales */
+  gap: 1rem;                              /* separación entre tarjetas */
+}
+
+/* Estilo de cada card */
+.card {
+  background: #fff;
+  border: 3px groove var(--color-secundario);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.12);
+}
+
+.card__title {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-size: 1.1rem;
+  color: var(--color-base)
+}
+
+.card__body {
+  margin: 0;
+  font-size: .95rem;
+  color: #444;
+}
+
+/* Tarjeta secundaria: SABER MÁS */
+.sabermas {
+  font-family: var(--fuente-secundaria);
+  background: var(--color-sabermas, #e8f5e9);   /* verde muy clarito por defecto */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  border: 3px ridge var(--color-secundario);    /* borde 3D para diferenciar de .card */
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  transition: transform .2s, box-shadow .2s;
+}
+
+/* Título dentro de SABER MÁS */
+.sabermas h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--color-base); /* contraste con el fondo */
+}
+
+/* Texto interno */
+.sabermas p,
+.sabermas li {
+  font-size: .95rem;
+  color: #333;
+  margin-bottom: .5rem;
+}
+
+/* Bloques de código o ejemplos */
+.sabermas pre {
+  background: rgba(0,0,0,.05);
+  padding: .5rem .75rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+/* Hover para darle dinamismo */
+.sabermas:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.12);
+}
+
+/* ============================================================
+   IMAGENES: estilo de las imagenes dentro de las secciones
+   ============================================================*/
+   .imagenes {
+  display: block;          /* permite usar margin auto */
+  margin: 1rem auto;       /* centra horizontalmente */
+  border-radius: 12px;     /* bordes redondeados */
+  max-width: 80%;         /* que no se desborde */
+  height: 100px;            /* mantiene proporción */
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+/* ============================================================
+   FOOTER: estilo del pie de página
+   ============================================================*/
+   footer {
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  border-top: 5px solid var(--color-base);
+  color: whitesmoke;       /* color del texto */
+  background-color: var(--color-secundario);  /* color de fondo */
+  font-size: 0.9rem;
+}

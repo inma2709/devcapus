@@ -1,0 +1,1023 @@
+<!-- =========================================================
+BLOQUE PARA INSERTAR EN EL MANUAL CSS
+3 ejercicios progresivos: Flex → Grid → Grid + Flex
+========================================================= -->
+
+<style>
+  .fg-practicas {
+    --fg-bg: #f4f7fb;
+    --fg-card: #ffffff;
+    --fg-text: #1f2937;
+    --fg-muted: #5f6b7a;
+    --fg-line: #d8e0ea;
+    --fg-primary: #234477;
+    --fg-primary-soft: #eaf1fb;
+    --fg-accent: #a33f6b;
+    --fg-accent-soft: #f8eaf0;
+    --fg-success: #2f6b50;
+    --fg-success-soft: #eaf5ef;
+    --fg-warning: #8b5e15;
+    --fg-warning-soft: #fff5dc;
+    --fg-code: #172033;
+    --fg-radius: 16px;
+    --fg-shadow: 0 10px 28px rgba(31, 41, 55, .08);
+
+    color: var(--fg-text);
+    line-height: 1.65;
+  }
+
+  .fg-practicas * {
+    box-sizing: border-box;
+  }
+
+  .fg-practicas h2,
+  .fg-practicas h3,
+  .fg-practicas h4 {
+    color: #15213b;
+    line-height: 1.25;
+  }
+
+  .fg-practicas h2 {
+    margin-top: 0;
+  }
+
+  .fg-practicas code {
+    font-family: Consolas, "Courier New", monospace;
+    background: #edf1f6;
+    padding: .1rem .35rem;
+    border-radius: .35rem;
+  }
+
+  .fg-practicas pre {
+    margin: .8rem 0 0;
+    overflow-x: auto;
+    background: var(--fg-code);
+    color: #f8fafc;
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    line-height: 1.55;
+  }
+
+  .fg-practicas pre code {
+    padding: 0;
+    background: transparent;
+    color: inherit;
+  }
+
+  .fg-intro,
+  .fg-ejercicio {
+    background: var(--fg-card);
+    border: 1px solid var(--fg-line);
+    border-radius: var(--fg-radius);
+    box-shadow: var(--fg-shadow);
+  }
+
+  .fg-intro {
+    padding: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .fg-ejercicio {
+    padding: clamp(1.1rem, 2vw, 1.8rem);
+    margin: 1.4rem 0;
+  }
+
+  .fg-etiqueta {
+    margin: 0 0 .35rem;
+    color: var(--fg-accent);
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .fg-objetivo,
+  .fg-aviso,
+  .fg-pista,
+  .fg-regla {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+  }
+
+  .fg-objetivo {
+    background: var(--fg-primary-soft);
+    border-left: 5px solid var(--fg-primary);
+  }
+
+  .fg-aviso {
+    background: var(--fg-warning-soft);
+    border-left: 5px solid var(--fg-warning);
+  }
+
+  .fg-pista {
+    background: var(--fg-success-soft);
+    border-left: 5px solid var(--fg-success);
+  }
+
+  .fg-regla {
+    background: var(--fg-accent-soft);
+    border-left: 5px solid var(--fg-accent);
+  }
+
+  .fg-arbol {
+    white-space: pre;
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #111827;
+    color: white;
+    font-family: Consolas, "Courier New", monospace;
+  }
+
+  .fg-pasos {
+    counter-reset: paso;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .fg-pasos > li {
+    counter-increment: paso;
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    gap: .8rem;
+    margin-bottom: 1rem;
+    align-items: start;
+  }
+
+  .fg-pasos > li::before {
+    content: counter(paso);
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: var(--fg-primary);
+    color: white;
+    font-weight: 800;
+  }
+
+  .fg-tabla-wrap {
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .fg-practicas table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+  }
+
+  .fg-practicas th,
+  .fg-practicas td {
+    padding: .72rem .8rem;
+    border: 1px solid var(--fg-line);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .fg-practicas th {
+    background: #eef2f7;
+  }
+
+  .fg-resultado {
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 2px dashed #9aa8b8;
+    border-radius: 12px;
+    background: #fbfcfe;
+  }
+
+  .fg-resultado pre {
+    margin: 0;
+    background: transparent;
+    color: var(--fg-text);
+    padding: 0;
+  }
+
+  .fg-subapartado {
+    margin-top: 1.7rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--fg-line);
+  }
+
+  .fg-check {
+    margin: .8rem 0 0;
+  }
+
+  .fg-check li + li {
+    margin-top: .4rem;
+  }
+
+  .fg-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .7rem;
+    margin: 1rem 0;
+  }
+
+  .fg-mini-grid span {
+    padding: .9rem;
+    border: 1px solid #bdcbe0;
+    border-radius: 8px;
+    text-align: center;
+    background: var(--fg-primary-soft);
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    .fg-mini-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="fg-practicas" aria-labelledby="fg-practicas-titulo">
+
+  <section class="fg-intro">
+    <p class="fg-etiqueta">PRÁCTICA · FLEXBOX + GRID</p>
+    <h2 id="fg-practicas-titulo">Tres ejercicios progresivos para aprender maquetando</h2>
+
+    <p>
+      En estos ejercicios no vas a memorizar propiedades: vas a utilizarlas para resolver
+      <strong>problemas reales de maquetación</strong>.
+    </p>
+
+    <div class="fg-regla">
+      <strong>Antes de escribir CSS:</strong>
+      identifica siempre el <strong>PADRE</strong>, sus <strong>HIJOS DIRECTOS</strong>
+      y decide si necesitas organizar una dirección con Flexbox o filas y columnas con Grid.
+    </div>
+
+    <ol>
+      <li><strong>Ejercicio 1:</strong> una barra de navegación con Flexbox.</li>
+      <li><strong>Ejercicio 2:</strong> una galería de tarjetas con Grid.</li>
+      <li><strong>Ejercicio 3:</strong> una galería Grid cuyas tarjetas contienen un Flex.</li>
+    </ol>
+  </section>
+
+
+  <!-- =====================================================
+       EJERCICIO 1
+  ====================================================== -->
+
+  <article class="fg-ejercicio" id="ejercicio-flex">
+    <p class="fg-etiqueta">EJERCICIO 1 · FLEXBOX</p>
+    <h2>Construye una barra de navegación real</h2>
+
+    <div class="fg-objetivo">
+      <strong>Objetivo:</strong>
+      colocar un logotipo a la izquierda y un menú a la derecha.
+      Después utilizarás otro Flexbox dentro del menú para separar sus enlaces.
+    </div>
+
+    <h3>Resultado que buscamos</h3>
+
+    <div class="fg-resultado">
+      <pre>┌────────────────────────────────────────────────────────────┐
+│ DevCampus                 Inicio  Cursos  Blog  Acceder   │
+└────────────────────────────────────────────────────────────┘</pre>
+    </div>
+
+    <h3>HTML de partida</h3>
+
+    <p>
+      Copia este HTML. No añadas más elementos todavía.
+    </p>
+
+    <pre><code>&lt;header class="cabecera"&gt;
+  &lt;p class="logo"&gt;DevCampus&lt;/p&gt;
+
+  &lt;nav class="menu"&gt;
+    &lt;a href="#"&gt;Inicio&lt;/a&gt;
+    &lt;a href="#"&gt;Cursos&lt;/a&gt;
+    &lt;a href="#"&gt;Blog&lt;/a&gt;
+    &lt;a href="#"&gt;Acceder&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+
+    <div class="fg-subapartado">
+      <h3>Apartado A · Identifica padre e hijos</h3>
+
+      <div class="fg-arbol">.cabecera
+├── .logo
+└── .menu</div>
+
+      <p>
+        <code>.cabecera</code> es el <strong>PADRE</strong>.
+        <code>.logo</code> y <code>.menu</code> son sus <strong>HIJOS DIRECTOS</strong>.
+      </p>
+
+      <p>
+        Como queremos colocar esos dos hijos en una misma fila, el padre debe convertirse
+        en contenedor Flex.
+      </p>
+
+      <h4>Propiedades que necesitas</h4>
+
+      <div class="fg-tabla-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Propiedad</th>
+              <th>Valor</th>
+              <th>Se aplica a</th>
+              <th>Para qué</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>display</code></td>
+              <td><code>flex</code></td>
+              <td><strong>PADRE</strong></td>
+              <td>Activa Flexbox.</td>
+            </tr>
+            <tr>
+              <td><code>justify-content</code></td>
+              <td><code>space-between</code></td>
+              <td><strong>PADRE</strong></td>
+              <td>Lleva el primer hijo a un extremo y el último al otro.</td>
+            </tr>
+            <tr>
+              <td><code>align-items</code></td>
+              <td><code>center</code></td>
+              <td><strong>PADRE</strong></td>
+              <td>Alinea verticalmente los hijos.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Construye:</p>
+
+      <pre><code>.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado B · Convierte el menú en otro contenedor Flex</h3>
+
+      <div class="fg-arbol">.menu
+├── a
+├── a
+├── a
+└── a</div>
+
+      <p>
+        Ahora <code>.menu</code> es un <strong>HIJO</strong> de <code>.cabecera</code>,
+        pero también puede convertirse en <strong>PADRE FLEX</strong> de sus propios enlaces.
+      </p>
+
+      <p>Necesitas:</p>
+
+      <pre><code>.menu {
+  display: flex;
+  gap: 1.5rem;
+}</code></pre>
+
+      <div class="fg-pista">
+        <strong>Qué debes observar:</strong>
+        <code>gap</code> va en el PADRE porque crea la separación entre todos sus hijos.
+      </div>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado C · Dale aspecto de navegación</h3>
+
+      <p>
+        Ahora utiliza propiedades que ya conoces para trabajar el aspecto visual.
+      </p>
+
+      <pre><code>.cabecera {
+  padding: 1.5rem 2rem;
+  background-color: #30343f;
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+}</code></pre>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado D · Comprueba qué hace <code>flex-direction</code></h3>
+
+      <p>Cambia temporalmente:</p>
+
+      <pre><code>.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}</code></pre>
+
+      <p>Observa cómo los enlaces pasan de:</p>
+
+      <div class="fg-resultado">
+        <pre>Inicio  Cursos  Blog  Acceder</pre>
+      </div>
+
+      <p>a:</p>
+
+      <div class="fg-resultado">
+        <pre>Inicio
+Cursos
+Blog
+Acceder</pre>
+      </div>
+
+      <p>Después vuelve a:</p>
+
+      <pre><code>flex-direction: row;</code></pre>
+    </div>
+
+    <h3>Al terminar debes ser capaz de explicar</h3>
+
+    <ul class="fg-check">
+      <li>Por qué <code>display: flex</code> se aplica al padre.</li>
+      <li>Qué diferencia hay entre <code>justify-content</code> y <code>align-items</code>.</li>
+      <li>Por qué <code>gap</code> se coloca en el contenedor.</li>
+      <li>Cómo un elemento puede ser hijo Flex y, a la vez, padre Flex.</li>
+    </ul>
+  </article>
+
+
+  <!-- =====================================================
+       EJERCICIO 2
+  ====================================================== -->
+
+  <article class="fg-ejercicio" id="ejercicio-grid">
+    <p class="fg-etiqueta">EJERCICIO 2 · GRID</p>
+    <h2>Construye una sección de tarjetas de cursos</h2>
+
+    <div class="fg-objetivo">
+      <strong>Objetivo:</strong>
+      crear una galería de tarjetas distribuida en columnas y hacer que una tarjeta
+      concreta pueda ocupar todo el ancho de la rejilla.
+    </div>
+
+    <h3>Resultado que buscamos</h3>
+
+    <div class="fg-resultado">
+      <pre>┌────────────┐ ┌────────────┐ ┌────────────┐
+│ HTML       │ │ CSS        │ │ JavaScript │
+│ Ver curso  │ │ Ver curso  │ │ Ver curso  │
+└────────────┘ └────────────┘ └────────────┘
+
+┌────────────┐ ┌────────────┐ ┌────────────┐
+│ React      │ │ Node       │ │ MySQL      │
+└────────────┘ └────────────┘ └────────────┘</pre>
+    </div>
+
+    <h3>HTML de partida</h3>
+
+    <pre><code>&lt;section class="cursos"&gt;
+
+  &lt;article class="curso"&gt;
+    &lt;h2&gt;HTML&lt;/h2&gt;
+    &lt;p&gt;Estructura tus páginas web.&lt;/p&gt;
+    &lt;a href="#"&gt;Ver curso&lt;/a&gt;
+  &lt;/article&gt;
+
+  &lt;article class="curso"&gt;
+    &lt;h2&gt;CSS&lt;/h2&gt;
+    &lt;p&gt;Diseña interfaces atractivas.&lt;/p&gt;
+    &lt;a href="#"&gt;Ver curso&lt;/a&gt;
+  &lt;/article&gt;
+
+  &lt;article class="curso"&gt;
+    &lt;h2&gt;JavaScript&lt;/h2&gt;
+    &lt;p&gt;Añade comportamiento a tus páginas.&lt;/p&gt;
+    &lt;a href="#"&gt;Ver curso&lt;/a&gt;
+  &lt;/article&gt;
+
+  &lt;article class="curso"&gt;
+    &lt;h2&gt;React&lt;/h2&gt;
+    &lt;p&gt;Crea interfaces mediante componentes.&lt;/p&gt;
+    &lt;a href="#"&gt;Ver curso&lt;/a&gt;
+  &lt;/article&gt;
+
+  &lt;article class="curso"&gt;
+    &lt;h2&gt;Node&lt;/h2&gt;
+    &lt;p&gt;Programa JavaScript en el servidor.&lt;/p&gt;
+    &lt;a href="#"&gt;Ver curso&lt;/a&gt;
+  &lt;/article&gt;
+
+  &lt;article class="curso"&gt;
+    &lt;h2&gt;MySQL&lt;/h2&gt;
+    &lt;p&gt;Trabaja con bases de datos.&lt;/p&gt;
+    &lt;a href="#"&gt;Ver curso&lt;/a&gt;
+  &lt;/article&gt;
+
+&lt;/section&gt;</code></pre>
+
+    <div class="fg-subapartado">
+      <h3>Apartado A · Identifica el Grid</h3>
+
+      <div class="fg-arbol">.cursos
+├── .curso
+├── .curso
+├── .curso
+├── .curso
+├── .curso
+└── .curso</div>
+
+      <p>
+        El contenedor <code>.cursos</code> es el <strong>PADRE GRID</strong>.
+        Cada <code>.curso</code> es un <strong>HIJO GRID</strong>.
+      </p>
+
+      <p>Activa Grid:</p>
+
+      <pre><code>.cursos {
+  display: grid;
+}</code></pre>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado B · Crea tres columnas iguales</h3>
+
+      <p>Necesitas:</p>
+
+      <pre><code>grid-template-columns: repeat(3, 1fr);</code></pre>
+
+      <p>Significa:</p>
+
+      <div class="fg-mini-grid">
+        <span>1fr</span>
+        <span>1fr</span>
+        <span>1fr</span>
+      </div>
+
+      <ul>
+        <li><code>repeat</code> → repetir.</li>
+        <li><code>3</code> → tres veces.</li>
+        <li><code>1fr</code> → una fracción del espacio disponible.</li>
+      </ul>
+
+      <p>Añade también:</p>
+
+      <pre><code>gap: 2rem;</code></pre>
+
+      <p>Tu contenedor debería quedar así:</p>
+
+      <pre><code>.cursos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}</code></pre>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado C · Diseña cada tarjeta</h3>
+
+      <pre><code>.curso {
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  background-color: white;
+}</code></pre>
+
+      <div class="fg-aviso">
+        <strong>Recuerda <code>box-sizing</code>.</strong><br>
+        El valor inicial es <code>content-box</code>: si defines un ancho, el padding y el borde
+        se añaden fuera de ese ancho. Para trabajar de forma más previsible es habitual usar:
+      </div>
+
+      <pre><code>* {
+  box-sizing: border-box;
+}</code></pre>
+
+      <p>Ejemplo:</p>
+
+      <pre><code>.caja {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid;
+}</code></pre>
+
+      <p>Con <code>content-box</code>:</p>
+
+      <div class="fg-resultado">
+        <pre>300px contenido
++ 40px padding
++  4px border
+──────────────
+344px reales</pre>
+      </div>
+
+      <p>
+        Con <code>border-box</code>, el ancho declarado incluye contenido, padding y borde.
+      </p>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado D · Haz que una tarjeta ocupe todo el ancho</h3>
+
+      <p>
+        Añade una segunda clase a la primera tarjeta:
+      </p>
+
+      <pre><code>&lt;article class="curso destacado"&gt;
+  ...
+&lt;/article&gt;</code></pre>
+
+      <p>Ahora aplica una propiedad al <strong>HIJO GRID</strong>:</p>
+
+      <pre><code>.destacado {
+  grid-column: 1 / -1;
+}</code></pre>
+
+      <p>
+        <code>1</code> significa primera línea de Grid y <code>-1</code> significa última línea.
+      </p>
+
+      <div class="fg-pista">
+        <strong>Observa:</strong>
+        <code>grid-template-columns</code> va en el PADRE porque construye la rejilla.
+        <code>grid-column</code> va en un HIJO porque modifica solo esa tarjeta.
+      </div>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado E · Haz la rejilla adaptable</h3>
+
+      <p>Sustituye:</p>
+
+      <pre><code>grid-template-columns: repeat(3, 1fr);</code></pre>
+
+      <p>por:</p>
+
+      <pre><code>grid-template-columns:
+  repeat(auto-fit, minmax(220px, 1fr));</code></pre>
+
+      <ul>
+        <li><code>minmax(220px, 1fr)</code> → cada columna mide como mínimo 220px y puede crecer.</li>
+        <li><code>auto-fit</code> → Grid intenta colocar tantas columnas como quepan.</li>
+      </ul>
+
+      <p>
+        Reduce el ancho del navegador y observa cómo las tarjetas pasan automáticamente
+        de tres columnas a dos y después a una.
+      </p>
+    </div>
+
+    <h3>Al terminar debes ser capaz de explicar</h3>
+
+    <ul class="fg-check">
+      <li>Por qué <code>display: grid</code> va en el padre.</li>
+      <li>Qué significa <code>repeat(3, 1fr)</code>.</li>
+      <li>Qué diferencia hay entre <code>grid-template-columns</code> y <code>grid-column</code>.</li>
+      <li>Qué hace <code>auto-fit</code> con <code>minmax()</code>.</li>
+      <li>Por qué usamos habitualmente <code>box-sizing: border-box</code>.</li>
+    </ul>
+  </article>
+
+
+  <!-- =====================================================
+       EJERCICIO 3
+  ====================================================== -->
+
+  <article class="fg-ejercicio" id="ejercicio-grid-flex">
+    <p class="fg-etiqueta">EJERCICIO 3 · GRID + FLEXBOX</p>
+    <h2>Construye una galería de productos</h2>
+
+    <div class="fg-objetivo">
+      <strong>Objetivo:</strong>
+      utilizar Grid para organizar las tarjetas de producto y Flexbox dentro de cada tarjeta
+      para colocar el precio y el botón de compra.
+    </div>
+
+    <h3>Resultado que buscamos</h3>
+
+    <div class="fg-resultado">
+      <pre>┌───────────────────┐ ┌───────────────────┐
+│      IMAGEN       │ │      IMAGEN       │
+│ Camiseta azul     │ │ Sudadera gris     │
+│ Descripción       │ │ Descripción       │
+│                   │ │                   │
+│ 29,99 €   Comprar │ │ 39,99 €   Comprar │
+└───────────────────┘ └───────────────────┘</pre>
+    </div>
+
+    <h3>HTML de partida con placeholders</h3>
+
+    <p>
+      Para poder realizar el ejercicio sin buscar imágenes todavía, utilizamos imágenes
+      placeholder. Después podrás sustituir cada <code>src</code> por una imagen real.
+    </p>
+
+    <pre><code>&lt;section class="productos"&gt;
+
+  &lt;article class="producto"&gt;
+    &lt;img
+      src="https://placehold.co/600x450?text=Camiseta+azul"
+      alt="Placeholder de una camiseta azul"
+    &gt;
+
+    &lt;h2&gt;Camiseta azul&lt;/h2&gt;
+
+    &lt;p&gt;
+      Camiseta de algodón disponible en varias tallas.
+    &lt;/p&gt;
+
+    &lt;div class="acciones"&gt;
+      &lt;strong&gt;29,99 €&lt;/strong&gt;
+      &lt;button type="button"&gt;Comprar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+
+  &lt;article class="producto"&gt;
+    &lt;img
+      src="https://placehold.co/600x450?text=Sudadera+gris"
+      alt="Placeholder de una sudadera gris"
+    &gt;
+
+    &lt;h2&gt;Sudadera gris&lt;/h2&gt;
+
+    &lt;p&gt;
+      Sudadera cómoda para uso diario.
+    &lt;/p&gt;
+
+    &lt;div class="acciones"&gt;
+      &lt;strong&gt;39,99 €&lt;/strong&gt;
+      &lt;button type="button"&gt;Comprar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+
+  &lt;article class="producto"&gt;
+    &lt;img
+      src="https://placehold.co/600x450?text=Mochila+negra"
+      alt="Placeholder de una mochila negra"
+    &gt;
+
+    &lt;h2&gt;Mochila negra&lt;/h2&gt;
+
+    &lt;p&gt;
+      Mochila ligera con varios compartimentos.
+    &lt;/p&gt;
+
+    &lt;div class="acciones"&gt;
+      &lt;strong&gt;24,99 €&lt;/strong&gt;
+      &lt;button type="button"&gt;Comprar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+&lt;/section&gt;</code></pre>
+
+    <div class="fg-subapartado">
+      <h3>Apartado A · Construye el Grid exterior</h3>
+
+      <div class="fg-arbol">.productos
+├── .producto
+├── .producto
+└── .producto</div>
+
+      <p>
+        <code>.productos</code> será el <strong>PADRE GRID</strong>.
+      </p>
+
+      <pre><code>.productos {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}</code></pre>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado B · Diseña las tarjetas</h3>
+
+      <pre><code>* {
+  box-sizing: border-box;
+}
+
+.producto {
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  background-color: white;
+}</code></pre>
+
+      <div class="fg-pista">
+        <strong>Qué estás haciendo:</strong>
+        Grid controla la posición de las tarjetas.
+        El borde, padding y fondo solo trabajan el aspecto de cada tarjeta.
+      </div>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado C · Haz que todas las imágenes tengan la misma proporción</h3>
+
+      <pre><code>.producto img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}</code></pre>
+
+      <h4><code>aspect-ratio: 4 / 3</code></h4>
+
+      <p>
+        Indica la proporción que debe mantener la caja de la imagen:
+        por cada 4 unidades de ancho tendrá 3 de alto.
+      </p>
+
+      <h4><code>object-fit: cover</code></h4>
+
+      <p>
+        Hace que la imagen llene completamente esa caja sin deformarse.
+        Si sobra parte de la imagen, se recorta.
+      </p>
+
+      <div class="fg-aviso">
+        <strong>No confundas:</strong>
+        <code>aspect-ratio</code> define la forma de la caja;
+        <code>object-fit</code> decide cómo se adapta la imagen dentro de ella.
+      </div>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado D · Encuentra ahora el Flexbox</h3>
+
+      <p>Dentro de cada tarjeta tenemos:</p>
+
+      <pre><code>&lt;div class="acciones"&gt;
+  &lt;strong&gt;29,99 €&lt;/strong&gt;
+  &lt;button type="button"&gt;Comprar&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+      <div class="fg-arbol">.acciones
+├── strong
+└── button</div>
+
+      <p>
+        Queremos colocar precio y botón en una sola fila.
+        Por tanto, <code>.acciones</code> será un <strong>PADRE FLEX</strong>.
+      </p>
+
+      <pre><code>.acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+
+      <p>Resultado:</p>
+
+      <div class="fg-resultado">
+        <pre>29,99 €                              Comprar</pre>
+      </div>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado E · Analiza toda la jerarquía</h3>
+
+      <div class="fg-arbol">.productos  → PADRE GRID
+│
+├── .producto → HIJO GRID
+│   │
+│   ├── img
+│   ├── h2
+│   ├── p
+│   │
+│   └── .acciones → PADRE FLEX
+│       ├── strong → HIJO FLEX
+│       └── button → HIJO FLEX
+│
+├── .producto → HIJO GRID
+└── .producto → HIJO GRID</div>
+
+      <div class="fg-regla">
+        <strong>Idea fundamental:</strong>
+        un elemento puede ser hijo de un Grid y, dentro de él, contener otro elemento
+        que se convierta en padre Flex.
+      </div>
+    </div>
+
+    <div class="fg-subapartado">
+      <h3>Apartado F · Reto práctico</h3>
+
+      <ol class="fg-pasos">
+        <li>
+          <div>
+            Añade un cuarto producto copiando la estructura de una tarjeta y cambia
+            su título, descripción, precio e imagen placeholder.
+          </div>
+        </li>
+
+        <li>
+          <div>
+            Reduce el ancho del navegador y comprueba cómo Grid cambia automáticamente
+            el número de columnas.
+          </div>
+        </li>
+
+        <li>
+          <div>
+            Cambia temporalmente <code>justify-content: space-between</code> por
+            <code>center</code> dentro de <code>.acciones</code> y observa la diferencia.
+          </div>
+        </li>
+
+        <li>
+          <div>
+            Añade <code>gap: 1rem</code> a <code>.acciones</code>.
+            Comprueba cómo Flexbox mantiene una separación mínima entre precio y botón.
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <h3>Propiedades necesarias en este ejercicio</h3>
+
+    <div class="fg-tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Propiedad</th>
+            <th>Valor utilizado</th>
+            <th>Se aplica a</th>
+            <th>Para qué</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>display</code></td>
+            <td><code>grid</code></td>
+            <td><strong>PADRE GRID</strong></td>
+            <td>Activa Grid.</td>
+          </tr>
+          <tr>
+            <td><code>grid-template-columns</code></td>
+            <td><code>repeat(auto-fit, minmax(250px, 1fr))</code></td>
+            <td><strong>PADRE GRID</strong></td>
+            <td>Crea columnas adaptables.</td>
+          </tr>
+          <tr>
+            <td><code>gap</code></td>
+            <td><code>2rem</code></td>
+            <td><strong>PADRE GRID</strong></td>
+            <td>Separa las tarjetas.</td>
+          </tr>
+          <tr>
+            <td><code>box-sizing</code></td>
+            <td><code>border-box</code></td>
+            <td>Todas las cajas</td>
+            <td>Hace más previsible el cálculo del tamaño.</td>
+          </tr>
+          <tr>
+            <td><code>aspect-ratio</code></td>
+            <td><code>4 / 3</code></td>
+            <td>Imagen</td>
+            <td>Mantiene una proporción común.</td>
+          </tr>
+          <tr>
+            <td><code>object-fit</code></td>
+            <td><code>cover</code></td>
+            <td>Imagen</td>
+            <td>Rellena la caja sin deformar la imagen.</td>
+          </tr>
+          <tr>
+            <td><code>display</code></td>
+            <td><code>flex</code></td>
+            <td><strong>PADRE FLEX</strong></td>
+            <td>Activa Flexbox dentro de la tarjeta.</td>
+          </tr>
+          <tr>
+            <td><code>justify-content</code></td>
+            <td><code>space-between</code></td>
+            <td><strong>PADRE FLEX</strong></td>
+            <td>Separa precio y botón hacia los extremos.</td>
+          </tr>
+          <tr>
+            <td><code>align-items</code></td>
+            <td><code>center</code></td>
+            <td><strong>PADRE FLEX</strong></td>
+            <td>Alinea precio y botón verticalmente.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Al terminar debes ser capaz de explicar</h3>
+
+    <ul class="fg-check">
+      <li>Por qué el contenedor exterior utiliza Grid.</li>
+      <li>Por qué <code>.acciones</code> utiliza Flexbox.</li>
+      <li>Cómo puede combinarse Grid con Flexbox en una página real.</li>
+      <li>Qué diferencia existe entre propiedades del padre y propiedades de sus hijos.</li>
+      <li>Qué hacen <code>aspect-ratio</code> y <code>object-fit</code>.</li>
+    </ul>
+  </article>
+
+</section>
